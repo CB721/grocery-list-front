@@ -11,7 +11,8 @@
     "client": "cd client && npm run start",
     "install": "cd client && npm install",
     "build": "cd client && npm run build",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run build",
+    "test": "jest"
   },
   "devDependencies": {
     "nodemon": "^1.18.7"
@@ -27,7 +28,9 @@
   },
   "homepage": "https://github.com/CB721/grocery-list#readme",
   "dependencies": {
+    "concurrently": "^4.1.0",
     "express": "^4.17.1",
+    "jest": "^24.9.0",
     "mongoose": "^5.8.9"
   }
 }
