@@ -1,11 +1,30 @@
-import React from 'react';
-import './App.css';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Home from "./components/Home";
+import Login from "./components/Login";
+import CreateAccount from "./components/CreateAccount";
+import Profile from "./components/Profile";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import './App.scss';
 
 function App() {
+  const create = { name: "Create Account", link: "/join" };
+  const signIn = { name: "Login", link: "/login" };
+  const signOut = { name: "Logout", link: "/signout" }
+  const [navOptions, setNavOptions] = useState([create, signIn]);
+
   return (
-    <div className="App">
-      
-    </div>
+    <Router>
+      <Navbar options={navOptions} />
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/join" component={CreateAccount} />
+        <Route exact path="/profile" component={Profile} />
+      </Switch>
+      <Footer />
+    </Router>
   );
 }
 
