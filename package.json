@@ -33,7 +33,9 @@
     "jest": "^24.9.0",
     "mongoose": "^5.8.9",
     "node-sass": "^4.13.1",
+    "react-reveal": "^1.2.2",
     "react-router-dom": "^5.1.2",
+    "react-textfit": "^1.1.0",
     "shards-react": "^1.0.3"
   }
 }

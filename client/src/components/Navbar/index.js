@@ -1,27 +1,52 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Row, Col, Fade } from "shards-react";
+import { Textfit } from "react-textfit";
+import SideMenu from "../SideMenu";
 import "./style.scss";
 
 function Navbar(props) {
+    const [menuExpand, setMenuExpand] = useState("burger-menu");
+    function expandMenu(event) {
+        event.preventDefault();
+        if (menuExpand === "burger-menu") {
+            setMenuExpand("burger-menu change");
+        } else {
+            setMenuExpand("burger-menu");
+        }
+    }
     return (
-        <div className="nav">
-            <div className="nav-items">
-                {props.options.map((option, index) => (
-                    <p key={index}>{option.name}</p>
-                ))}
-            </div>
-            <div className="app-text">
-                <p>G-List</p>
-            </div>
-            <div className="nav-items">
-                {props.options.map((option, index) => (
-                    <p className="nav-options" key={index}>
-                        <a href={option.link}>
-                            {option.name}
-                        </a>
-                    </p>
-                ))}
-            </div>
-        </div>
+        <Row noGutters={true}>
+            <Col>
+                <div className="nav">
+                    <div className="nav-items">
+                        {props.options.map((option, index) => (
+                            <p key={index}>{option.name}</p>
+                        ))}
+                    </div>
+                    <div className="app-text">
+                        <Textfit
+                            mode="single"
+                            min={16}
+                            max={48}
+                        >
+                            G-List
+                        </Textfit>
+                    </div>
+                    <div className="nav-items">
+                        <div className={menuExpand} onClick={(event) => expandMenu(event)}>
+                            <div className="bar1" />
+                            <div className="bar2" />
+                            <div className="bar3" />
+                        </div>
+                        {menuExpand === "burger-menu change" ? (
+                            <Fade>
+                                <SideMenu options={props.options} menuExpand={menuExpand} />
+                            </Fade>
+                        ) : (<div />)}
+                    </div>
+                </div>
+            </Col>
+        </Row>
     )
 }
 

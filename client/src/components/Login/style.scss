@@ -1,1 +1,5 @@
 @import "../../App.scss";
+
+.login {
+    @include page-defaults;
+}

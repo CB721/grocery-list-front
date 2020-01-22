@@ -16,7 +16,9 @@ if (process.env.NODE_ENV === "production") {
 // app.use(routes);
 
 // mongo connection
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose
+  .connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .catch(err => console.log(err));
 mongoose.set('useFindAndModify', false);
 
 app.get("*", (req, res) => {

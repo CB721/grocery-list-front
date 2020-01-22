@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Container } from "shards-react";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import CreateAccount from "./components/CreateAccount";
@@ -16,14 +17,16 @@ function App() {
 
   return (
     <Router>
-      <Navbar options={navOptions} />
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/join" component={CreateAccount} />
-        <Route exact path="/profile" component={Profile} />
-      </Switch>
-      <Footer />
+      <Container fluid={true}>
+        <Navbar options={navOptions} />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/join" component={CreateAccount} />
+          <Route exact path="/profile" component={Profile} />
+        </Switch>
+        <Footer />
+      </Container>
     </Router>
   );
 }

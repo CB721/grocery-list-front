@@ -1,1 +1,6 @@
 @import "../../App.scss";
+
+
+.create-account {
+    @include page-defaults;
+}
