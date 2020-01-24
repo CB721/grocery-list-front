@@ -7,6 +7,8 @@ import CreateAccount from "./components/CreateAccount";
 import Profile from "./components/Profile";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+// import "bootstrap/dist/css/bootstrap.min.css";
+import "shards-ui/dist/css/shards.min.css"
 import './App.scss';
 
 function App() {

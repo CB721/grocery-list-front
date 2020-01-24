@@ -15,14 +15,10 @@ function Navbar(props) {
         }
     }
     return (
-        <Row noGutters={true}>
+        <Row>
             <Col>
                 <div className="nav">
-                    <div className="nav-items">
-                        {props.options.map((option, index) => (
-                            <p key={index}>{option.name}</p>
-                        ))}
-                    </div>
+                    <div className="nav-items" />
                     <div className="app-text">
                         <Textfit
                             mode="single"
@@ -40,7 +36,7 @@ function Navbar(props) {
                         </div>
                         {menuExpand === "burger-menu change" ? (
                             <Fade>
-                                <SideMenu options={props.options} menuExpand={menuExpand} />
+                                <SideMenu options={props.options} expandMenu={expandMenu} />
                             </Fade>
                         ) : (<div />)}
                     </div>

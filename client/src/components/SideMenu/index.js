@@ -6,13 +6,13 @@ import "./style.scss";
 
 function SideMenu(props) {
     return (
-        <Fade exit={true}>
-            <div className="side-menu-bg">
+        <Fade in={true}>
+            <div className="side-menu-bg" onClick={(event) => props.expandMenu(event)}>
                 <Slide right>
                     <div className="menu-side" />
                     <div className="side-menu">
                         {props.options.map((option, index) => (
-                            <div className="nav-options" key={index} style={{ paddingRight: 10 + "px" }}>
+                            <div className="nav-options" key={index}>
                                 <a href={option.link}>
                                     <Textfit
                                         mode="single"

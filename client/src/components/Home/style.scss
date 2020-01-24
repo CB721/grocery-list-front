@@ -6,4 +6,33 @@
 .home-splash-image {
     width: 100vw;
     height: 100vh;
+    @include shadow;
+}
+.center-image-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    text-transform: uppercase;
+    width: 100%;
+    text-align: center;
+    height: auto;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    background: $main-blue;
+    @include shadow;
+}
+.app-desc {
+    width: auto;
+    height: auto;
+    background: $main-blue;
+    padding: 10px;
+    margin: 0 auto;
+    text-align: center;
+    @include shadow;
+}
+.half {
+    width: 50%;
+    justify-content: left;
 }

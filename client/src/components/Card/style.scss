@@ -1,0 +1,49 @@
+@import "../../App.scss";
+
+.card {
+    height: 30%;
+    width: 21.3%;
+    background: $white;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    display: inline-block;
+    position: relative;
+    border-radius: 8px;
+    margin: 5%;
+    padding: 1%;
+    & .card-tooltip {
+        visibility: hidden;
+        background: $main-blue;
+        text-align: center;
+        border-radius: 8px;
+        padding: 5px 0;
+        width: 70px;
+        height: auto;
+        position: absolute;
+        z-index: 3;
+    }
+    &:hover .card-tooltip {
+        visibility: visible;
+        @include shadow;
+    }
+}
+.card-image {
+    height: 75%;
+    width: 100%;
+    border-radius: 8px;
+}
+.card-body-text {
+    height: auto;
+    width: 100%;
+    padding-top: 1%;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    text-align: center;
+    word-wrap: normal;
+    color: $black;
+}
+.card-text {
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    color: $black;
+}

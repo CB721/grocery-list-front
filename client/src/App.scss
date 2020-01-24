@@ -14,6 +14,7 @@ $secondary-blue: #5695D3;
 }
 @mixin page-defaults {
     height: 100%;
+    width: auto;
 }
 body {
     color: $white;
@@ -24,3 +25,17 @@ a {
     text-decoration: none;
     color: $white;
 }
+// .container-fluid, .row, .col {
+//     padding: none !important;
+//     margin: none;
+// }
+// .no-gutters {
+//     margin-right: 0;
+//     margin-left: 0;
+  
+//     > .col,
+//     > [class*="col-"] {
+//       padding-right: 0;
+//       padding-left: 0;
+//     }
+// }
