@@ -9,9 +9,7 @@ function Login(props) {
     const [password, setPassword] = useState("");
     const inputs = [{ email: email }, { password: password }];
     const [checkClass, setCheckClass] = useState("blue");
-    function handleInputChange() {
 
-    }
     function toggleClass(event) {
         event.preventDefault();
         if (checkClass === "done green") {
