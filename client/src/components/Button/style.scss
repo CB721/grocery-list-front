@@ -1,0 +1,52 @@
+@import "../../App.scss";
+
+.cust-button {
+    font-size: 16px;
+    width: 100%;
+    text-align: center;
+    height: 50px;
+    border-radius: 8px;
+    text-transform: uppercase;
+    &:focus {
+        outline: none;
+    }
+    &:hover {
+        cursor: pointer;
+    }
+}
+.white-button {
+    color: $main-blue;
+    background: $white;
+    border: 3px solid $main-blue;
+    transition: 0.3s;
+    &:active {
+        color: $white;
+        background: $main-blue;
+        border: 3px solid $white;
+        transform: scale(0.98);
+    }
+}
+.black-button {
+    color: $white;
+    background: $black;
+    border: 3px solid $white;
+    transition: 0.3s;
+    &:active {
+        background: $white;
+        color: $black;
+        border: 3px solid $black;
+        transform: scale(0.98);
+    }
+}
+.blue-button {
+    color: $white;
+    background: $main-blue;
+    border: 3px solid $white;
+    transition: 0.3s;
+    &:active {
+        background: $white;
+        color: $main-blue;
+        border: 3px solid $main-blue;
+        transform: scale(0.98);
+    }
+}

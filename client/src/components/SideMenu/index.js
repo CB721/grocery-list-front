@@ -7,9 +7,9 @@ import "./style.scss";
 function SideMenu(props) {
     return (
         <Fade in={true}>
-            <div className="side-menu-bg" onClick={(event) => props.expandMenu(event)}>
+            <div className="side-menu-bg">
                 <Slide right>
-                    <div className="menu-side" />
+                    <div className="menu-side" onClick={(event) => props.expandMenu(event)}/>
                     <div className="side-menu">
                         {props.options.map((option, index) => (
                             <div className="nav-options" key={index}>
