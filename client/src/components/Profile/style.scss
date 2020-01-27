@@ -1,6 +1,52 @@
 @import "../../App.scss";
 
+@mixin profile-sections {
+    position: relative;
+    border-radius: 8px;
+    width: 75%;
+    height: auto;
+    background: $white;
+    color: $black;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
 
 .profile {
     @include page-defaults;
+}
+.header {
+    margin: 10% auto 0 auto;
+    @include profile-sections;
+    .header-col {
+        width: 33.33%;
+        height: 4rem;
+        line-height: 4rem;
+        color: $black;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        display: inline-block;
+        margin: 0 auto;
+        text-align: center;
+        transition: 0.3s;
+        &.selected {
+            &:first-child {
+                border-bottom-left-radius: 8px;
+                border-top-left-radius: 8px;
+            }
+            &:last-child {
+                border-bottom-right-radius: 8px;
+                border-top-right-radius: 8px;
+            }
+            cursor: pointer;
+            background: $main-blue;
+            color: $white;
+            -webkit-box-shadow: inset 0px 0px 6px 1px rgba(47,51,56,1);
+            -moz-box-shadow: inset 0px 0px 6px 1px rgba(47,51,56,1);
+            box-shadow: inset 0px 0px 6px 1px rgba(47,51,56,1);
+        }
+    }
+}
+.current-view {
+    @include profile-sections;
+    margin: 0 auto;
+    height: 300px;
 }
