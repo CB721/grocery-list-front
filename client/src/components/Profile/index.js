@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Space from "../DivSpace";
+import Store from "../Store";
 import { Row, Col } from "shards-react";
 import "./style.scss";
 
@@ -21,9 +22,8 @@ function Profile(props) {
             setView("header-col selected");
             setStore("header-col");
         }
-        console.log("create list");
     }
-    function addStore(event) {
+    function viewStores(event) {
         event.preventDefault();
         if (store === "header-col") {
             setCreate("header-col");
@@ -34,7 +34,6 @@ function Profile(props) {
             setView("header-col selected");
             setStore("header-col");
         }
-        console.log("add a store");
     }
     function viewLists(event) {
         event.preventDefault();
@@ -43,7 +42,6 @@ function Profile(props) {
             setView("header-col selected");
             setStore("header-col");
         }
-        console.log("view lists");
     }
     // function handleSwipe(event) {
     //     const time = new Date();
@@ -121,8 +119,8 @@ function Profile(props) {
                         <div className={view} onClick={(event) => viewLists(event)}>
                             View Lists
                         </div>
-                        <div className={store} onClick={(event) => addStore(event)}>
-                            Add a store
+                        <div className={store} onClick={(event) => viewStores(event)}>
+                            View Stores
                         </div>
                     </div>
                 </Col>
@@ -134,7 +132,7 @@ function Profile(props) {
                         className="current-view"
                         onTouchMove={handleSwipe}
                     >
-
+                        
                     </div>
                 </Col>
             </Row>

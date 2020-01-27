@@ -1,0 +1,90 @@
+[
+    {
+        "item_name": "bananas",
+        "priority_level": "normal",
+        "store_id": 3,
+        "status": "done",
+        "list_id": 3,
+        "user_id": 1
+    },
+    {
+        "item_name": "zucchini",
+        "priority_level": "normal",
+        "store_id": 3,
+        "status": "to-get",
+        "list_id": 3,
+        "user_id": 1
+    },
+    {
+        "item_name": "rice",
+        "priority_level": "low",
+        "store_id": 3,
+        "status": "to-get",
+        "list_id": 3,
+        "user_id": 1
+    },
+    {
+        "item_name": "syrup",
+        "priority_level": "low",
+        "store_id": 2,
+        "status": "to-get",
+        "list_id": 3,
+        "user_id": 1
+    },
+    {
+        "item_name": "orange juice",
+        "priority_level": "normal",
+        "store_id": 4,
+        "status": "done",
+        "list_id": 3,
+        "user_id": 1
+    },
+    {
+        "item_name": "naan bread",
+        "priority_level": "high",
+        "store_id": 1,
+        "status": "to-get",
+        "list_id": 3,
+        "user_id": 1
+    },
+    {
+        "item_name": "tomatoes",
+        "priority_level": "high",
+        "store_id": 1,
+        "status": "done",
+        "list_id": 3,
+        "user_id": 1
+    },
+    {
+        "item_name": "cereal",
+        "priority_level": "low",
+        "store_id": 4,
+        "status": "to-get",
+        "list_id": 3,
+        "user_id": 1
+    },
+    {
+        "item_name": "chips",
+        "priority_level": "normal",
+        "store_id": 2,
+        "status": "done",
+        "list_id": 3,
+        "user_id": 1
+    },
+    {
+        "item_name": "bread",
+        "priority_level": "normal",
+        "store_id": 3,
+        "status": "done",
+        "list_id": 3,
+        "user_id": 1
+    },
+    {
+        "item_name": "paper towels",
+        "priority_level": "low",
+        "store_id": 4,
+        "status": "done",
+        "list_id": 3,
+        "user_id": 1
+    }
+]
