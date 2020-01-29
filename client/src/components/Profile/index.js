@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Space from "../DivSpace";
 import Store from "../Store";
+import CreateList from "../CreateList";
 import Slide from 'react-reveal/Slide';
 import Stores from "../../assets/data/store.json";
 import { Row, Col } from "shards-react";
@@ -158,10 +159,13 @@ function Profile(props) {
                         // onTouchMove={handleSwipe}
                         >
                             {currentView === "create-list" ? (
-                                <div>
-                                </div>
+                                <CreateList
+                                    // change to stores from api instead of json file
+                                    data={Stores}
+                                />
                             ) : currentView === "store-list" ? (
                                 <Store
+                                    // change to stores from api instead of json file
                                     data={Stores}
                                 />
                             ) : (

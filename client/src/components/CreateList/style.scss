@@ -1,0 +1,57 @@
+@import "../../App.scss";
+
+.create-list {
+    padding: 10px 0;
+    width: 100%;
+    margin: 0 auto;
+    height: auto;
+    border-radius: 8px;
+    .create-list-header {
+        font-size: 1rem;
+        line-height: 1rem;
+        text-align: center;
+        color: $black;
+        text-transform: uppercase;
+    }
+    .form-input {
+        @include form-input;
+        margin: 20px 12.5%;
+        width: 75%;
+    }
+    .store-dropdown {
+        margin: 20px 12.5%;
+        width: 75%;
+        transition: 0.5s;
+        background: $white;
+        color: $main-blue;
+        height: 35px;
+        border-radius: 8px;
+        &:focus {
+            outline: none;
+            border-color: $secondary-blue;
+        }
+    }
+    .list-item {
+        height: 35px;
+        line-height: 35px;
+        width: 75%;
+        margin: 0 12.5%;
+        // display: grid;
+        display: inline-flex;
+        &:first-child {
+            border-bottom-left-radius: 8px;
+            border-top-left-radius: 8px;
+        }
+        &:last-child {
+            border-bottom-right-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+        .list-item-col {
+            border-radius: inherit;
+            width: 50%;
+            &:nth-child(even) {
+                text-align: right;
+            }
+        }
+    }
+}

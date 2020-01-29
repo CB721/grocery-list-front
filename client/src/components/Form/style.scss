@@ -27,16 +27,7 @@
         width: 75%;
         .form-input {
             width: 100%;
-            border: none;
-            height: 20px;
-            border-bottom: 3px solid;
-            border-color: $black;
-            transition: 0.5s;
-            &:focus {
-                outline: none;
-                border-color: $secondary-blue;
-                
-            }
+            @include form-input;
         }
         .form-input:last-child {
             margin-bottom: 20px;

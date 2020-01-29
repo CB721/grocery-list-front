@@ -1,6 +1,5 @@
 $black: #2F3338;
 $white: #F9FCFF;
-$dark-white: rgb(237, 237, 237);
 $main-blue: #3C91E6;
 $secondary-blue: #5695D3;
 
@@ -16,6 +15,17 @@ $secondary-blue: #5695D3;
 @mixin page-defaults {
     height: 100%;
     width: auto;
+}
+@mixin form-input {
+    border: none;
+    height: 20px;
+    border-bottom: 3px solid;
+    border-color: $black;
+    transition: 0.5s;
+    &:focus {
+        outline: none;
+        border-color: $secondary-blue;
+    }
 }
 body {
     color: $white;

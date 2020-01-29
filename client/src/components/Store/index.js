@@ -13,11 +13,6 @@ function Store(props) {
     const [view, setView] = useState("option-header selected");
     const [search, setSearch] = useState("");
     const [results, setResults] = useState([]);
-    // name
-    // street address
-    // city
-    // state
-    // zip
 
     useEffect(() => {
         switch (currentView) {
@@ -57,9 +52,10 @@ function Store(props) {
             })
             .catch(err => console.log(err));
     }
-    function handleFormSubmit(event) {
+    function saveStore(event, store) {
         event.preventDefault();
-
+        console.log("save store to user profile");
+        console.log(store);
     }
     return (
         <div className="store">
@@ -110,10 +106,11 @@ function Store(props) {
                         {results.length > 0 ? (
                             <Flip bottom cascade>
                                 <div className="store-results-section">
-                                    {results.map(result => (
+                                    {results.map((result, index) => (
                                         <div
-                                            key={result.id}
+                                            key={result.id + index}
                                             className="search-result"
+                                            onClick={(event) => saveStore(event, result)}
                                         >
                                             <Textfit
                                                 mode="single"
