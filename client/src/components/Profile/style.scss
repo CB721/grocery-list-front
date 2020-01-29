@@ -8,6 +8,9 @@
     background: $white;
     color: $black;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    @media only screen and(max-width: 450px) {
+        width:100%;
+    }
 }
 
 .profile {
@@ -27,6 +30,9 @@
         margin: 0 auto;
         text-align: center;
         transition: 0.3s;
+        &:nth-child(2) {
+            width: 33.34%;
+        }
         &.selected {
             &:first-child {
                 border-bottom-left-radius: 8px;
@@ -36,17 +42,19 @@
                 border-bottom-right-radius: 8px;
                 border-top-right-radius: 8px;
             }
-            cursor: pointer;
             background: $main-blue;
             color: $white;
             -webkit-box-shadow: inset 0px 0px 6px 1px rgba(47,51,56,1);
             -moz-box-shadow: inset 0px 0px 6px 1px rgba(47,51,56,1);
             box-shadow: inset 0px 0px 6px 1px rgba(47,51,56,1);
         }
+        &:hover {
+            cursor: pointer;
+        }
     }
 }
 .current-view {
     @include profile-sections;
-    margin: 0 auto;
-    height: 300px;
+    margin: 0 auto 100px auto;
+    height: auto;
 }

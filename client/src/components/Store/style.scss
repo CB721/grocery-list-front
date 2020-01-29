@@ -1,0 +1,127 @@
+@import "../../App.scss"; 
+
+.store {
+    width: 100%;
+    margin: 0 auto;
+    height: auto;
+    border-radius: 8px;
+    .list-items {
+        display: grid;
+    }
+    .store-li-col {
+        float: left;
+        width: 50%;
+        height: 100%;
+        &.left {
+            text-align: left;
+        }
+        &.right {
+            text-align: right;
+        }
+    }
+    .add-store {
+        display: grid;
+
+    }
+    .form-input {
+        margin: 20px 12.5%;
+        width: 75%;
+        border: none;
+        height: 20px;
+        border-bottom: 3px solid;
+        border-color: $black;
+        transition: 0.5s;
+        &:focus {
+            outline: none;
+            border-color: $secondary-blue;
+        }
+    }
+}
+.store-options {
+    width: 100%;
+    border-radius: 8px;
+    height: 50px;
+    background: $white;
+    .option-header {
+        width: 50%;
+        height: 50px;
+        line-height: 50px;
+        color: $black;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        display: inline-block;
+        margin: 0 auto;
+        text-align: center;
+        transition: 0.3s;
+        &:hover {
+            cursor: pointer;
+        }
+        &.selected {
+            &:first-child {
+                border-bottom-left-radius: 8px;
+                border-top-left-radius: 8px;
+            }
+            &:last-child {
+                border-bottom-right-radius: 8px;
+                border-top-right-radius: 8px;
+            }
+            background: $main-blue;
+            color: $white;
+            -webkit-box-shadow: inset 0px 0px 6px 1px rgba(47,51,56,1);
+            -moz-box-shadow: inset 0px 0px 6px 1px rgba(47,51,56,1);
+            box-shadow: inset 0px 0px 6px 1px rgba(47,51,56,1);
+        }
+    }
+}
+ul {
+    padding-left: 0;
+    list-style-type: none;
+}
+.edit-icon {
+    height: 20px;
+    width: 20px;
+    &:hover {
+        fill: $main-blue;
+        cursor: pointer;
+    }
+}
+.store-results-section {
+    width: 100%;
+    height: auto;
+    .search-result {
+        width: 75%;
+        margin: auto 12.5%;
+        background: $secondary-blue;
+        color: $white;
+        border-bottom: 1px solid $white;
+        &:first-child {
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+        &:last-child {
+            border: none;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+        .store-info {
+            width: 90%;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .store-name {
+            font-weight: bold;
+            font-size: 1.5rem;
+            line-height: 1.5rem;
+            text-transform: uppercase;
+            padding-top: 0.5rem;
+        }
+        .store-address {
+            padding-bottom: 0.5rem;
+        }
+        &:hover {
+            background: $white;
+            color: $main-blue;
+            cursor: pointer;
+        }
+    }
+}

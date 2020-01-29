@@ -28,6 +28,8 @@
   },
   "homepage": "https://github.com/CB721/grocery-list#readme",
   "dependencies": {
+    "@svgr/webpack": "^5.1.0",
+    "axios": "^0.19.2",
     "concurrently": "^4.1.0",
     "express": "^4.17.1",
     "jest": "^24.9.0",

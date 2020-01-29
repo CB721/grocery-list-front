@@ -9,15 +9,16 @@ function SideMenu(props) {
         <Fade in={true}>
             <div className="side-menu-bg">
                 <Slide right>
-                    <div className="menu-side" onClick={(event) => props.expandMenu(event)}/>
+                    <div className="menu-side" onClick={(event) => props.expandMenu(event)} />
                     <div className="side-menu">
                         {props.options.map((option, index) => (
                             <div className="nav-options" key={index}>
                                 <a href={option.link}>
                                     <Textfit
                                         mode="single"
-                                        min={8}
-                                        max={16}>
+                                        min={6}
+                                        max={16}
+                                    >
                                         {option.name}
                                     </Textfit>
                                 </a>

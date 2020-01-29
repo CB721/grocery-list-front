@@ -12,7 +12,7 @@ import "shards-ui/dist/css/shards.min.css"
 import './App.scss';
 
 function App() {
-  const create = { name: "Create Account", link: "/join" };
+  const create = { name: "Join", link: "/join" };
   const signIn = { name: "Login", link: "/login" };
   const signOut = { name: "Logout", link: "/signout" }
   const [navOptions, setNavOptions] = useState([create, signIn]);

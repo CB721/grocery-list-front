@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Space from "../DivSpace";
 import Store from "../Store";
+import Slide from 'react-reveal/Slide';
+import Stores from "../../assets/data/store.json";
 import { Row, Col } from "shards-react";
 import "./style.scss";
 
@@ -8,40 +10,50 @@ function Profile(props) {
     const [create, setCreate] = useState("header-col");
     const [view, setView] = useState("header-col selected");
     const [store, setStore] = useState("header-col");
-    const [swipe, setSwipe] = useState(0);
+    const [currentView, setCurrentView] = useState("view-lists");
+    const [swipe, setSwipe] = useState("left");
     const [swipeTime, setSwipeTime] = useState(0);
 
-    function createList(event) {
-        event.preventDefault();
-        if (create === "header-col") {
-            setCreate("header-col selected");
-            setView("header-col");
-            setStore("header-col");
-        } else if (create === "header-col selected") {
-            setCreate("header-col");
-            setView("header-col selected");
-            setStore("header-col");
+    useEffect(() => {
+        switch (currentView) {
+            case "view-lists":
+                setCreate("header-col");
+                setView("header-col selected");
+                setStore("header-col");
+                break;
+            case "create-list":
+                setCreate("header-col selected");
+                setView("header-col");
+                setStore("header-col");
+                break;
+            case "store-list":
+                setCreate("header-col");
+                setView("header-col");
+                setStore("header-col selected");
+                break;
         }
-    }
-    function viewStores(event) {
+    }, [currentView]);
+
+    function toggleOptions(event) {
         event.preventDefault();
-        if (store === "header-col") {
-            setCreate("header-col");
-            setView("header-col");
-            setStore("header-col selected");
-        } else if (store === "header-col selected") {
-            setCreate("header-col");
-            setView("header-col selected");
-            setStore("header-col");
+        const id = event.currentTarget.id;
+        // determine direction of slide effect
+        switch (currentView) {
+            case "view-lists":
+                setSwipe("left");
+                break;
+            case "create-list":
+                if (id === "store-list") {
+                    setSwipe("right");
+                } else {
+                    setSwipe("left");
+                }
+                break;
+            case "store-list":
+                setSwipe("right");
+                break;
         }
-    }
-    function viewLists(event) {
-        event.preventDefault();
-        if (view === "header-col") {
-            setCreate("header-col");
-            setView("header-col selected");
-            setStore("header-col");
-        }
+        setCurrentView(id);
     }
     // function handleSwipe(event) {
     //     const time = new Date();
@@ -113,14 +125,26 @@ function Profile(props) {
             <Row>
                 <Col>
                     <div className="header">
-                        <div className={create} onClick={(event) => createList(event)}>
+                        <div
+                            className={create}
+                            id="create-list"
+                            onClick={(event) => toggleOptions(event)}
+                        >
                             Create a list
                         </div>
-                        <div className={view} onClick={(event) => viewLists(event)}>
+                        <div
+                            className={view}
+                            id="view-lists"
+                            onClick={(event) => toggleOptions(event)}
+                        >
                             View Lists
                         </div>
-                        <div className={store} onClick={(event) => viewStores(event)}>
-                            View Stores
+                        <div
+                            className={store}
+                            id="store-list"
+                            onClick={(event) => toggleOptions(event)}
+                        >
+                            Stores
                         </div>
                     </div>
                 </Col>
@@ -128,12 +152,23 @@ function Profile(props) {
             <Space />
             <Row>
                 <Col>
-                    <div
-                        className="current-view"
-                        onTouchMove={handleSwipe}
-                    >
-                        
-                    </div>
+                    <Slide up>
+                        <div
+                            className="current-view"
+                        // onTouchMove={handleSwipe}
+                        >
+                            {currentView === "create-list" ? (
+                                <div>
+                                </div>
+                            ) : currentView === "store-list" ? (
+                                <Store
+                                    data={Stores}
+                                />
+                            ) : (
+                                        <div />
+                                    )}
+                        </div>
+                    </Slide>
                 </Col>
             </Row>
         </div>
