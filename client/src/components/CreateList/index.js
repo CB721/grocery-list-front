@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Button from "../Button";
+import Flip from 'react-reveal/Flip';
 import "./style.scss";
 
 function CreateList(props) {
@@ -8,6 +9,7 @@ function CreateList(props) {
     const [showStores, setShowStores] = useState(false);
     const [storeSelect, setStoreSelect] = useState([]);
     const [showAdd, setShowAdd] = useState(false);
+    const [priority, setPriority] = useState("normal");
     // each item should have a name and store
 
     function handleInputChange(event) {
@@ -39,7 +41,8 @@ function CreateList(props) {
         event.preventDefault();
         const completeItem = {
             name: newItem,
-            store: storeSelect
+            store: storeSelect,
+            priority
         }
         setNewItem("");
         setList(list => [...list, completeItem]);
@@ -48,6 +51,10 @@ function CreateList(props) {
         event.preventDefault();
         console.log("save list");
         console.log(list);
+    }
+    function changePriority(event) {
+        event.preventDefault();
+        setPriority(event.target.value);
     }
     return (
         <div className="create-list">
@@ -60,6 +67,20 @@ function CreateList(props) {
                 onChange={handleInputChange}
                 name={"item"}
             />
+            <select
+                className="store-dropdown"
+                defaultValue="Normal"
+            >
+                <option className="store-select-item" value="Low">
+                    Low
+                </option>
+                <option className="store-select-item" value="Normal">
+                    Normal
+                </option>
+                <option className="store-select-item" value="High">
+                    High
+                </option>
+            </select>
             {showStores && props.data.length > 0 ? (
                 <select
                     className="store-dropdown"
@@ -84,7 +105,7 @@ function CreateList(props) {
                 />
             ) : (<div />)}
             {list.length > 0 ? (
-                <div>
+                <Flip bottom cascade>
                     {list.map((item, index) => (
                         <div
                             className="list-item"
@@ -103,7 +124,7 @@ function CreateList(props) {
                         class="blue-button"
                         action={saveList}
                     />
-                </div>
+                </Flip>
             ) : (<div />)}
         </div>
     )
