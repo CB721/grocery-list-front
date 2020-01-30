@@ -31,26 +31,13 @@
             border-color: $secondary-blue;
         }
     }
-    .list-item {
-        height: 35px;
-        line-height: 35px;
-        width: 75%;
-        margin: 0 12.5%;
-        display: inline-flex;
-        &:first-child {
-            border-bottom-left-radius: 8px;
-            border-top-left-radius: 8px;
-        }
-        &:last-child {
-            border-bottom-right-radius: 8px;
-            border-top-right-radius: 8px;
-        }
-        .list-item-col {
-            border-radius: inherit;
-            width: 50%;
-            &:nth-child(even) {
-                text-align: right;
-            }
+}
+
+@media only screen and(max-width: 450px) {
+    .create-list {
+        .store-dropdown, .form-input {
+            margin: 20px 0;
+            width: 100%;
         }
     }
 }

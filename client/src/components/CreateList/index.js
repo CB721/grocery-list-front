@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Button from "../Button";
+import List from "../List";
 import Flip from 'react-reveal/Flip';
 import "./style.scss";
 
@@ -10,10 +11,11 @@ function CreateList(props) {
     const [storeSelect, setStoreSelect] = useState([]);
     const [showAdd, setShowAdd] = useState(false);
     const [priority, setPriority] = useState("normal");
-    // each item should have a name and store
+    const [inputErr, setInputErr] = useState("");
 
     function handleInputChange(event) {
         event.preventDefault();
+        setInputErr("");
         let value = event.target.value;
         setNewItem(value);
     }
@@ -39,16 +41,21 @@ function CreateList(props) {
     }
     function addItem(event) {
         event.preventDefault();
-        const completeItem = {
-            name: newItem,
-            store: storeSelect,
-            priority
+        if (newItem.length < 1) {
+            setInputErr("Add an item");
+        } else {
+            const completeItem = {
+                name: newItem,
+                store: storeSelect,
+                priority
+            }
+            setNewItem("");
+            setList(list => [...list, completeItem]);
         }
-        setNewItem("");
-        setList(list => [...list, completeItem]);
     }
     function saveList(event) {
         event.preventDefault();
+        setPriority("normal");
         console.log("save list");
         console.log(list);
     }
@@ -59,6 +66,7 @@ function CreateList(props) {
     return (
         <div className="create-list">
             <div className="create-list-header">New List</div>
+            <div className="create-list-header error">{inputErr}</div>
             <input
                 type="text"
                 className="form-input"
@@ -70,6 +78,7 @@ function CreateList(props) {
             <select
                 className="store-dropdown"
                 defaultValue="Normal"
+                onChange={changePriority}
             >
                 <option className="store-select-item" value="Low">
                     Low
@@ -97,6 +106,15 @@ function CreateList(props) {
                     ))}
                 </select>
             ) : (<div />)}
+            {list.length > 0 ? (
+                <div>
+                    <Flip bottom cascade>
+                        <List
+                            list={list}
+                        />
+                    </Flip>
+                </div>
+            ) : (<div />)}
             {showAdd ? (
                 <Button
                     text="Add"
@@ -105,26 +123,11 @@ function CreateList(props) {
                 />
             ) : (<div />)}
             {list.length > 0 ? (
-                <Flip bottom cascade>
-                    {list.map((item, index) => (
-                        <div
-                            className="list-item"
-                            key={index}
-                        >
-                            <div className="list-item-col">
-                                {item.name}
-                            </div>
-                            <div className="list-item-col">
-                                {item.store}
-                            </div>
-                        </div>
-                    ))}
-                    <Button
-                        text="Save"
-                        class="blue-button"
-                        action={saveList}
-                    />
-                </Flip>
+                <Button
+                    text="Save"
+                    class="blue-button"
+                    action={saveList}
+                />
             ) : (<div />)}
         </div>
     )

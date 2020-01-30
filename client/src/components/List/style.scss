@@ -1,0 +1,57 @@
+@import "../../App.scss";
+
+.list {
+    width: 100%;
+    height: auto;
+    padding: 20px 0;
+    background: $white;
+    border-radius: 8px;
+    .list-item {
+        height: 35px;
+        line-height: 35px;
+        width: 75%;
+        margin: 0 12.5%;
+        display: inline-flex;
+        background: $main-blue;
+        color: $white;
+        transition: 0.3s;
+        border-bottom: 1px solid $white;
+        &:first-child {
+            border-top-right-radius: 8px;
+            border-top-left-radius: 8px;
+        }
+        &:last-child {
+            border-bottom: none;
+            border-bottom-right-radius: 8px;
+            border-bottom-left-radius: 8px;
+        }
+        .list-item-col {
+            border-radius: inherit;
+            width: 33.33%;
+            padding: 0 5px;
+            overflow: scroll;
+            &:nth-child(2n) {
+                padding: none;
+                text-align: center;
+                width: 33.34%
+            }
+            &:nth-child(3n) {
+                text-align: right;
+            }
+        }
+        &:hover {
+            background: $white;
+            color: $main-blue;
+            cursor: pointer;
+        }
+    }
+}
+
+@media only screen and(max-width: 450px) {
+    .list {
+        .list-item {
+            margin: 0 auto;
+            width: 100%;
+        }
+    }
+}
