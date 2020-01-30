@@ -45,6 +45,19 @@
                 // .to-get {
                 //     margin-top: 0.3rem;
                 // }
+                .store-dropdown {
+                    // margin: 20px 12.5%;
+                    // width: 75%;
+                    transition: 0.5s;
+                    background: $white;
+                    color: $main-blue;
+                    // height: 35px;
+                    border-radius: 8px;
+                    &:focus {
+                        outline: none;
+                        border-color: $secondary-blue;
+                    }
+                }
             }
         }
         &:hover {

@@ -19,7 +19,31 @@ function List(props) {
                     </div>
                     <div className="list-item-col">
                         <div className="sub-col priority">
-                            {item.priority}
+                            {props.viewList ? (
+                                <div>
+                                    <select
+                                        className="store-dropdown"
+                                        defaultValue={item.priority}
+                                        onChange={(event) => props.changePriority(event, index)}
+                                        // onChange={props.changePriority}
+                                    >
+                                        <option className="store-select-item" value="Low">
+                                            Low
+                                        </option>
+                                        <option className="store-select-item" value="Normal">
+                                            Normal
+                                        </option>
+                                        <option className="store-select-item" value="High">
+                                            High
+                                        </option>
+                                    </select>
+                                </div>
+                            ) : (
+                                    <div>
+                                        {item.priority}
+                                    </div>
+                                )}
+
                         </div>
                         <div className="sub-col">
                             {props.viewList ? (

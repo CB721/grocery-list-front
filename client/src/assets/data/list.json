@@ -2,7 +2,7 @@
     {
         "id": 1,
         "item_name": "bananas",
-        "priority": "normal",
+        "priority": "Normal",
         "store_id": 3,
         "store_name": "Fred Meyer",
         "status": "done",
@@ -12,7 +12,7 @@
     {
         "id": 2,
         "item_name": "zucchini",
-        "priority": "normal",
+        "priority": "Normal",
         "store_id": 3,
         "store_name": "Safeway",
         "status": "to-get",
@@ -42,7 +42,7 @@
     {
         "id": 5,
         "item_name": "orange juice",
-        "priority": "normal",
+        "priority": "Normal",
         "store_id": 4,
         "store_name": "Costco",
         "status": "done",
@@ -52,7 +52,7 @@
     {
         "id": 6,
         "item_name": "naan bread",
-        "priority": "high",
+        "priority": "High",
         "store_id": 1,
         "store_name": "Whole Foods",
         "status": "to-get",
@@ -62,7 +62,7 @@
     {
         "id": 7,
         "item_name": "tomatoes",
-        "priority": "high",
+        "priority": "High",
         "store_id": 1,
         "store_name": "Safeway",
         "status": "done",
@@ -82,7 +82,7 @@
     {
         "id": 9,
         "item_name": "chips",
-        "priority": "normal",
+        "priority": "Normal",
         "store_name": "Fred Meyer",
         "store_id": 2,
         "status": "done",
@@ -92,7 +92,7 @@
     {
         "id": 10,
         "item_name": "bread",
-        "priority": "normal",
+        "priority": "Normal",
         "store_id": 3,
         "store_name": "Safeway",
         "status": "done",

@@ -35,12 +35,28 @@ function ViewList(props) {
             // on the selected item
             if (i === index) {
                 if (list[index].status === "done") {
-                    console.log("change to 'to-get'");
                     list[index].status = "to-get";
                 } else {
-                    console.log("change to 'done'");
                     list[index].status = "done";
                 }
+                // add updated item to "new" list
+                newList.push(list[i]);
+            } else {
+                // add unchanged item to "new" list
+                newList.push(list[i]);
+            }
+        }
+        setList(newList);
+        // save updated list to db
+    }
+    function changePriority(event, index) {
+        event.preventDefault();
+        const newList = [];
+        // iterate over list
+        for (let i = 0; i < list.length; i++) {
+            // on the selected item
+            if (i === index) {
+                list[index].priority = event.target.value;
                 // add updated item to "new" list
                 newList.push(list[i]);
             } else {
@@ -76,6 +92,7 @@ function ViewList(props) {
                         viewList={true}
                         list={list}
                         toggleClass={toggleClass}
+                        changePriority={changePriority}
                     />
                 </Flip>
             ) : (<div />)}
