@@ -39,6 +39,13 @@
             &:nth-child(3n) {
                 text-align: right;
             }
+            .sub-col {
+                display: inline-flex;
+                margin-top: 0;
+                // .to-get {
+                //     margin-top: 0.3rem;
+                // }
+            }
         }
         &:hover {
             background: $white;

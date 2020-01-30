@@ -3,6 +3,7 @@ import Checkbox from "../Checkbox";
 import "./style.scss";
 
 function List(props) {
+
     return (
         <div className="list">
             {props.list.map((item, index) => (
@@ -17,13 +18,17 @@ function List(props) {
                         {item.store_name}
                     </div>
                     <div className="list-item-col">
-                        {item.priority}
-                        {props.viewList ? (
-                            <Checkbox
-                                class={item.status}
-                                toggleClass={props.toggleClass}
-                            />
-                        ) : (<div />)}
+                        <div className="sub-col priority">
+                            {item.priority}
+                        </div>
+                        <div className="sub-col">
+                            {props.viewList ? (
+                                <Checkbox
+                                    class={item.status}
+                                    toggleClass={(event) => props.toggleClass(event, index)}
+                                />
+                            ) : (<div />)}
+                        </div>
                     </div>
                 </div>
             ))}

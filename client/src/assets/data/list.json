@@ -1,5 +1,6 @@
 [
     {
+        "id": 1,
         "item_name": "bananas",
         "priority": "normal",
         "store_id": 3,
@@ -9,6 +10,7 @@
         "user_id": 1
     },
     {
+        "id": 2,
         "item_name": "zucchini",
         "priority": "normal",
         "store_id": 3,
@@ -18,6 +20,7 @@
         "user_id": 1
     },
     {
+        "id": 3,
         "item_name": "rice",
         "priority": "low",
         "store_id": 3,
@@ -27,6 +30,7 @@
         "user_id": 1
     },
     {
+        "id": 4,
         "item_name": "syrup",
         "priority": "low",
         "store_name": "Fred Meyer",
@@ -36,6 +40,7 @@
         "user_id": 1
     },
     {
+        "id": 5,
         "item_name": "orange juice",
         "priority": "normal",
         "store_id": 4,
@@ -45,6 +50,7 @@
         "user_id": 1
     },
     {
+        "id": 6,
         "item_name": "naan bread",
         "priority": "high",
         "store_id": 1,
@@ -54,6 +60,7 @@
         "user_id": 1
     },
     {
+        "id": 7,
         "item_name": "tomatoes",
         "priority": "high",
         "store_id": 1,
@@ -63,6 +70,7 @@
         "user_id": 1
     },
     {
+        "id": 8,
         "item_name": "cereal",
         "priority": "low",
         "store_name": "Fred Meyer",
@@ -72,6 +80,7 @@
         "user_id": 1
     },
     {
+        "id": 9,
         "item_name": "chips",
         "priority": "normal",
         "store_name": "Fred Meyer",
@@ -81,6 +90,7 @@
         "user_id": 1
     },
     {
+        "id": 10,
         "item_name": "bread",
         "priority": "normal",
         "store_id": 3,
@@ -90,6 +100,7 @@
         "user_id": 1
     },
     {
+        "id": 11,
         "item_name": "paper towels",
         "priority": "low",
         "store_id": 4,
