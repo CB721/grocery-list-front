@@ -30,6 +30,7 @@
             width: 33.33%;
             padding: 0 5px;
             overflow: scroll;
+            text-transform: capitalize;
             &:nth-child(2n) {
                 padding: none;
                 text-align: center;

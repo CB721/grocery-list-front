@@ -1,0 +1,38 @@
+@import "../../App.scss";
+
+.list-view-options {
+    width: 100%;
+    border-radius: 8px;
+    height: 50px;
+    background: $white;
+    .option-header {
+        width: 50%;
+        height: 50px;
+        line-height: 50px;
+        color: $black;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        display: inline-block;
+        margin: 0 auto;
+        text-align: center;
+        transition: 0.3s;
+        &:hover {
+            cursor: pointer;
+        }
+        &.selected {
+            &:first-child {
+                border-bottom-left-radius: 8px;
+                border-top-left-radius: 8px;
+            }
+            &:last-child {
+                border-bottom-right-radius: 8px;
+                border-top-right-radius: 8px;
+            }
+            background: $main-blue;
+            color: $white;
+            -webkit-box-shadow: inset 0px 0px 6px 1px rgba(47,51,56,1);
+            -moz-box-shadow: inset 0px 0px 6px 1px rgba(47,51,56,1);
+            box-shadow: inset 0px 0px 6px 1px rgba(47,51,56,1);
+        }
+    }
+}

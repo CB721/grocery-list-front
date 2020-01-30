@@ -45,8 +45,8 @@ function CreateList(props) {
             setInputErr("Add an item");
         } else {
             const completeItem = {
-                name: newItem,
-                store: storeSelect,
+                item_name: newItem,
+                store_name: storeSelect,
                 priority
             }
             setNewItem("");
@@ -90,18 +90,18 @@ function CreateList(props) {
                     High
                 </option>
             </select>
-            {showStores && props.data.length > 0 ? (
+            {showStores && props.stores.length > 0 ? (
                 <select
                     className="store-dropdown"
                     onChange={addStore}
                 >
-                    {props.data.map((store, index) => (
+                    {props.stores.map((store, index) => (
                         <option
                             key={store.id + index}
-                            value={store.id}
+                            value={store.name}
                             className="store-select-item"
                         >
-                            {store.store_name}
+                            {store.name}
                         </option>
                     ))}
                 </select>

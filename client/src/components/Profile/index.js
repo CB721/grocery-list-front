@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import Space from "../DivSpace";
 import Store from "../Store";
 import CreateList from "../CreateList";
+import ViewList from "../ViewList";
 import Slide from 'react-reveal/Slide';
 import Stores from "../../assets/data/store.json";
+import List from "../../assets/data/list.json";
 import { Row, Col } from "shards-react";
 import "./style.scss";
 
@@ -161,15 +163,18 @@ function Profile(props) {
                             {currentView === "create-list" ? (
                                 <CreateList
                                     // change to stores from api instead of json file
-                                    data={Stores}
+                                    stores={Stores}
                                 />
                             ) : currentView === "store-list" ? (
                                 <Store
                                     // change to stores from api instead of json file
-                                    data={Stores}
+                                    stores={Stores}
                                 />
                             ) : (
-                                        <div />
+                                        <ViewList
+                                            stores={Stores}
+                                            list={List}
+                                        />
                                     )}
                         </div>
                     </Slide>

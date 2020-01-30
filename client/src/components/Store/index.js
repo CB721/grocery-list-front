@@ -24,6 +24,8 @@ function Store(props) {
                 setAdd("option-header selected");
                 setView("option-header");
                 break;
+            default:
+                return;
         }
     }, [currentView]);
     function toggleOptions(event) {
@@ -77,12 +79,12 @@ function Store(props) {
             </div>
             {currentView === "view" ? (
                 <ListGroup className="list-items">
-                    {props.data.map((store, index) => (
+                    {props.stores.map((store, index) => (
                         <ListGroupItem
                             key={index}
                         >
                             <div className="store-li-col left">
-                                {store.store_name}
+                                {store.name}
                             </div>
                             <div className="store-li-col right">
                                 <EditIcon
