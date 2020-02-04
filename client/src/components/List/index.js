@@ -3,7 +3,6 @@ import Checkbox from "../Checkbox";
 import "./style.scss";
 
 function List(props) {
-
     return (
         <div className="list">
             {props.list.map((item, index) => (
@@ -25,7 +24,6 @@ function List(props) {
                                         className="store-dropdown"
                                         defaultValue={item.priority}
                                         onChange={(event) => props.changePriority(event, index)}
-                                        // onChange={props.changePriority}
                                     >
                                         <option className="store-select-item" value="Low">
                                             Low

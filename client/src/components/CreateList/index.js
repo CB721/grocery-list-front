@@ -10,7 +10,7 @@ function CreateList(props) {
     const [showStores, setShowStores] = useState(false);
     const [storeSelect, setStoreSelect] = useState([]);
     const [showAdd, setShowAdd] = useState(false);
-    const [priority, setPriority] = useState("normal");
+    const [priority, setPriority] = useState("Normal");
     const [inputErr, setInputErr] = useState("");
 
     function handleInputChange(event) {
@@ -50,12 +50,13 @@ function CreateList(props) {
                 priority
             }
             setNewItem("");
+            setPriority("Normal");
             setList(list => [...list, completeItem]);
         }
     }
     function saveList(event) {
         event.preventDefault();
-        setPriority("normal");
+        setPriority("Normal");
         console.log("save list");
         console.log(list);
     }
@@ -77,7 +78,7 @@ function CreateList(props) {
             />
             <select
                 className="store-dropdown"
-                defaultValue="Normal"
+                defaultValue={priority}
                 onChange={changePriority}
             >
                 <option className="store-select-item" value="Low">

@@ -36,3 +36,15 @@
         }
     }
 }
+.store-filter {
+    width: 100%;
+    margin-top: 20px;
+    transition: 0.5s;
+    background: $white;
+    color: $main-blue;
+    border-radius: 8px;
+    &:focus {
+        outline: none;
+        border-color: $secondary-blue;
+    }
+}
