@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Row, Col } from "shards-react";
 import Form from "../Form";
 import Space from "../DivSpace";
 import "./style.scss";
 
 function Login(props) {
+    useEffect(() => {
+        document.title = document.title + " | Login";
+    }, []);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const inputs = [{ email: email }, { password: password }];

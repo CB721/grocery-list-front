@@ -4,7 +4,7 @@
     position: fixed;
     top: 0;
     width: 100%;
-    height: 100px;
+    height: 10vh;
     background-color: $main-blue;
     display: flex;
     flex-direction: row;
@@ -33,7 +33,7 @@
     text-align: center;
     font-family: 'Parisienne', cursive, sans-serif;
     &:hover {
-        cursor: default;
+        cursor: pointer;
     }
 }
 .burger-menu {

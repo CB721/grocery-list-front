@@ -1,13 +1,16 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Row, Col } from "shards-react";
 import { Textfit } from "react-textfit";
-import Slide from 'react-reveal/Slide';
+// import Slide from 'react-reveal/Slide';
 import CardCarousel from "../CardCarousel";
 import aisleImg from "../../assets/images/grocery-aisle.jpeg";
 import Space from "../DivSpace";
 import "./style.scss";
 
 function Home(props) {
+    useEffect(() => {
+        document.title = document.title + " | Home";
+    }, []);
     return (
         <div className="home">
             <Row>

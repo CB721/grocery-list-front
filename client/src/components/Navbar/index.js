@@ -14,12 +14,16 @@ function Navbar(props) {
             setMenuExpand("burger-menu");
         }
     }
+    function goToHome(event) {
+        event.preventDefault();
+        window.location.href = "/";
+    }
     return (
         <Row>
             <Col>
                 <div className="nav">
                     <div className="nav-items" />
-                    <div className="app-text">
+                    <div className="app-text" onClick={(event) => goToHome(event)}>
                         <Textfit
                             mode="single"
                             min={16}
