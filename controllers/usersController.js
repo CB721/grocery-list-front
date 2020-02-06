@@ -77,7 +77,7 @@ module.exports = {
                         if (err) {
                             return res.status(422).send(err);
                         } else {
-                            return res.json(results);
+                            return res.status(200).json(results);
                         }
                     });
         }

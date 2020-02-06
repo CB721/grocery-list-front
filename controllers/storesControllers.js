@@ -1,5 +1,6 @@
 const sqlDB = require("../sql_connection");
-const table = "uzzdv3povs4xqnxc.stores";
+const storeTable = "uzzdv3povs4xqnxc.stores";
+const userStoreTable = "uzzdv3povs4xqnxc.user_stores";
 const checkStore = require("../validation/checkStore");
 const { Store } = require("../mongoose_models");
 
@@ -16,6 +17,7 @@ module.exports = {
         const id = sqlDB.escape(store.id);
         const name = sqlDB.escape(store.name);
         const address = sqlDB.escape(store.address);
+        const user_id = sqlDB.escape(store.user_id);
         if (address.indexOf("$") > -1) {
             return res.status(406).send("Invalid store address");
         }
@@ -26,7 +28,7 @@ module.exports = {
             return res.status(406).send("Invalid store name");
         }
         else {
-            // check if store (id) already exists in sqldb
+            // check if store (address) already exists in mongo
             Store
                 .find({ address: address })
                 .then(response => {
@@ -37,9 +39,9 @@ module.exports = {
                         Store
                             .findOneAndUpdate({ _id: mongoID }, { $set: { total_items: total } })
                             .then(response => {
-                                console.log(response);
-                            })
-
+                                // if it is in mongo, it has already been added to sql
+                                assignToUser();
+                            });
                     } else {
                         addToMongo();
                     }
@@ -54,10 +56,35 @@ module.exports = {
                     total_items: 1
                 })
                 .then(response => {
-                    console.log(response);
+                    addToSQL();
                 })
                 .catch(err => res.status(422).json(err));
         }
         // add to sqldb
+        let addToSQL = function () {
+            let columns = "(id, address, name)";
+            sqlDB
+                .query(`INSERT INTO ${storeTable} ${columns} VALUES(${id}, ${address}, ${name});`,
+                    function (err, results) {
+                        if (err) {
+                            return res.status(422).send(err);
+                        } else {
+                            assignToUser();
+                        }
+                    })
+        }
+        // assign store to user
+        let assignToUser = function () {
+            let columns = "(store_id, user_id)";
+            sqlDB
+                .query(`INSERT INTO ${userStoreTable} ${columns} VALUES(${id}, ${user_id});`,
+                function(err, results) {
+                    if (err) {
+                        return res.status(422).send(err);
+                    } else {
+                        return res.status(200).json(results);
+                    }
+                })
+        }
     }
 }
