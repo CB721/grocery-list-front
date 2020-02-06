@@ -81,5 +81,35 @@ module.exports = {
                         }
                     });
         }
+    },
+    deleteUser: function (req, res) {
+        // get id
+        let id = req.params.id;
+        // prevent injections
+        if (id.indexOf("$") > -1) {
+            return res.status(406).send("Invalid user id");
+        }
+        id = sqlDB.escape(identity);
+
+        // delete from mongo
+        User
+            .findById({ _id: req.params.id })
+            .then(response => {
+                response.remove();
+                deleteSQL();
+            })
+            .catch(err => res.status(422).send(err));
+        // delete in sql
+        let deleteSQL = function() {
+            sqlDB
+                .query(`DELETE * FROM ${table} WHERE id = ${id};`,
+                function(err, results) {
+                    if (err) {
+                        return res.status(422).send(err);
+                    } else {
+                        return res.status(200).json(results);
+                    }
+                })
+        }
     }
 }
