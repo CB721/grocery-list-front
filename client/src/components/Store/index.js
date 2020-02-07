@@ -58,6 +58,15 @@ function Store(props) {
         event.preventDefault();
         console.log("save store to user profile");
         console.log(store);
+        const storeData = {
+            id: store.id,
+            name: store.structured_formatting.main_text,
+            address: store.structured_formatting.secondary_text,
+            user_id: "5e3afb5803935005eeeef6e9"
+        }
+        API.saveStore(storeData)
+            .then(res => console.log(res.data))
+            .catch(err => console.log(err));
     }
     return (
         <div className="store">

@@ -11,8 +11,8 @@ import "./style.scss";
 
 function Profile(props) {
     useEffect(() => {
-    document.title = document.title + " | Profile";
-}, []);
+        document.title = document.title + " | Profile";
+    }, []);
     const [create, setCreate] = useState("header-col");
     const [view, setView] = useState("header-col selected");
     const [store, setStore] = useState("header-col");
