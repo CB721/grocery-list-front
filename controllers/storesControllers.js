@@ -41,7 +41,8 @@ module.exports = {
                             .then(response => {
                                 // if it is in mongo, it has already been added to sql
                                 assignToUser();
-                            });
+                            })
+                            .catch(err => res.status(422).json(err));
                     } else {
                         addToMongo();
                     }

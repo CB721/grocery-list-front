@@ -89,7 +89,7 @@ module.exports = {
         if (id.indexOf("$") > -1) {
             return res.status(406).send("Invalid user id");
         }
-        id = sqlDB.escape(identity);
+        id = sqlDB.escape(id);
 
         // delete from mongo
         User
@@ -100,16 +100,55 @@ module.exports = {
             })
             .catch(err => res.status(422).send(err));
         // delete in sql
-        let deleteSQL = function() {
+        let deleteSQL = function () {
             sqlDB
-                .query(`DELETE * FROM ${table} WHERE id = ${id};`,
-                function(err, results) {
-                    if (err) {
-                        return res.status(422).send(err);
-                    } else {
-                        return res.status(200).json(results);
-                    }
-                })
+                .query(`DELETE FROM ${table} WHERE id = ${id};`,
+                    function (err, results) {
+                        if (err) {
+                            return res.status(422).send(err);
+                        } else {
+                            return res.status(200).json(results);
+                        }
+                    })
         }
+    },
+    updateUser: function (req, res) {
+        // expecting the column name and value to be updated
+        let column = req.body.column;
+        let value = req.body.value;
+        let id = req.body.id;
+
+        // prevent injection
+        if (value.indexOf("$") > -1) {
+            return res.status(406).send("Invalid value");
+        }
+        else if (column.indexOf("$") > -1) {
+            return res.status(406).send("Invalid column");
+        }
+        else if (id.indexOf("$") > -1) {
+            return res.status(406).send("Invalid id");
+        }
+        switch (column) {
+            // only email for user is store in mongo
+            case "email":
+                User
+                    .findOneAndUpdate({ _id: id }, { $set: { email: value } })
+                    .then(response => {
+                        console.log(response);
+                    })
+                    .catch(err => res.status(422).json(err));
+                break;
+            case "first_name":
+                
+                break;
+            case "last_name":
+
+                break;
+            case "password":
+                break;
+            default:
+                return res.status(404).send("Column not found");
+        }
+        
     }
 }

@@ -7,5 +7,8 @@ router
 router
     .route("/delete/:id")
     .delete(controller.deleteUser);
+router
+    .route("/update")
+    .put(controller.updateUser);
 
 module.exports = router;
