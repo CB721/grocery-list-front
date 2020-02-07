@@ -114,41 +114,49 @@ module.exports = {
     },
     updateUser: function (req, res) {
         // expecting the column name and value to be updated
-        let column = req.body.column;
-        let value = req.body.value;
-        let id = req.body.id;
+        const update = req.body;
+        let id = req.params.id;
 
-        // prevent injection
-        if (value.indexOf("$") > -1) {
-            return res.status(406).send("Invalid value");
+        let query = `UPDATE ${table} SET`;
+        let hasEmail = false;
+        for (const column in update) {
+            if (update[column] !== "null") {
+                // prevent injection and add column/value to query string
+                query += ` ${column} = ${sqlDB.escape(update[column])}, `
+            } else if (column === "email") {
+                // prevent injection
+                if (update[column].indexOf("$") > -1) {
+                    return res.status(406).send("Invalid value");
+                } else {
+                    hasEmail = true;
+                }
+            }
         }
-        else if (column.indexOf("$") > -1) {
-            return res.status(406).send("Invalid column");
-        }
-        else if (id.indexOf("$") > -1) {
-            return res.status(406).send("Invalid id");
-        }
-        switch (column) {
-            // only email for user is store in mongo
-            case "email":
+        // remove last comma and space from query string
+        query = query.substring(0, query.length - 2);
+        query += ` WHERE id = ${sqlDB.escape(id)};`;
+        // all fields can be updated in sql
+        sqlDB
+            .query(query,
+                function (err, results) {
+                    if (err) {
+                        return res.status(422).send(err);
+                    } else {
+                        updateMongo(hasEmail, results);
+                    }
+                });
+        let updateMongo = function (email, results) {
+            // only email can be updated in mongo
+            if (email) {
                 User
-                    .findOneAndUpdate({ _id: id }, { $set: { email: value } })
-                    .then(response => {
-                        console.log(response);
+                    .findOneAndUpdate({ _id: id }, { $set: { email: update.email } })
+                    .then(() => {
+                        return res.status(200).json(results)
                     })
                     .catch(err => res.status(422).json(err));
-                break;
-            case "first_name":
-                
-                break;
-            case "last_name":
-
-                break;
-            case "password":
-                break;
-            default:
-                return res.status(404).send("Column not found");
+            } else {
+                return res.status(200).json(results);
+            }
         }
-        
     }
 }

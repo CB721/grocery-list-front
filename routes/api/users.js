@@ -8,7 +8,7 @@ router
     .route("/delete/:id")
     .delete(controller.deleteUser);
 router
-    .route("/update")
+    .route("/update/:id")
     .put(controller.updateUser);
 
 module.exports = router;
