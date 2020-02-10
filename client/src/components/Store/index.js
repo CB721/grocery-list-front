@@ -66,6 +66,12 @@ function Store(props) {
             .then(res => console.log(res.data))
             .catch(err => console.log(err));
     }
+    function removeStore(event, id) {
+        event.preventDefault();
+        API.deleteUserStore(id)
+            .then(res => console.log(res))
+            .catch(err => console.log(err));
+    }
     return (
         <div className="store">
             <div className="store-options">
@@ -97,7 +103,7 @@ function Store(props) {
                             <div className="store-li-col right">
                                 <EditIcon
                                     className="edit-icon"
-                                    onClick={() => console.log("edit " + store.store_name)}
+                                    onClick={(event) => removeStore(event, store.id)}
                                 />
                             </div>
                         </div>

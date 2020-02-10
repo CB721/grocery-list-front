@@ -9,5 +9,8 @@ export default {
     },
     getUserStores: function(id) {
         return axios.get("/api/stores/user/" + id);
+    },
+    deleteUserStore: function(id) {
+        return axios.delete("/api/stores/user/delete/" + id);
     }
 }

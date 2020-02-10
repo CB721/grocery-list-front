@@ -7,5 +7,8 @@ router
 router
     .route("/user/:id")
     .get(controller.getUserStores);
+router
+    .route("/user/delete/:id")
+    .delete(controller.deleteUserStore);
 
 module.exports = router;
