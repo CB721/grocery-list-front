@@ -103,7 +103,6 @@ module.exports = {
     },
     deleteUserStore: function (req, res) {
         const ID = sqlDB.escape(req.params.id);
-        console.log(ID);
         sqlDB
             .query(`DELETE FROM ${userStoreTable} WHERE id = ${ID};`,
                 function (err, results) {

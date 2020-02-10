@@ -12,7 +12,7 @@ import "./style.scss";
 
 function Profile(props) {
     const userID = "5e3afb5803935005eeeef6e9";
-    
+
     const [create, setCreate] = useState("header-col");
     const [view, setView] = useState("header-col selected");
     const [store, setStore] = useState("header-col");
@@ -23,12 +23,17 @@ function Profile(props) {
 
     useEffect(() => {
         document.title = document.title + " | Profile";
+        getUserStores();
+    }, []);
+
+    function getUserStores() {
         API.getUserStores(userID)
             .then(res => {
+                console.log(res.data);
                 setUserStores(res.data);
             })
             .catch(err => console.log(err));
-    }, []);
+    }
 
     useEffect(() => {
         switch (currentView) {
@@ -182,6 +187,7 @@ function Profile(props) {
                                 <Store
                                     // change to stores from api instead of json file
                                     stores={userStores}
+                                    refreshStores={getUserStores}
                                 />
                             ) : (
                                         <ViewList

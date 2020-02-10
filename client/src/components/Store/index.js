@@ -26,6 +26,13 @@ function Store(props) {
                 return;
         }
     }, [currentView]);
+    useEffect(() => {
+        // if there are new stores currently assigned
+        // set view to add a store
+        if (props.stores.length < 1) {
+            setCurrentView("add");
+        }
+    }, []);
     function toggleOptions(event) {
         event.preventDefault();
         setCurrentView(event.currentTarget.id);
@@ -63,13 +70,27 @@ function Store(props) {
             user_id: "5e3afb5803935005eeeef6e9"
         }
         API.saveStore(storeData)
-            .then(res => console.log(res.data))
+            .then(res => {
+                if (res.data.affectedRows > 0) {
+                    // notify user of sucessfully added store
+                    props.refreshStores();
+                    console.log("success");
+                }
+                console.log(res.data)
+            })
             .catch(err => console.log(err));
     }
     function removeStore(event, id) {
         event.preventDefault();
         API.deleteUserStore(id)
-            .then(res => console.log(res))
+            .then(res => {
+                if (res.data.affectedRows > 0) {
+                    // notify user of successfully removed store
+                    props.refreshStores();
+                    console.log("success");
+                }
+                console.log(res)
+            })
             .catch(err => console.log(err));
     }
     return (
@@ -108,7 +129,7 @@ function Store(props) {
                             </div>
                         </div>
                     ))}
-                    </div>
+                </div>
             ) : (
                     <div className="store-search">
                         <input
