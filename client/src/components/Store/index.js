@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { ListGroup, ListGroupItem, } from "shards-react";
 import { Textfit } from "react-textfit";
 import { ReactComponent as EditIcon } from "../../assets/images/edit.svg";
-// import Slide from 'react-reveal/Slide';
 import Flip from 'react-reveal/Flip';
 import API from "../../utilities/api";
 import "./style.scss";
@@ -87,9 +85,10 @@ function Store(props) {
                 </div>
             </div>
             {currentView === "view" ? (
-                <ListGroup className="list-items">
+                <div className="list">
                     {props.stores.map((store, index) => (
-                        <ListGroupItem
+                        <div
+                            className="list-item"
                             key={index}
                         >
                             <div className="store-li-col left">
@@ -101,9 +100,9 @@ function Store(props) {
                                     onClick={() => console.log("edit " + store.store_name)}
                                 />
                             </div>
-                        </ListGroupItem>
+                        </div>
                     ))}
-                </ListGroup>
+                    </div>
             ) : (
                     <div className="store-search">
                         <input
