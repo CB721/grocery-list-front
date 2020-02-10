@@ -4,21 +4,31 @@ import Store from "../Store";
 import CreateList from "../CreateList";
 import ViewList from "../ViewList";
 import Slide from 'react-reveal/Slide';
-import Stores from "../../assets/data/store.json";
+// import Stores from "../../assets/data/store.json";
 import List from "../../assets/data/list.json";
 import { Row, Col } from "shards-react";
+import API from "../../utilities/api";
 import "./style.scss";
 
 function Profile(props) {
-    useEffect(() => {
-        document.title = document.title + " | Profile";
-    }, []);
+    const userID = "5e3afb5803935005eeeef6e9";
+    
     const [create, setCreate] = useState("header-col");
     const [view, setView] = useState("header-col selected");
     const [store, setStore] = useState("header-col");
     const [currentView, setCurrentView] = useState("view-lists");
     const [swipe, setSwipe] = useState("left");
     const [swipeTime, setSwipeTime] = useState(0);
+    const [userStores, setUserStores] = useState([]);
+
+    useEffect(() => {
+        document.title = document.title + " | Profile";
+        API.getUserStores(userID)
+            .then(res => {
+                setUserStores(res.data);
+            })
+            .catch(err => console.log(err));
+    }, []);
 
     useEffect(() => {
         switch (currentView) {
@@ -166,16 +176,16 @@ function Profile(props) {
                             {currentView === "create-list" ? (
                                 <CreateList
                                     // change to stores from api instead of json file
-                                    stores={Stores}
+                                    stores={userStores}
                                 />
                             ) : currentView === "store-list" ? (
                                 <Store
                                     // change to stores from api instead of json file
-                                    stores={Stores}
+                                    stores={userStores}
                                 />
                             ) : (
                                         <ViewList
-                                            stores={Stores}
+                                            stores={userStores}
                                             list={List}
                                         />
                                     )}
