@@ -79,13 +79,26 @@ module.exports = {
             let columns = "(store_id, user_id)";
             sqlDB
                 .query(`INSERT INTO ${userStoreTable} ${columns} VALUES(${id}, ${user_id});`,
-                function(err, results) {
+                    function (err, results) {
+                        if (err) {
+                            return res.status(422).send(err);
+                        } else {
+                            return res.status(200).json(results);
+                        }
+                    })
+        }
+    },
+    getUserStores: function (req, res) {
+        const ID = sqlDB.escape(req.params.id);
+        const query = `SELECT ${userStoreTable}.store_id AS id, ${storeTable}.address, ${storeTable}.name FROM stores LEFT JOIN user_stores on stores.id = ${userStoreTable}.store_id WHERE ${userStoreTable}.user_id = ${ID};`;
+        sqlDB
+            .query(query,
+                function (err, results) {
                     if (err) {
                         return res.status(422).send(err);
                     } else {
                         return res.status(200).json(results);
                     }
-                })
-        }
+                });
     }
 }
