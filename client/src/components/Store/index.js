@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Textfit } from "react-textfit";
-import { ReactComponent as EditIcon } from "../../assets/images/edit.svg";
+import { ReactComponent as Trash } from "../../assets/images/trash.svg";
+import Error from "../Error";
 import Flip from 'react-reveal/Flip';
 import API from "../../utilities/api";
 import "./style.scss";
@@ -80,18 +81,23 @@ function Store(props) {
             })
             .catch(err => console.log(err));
     }
-    function removeStore(event, id) {
+    function removeStore(event, id, confirm = false) {
         event.preventDefault();
-        API.deleteUserStore(id)
-            .then(res => {
-                if (res.data.affectedRows > 0) {
-                    // notify user of successfully removed store
-                    props.refreshStores();
-                    console.log("success");
-                }
-                console.log(res)
-            })
-            .catch(err => console.log(err));
+        if (confirm) {
+            API.deleteUserStore(id)
+                .then(res => {
+                    if (res.data.affectedRows > 0) {
+                        // notify user of successfully removed store
+                        props.refreshStores();
+                        console.log("success");
+                    }
+                    console.log(res)
+                })
+                .catch(err => console.log(err));
+        } else {
+            // notify user to confirm store removal
+            // call function again with confirm as true
+        }
     }
     return (
         <div className="store">
@@ -122,7 +128,8 @@ function Store(props) {
                                 {store.name}
                             </div>
                             <div className="store-li-col right">
-                                <EditIcon
+                                {removeStore}
+                                <Trash
                                     className="edit-icon"
                                     onClick={(event) => removeStore(event, store.id)}
                                 />

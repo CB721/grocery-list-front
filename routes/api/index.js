@@ -3,11 +3,12 @@ const router = require("express").Router();
 const places = require("./places");
 const users = require("./users");
 const stores = require("./stores");
+const lists = require("./lists");
 
 router.use("/places", places);
 router.use("/users", users);
 router.use("/stores", stores);
-
+router.use("/lists", lists);
 
 router.use(function (req, res) {
     res.sendFile(path.join(__dirname, "../../client/build/index.html"));
