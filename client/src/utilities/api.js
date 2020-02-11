@@ -12,5 +12,8 @@ export default {
     },
     deleteUserStore: function(id) {
         return axios.delete("/api/stores/user/delete/" + id);
+    },
+    getUserList: function(id) {
+        return axios.get("/api/lists/user/" + id);
     }
 }

@@ -20,17 +20,28 @@ function Profile(props) {
     const [swipe, setSwipe] = useState("left");
     const [swipeTime, setSwipeTime] = useState(0);
     const [userStores, setUserStores] = useState([]);
+    const [userList, setUserList] = useState([]);
 
     useEffect(() => {
         document.title = document.title + " | Profile";
         getUserStores();
+        getUserList();
     }, []);
 
     function getUserStores() {
         API.getUserStores(userID)
             .then(res => {
-                console.log(res.data);
+                // console.log(res.data);
                 setUserStores(res.data);
+            })
+            .catch(err => console.log(err));
+    }
+    function getUserList() {
+        API.getUserList(userID)
+            .then(res => {
+                console.log(res.data);
+                console.log("----------------");
+                setUserList(res.data);
             })
             .catch(err => console.log(err));
     }
@@ -192,7 +203,7 @@ function Profile(props) {
                             ) : (
                                         <ViewList
                                             stores={userStores}
-                                            list={List}
+                                            list={userList}
                                         />
                                     )}
                         </div>

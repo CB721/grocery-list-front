@@ -74,7 +74,7 @@ module.exports = {
                     }
                 });
         let getCompleteList = function () {
-            let columns = "lists.id AS list_id, list_items.id, list_items.date_added, list_items.date_purchased, list_items.name, list_items.purchased, list_items.store_id, list_items.position, stores.id AS store_id, stores.address, stores.name AS store_name";
+            let columns = "lists.id AS list_id, list_items.id, list_items.date_added, list_items.priority, list_items.date_purchased, list_items.name, list_items.purchased, list_items.store_id, list_items.position, stores.id AS store_id, stores.address, stores.name AS store_name";
             sqlDB
                 .query(`SELECT ${columns} FROM list_items LEFT JOIN lists ON list_items.list_id = lists.id LEFT JOIN stores ON list_items.store_id = stores.id WHERE lists.user_id = ${ID} ORDER BY list_items.position ASC;`,
                     function (err, results) {
@@ -90,7 +90,7 @@ module.exports = {
         // prevent injections
         const ID = sqlDB.escape(req.params.id);
         const update = req.body;
-        // would be updating position on list or if it has been purchased
+        // would be updating position on list, if it has been purchased or it's priority level
         const column = Object.keys(update)[0];
         const value = parseInt(update[column]);
         sqlDB

@@ -5,15 +5,23 @@ import userList from "../../assets/data/list.json";
 import "./style.scss";
 
 function ViewList(props) {
+    console.log(props.list);
     const [currentView, setCurrentView] = useState("current");
     const [current, setCurrent] = useState("option-header selected");
     const [prev, setPrev] = useState("option-header");
     // default value will change to data from db
     // save full list to state
-    const [list, setList] = useState(userList);
+    const [list, setList] = useState([]);
     const [displayList, setDisplayList] = useState(list);
     const [stores, setStores] = useState([]);
 
+
+    useEffect(() => {
+        setList(props.list);
+    }, [props.list]);
+    useEffect(() => {
+        setDisplayList(list);
+    }, [list])
     // filter list by store
     function viewByStore(event) {
         event.preventDefault();

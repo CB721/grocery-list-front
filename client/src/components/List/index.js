@@ -1,17 +1,23 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Checkbox from "../Checkbox";
 import "./style.scss";
 
 function List(props) {
+    console.log(props.list);
+    const [list, setList] = useState([]);
+
+    useEffect(() => {
+        setList(props.list);
+    }, [props.list]);
     return (
         <div className="list">
-            {props.list.map((item, index) => (
+            {list.map((item, index) => (
                 <div
                     className="list-item"
                     key={index}
                 >
                     <div className="list-item-col">
-                        {item.item_name}
+                        {item.name}
                     </div>
                     <div className="list-item-col">
                         {item.store_name}
@@ -46,7 +52,8 @@ function List(props) {
                         <div className="sub-col">
                             {props.viewList ? (
                                 <Checkbox
-                                    class={item.status}
+                                    // if item has been purchased or not, change class
+                                    class={item.purchased === 0 ? "to-get" : "done"}
                                     toggleClass={(event) => props.toggleClass(event, index)}
                                 />
                             ) : (<div />)}
