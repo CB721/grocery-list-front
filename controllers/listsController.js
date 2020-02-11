@@ -93,9 +93,21 @@ module.exports = {
         // would be updating position on list or if it has been purchased
         const column = Object.keys(update)[0];
         const value = parseInt(update[column]);
-        // UPDATE oxn711nfcpjgwcr2.products SET quantity = 495 WHERE id = 12;
         sqlDB
             .query(`UPDATE ${listItemsTable} SET ${column} = ${value} WHERE id = ${ID};`,
+            function(err, results) {
+                if (err) {
+                    return res.status(422).send(err);
+                } else {
+                    return res.status(200).json(results);
+                }
+            });
+    },
+    removeItem: function(req, res) {
+        // prevent injections
+        const ID = sqlDB.escape(req.params.id);
+        sqlDB
+            .query(`DELETE FROM ${listItemsTable} WHERE id = ${ID};`,
             function(err, results) {
                 if (err) {
                     return res.status(422).send(err);

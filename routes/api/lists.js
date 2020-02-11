@@ -9,6 +9,9 @@ router
     .get(controller.getUserList);
 router
     .route("/user/item/:id")
-    .put(controller.updateItem)
+    .put(controller.updateItem);
+router
+    .route("/user/item/remove/:id")
+    .delete(controller.removeItem);
 
 module.exports = router;
