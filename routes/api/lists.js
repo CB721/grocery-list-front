@@ -7,5 +7,8 @@ router
 router
     .route("/user/:id")
     .get(controller.getUserList);
+router
+    .route("/user/item/:id")
+    .put(controller.updateItem)
 
 module.exports = router;
