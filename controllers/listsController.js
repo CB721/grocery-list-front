@@ -47,17 +47,43 @@ module.exports = {
             // console.log("create list");
         }
         // add item to list
-        let addItemToList = function(id) {
+        let addItemToList = function (id) {
             const columns = "(date_added, list_id, name, store_id, position)";
             sqlDB
                 .query(`INSERT INTO ${listItemsTable} ${columns} VALUES (NOW(), ${id}, ${name}, ${store_id}, ${position});`,
-                function(err, results) {
+                    function (err, results) {
+                        if (err) {
+                            return res.status(422).send(err);
+                        } else {
+                            return res.status(200).json(results);
+                        }
+                    });
+        }
+    },
+    getUserList: function (req, res) {
+        // prevent injections
+        const ID = sqlDB.escape(req.params.id);
+        // get current list
+        sqlDB
+            .query(`SELECT * FROM ${listTable} WHERE user_id = ${ID};`,
+                function (err, results) {
                     if (err) {
                         return res.status(422).send(err);
                     } else {
-                        return res.status(200).json(results);
+                        getCompleteList();
                     }
                 });
+        let getCompleteList = function () {
+            let columns = "lists.id AS list_id, list_items.id, list_items.date_added, list_items.date_purchased, list_items.name, list_items.purchased, list_items.store_id, list_items.position, stores.id AS store_id, stores.address, stores.name AS store_name";
+            sqlDB
+                .query(`SELECT ${columns} FROM list_items LEFT JOIN lists ON list_items.list_id = lists.id LEFT JOIN stores ON list_items.store_id = stores.id WHERE lists.user_id = ${ID} ORDER BY list_items.position ASC;`,
+                    function (err, results) {
+                        if (err) {
+                            return res.status(422).send(err);
+                        } else {
+                            return res.status(200).json(results);
+                        }
+                    });
         }
     }
 }
