@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import { Container } from "shards-react";
 import Home from "./components/Home";
 import Login from "./components/Login";
@@ -26,6 +26,9 @@ function App() {
           <Route exact path="/login" component={Login} />
           <Route exact path="/join" component={CreateAccount} />
           <Route exact path="/profile" component={Profile} />
+          <Route path="*">
+            <Redirect to="/" />
+          </Route>
         </Switch>
         <Footer />
       </Container>
