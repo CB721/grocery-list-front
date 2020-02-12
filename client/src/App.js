@@ -14,7 +14,8 @@ import './App.scss';
 function App() {
   const create = { name: "Join", link: "/join" };
   const signIn = { name: "Login", link: "/login" };
-  const signOut = { name: "Logout", link: "/signout" }
+  const signOut = { name: "Logout", link: "/signout" };
+  const profile = { name: "Profile", link: "/profile" };
   const [navOptions, setNavOptions] = useState([create, signIn]);
 
   return (

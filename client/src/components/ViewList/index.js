@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
 import List from "../List";
 import Flip from "react-reveal";
-import userList from "../../assets/data/list.json";
 import "./style.scss";
 
 function ViewList(props) {
-    console.log(props.list);
     const [currentView, setCurrentView] = useState("current");
     const [current, setCurrent] = useState("option-header selected");
     const [prev, setPrev] = useState("option-header");

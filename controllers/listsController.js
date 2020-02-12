@@ -9,6 +9,8 @@ module.exports = {
         const user_id = sqlDB.escape(req.body.user_id);
         const store_id = sqlDB.escape(req.body.store_id);
         const position = sqlDB.escape(req.body.position);
+        const priority = sqlDB.escape(req.body.priority);
+
         // find current list
         let getCurrentList = function () {
             sqlDB
@@ -48,9 +50,9 @@ module.exports = {
         }
         // add item to list
         let addItemToList = function (id) {
-            const columns = "(date_added, list_id, name, store_id, position)";
+            const columns = "(date_added, list_id, name, store_id, position, priority)";
             sqlDB
-                .query(`INSERT INTO ${listItemsTable} ${columns} VALUES (NOW(), ${id}, ${name}, ${store_id}, ${position});`,
+                .query(`INSERT INTO ${listItemsTable} ${columns} VALUES (NOW(), ${id}, ${name}, ${store_id}, ${position}, ${priority});`,
                     function (err, results) {
                         if (err) {
                             return res.status(422).send(err);

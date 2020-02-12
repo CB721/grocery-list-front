@@ -15,5 +15,8 @@ export default {
     },
     getUserList: function(id) {
         return axios.get("/api/lists/user/" + id);
+    },
+    addItem: function(data) {
+        return axios.post("/api/lists/add", data);
     }
 }

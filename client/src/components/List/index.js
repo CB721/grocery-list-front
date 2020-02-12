@@ -3,7 +3,6 @@ import Checkbox from "../Checkbox";
 import "./style.scss";
 
 function List(props) {
-    console.log(props.list);
     const [list, setList] = useState([]);
 
     useEffect(() => {

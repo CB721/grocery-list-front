@@ -31,7 +31,6 @@ function Profile(props) {
     function getUserStores() {
         API.getUserStores(userID)
             .then(res => {
-                // console.log(res.data);
                 setUserStores(res.data);
             })
             .catch(err => console.log(err));
@@ -39,8 +38,6 @@ function Profile(props) {
     function getUserList() {
         API.getUserList(userID)
             .then(res => {
-                console.log(res.data);
-                console.log("----------------");
                 setUserList(res.data);
             })
             .catch(err => console.log(err));
@@ -86,6 +83,18 @@ function Profile(props) {
                 break;
         }
         setCurrentView(id);
+    }
+    function addItem(item, position) {
+        const listItem = {
+            name: item.name,
+            user_id: userID,
+            store_id: item.store.store_id,
+            priority: item.priority,
+            position
+        }
+        API.addItem(listItem)
+            .then(getUserList())
+            .catch(err => console.log(err));
     }
     // function handleSwipe(event) {
     //     const time = new Date();
@@ -162,7 +171,7 @@ function Profile(props) {
                             id="create-list"
                             onClick={(event) => toggleOptions(event)}
                         >
-                            Create a list
+                            {userList.length > 0 ? "Add to list" : "Create a list"}
                         </div>
                         <div
                             className={view}
@@ -191,12 +200,12 @@ function Profile(props) {
                         >
                             {currentView === "create-list" ? (
                                 <CreateList
-                                    // change to stores from api instead of json file
                                     stores={userStores}
+                                    addItem={addItem}
+                                    list={userList}
                                 />
                             ) : currentView === "store-list" ? (
                                 <Store
-                                    // change to stores from api instead of json file
                                     stores={userStores}
                                     refreshStores={getUserStores}
                                 />

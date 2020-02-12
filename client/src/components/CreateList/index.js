@@ -13,6 +13,10 @@ function CreateList(props) {
     const [priority, setPriority] = useState("Normal");
     const [inputErr, setInputErr] = useState("");
 
+    useEffect(() => {
+        setList(props.list);
+        setShowAdd(false);
+    }, [props.list]);
     function handleInputChange(event) {
         event.preventDefault();
         setInputErr("");
@@ -28,7 +32,7 @@ function CreateList(props) {
         }
     }, [newItem]);
     useEffect(() => {
-        if (storeSelect.length > 0) {
+        if (storeSelect) {
             setShowAdd(true);
         } else {
             setShowAdd(false);
@@ -37,36 +41,38 @@ function CreateList(props) {
     function addStore(event) {
         event.preventDefault();
         setShowAdd(true);
-        setStoreSelect(event.target.value);
+        setStoreSelect(JSON.parse(event.target.value));
     }
     function addItem(event) {
         event.preventDefault();
         if (newItem.length < 1) {
             setInputErr("Add an item");
         } else {
-            const completeItem = {
-                item_name: newItem,
-                store_name: storeSelect,
+            let completeItem = {
+                name: newItem,
+                store: storeSelect,
                 priority
             }
+            setShowAdd(false);
             setNewItem("");
             setPriority("Normal");
+            props.addItem(completeItem, list.length + 1);
+            completeItem = [completeItem];
             setList(list => [...list, completeItem]);
         }
     }
-    function saveList(event) {
-        event.preventDefault();
-        setPriority("Normal");
-        console.log("save list");
-        console.log(list);
-    }
+    // function saveList(event) {
+    //     event.preventDefault();
+    //     setPriority("Normal");
+    //     props.addItem();
+    // }
     function changePriority(event) {
         event.preventDefault();
         setPriority(event.target.value);
     }
     return (
         <div className="create-list">
-            <div className="create-list-header">New List</div>
+            <div className="create-list-header">{list.length > 0 ? "Add to List" : "New List"}</div>
             <div className="create-list-header error">{inputErr}</div>
             <input
                 type="text"
@@ -99,7 +105,7 @@ function CreateList(props) {
                     {props.stores.map((store, index) => (
                         <option
                             key={store.id + index}
-                            value={store.name}
+                            value={JSON.stringify(store)}
                             className="store-select-item"
                         >
                             {store.name}
@@ -123,13 +129,13 @@ function CreateList(props) {
                     action={addItem}
                 />
             ) : (<div />)}
-            {list.length > 0 ? (
+            {/* {list.length > 0 ? (
                 <Button
                     text="Save"
                     class="blue-button"
                     action={saveList}
                 />
-            ) : (<div />)}
+            ) : (<div />)} */}
         </div>
     )
 }

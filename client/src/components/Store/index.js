@@ -128,7 +128,6 @@ function Store(props) {
                                 {store.name}
                             </div>
                             <div className="store-li-col right">
-                                {removeStore}
                                 <Trash
                                     className="edit-icon"
                                     onClick={(event) => removeStore(event, store.id)}
