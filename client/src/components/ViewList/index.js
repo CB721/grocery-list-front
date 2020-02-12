@@ -40,15 +40,15 @@ function ViewList(props) {
     useEffect(() => {
         let storeList = ["All"];
         // iterate over list
-        for (let i = 0; i < list.length; i++) {
-            let storeName = list[i].store_name;
+        for (let i = 0; i < props.list.length; i++) {
+            let storeName = props.list[i].store_name;
             // if store name is not already in the list, add to the list
             if (storeList.indexOf(storeName) < 0) {
                 storeList.push(storeName);
             }
         }
         setStores(storeList);
-    }, []);
+    }, [props.list]);
 
     useEffect(() => {
         switch (currentView) {
@@ -67,45 +67,17 @@ function ViewList(props) {
         event.preventDefault();
         setCurrentView(event.currentTarget.id);
     }
-    function toggleClass(event, index) {
+    function toggleClass(event, id = 1, index = 0) {
         event.preventDefault();
-        const newList = [];
-        // iterate over list
-        for (let i = 0; i < list.length; i++) {
-            // on the selected item
-            if (i === index) {
-                if (list[index].status === "done") {
-                    list[index].status = "to-get";
-                } else {
-                    list[index].status = "done";
-                }
-                // add updated item to "new" list
-                newList.push(list[i]);
-            } else {
-                // add unchanged item to "new" list
-                newList.push(list[i]);
-            }
+        let status = true;
+        if (list[index].purchased) {
+            status = false;
         }
-        setList(newList);
-        // save updated list to db
+        props.updateItem(id, "purchased", status);
     }
-    function changePriority(event, index) {
+    function changePriority(event, id = 1) {
         event.preventDefault();
-        const newList = [];
-        // iterate over list
-        for (let i = 0; i < list.length; i++) {
-            // on the selected item
-            if (i === index) {
-                list[index].priority = event.target.value;
-                // add updated item to "new" list
-                newList.push(list[i]);
-            } else {
-                // add unchanged item to "new" list
-                newList.push(list[i]);
-            }
-        }
-        setList(newList);
-        // save updated list to db
+        props.updateItem(id, "priority", event.target.value);
     }
 
     return (

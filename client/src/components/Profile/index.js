@@ -96,6 +96,25 @@ function Profile(props) {
             .then(getUserList())
             .catch(err => console.log(err));
     }
+    function updateItem(id, column, value) {
+        let listItem = {};
+        switch (column) {
+            case "priority":
+                listItem.priority = value;
+                break;
+            case "purchased":
+                listItem.purchased = value;
+                break;
+            case "position":
+                listItem.position = value;
+                break;
+            default:
+                return;
+        }
+        API.updateItem(id, listItem)
+            .then(getUserList())
+            .catch(err => console.log(err));
+    }
     // function handleSwipe(event) {
     //     const time = new Date();
     //     if (swipe === 0) {
@@ -213,6 +232,7 @@ function Profile(props) {
                                         <ViewList
                                             stores={userStores}
                                             list={userList}
+                                            updateItem={updateItem}
                                         />
                                     )}
                         </div>

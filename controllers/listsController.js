@@ -94,7 +94,7 @@ module.exports = {
         const update = req.body;
         // would be updating position on list, if it has been purchased or it's priority level
         const column = Object.keys(update)[0];
-        const value = parseInt(update[column]);
+        const value = sqlDB.escape(update[column]);
         sqlDB
             .query(`UPDATE ${listItemsTable} SET ${column} = ${value} WHERE id = ${ID};`,
             function(err, results) {

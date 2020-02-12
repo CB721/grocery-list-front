@@ -28,7 +28,7 @@ function List(props) {
                                     <select
                                         className="store-dropdown"
                                         defaultValue={item.priority}
-                                        onChange={(event) => props.changePriority(event, index)}
+                                        onChange={(event) => props.changePriority(event, item.id)}
                                     >
                                         <option className="store-select-item" value="Low">
                                             Low
@@ -53,7 +53,7 @@ function List(props) {
                                 <Checkbox
                                     // if item has been purchased or not, change class
                                     class={item.purchased === 0 ? "to-get" : "done"}
-                                    toggleClass={(event) => props.toggleClass(event, index)}
+                                    toggleClass={(event) => props.toggleClass(event, item.id, index)}
                                 />
                             ) : (<div />)}
                         </div>

@@ -18,5 +18,8 @@ export default {
     },
     addItem: function(data) {
         return axios.post("/api/lists/add", data);
+    },
+    updateItem: function(id, data) {
+        return axios.put("/api/lists/user/item/" + id, data);
     }
 }
