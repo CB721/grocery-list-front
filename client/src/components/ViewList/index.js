@@ -60,6 +60,8 @@ function ViewList(props) {
                 setPrev("option-header selected");
                 setCurrent("option-header");
                 break;
+            default:
+                return;
         }
     }, [currentView]);
 

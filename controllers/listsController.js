@@ -14,7 +14,7 @@ module.exports = {
         // find current list
         let getCurrentList = function () {
             sqlDB
-                .query(`SELECT * FROM ${listTable} WHERE user_id = ${user_id};`,
+                .query(`SELECT * FROM ${listTable} WHERE user_id = ${user_id} AND lists.completed = false;`,
                     function (err, results) {
                         if (err) {
                             return res.status(422).send(err);
@@ -62,7 +62,7 @@ module.exports = {
                     });
         }
     },
-    getUserList: function (req, res) {
+    getCurrentUserList: function (req, res) {
         // prevent injections
         const ID = sqlDB.escape(req.params.id);
         // get current list
@@ -72,13 +72,13 @@ module.exports = {
                     if (err) {
                         return res.status(422).send(err);
                     } else {
-                        getCompleteList();
+                        getFullList();
                     }
                 });
-        let getCompleteList = function () {
+        let getFullList = function () {
             let columns = "lists.id AS list_id, list_items.id, list_items.date_added, list_items.priority, list_items.date_purchased, list_items.name, list_items.purchased, list_items.store_id, list_items.position, stores.id AS store_id, stores.address, stores.name AS store_name";
             sqlDB
-                .query(`SELECT ${columns} FROM list_items LEFT JOIN lists ON list_items.list_id = lists.id LEFT JOIN stores ON list_items.store_id = stores.id WHERE lists.user_id = ${ID} ORDER BY list_items.position ASC;`,
+                .query(`SELECT ${columns} FROM list_items LEFT JOIN lists ON list_items.list_id = lists.id LEFT JOIN stores ON list_items.store_id = stores.id WHERE lists.user_id = ${ID} AND lists.completed = false ORDER BY list_items.position ASC;`,
                     function (err, results) {
                         if (err) {
                             return res.status(422).send(err);
@@ -110,6 +110,25 @@ module.exports = {
         const ID = sqlDB.escape(req.params.id);
         sqlDB
             .query(`DELETE FROM ${listItemsTable} WHERE id = ${ID};`,
+            function(err, results) {
+                if (err) {
+                    return res.status(422).send(err);
+                } else {
+                    return res.status(200).json(results);
+                }
+            });
+    },
+    getListByID: function(req, res) {
+        // prevent injections
+        const ID = sqlDB.escape(req.body.user_id);
+        const list_id = sqlDB.escape(req.body.id);
+        // default completed to true because this route will mostly be used for retrieving a completed list
+        const completed = sqlDB.escape(req.body.completed || true);
+
+        let columns = "lists.id AS list_id, list_items.id, list_items.date_added, list_items.priority, list_items.date_purchased, list_items.name, list_items.purchased, list_items.store_id, list_items.position, stores.id AS store_id, stores.address, stores.name AS store_name";
+
+        sqlDB
+            .query(`SELECT ${columns} FROM list_items LEFT JOIN lists ON list_items.list_id = lists.id LEFT JOIN stores ON list_items.store_id = stores.id WHERE lists.user_id = ${ID} AND lists.completed = ${completed} AND lists.id = ${list_id} ORDER BY list_items.position ASC;`,
             function(err, results) {
                 if (err) {
                     return res.status(422).send(err);

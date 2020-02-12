@@ -6,12 +6,15 @@ router
     .post(controller.addItem);
 router
     .route("/user/:id")
-    .get(controller.getUserList);
+    .get(controller.getCurrentUserList);
 router
     .route("/user/item/:id")
     .put(controller.updateItem);
 router
     .route("/user/item/remove/:id")
     .delete(controller.removeItem);
+router
+    .route("/user/full/single")
+    .get(controller.getListByID);
 
 module.exports = router;

@@ -118,6 +118,7 @@ function CreateList(props) {
                     <Flip bottom cascade>
                         <List
                             list={list}
+                            updateItemPosition={props.updateItemPosition}
                         />
                     </Flip>
                 </div>

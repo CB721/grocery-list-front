@@ -5,7 +5,7 @@ import CreateList from "../CreateList";
 import ViewList from "../ViewList";
 import Slide from 'react-reveal/Slide';
 // import Stores from "../../assets/data/store.json";
-import List from "../../assets/data/list.json";
+// import List from "../../assets/data/list.json";
 import { Row, Col } from "shards-react";
 import API from "../../utilities/api";
 import "./style.scss";
@@ -105,9 +105,6 @@ function Profile(props) {
             case "purchased":
                 listItem.purchased = value;
                 break;
-            // case "position":
-            //     listItem.position = value;
-            //     break;
             default:
                 return;
         }
@@ -245,6 +242,7 @@ function Profile(props) {
                                     stores={userStores}
                                     addItem={addItem}
                                     list={userList}
+                                    updateItemPosition={updateItemPosition}
                                 />
                             ) : currentView === "store-list" ? (
                                 <Store

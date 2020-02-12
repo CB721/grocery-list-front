@@ -15,7 +15,7 @@ function List(props) {
             userSelect: "none",
             background: isDragging ? "#F9FCFF" : "#3C91E6",
             color: isDragging ? "#3C91E6" : "#F9FCFF",
-            cursor: "pointer",
+            cursor: isDragging ? "pointer" : "default",
             "WebkitBoxShadow": isDragging ? "0px 3px 2px -2px rgba(47,51,56,0.64)" : "",
             "MozBoxShadow": isDragging ? "0px 3px 2px -2px rgba(47,51,56,0.64)" : "",
             "boxShadow": isDragging ? "0px 3px 2px -2px rgba(47,51,56,0.64)" : "",
