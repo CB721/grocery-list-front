@@ -38,6 +38,7 @@
     "mongoose": "^5.8.9",
     "mysql": "^2.18.1",
     "node-sass": "^4.13.1",
+    "react-beautiful-dnd": "^12.2.0",
     "react-reveal": "^1.2.2",
     "react-router-dom": "^5.1.2",
     "react-textfit": "^1.1.0",
