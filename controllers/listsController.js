@@ -88,7 +88,7 @@ module.exports = {
                     });
         }
     },
-    updateItem: function(req, res) {
+    updateItem: function (req, res) {
         // prevent injections
         const ID = sqlDB.escape(req.params.id);
         const update = req.body;
@@ -97,28 +97,28 @@ module.exports = {
         const value = sqlDB.escape(update[column]);
         sqlDB
             .query(`UPDATE ${listItemsTable} SET ${column} = ${value} WHERE id = ${ID};`,
-            function(err, results) {
-                if (err) {
-                    return res.status(422).send(err);
-                } else {
-                    return res.status(200).json(results);
-                }
-            });
+                function (err, results) {
+                    if (err) {
+                        return res.status(422).send(err);
+                    } else {
+                        return res.status(200).json(results);
+                    }
+                });
     },
-    removeItem: function(req, res) {
+    removeItem: function (req, res) {
         // prevent injections
         const ID = sqlDB.escape(req.params.id);
         sqlDB
             .query(`DELETE FROM ${listItemsTable} WHERE id = ${ID};`,
-            function(err, results) {
-                if (err) {
-                    return res.status(422).send(err);
-                } else {
-                    return res.status(200).json(results);
-                }
-            });
+                function (err, results) {
+                    if (err) {
+                        return res.status(422).send(err);
+                    } else {
+                        return res.status(200).json(results);
+                    }
+                });
     },
-    getListByID: function(req, res) {
+    getListByID: function (req, res) {
         // prevent injections
         const ID = sqlDB.escape(req.body.user_id);
         const list_id = sqlDB.escape(req.body.id);
@@ -129,12 +129,27 @@ module.exports = {
 
         sqlDB
             .query(`SELECT ${columns} FROM list_items LEFT JOIN lists ON list_items.list_id = lists.id LEFT JOIN stores ON list_items.store_id = stores.id WHERE lists.user_id = ${ID} AND lists.completed = ${completed} AND lists.id = ${list_id} ORDER BY list_items.position ASC;`,
-            function(err, results) {
-                if (err) {
-                    return res.status(422).send(err);
-                } else {
-                    return res.status(200).json(results);
-                }
-            });
+                function (err, results) {
+                    if (err) {
+                        return res.status(422).send(err);
+                    } else {
+                        return res.status(200).json(results);
+                    }
+                });
+    },
+    getListsByUserID: function (req, res) {
+        // prevent injections
+        const ID = sqlDB.escape(req.body.user_id);
+        // default completed to true because this route will mostly be used for retrieving a completed list
+        const completed = sqlDB.escape(req.body.completed || true);
+        sqlDB
+            .query(`SELECT * FROM lists WHERE user_id = ${ID} and completed = ${completed};`,
+                function (err, results) {
+                    if (err) {
+                        return res.status(422).send(err);
+                    } else {
+                        return res.status(200).json(results);
+                    }
+                });
     }
 }

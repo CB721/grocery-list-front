@@ -16,5 +16,8 @@ router
 router
     .route("/user/full/single")
     .get(controller.getListByID);
+router
+    .route("/user/full/all")
+    .get(controller.getListsByUserID);
 
 module.exports = router;
