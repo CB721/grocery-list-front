@@ -117,6 +117,7 @@ function ViewList(props) {
                             list={displayList}
                             toggleClass={toggleClass}
                             changePriority={changePriority}
+                            updateItemPosition={props.updateItemPosition}
                         />
                     </Flip>
                 </div>

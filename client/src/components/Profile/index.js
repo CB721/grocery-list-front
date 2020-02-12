@@ -105,15 +105,38 @@ function Profile(props) {
             case "purchased":
                 listItem.purchased = value;
                 break;
-            case "position":
-                listItem.position = value;
-                break;
+            // case "position":
+            //     listItem.position = value;
+            //     break;
             default:
                 return;
         }
         API.updateItem(id, listItem)
             .then(getUserList())
             .catch(err => console.log(err));
+    }
+    function updateItemPosition(items) {
+        const updateItems = [];
+        for (let i = 0; i < items.length; i++) {
+            if (items[i].id !== userList[i].id) {
+                updateItems.push({
+                    id: items[i].id,
+                    position: i + 1
+                });
+            }
+        }
+        for (let i = 0; i <= updateItems.length; i++) {
+            if (i === updateItems.length) {
+                getUserList()
+            } else {
+                API.updateItem(updateItems[i].id, { position: updateItems[i].position })
+                    .then()
+                    .catch(err => console.log(err));
+            }
+        }
+        // console.log(items);
+        // console.log(userList);
+        // console.log(updateItems);
     }
     // function handleSwipe(event) {
     //     const time = new Date();
@@ -233,6 +256,7 @@ function Profile(props) {
                                             stores={userStores}
                                             list={userList}
                                             updateItem={updateItem}
+                                            updateItemPosition={updateItemPosition}
                                         />
                                     )}
                         </div>

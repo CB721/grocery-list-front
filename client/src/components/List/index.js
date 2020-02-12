@@ -38,6 +38,7 @@ function List(props) {
             result.source.index,
             result.destination.index
         )
+        props.updateItemPosition(items);
         setList(items);
     }
 
