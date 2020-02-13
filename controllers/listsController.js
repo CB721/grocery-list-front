@@ -76,16 +76,15 @@ module.exports = {
                     }
                 });
         let getFullList = function () {
-            let columns = "lists.id AS list_id, list_items.id, list_items.date_added, list_items.priority, list_items.date_purchased, list_items.name, list_items.purchased, list_items.store_id, list_items.position, stores.id AS store_id, stores.address, stores.name AS store_name";
             sqlDB
-                .query(`SELECT ${columns} FROM list_items LEFT JOIN lists ON list_items.list_id = lists.id LEFT JOIN stores ON list_items.store_id = stores.id WHERE lists.user_id = ${ID} AND lists.completed = false ORDER BY list_items.position ASC;`,
+                .query(`CALL current_list(${ID});`,
                     function (err, results) {
                         if (err) {
                             return res.status(422).send(err);
                         } else {
-                            return res.status(200).json(results);
+                            return res.status(200).json(results[0]);
                         }
-                    });
+                    })
         }
     },
     updateItem: function (req, res) {
@@ -122,18 +121,14 @@ module.exports = {
         // prevent injections
         const ID = sqlDB.escape(req.body.user_id);
         const list_id = sqlDB.escape(req.body.id);
-        // default completed to true because this route will mostly be used for retrieving a completed list
-        const completed = sqlDB.escape(req.body.completed || true);
-
-        let columns = "lists.id AS list_id, list_items.id, list_items.date_added, list_items.priority, list_items.date_purchased, list_items.name, list_items.purchased, list_items.store_id, list_items.position, stores.id AS store_id, stores.address, stores.name AS store_name";
-
+        
         sqlDB
-            .query(`SELECT ${columns} FROM list_items LEFT JOIN lists ON list_items.list_id = lists.id LEFT JOIN stores ON list_items.store_id = stores.id WHERE lists.user_id = ${ID} AND lists.completed = ${completed} AND lists.id = ${list_id} ORDER BY list_items.position ASC;`,
+            .query(`CALL get_list_by_id(${ID}, ${list_id});`,
                 function (err, results) {
                     if (err) {
                         return res.status(422).send(err);
                     } else {
-                        return res.status(200).json(results);
+                        return res.status(200).json(results[0]);
                     }
                 });
     },

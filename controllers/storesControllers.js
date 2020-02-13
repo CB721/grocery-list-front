@@ -90,14 +90,14 @@ module.exports = {
     },
     getUserStores: function (req, res) {
         const ID = sqlDB.escape(req.params.id);
-        const query = `SELECT ${userStoreTable}.store_id, ${userStoreTable}.id, ${storeTable}.address, ${storeTable}.name FROM stores LEFT JOIN user_stores on stores.id = ${userStoreTable}.store_id WHERE ${userStoreTable}.user_id = ${ID};`;
+        const query = `CALL get_user_stores(${ID});`;
         sqlDB
             .query(query,
                 function (err, results) {
                     if (err) {
                         return res.status(422).send(err);
                     } else {
-                        return res.status(200).json(results);
+                        return res.status(200).json(results[0]);
                     }
                 });
     },
