@@ -12,6 +12,7 @@ function ViewList(props) {
     const [list, setList] = useState([]);
     const [displayList, setDisplayList] = useState(list);
     const [stores, setStores] = useState([]);
+    const [previousLists, setPreviousLists] = useState([]);
 
 
     useEffect(() => {
@@ -59,11 +60,14 @@ function ViewList(props) {
             case "prev":
                 setPrev("option-header selected");
                 setCurrent("option-header");
+                props.getPreviousLists()
+                    .then(res => setPreviousLists(res))
+                    .catch(err => console.log(err));
                 break;
             default:
                 return;
         }
-    }, [currentView]);
+    }, [currentView, props]);
 
     function toggleOptions(event) {
         event.preventDefault();
@@ -123,7 +127,16 @@ function ViewList(props) {
                         />
                     </Flip>
                 </div>
-            ) : (<div />)}
+            ) : (
+                    <div>
+                        {previousLists.length > 0 ? (
+                            <List
+                                viewList={false}
+                                list={previousLists}
+                            />
+                        ) : (<div />)}
+                    </div>
+                )}
         </div>
     )
 }

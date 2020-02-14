@@ -26,6 +26,6 @@ export default {
         return axios.get("/api/lists/user/full/single", data);
     },
     getListsByUserID: function(data) {
-        return axios.get("/api/lists/user/full/all", data);
+        return axios.post("/api/lists/user/full/all", data);
     }
 }

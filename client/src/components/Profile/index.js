@@ -131,9 +131,18 @@ function Profile(props) {
                     .catch(err => console.log(err));
             }
         }
-        // console.log(items);
-        // console.log(userList);
-        // console.log(updateItems);
+    }
+    function getPreviousLists() {
+        return new Promise(function(resolve, reject) {
+            const listInfo = {
+                user_id: userID
+            }
+            API.getListsByUserID(listInfo)
+                .then(res => {
+                    resolve(res.data);
+                })
+                .catch(err => reject(err));
+        })
     }
     // function handleSwipe(event) {
     //     const time = new Date();
@@ -255,6 +264,7 @@ function Profile(props) {
                                             list={userList}
                                             updateItem={updateItem}
                                             updateItemPosition={updateItemPosition}
+                                            getPreviousLists={getPreviousLists}
                                         />
                                     )}
                         </div>

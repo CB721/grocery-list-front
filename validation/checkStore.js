@@ -12,5 +12,5 @@ module.exports = function checkStore({id, address, name}) {
         else {
             return resolve(true);
         }
-    })
+    });
 }

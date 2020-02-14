@@ -98,7 +98,7 @@ function List(props) {
                                                     </div>
                                                 ) : (
                                                         <div>
-                                                            {item.priority}
+                                                            {item.priority || item.date_added.split("T")[0]}
                                                         </div>
                                                     )}
 

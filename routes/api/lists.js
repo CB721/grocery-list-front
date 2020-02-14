@@ -18,6 +18,6 @@ router
     .get(controller.getListByID);
 router
     .route("/user/full/all")
-    .get(controller.getListsByUserID);
+    .post(controller.getListsByUserID);
 
 module.exports = router;

@@ -121,7 +121,7 @@ module.exports = {
         // prevent injections
         const ID = sqlDB.escape(req.body.user_id);
         const list_id = sqlDB.escape(req.body.id);
-        
+
         sqlDB
             .query(`CALL get_list_by_id(${ID}, ${list_id});`,
                 function (err, results) {
@@ -136,7 +136,7 @@ module.exports = {
         // prevent injections
         const ID = sqlDB.escape(req.body.user_id);
         // default completed to true because this route will mostly be used for retrieving a completed list
-        const completed = sqlDB.escape(req.body.completed || true);
+        const completed = (sqlDB.escape(req.body.completed || true)) == "true";
         sqlDB
             .query(`SELECT * FROM lists WHERE user_id = ${ID} and completed = ${completed};`,
                 function (err, results) {

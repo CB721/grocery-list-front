@@ -60,11 +60,9 @@
                 }
             }
         }
-        // &:hover {
-        //     background: $white;
-        //     color: $main-blue;
-        //     cursor: pointer;
-        // }
+        &:hover {
+            cursor: pointer;
+        }
     }
 }
 
