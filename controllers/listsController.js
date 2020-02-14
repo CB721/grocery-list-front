@@ -135,10 +135,14 @@ module.exports = {
     getListsByUserID: function (req, res) {
         // prevent injections
         const ID = sqlDB.escape(req.body.user_id);
+        let direction = sqlDB.escape(req.body.direction);
+        // remove ' from beginning and end of direction string
+        direction = direction.substr(1);
+        direction = direction.substr(0, direction.length - 1);
         // default completed to true because this route will mostly be used for retrieving a completed list
         const completed = (sqlDB.escape(req.body.completed || true)) == "true";
         sqlDB
-            .query(`SELECT * FROM lists WHERE user_id = ${ID} and completed = ${completed};`,
+            .query(`SELECT * FROM lists WHERE user_id = ${ID} and completed = ${completed} ORDER BY date_added ${direction};`,
                 function (err, results) {
                     if (err) {
                         return res.status(422).send(err);

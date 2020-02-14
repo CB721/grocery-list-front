@@ -132,10 +132,11 @@ function Profile(props) {
             }
         }
     }
-    function getPreviousLists() {
+    function getPreviousLists(direction) {
         return new Promise(function(resolve, reject) {
             const listInfo = {
-                user_id: userID
+                user_id: userID,
+                direction: direction
             }
             API.getListsByUserID(listInfo)
                 .then(res => {

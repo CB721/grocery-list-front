@@ -38,6 +38,15 @@ function ViewList(props) {
             setDisplayList(newList);
         }
     }
+    function viewListByDate(event) {
+        event.preventDefault();
+        console.log(event.target.value);
+        if (event.target.value === "DESC") {
+            getPreviousLists("DESC");
+        } else {
+            getPreviousLists("ASC");
+        }
+    }
     useEffect(() => {
         let storeList = ["All"];
         // iterate over list
@@ -60,15 +69,17 @@ function ViewList(props) {
             case "prev":
                 setPrev("option-header selected");
                 setCurrent("option-header");
-                props.getPreviousLists()
-                    .then(res => setPreviousLists(res))
-                    .catch(err => console.log(err));
+                getPreviousLists("DESC");
                 break;
             default:
                 return;
         }
-    }, [currentView, props]);
-
+    }, [currentView]);
+    function getPreviousLists(order) {
+        props.getPreviousLists(order)
+            .then(res => setPreviousLists(res))
+            .catch(err => console.log(err));
+    }
     function toggleOptions(event) {
         event.preventDefault();
         setCurrentView(event.currentTarget.id);
@@ -129,6 +140,14 @@ function ViewList(props) {
                 </div>
             ) : (
                     <div>
+                    <select
+                        className="store-filter"
+                        default="DESC"
+                        onChange={(event) => viewListByDate(event)}
+                    >
+                        <option value="DESC">Newest First</option>
+                        <option value="ASC">Oldest First</option>
+                    </select>
                         {previousLists.length > 0 ? (
                             <List
                                 viewList={false}

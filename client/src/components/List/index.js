@@ -38,8 +38,10 @@ function List(props) {
             result.source.index,
             result.destination.index
         )
-        props.updateItemPosition(items);
-        setList(items);
+        if (props.updateItemPosition) {
+            props.updateItemPosition(items);
+            setList(items);
+        }
     }
 
     return (
