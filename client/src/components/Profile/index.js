@@ -67,7 +67,6 @@ function Profile(props) {
         event.preventDefault();
         
         const id = event.currentTarget.id;
-        console.log(id);
         // determine direction of slide effect
         switch (currentView) {
             case "view-lists":
@@ -148,8 +147,14 @@ function Profile(props) {
         })
     }
     function addListName(id, name) {
-        console.log(id, name);
-
+        const listInfo = {
+            list_name: name,
+            user_id: userID,
+            list_id: id
+        }
+        API.updateList(listInfo)
+            .then(getUserList())
+            .catch(err => console.log(err));
     }
     // function handleSwipe(event) {
     //     const time = new Date();

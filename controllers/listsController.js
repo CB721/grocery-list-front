@@ -100,7 +100,11 @@ module.exports = {
                     if (err) {
                         return res.status(422).send(err);
                     } else {
-                        return res.status(200).json(results);
+                        if (results.affectedRows > 0) {
+                            return res.status(200).send("Item updated");
+                        } else {
+                            return res.status(404).send("No item found");
+                        }
                     }
                 });
     },
@@ -121,7 +125,7 @@ module.exports = {
         // prevent injections
         const ID = sqlDB.escape(req.body.user_id);
         const list_id = sqlDB.escape(req.body.id);
-
+        console.log(ID);
         sqlDB
             .query(`CALL get_list_by_id(${ID}, ${list_id});`,
                 function (err, results) {
@@ -150,5 +154,28 @@ module.exports = {
                         return res.status(200).json(results);
                     }
                 });
+    },
+    updateList: function(req, res) {
+        const update = req.body;
+        // grab column name of what is to be updated
+        const column = Object.keys(update)[0];
+        // prevent injections
+        const value = sqlDB.escape(update[column]);
+        const userID = sqlDB.escape(req.body.user_id);
+        const ID = sqlDB.escape(req.body.list_id);
+        // UPDATE lists SET list_name = "Super bowl" WHERE user_id = "5e3afb5803935005eeeef6e9" AND id = 1;
+        sqlDB
+            .query(`UPDATE ${listTable} SET ${column} = ${value} WHERE user_id = ${userID} AND id = ${ID};`,
+            function(err, results) {
+                if (err) {
+                    return res.status(422).send(err);
+                } else {
+                    if (results.affectedRows > 0) {
+                        return res.status(200).send("List updated");
+                    } else {
+                        return res.status(404).send("No list found");
+                    }
+                }
+            });
     }
 }

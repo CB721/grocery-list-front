@@ -27,5 +27,8 @@ export default {
     },
     getListsByUserID: function(data) {
         return axios.post("/api/lists/user/full/all", data);
+    },
+    updateList: function(data) {
+        return axios.put("/api/lists/user/info/update", data);
     }
 }

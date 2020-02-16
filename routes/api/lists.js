@@ -19,5 +19,8 @@ router
 router
     .route("/user/full/all")
     .post(controller.getListsByUserID);
+router
+    .route("/user/info/update")
+    .put(controller.updateList);
 
 module.exports = router;

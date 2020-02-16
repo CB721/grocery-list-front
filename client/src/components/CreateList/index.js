@@ -13,10 +13,21 @@ function CreateList(props) {
     const [priority, setPriority] = useState("Normal");
     const [inputErr, setInputErr] = useState("");
     const [listName, setListName] = useState("");
+    const [savedListName, setSavedListName] = useState("");
 
     useEffect(() => {
         setList(props.list);
         setShowAdd(false);
+        setSavedListName(props.list[0].list_name || "");
+        // if (props.list.length > 0) {
+        //     if (props.list[0].list_name.length > 0) {
+        //         setShowNameInput(true);
+        //     } else {
+        //         setShowNameInput(false);
+        //     }
+        // } else {
+        //     setShowNameInput(false);
+        // }
     }, [props.list]);
     function handleInputChange(event) {
         event.preventDefault();
@@ -77,28 +88,36 @@ function CreateList(props) {
     }
     return (
         <div className="create-list">
-            <div className="create-list-header">{list.length > 0 ? "Add to List" : "New List"}</div>
-            <div className="create-list-header error">{inputErr}</div>
-            {list.length > 0 && list.list_name ? (
+            <div
+                className="create-list-header"
+            >
+                {list.length > 0 ? `Add to ${list[0].list_name || "list"}` : "New List"}
+            </div>
+            <div
+                className="create-list-header error"
+            >
+                {inputErr}
+            </div>
+            {savedListName ? (
                 <div />
             ) : (
-            <div>
-                <input
-                    type="text"
-                    className="form-input"
-                    value={listName}
-                    placeholder="Name your list"
-                    name={"list_name"}
-                    onChange={handleListName}
-                />
-                <Button
-                    text="Add List Name"
-                    class="white-button"
-                    disabled={listName.length < 1 ? true : false}
-                    action={() => props.addListName(list[0].list_id, listName)}
-                />
-            </div>
-            )}
+                    <div>
+                        <input
+                            type="text"
+                            className="form-input"
+                            value={listName}
+                            placeholder="Name your list"
+                            name={"list_name"}
+                            onChange={handleListName}
+                        />
+                        <Button
+                            text="Add List Name"
+                            class="white-button"
+                            disabled={listName.length < 1 ? true : false}
+                            action={() => props.addListName(list[0].list_id, listName)}
+                        />
+                    </div>
+                )}
             <input
                 type="text"
                 className="form-input"
