@@ -156,6 +156,16 @@ function Profile(props) {
             .then(getUserList())
             .catch(err => console.log(err));
     }
+    function markListComplete(id) {
+        const listInfo = {
+            completed: 1,
+            user_id: userID,
+            list_id: id
+        }
+        API.updateList(listInfo)
+            .then(getUserList())
+            .catch(err => console.log(err));
+    }
     // function handleSwipe(event) {
     //     const time = new Date();
     //     if (swipe === 0) {
@@ -278,6 +288,7 @@ function Profile(props) {
                                             updateItem={updateItem}
                                             updateItemPosition={updateItemPosition}
                                             getPreviousLists={getPreviousLists}
+                                            markListComplete={markListComplete}
                                         />
                                     )}
                         </div>

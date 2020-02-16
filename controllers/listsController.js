@@ -125,7 +125,6 @@ module.exports = {
         // prevent injections
         const ID = sqlDB.escape(req.body.user_id);
         const list_id = sqlDB.escape(req.body.id);
-        console.log(ID);
         sqlDB
             .query(`CALL get_list_by_id(${ID}, ${list_id});`,
                 function (err, results) {
@@ -163,7 +162,6 @@ module.exports = {
         const value = sqlDB.escape(update[column]);
         const userID = sqlDB.escape(req.body.user_id);
         const ID = sqlDB.escape(req.body.list_id);
-        // UPDATE lists SET list_name = "Super bowl" WHERE user_id = "5e3afb5803935005eeeef6e9" AND id = 1;
         sqlDB
             .query(`UPDATE ${listTable} SET ${column} = ${value} WHERE user_id = ${userID} AND id = ${ID};`,
             function(err, results) {
