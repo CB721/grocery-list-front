@@ -12,6 +12,7 @@ function CreateList(props) {
     const [showAdd, setShowAdd] = useState(false);
     const [priority, setPriority] = useState("Normal");
     const [inputErr, setInputErr] = useState("");
+    const [listName, setListName] = useState("");
 
     useEffect(() => {
         setList(props.list);
@@ -70,10 +71,34 @@ function CreateList(props) {
         event.preventDefault();
         setPriority(event.target.value);
     }
+    function handleListName(event) {
+        event.preventDefault();
+        setListName(event.target.value);
+    }
     return (
         <div className="create-list">
             <div className="create-list-header">{list.length > 0 ? "Add to List" : "New List"}</div>
             <div className="create-list-header error">{inputErr}</div>
+            {list.length > 0 && list.list_name ? (
+                <div />
+            ) : (
+            <div>
+                <input
+                    type="text"
+                    className="form-input"
+                    value={listName}
+                    placeholder="Name your list"
+                    name={"list_name"}
+                    onChange={handleListName}
+                />
+                <Button
+                    text="Add List Name"
+                    class="white-button"
+                    disabled={listName.length < 1 ? true : false}
+                    action={() => props.addListName(list[0].list_id, listName)}
+                />
+            </div>
+            )}
             <input
                 type="text"
                 className="form-input"
@@ -128,15 +153,9 @@ function CreateList(props) {
                     text="Add"
                     class="blue-button"
                     action={addItem}
+                    disabled={newItem.length < 1 ? true : false}
                 />
             ) : (<div />)}
-            {/* {list.length > 0 ? (
-                <Button
-                    text="Save"
-                    class="blue-button"
-                    action={saveList}
-                />
-            ) : (<div />)} */}
         </div>
     )
 }

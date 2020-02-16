@@ -65,7 +65,9 @@ function Profile(props) {
 
     function toggleOptions(event) {
         event.preventDefault();
+        
         const id = event.currentTarget.id;
+        console.log(id);
         // determine direction of slide effect
         switch (currentView) {
             case "view-lists":
@@ -144,6 +146,10 @@ function Profile(props) {
                 })
                 .catch(err => reject(err));
         })
+    }
+    function addListName(id, name) {
+        console.log(id, name);
+
     }
     // function handleSwipe(event) {
     //     const time = new Date();
@@ -253,6 +259,7 @@ function Profile(props) {
                                     addItem={addItem}
                                     list={userList}
                                     updateItemPosition={updateItemPosition}
+                                    addListName={addListName}
                                 />
                             ) : currentView === "store-list" ? (
                                 <Store

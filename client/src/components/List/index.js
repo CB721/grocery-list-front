@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import Checkbox from "../Checkbox";
+import convertDate from "../../utilities/convertDate";
 import "./style.scss";
 
 function List(props) {
@@ -76,7 +77,7 @@ function List(props) {
                                             {item.name}
                                         </div>
                                         <div className="list-item-col">
-                                            {item.store_name}
+                                            {item.store_name  || item.list_name || convertDate(item.date_added.split("T")[0])}
                                         </div>
                                         <div className="list-item-col">
                                             <div className="sub-col priority">
@@ -100,7 +101,7 @@ function List(props) {
                                                     </div>
                                                 ) : (
                                                         <div>
-                                                            {item.priority || item.date_added.split("T")[0]}
+                                                            {item.priority}
                                                         </div>
                                                     )}
 
