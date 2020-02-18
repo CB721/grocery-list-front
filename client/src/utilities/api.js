@@ -36,5 +36,8 @@ export default {
     },
     removeItem: function(id) {
         return axios.delete("/api/lists/user/item/remove/" + id);
+    },
+    getStoreCount: function() {
+        return axios.get("/api/stores/count");
     }
 }

@@ -99,8 +99,6 @@ function Store(props) {
     }
     function saveStore(event, store) {
         event.preventDefault();
-        console.log("save store to user profile");
-        console.log(store);
         const storeData = {
             id: store.id,
             name: store.structured_formatting.main_text,
@@ -112,6 +110,7 @@ function Store(props) {
                 if (res.data.affectedRows > 0) {
                     // notify user of sucessfully added store
                     props.refreshStores();
+                    setCurrentView("view");
                 }
             })
             .catch(err => console.log(err));
@@ -134,17 +133,25 @@ function Store(props) {
     }
     function customStore(event) {
         event.preventDefault();
-        // get count of stores already saved to db
+        // unique id to append count total to
+        // this will ensure a unique id is created for the custom store
         let uniqueID = "dbcad414febafecbdfd2bc48438c7c649acdae36";
-        // repack info from user for save store function
-        const store = {
-            id: "",
-            structured_formatting: {
-                main_text: storeName,
-                secondary_text: storeAddress
-            }
-        }
-        console.log(store);
+        // get count of stores already saved to db
+        API.getStoreCount()
+            .then(res => {
+                let numberStr = (res.data).toString();
+                uniqueID += numberStr;
+                // repack info from user for save store function
+                const store = {
+                    id: uniqueID,
+                    structured_formatting: {
+                        main_text: storeName,
+                        secondary_text: storeAddress
+                    }
+                }
+                saveStore(event, store);
+            })
+            .catch(err => console.log(err));
     }
     return (
         <div className="store">
