@@ -24,7 +24,7 @@ module.exports = {
                                 createList();
                             }
                             // if completed, create a new list
-                            if (results.completed > 0) {
+                            if (results.completed > 0 || results.length < 1) {
                                 createList();
                             } else {
                                 addItemToList(results[0].id);
