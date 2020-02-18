@@ -175,6 +175,17 @@ function Profile(props) {
                 .catch(err => reject(err));
         });
     }
+    function addEntirePreviousList(list) {
+        const addList = {
+            list: JSON.stringify(list),
+            user_id: userID
+        }
+        API.addPreviousListToCurrent(addList)
+            .then(res => {
+                console.log(res.data);
+            })
+            .catch(err => console.log(err));
+    }
     // function handleSwipe(event) {
     //     const time = new Date();
     //     if (swipe === 0) {
@@ -300,6 +311,7 @@ function Profile(props) {
                                             markListComplete={markListComplete}
                                             getListByID={getListByID}
                                             addItem={addItem}
+                                            addEntirePreviousList={addEntirePreviousList}
                                         />
                                     )}
                         </div>

@@ -12,7 +12,7 @@
         left: 15%;
         top: 15%;
         width: 70%;
-        height: 70%;
+        max-height: 70%;
         overflow: auto;
         text-transform: capitalize;
         .modal-col-3 {
@@ -60,6 +60,23 @@
             line-height: 20px;
             color: $black;
             transition: 0.3s;
+        }
+        .modal-message {
+            animation: fade-in 0.5s ease 0s 1 normal forwards;
+            @keyframes fade-in {
+                0% {
+                    opacity: 0;
+                    transform: scale(0.8) translateY(-10px);
+                }
+                75% {
+                    opacity: 1;
+                    transform: scale(1.05)translateY(10px);
+                }
+                100% {
+                    opacity: 1;
+                    transform: scale(1) translateY(0);
+                }
+            }
         }
     }
 }

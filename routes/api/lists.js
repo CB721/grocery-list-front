@@ -22,5 +22,8 @@ router
 router
     .route("/user/info/update")
     .put(controller.updateList);
+router
+    .route("/user/previous")
+    .post(controller.addPreviousListToCurrent)
 
 module.exports = router;

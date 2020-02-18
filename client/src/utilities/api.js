@@ -30,5 +30,8 @@ export default {
     },
     updateList: function(data) {
         return axios.put("/api/lists/user/info/update", data);
+    },
+    addPreviousListToCurrent: function(data) {
+        return axios.post("/api/lists/user/previous", data);
     }
 }

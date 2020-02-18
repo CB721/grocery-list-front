@@ -34,7 +34,7 @@ function Modal(props) {
                                 </Row>
                                 <Row>
                                     <Col>
-                                        <div className="modal-col-12">
+                                        <div className="modal-col-12 modal-message">
                                             {props.message}
                                         </div>
                                     </Col>
@@ -43,6 +43,13 @@ function Modal(props) {
                                     <Col>
                                         <div>
                                             {props.content}
+                                        </div>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col>
+                                        <div>
+                                            {props.button}
                                         </div>
                                     </Col>
                                 </Row>

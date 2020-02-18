@@ -50,9 +50,8 @@ module.exports = {
         }
         // add item to list
         let addItemToList = function (id) {
-            const columns = "(date_added, list_id, name, store_id, position, priority)";
             sqlDB
-                .query(`INSERT INTO ${listItemsTable} ${columns} VALUES (NOW(), ${id}, ${name}, ${store_id}, ${position}, ${priority});`,
+                .query(`CALL add_item(${id}, ${name}, ${store_id}, ${position}, ${priority});`,
                     function (err, results) {
                         if (err) {
                             return res.status(422).send(err);
@@ -154,7 +153,7 @@ module.exports = {
                     }
                 });
     },
-    updateList: function(req, res) {
+    updateList: function (req, res) {
         const update = req.body;
         // grab column name of what is to be updated
         const column = Object.keys(update)[0];
@@ -164,16 +163,81 @@ module.exports = {
         const ID = sqlDB.escape(req.body.list_id);
         sqlDB
             .query(`UPDATE ${listTable} SET ${column} = ${value} WHERE user_id = ${userID} AND id = ${ID};`,
-            function(err, results) {
-                if (err) {
-                    return res.status(422).send(err);
-                } else {
-                    if (results.affectedRows > 0) {
-                        return res.status(200).send("List updated");
+                function (err, results) {
+                    if (err) {
+                        return res.status(422).send(err);
                     } else {
-                        return res.status(404).send("No list found");
+                        if (results.affectedRows > 0) {
+                            return res.status(200).send("List updated");
+                        } else {
+                            return res.status(404).send("No list found");
+                        }
                     }
-                }
-            });
+                });
+    },
+    addPreviousListToCurrent: function (req, res) {
+        const list = JSON.parse(req.body.list);
+        const user_id = sqlDB.escape(req.body.user_id);
+        // check if a list already exists
+        // find current list
+        let getCurrentList = function () {
+            sqlDB
+                .query(`SELECT * FROM ${listTable} WHERE user_id = ${user_id} AND lists.completed = false;`,
+                    function (err, results) {
+                        if (err) {
+                            return res.status(422).send(err);
+                        } else {
+                            if (results.length < 1) {
+                                // if no lists, create a new list
+                                createList();
+                            }
+                            // if completed, create a new list
+                            if (results.completed > 0 || results.length < 1) {
+                                createList();
+                            } else {
+                                addItemToList(results[0].id, results.length);
+                            }
+                        }
+                    });
+        }
+        getCurrentList();
+
+        let createList = function () {
+            const columns = "(date_added, user_id)"
+            sqlDB
+                .query(`INSERT INTO ${listTable} ${columns} VALUES (NOW(), ${user_id});`,
+                    function (err) {
+                        if (err) {
+                            return res.status(422).send(err);
+                        } else {
+                            getCurrentList();
+                        }
+                    });
+            // console.log("create list");
+        }
+        let addItemToList = function (id, position) {
+            const columns = "(date_added, list_id, name, store_id, position, priority)";
+            let i = 0;
+            // while (i <= list.length) {
+            //     console.log(list[i]);
+            //     if (i === list.length) {
+            //         return res.status(200).send("All items added");
+            //     } else {
+            //         sqlDB
+            //             .query(`INSERT INTO ${listItemsTable} ${columns} VALUES (NOW(), ${list[i].id}, ${list[i].name}, ${list[i].store_id}, ${position + 1}, "Normal");`,
+            //                 function (err, results) {
+            //                     if (err) {
+            //                         return res.status(422).send(err);
+            //                     } else {
+            //                         if (results.affectedRows > 0) {
+            //                             i++;
+            //                         } else {
+            //                             return res.status(404).send(`${list[i].name} not added`);
+            //                         }
+            //                     }
+            //                 });
+            //     }
+            // }
+        }
     }
 }

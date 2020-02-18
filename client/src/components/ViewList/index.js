@@ -166,6 +166,11 @@ function ViewList(props) {
                         list={modalList}
                         action={addToCurrentList}
                     />}
+                    // button={<Button
+                    //     text="Add All To Current List"
+                    //     class="white-button"
+                    //     action={() => props.addEntirePreviousList(modalList)}
+                    // />}
                 />
             ) : (<div />)}
             {currentView === "current" ? (
@@ -193,13 +198,13 @@ function ViewList(props) {
                         />
                     </Flip>
                     {/* <div style={{ marginBottom: "25px" }}> */}
-                        {showComplete && list.length > 0 ? (
-                            <Button
-                                text="Mark Complete"
-                                class="white-button"
-                                action={() => props.markListComplete(list[0].list_id)}
-                            />
-                        ) : (<div />)}
+                    {showComplete && list.length > 0 ? (
+                        <Button
+                            text="Mark Complete"
+                            class="white-button"
+                            action={() => props.markListComplete(list[0].list_id)}
+                        />
+                    ) : (<div />)}
                     {/* </div> */}
                 </div>
             ) : (
