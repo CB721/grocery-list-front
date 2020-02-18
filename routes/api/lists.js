@@ -14,7 +14,7 @@ router
     .route("/user/item/remove/:id")
     .delete(controller.removeItem);
 router
-    .route("/user/full/single")
+    .route("/user/full/single/:id/:userid")
     .get(controller.getListByID);
 router
     .route("/user/full/all")

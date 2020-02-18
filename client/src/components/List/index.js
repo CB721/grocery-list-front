@@ -44,6 +44,13 @@ function List(props) {
             setList(items);
         }
     }
+    function action(event, info) {
+        event.preventDefault();
+        // if list has been provided a action function
+        if (props.action && typeof (props.action) === "function") {
+            props.action(info);
+        }
+    }
 
     return (
         <DragDropContext onDragEnd={onDragEnd}>
@@ -73,11 +80,17 @@ function List(props) {
                                             provided.draggableProps.style
                                         )}
                                     >
-                                        <div className="list-item-col">
+                                        <div
+                                            className="list-item-col"
+                                            onClick={(event) => action(event, item)}
+                                        >
                                             {item.name}
                                         </div>
-                                        <div className="list-item-col">
-                                            {item.store_name  || item.list_name || convertDate(item.date_added.split("T")[0])}
+                                        <div
+                                            className="list-item-col"
+                                            onClick={(event) => action(event, item)}
+                                        >
+                                            {item.store_name || item.list_name || convertDate(item.date_added.split("T")[0])}
                                         </div>
                                         <div className="list-item-col">
                                             <div className="sub-col priority">

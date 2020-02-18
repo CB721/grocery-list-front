@@ -18,16 +18,9 @@ function CreateList(props) {
     useEffect(() => {
         setList(props.list);
         setShowAdd(false);
-        setSavedListName(props.list[0].list_name || "");
-        // if (props.list.length > 0) {
-        //     if (props.list[0].list_name.length > 0) {
-        //         setShowNameInput(true);
-        //     } else {
-        //         setShowNameInput(false);
-        //     }
-        // } else {
-        //     setShowNameInput(false);
-        // }
+        if (props.list.length > 0) {
+            setSavedListName(props.list[0].list_name || "");
+        }
     }, [props.list]);
     function handleInputChange(event) {
         event.preventDefault();
@@ -98,7 +91,7 @@ function CreateList(props) {
             >
                 {inputErr}
             </div>
-            {savedListName ? (
+            {savedListName.length > 0 && list.length > 0 ? (
                 <div />
             ) : (
                     <div>

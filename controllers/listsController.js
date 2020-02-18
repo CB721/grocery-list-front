@@ -123,8 +123,8 @@ module.exports = {
     },
     getListByID: function (req, res) {
         // prevent injections
-        const ID = sqlDB.escape(req.body.user_id);
-        const list_id = sqlDB.escape(req.body.id);
+        const ID = sqlDB.escape(req.params.userid);
+        const list_id = sqlDB.escape(req.params.id);
         sqlDB
             .query(`CALL get_list_by_id(${ID}, ${list_id});`,
                 function (err, results) {

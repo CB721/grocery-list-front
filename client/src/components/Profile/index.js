@@ -65,7 +65,7 @@ function Profile(props) {
 
     function toggleOptions(event) {
         event.preventDefault();
-        
+
         const id = event.currentTarget.id;
         // determine direction of slide effect
         switch (currentView) {
@@ -85,7 +85,7 @@ function Profile(props) {
         }
         setCurrentView(id);
     }
-    function addItem(item, position) {
+    function addItem(item, position = userList.length + 1) {
         const listItem = {
             name: item.name,
             user_id: userID,
@@ -134,7 +134,7 @@ function Profile(props) {
         }
     }
     function getPreviousLists(direction) {
-        return new Promise(function(resolve, reject) {
+        return new Promise(function (resolve, reject) {
             const listInfo = {
                 user_id: userID,
                 direction: direction
@@ -165,6 +165,15 @@ function Profile(props) {
         API.updateList(listInfo)
             .then(getUserList())
             .catch(err => console.log(err));
+    }
+    function getListByID(id) {
+        return new Promise(function (resolve, reject) {
+            API.getListByID(id, userID)
+                .then(res => {
+                    resolve(res.data);
+                })
+                .catch(err => reject(err));
+        });
     }
     // function handleSwipe(event) {
     //     const time = new Date();
@@ -289,6 +298,8 @@ function Profile(props) {
                                             updateItemPosition={updateItemPosition}
                                             getPreviousLists={getPreviousLists}
                                             markListComplete={markListComplete}
+                                            getListByID={getListByID}
+                                            addItem={addItem}
                                         />
                                     )}
                         </div>

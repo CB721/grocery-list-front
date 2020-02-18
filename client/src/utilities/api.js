@@ -22,8 +22,8 @@ export default {
     updateItem: function(id, data) {
         return axios.put("/api/lists/user/item/" + id, data);
     },
-    getListByID: function(data) {
-        return axios.get("/api/lists/user/full/single", data);
+    getListByID: function(id, userID) {
+        return axios.get(`/api/lists/user/full/single/${id}/${userID}`);
     },
     getListsByUserID: function(data) {
         return axios.post("/api/lists/user/full/all", data);

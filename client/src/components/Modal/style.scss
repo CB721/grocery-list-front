@@ -1,0 +1,65 @@
+@import "../../App.scss";
+
+.cust-modal {
+    position: fixed;
+    left: 0%;
+    top: 0%;
+    width: 100%;
+    height: 100%;
+    .modal-content {
+        position: fixed;
+        z-index: 3;
+        left: 15%;
+        top: 15%;
+        width: 70%;
+        height: 70%;
+        overflow: auto;
+        text-transform: capitalize;
+        .modal-col-3 {
+            margin: 5px 0 15px 0;
+            display: block;
+            float: left;
+            width: 33.33%;
+            height: 35px;
+            line-height: 35px;
+            font-size: 35px;
+            text-align: center;
+            color: $main-blue;
+            :nth-child(2) {
+                width: 33.4%;
+            }
+            .modal-close-x {
+                margin: 0 auto;
+                margin-right: 0;
+                .x-bar-1, .x-bar-2 {
+                    width: 35px;
+                    height: 5px;
+                    background-color: $main-blue;
+                    margin: 6px 0;
+                    transition: 0.3s;
+                }
+                .x-bar-1 {
+                    -webkit-transform: translateY(9.5px) rotate(-45deg);
+                    transform: translateY(9.5px) rotate(-45deg);
+                }
+                .x-bar-2 {
+                    -webkit-transform: translateY(-2px) rotate(45deg);
+                    transform: translateY(-2px) rotate(45deg);
+                }
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+        .modal-col-12 {
+            text-align: center;
+            width: 100%;
+            margin: 30px 0;
+            height: 20px;
+            font-size: 20px;
+            line-height: 20px;
+            color: $black;
+            transition: 0.3s;
+        }
+    }
+}
