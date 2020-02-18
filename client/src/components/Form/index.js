@@ -44,6 +44,8 @@ function Form(props) {
                 <Button
                     text={props.type}
                     class="blue-button"
+                    action={props.action}
+                    disabled={props.disableButton}
                 />
             </div>
         </div>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Textfit } from "react-textfit";
 import { ReactComponent as Trash } from "../../assets/images/trash.svg";
+import Form from "../Form";
 import Error from "../Error";
 import Flip from 'react-reveal/Flip';
 import API from "../../utilities/api";
@@ -12,6 +13,11 @@ function Store(props) {
     const [view, setView] = useState("option-header selected");
     const [search, setSearch] = useState("");
     const [results, setResults] = useState([]);
+    const [manualStore, setManualStore] = useState(false);
+    const [storeAddress, setStoreAddress] = useState("");
+    const [storeName, setStoreName] = useState("");
+    const inputs = [{ "Store Address": storeAddress }, { "Store Name": storeName }];
+    const [disableFormButton, setDisableFormButton] = useState(true);
 
     useEffect(() => {
         switch (currentView) {
@@ -41,13 +47,44 @@ function Store(props) {
     function handleInputChange(event) {
         event.preventDefault();
         let value = event.target.value;
-        setSearch(value);
-        // only call autocomplete api after user has typed at least 4 characters
-        if (value.length > 3) {
-            getSearchResults();
+        let name = event.target.name;
+        switch (name) {
+            case "Store Address":
+                setStoreAddress(value);
+                validateCustomStore();
+                break;
+            case "Store Name":
+                setStoreName(value);
+                validateCustomStore();
+                break;
+            default:
+                setSearch(value);
+                // only call autocomplete api after user has typed at least 4 characters
+                if (search.length > 3) {
+                    getSearchResults();
+                } else {
+                    // if user deletes characters, clear results
+                    setResults([]);
+                    setManualStore(false);
+                }
+                break;
+        }
+        // only display option to input a store if no results from user search
+        if (search.length > 5 && results.length < 1) {
+            setManualStore(true);
         } else {
-            // if user deletes characters, clear results
-            setResults([]);
+            setManualStore(false);
+        }
+    }
+    function validateCustomStore() {
+        if (storeAddress.length < 1) {
+            setDisableFormButton(true);
+        }
+        if (storeName.length < 1) {
+            setDisableFormButton(true);
+        }
+        else {
+            setDisableFormButton(false);
         }
     }
     function getSearchResults() {
@@ -75,9 +112,7 @@ function Store(props) {
                 if (res.data.affectedRows > 0) {
                     // notify user of sucessfully added store
                     props.refreshStores();
-                    console.log("success");
                 }
-                console.log(res.data)
             })
             .catch(err => console.log(err));
     }
@@ -89,15 +124,27 @@ function Store(props) {
                     if (res.data.affectedRows > 0) {
                         // notify user of successfully removed store
                         props.refreshStores();
-                        console.log("success");
                     }
-                    console.log(res)
                 })
                 .catch(err => console.log(err));
         } else {
             // notify user to confirm store removal
             // call function again with confirm as true
         }
+    }
+    function customStore(event) {
+        event.preventDefault();
+        // get count of stores already saved to db
+        let uniqueID = "dbcad414febafecbdfd2bc48438c7c649acdae36";
+        // repack info from user for save store function
+        const store = {
+            id: "",
+            structured_formatting: {
+                main_text: storeName,
+                secondary_text: storeAddress
+            }
+        }
+        console.log(store);
     }
     return (
         <div className="store">
@@ -178,6 +225,15 @@ function Store(props) {
                         ) : (<div />)}
                     </div>
                 )}
+            {currentView === "add" && manualStore ? (
+                <Form
+                    inputs={inputs}
+                    type={"Custom Store"}
+                    handleInputChange={handleInputChange}
+                    action={customStore}
+                    disableButton={disableFormButton}
+                />
+            ) : (<div />)}
         </div>
     )
 }

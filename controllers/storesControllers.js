@@ -112,5 +112,11 @@ module.exports = {
                         return res.status(200).json(results);
                     }
                 });
+    },
+    getStoreCount: function(req, res) {
+        Store
+            .countDocuments({})
+            .then(total => res.status(200).json(total))
+            .catch(err => res.status(422).send(err));
     }
 }

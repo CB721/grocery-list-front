@@ -10,5 +10,8 @@ router
 router
     .route("/user/delete/:id")
     .delete(controller.deleteUserStore);
+router
+    .route("/count")
+    .get(controller.getStoreCount);
 
 module.exports = router;
