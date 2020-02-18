@@ -33,5 +33,8 @@ export default {
     },
     addPreviousListToCurrent: function(data) {
         return axios.post("/api/lists/user/previous", data);
+    },
+    removeItem: function(id) {
+        return axios.delete("/api/lists/user/item/remove/" + id);
     }
 }

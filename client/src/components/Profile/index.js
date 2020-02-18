@@ -186,6 +186,15 @@ function Profile(props) {
             })
             .catch(err => console.log(err));
     }
+    function deleteItem(id) {
+        API.removeItem(id)
+            .then(res => { 
+                if (res.data.affectedRows > 0) {
+                    getUserList();
+                }
+            })
+            .catch(err => console.log(err));
+    }
     // function handleSwipe(event) {
     //     const time = new Date();
     //     if (swipe === 0) {
@@ -295,6 +304,7 @@ function Profile(props) {
                                     list={userList}
                                     updateItemPosition={updateItemPosition}
                                     addListName={addListName}
+                                    deleteItem={deleteItem}
                                 />
                             ) : currentView === "store-list" ? (
                                 <Store
@@ -312,6 +322,7 @@ function Profile(props) {
                                             getListByID={getListByID}
                                             addItem={addItem}
                                             addEntirePreviousList={addEntirePreviousList}
+                                            deleteItem={deleteItem}
                                         />
                                     )}
                         </div>

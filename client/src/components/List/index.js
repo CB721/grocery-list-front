@@ -126,7 +126,13 @@ function List(props) {
                                                         class={item.purchased === 0 ? "to-get" : "done"}
                                                         toggleClass={(event) => props.toggleClass(event, item.id, index)}
                                                     />
-                                                ) : (<div />)}
+                                                ) : (<div
+                                                    className="list-close-x"
+                                                    onClick={() => props.deleteItem(item.id)}
+                                                >
+                                                    <div className="x-bar-1" />
+                                                    <div className="x-bar-2" />
+                                                </div>)}
                                             </div>
                                         </div>
                                     </div>

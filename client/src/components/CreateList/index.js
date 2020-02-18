@@ -156,6 +156,7 @@ function CreateList(props) {
                         <List
                             list={list}
                             updateItemPosition={props.updateItemPosition}
+                            deleteItem={props.deleteItem}
                         />
                     </Flip>
                 </div>
