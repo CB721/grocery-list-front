@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import Checkbox from "../Checkbox";
 import convertDate from "../../utilities/convertDate";
+import { ReactComponent as Trash } from "../../assets/images/trash.svg";
 import "./style.scss";
 
 function List(props) {
@@ -126,13 +127,10 @@ function List(props) {
                                                         class={item.purchased === 0 ? "to-get" : "done"}
                                                         toggleClass={(event) => props.toggleClass(event, item.id, index)}
                                                     />
-                                                ) : (<div
-                                                    className="list-close-x"
-                                                    onClick={() => props.deleteItem(item.id)}
-                                                >
-                                                    <div className="x-bar-1" />
-                                                    <div className="x-bar-2" />
-                                                </div>)}
+                                                ) : (<Trash
+                                                    className="edit-icon"
+                                                    onClick={(event) => props.deleteItem(event, item.id)}
+                                                />)}
                                             </div>
                                         </div>
                                     </div>

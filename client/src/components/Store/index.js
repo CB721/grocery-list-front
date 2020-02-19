@@ -115,21 +115,16 @@ function Store(props) {
             })
             .catch(err => console.log(err));
     }
-    function removeStore(event, id, confirm = false) {
+    function removeStore(event, id) {
         event.preventDefault();
-        if (confirm) {
-            API.deleteUserStore(id)
-                .then(res => {
-                    if (res.data.affectedRows > 0) {
-                        // notify user of successfully removed store
-                        props.refreshStores();
-                    }
-                })
-                .catch(err => console.log(err));
-        } else {
-            // notify user to confirm store removal
-            // call function again with confirm as true
-        }
+        API.deleteUserStore(id)
+            .then(res => {
+                if (res.data.affectedRows > 0) {
+                    // notify user of successfully removed store
+                    props.refreshStores();
+                }
+            })
+            .catch(err => console.log(err));
     }
     function customStore(event) {
         event.preventDefault();

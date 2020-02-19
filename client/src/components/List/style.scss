@@ -58,24 +58,10 @@
                         border-color: $secondary-blue;
                     }
                 }
-                .list-close-x {
-                    margin: 0 auto;
-                    margin-right: 0;
-                    .x-bar-1, .x-bar-2 {
-                        width: 30px;
-                        height: 5px;
-                        background-color: $white;
-                        margin: 6px 0;
-                        transition: 0.3s;
-                    }
-                    .x-bar-1 {
-                        -webkit-transform: translateY(9.5px) rotate(-45deg);
-                        transform: translateY(9.5px) rotate(-45deg);
-                    }
-                    .x-bar-2 {
-                        -webkit-transform: translateY(-2px) rotate(45deg);
-                        transform: translateY(-2px) rotate(45deg);
-                    }
+                .edit-icon {
+                    height: 20px;
+                    width: 20px;
+                    fill: $white;
                     &:hover {
                         cursor: pointer;
                     }

@@ -93,8 +93,16 @@ module.exports = {
         // would be updating position on list, if it has been purchased or it's priority level
         const column = Object.keys(update)[0];
         const value = sqlDB.escape(update[column]);
+        let date;
+        // if item is being purchased
+        if (column === "purchased" && value === "true") {
+            // add to column and value
+            date = ", date_purchased = NOW()";
+        } else if (column === "purchased" && value === "false") {
+            date = `, date_purchased = ${null}`;
+        }
         sqlDB
-            .query(`UPDATE ${listItemsTable} SET ${column} = ${value} WHERE id = ${ID};`,
+            .query(`UPDATE ${listItemsTable} SET ${column} = ${value} ${date} WHERE id = ${ID};`,
                 function (err, results) {
                     if (err) {
                         return res.status(422).send(err);
@@ -102,6 +110,7 @@ module.exports = {
                         if (results.affectedRows > 0) {
                             return res.status(200).send("Item updated");
                         } else {
+                            console.log(results);
                             return res.status(404).send("No item found");
                         }
                     }
@@ -158,7 +167,7 @@ module.exports = {
         // grab column name of what is to be updated
         const column = Object.keys(update)[0];
         // prevent injections
-        const value = sqlDB.escape(update[column]);
+        const value = sqlDB.escape(update[column]);   
         const userID = sqlDB.escape(req.body.user_id);
         const ID = sqlDB.escape(req.body.list_id);
         sqlDB

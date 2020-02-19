@@ -195,6 +195,9 @@ function Profile(props) {
             })
             .catch(err => console.log(err));
     }
+    function deleteList(id) {
+        
+    }
     // function handleSwipe(event) {
     //     const time = new Date();
     //     if (swipe === 0) {
