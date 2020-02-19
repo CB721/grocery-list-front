@@ -4,10 +4,11 @@ import Store from "../Store";
 import CreateList from "../CreateList";
 import ViewList from "../ViewList";
 import Slide from 'react-reveal/Slide';
-// import Stores from "../../assets/data/store.json";
-// import List from "../../assets/data/list.json";
 import { Row, Col } from "shards-react";
 import API from "../../utilities/api";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { css } from 'glamor';
 import "./style.scss";
 
 function Profile(props) {
@@ -27,7 +28,23 @@ function Profile(props) {
         getUserStores();
         getUserList();
     }, []);
-
+    function notification(message) {
+        toast(message, {
+          className: css({
+            background: '#3C91E6',
+            boxShadow: '0px 13px 12px -12px rgba(47,51,56,0.64)',
+            borderRadius: '8px',
+            border: "3px solid #F9FCFF"
+          }),
+          bodyClassName: css({
+            fontSize: '20px',
+            color: '#F9FCFF'
+          }),
+          progressClassName: css({
+            background: "linear-gradient(90deg, rgb(86,149,211) 0%, rgb(249,252,255) 80%)"
+          })
+        });
+      }
     function getUserStores() {
         API.getUserStores(userID)
             .then(res => {
@@ -110,7 +127,10 @@ function Profile(props) {
                 return;
         }
         API.updateItem(id, listItem)
-            .then(getUserList())
+            .then(() => {
+                getUserList();
+                notification("Item updated!");
+            })
             .catch(err => console.log(err));
     }
     function updateItemPosition(items) {
@@ -188,7 +208,7 @@ function Profile(props) {
     }
     function deleteItem(id) {
         API.removeItem(id)
-            .then(res => { 
+            .then(res => {
                 if (res.data.affectedRows > 0) {
                     getUserList();
                 }
@@ -196,7 +216,7 @@ function Profile(props) {
             .catch(err => console.log(err));
     }
     function deleteList(id) {
-        return new Promise(function(resolve, reject) {
+        return new Promise(function (resolve, reject) {
             API.deleteList(id, userID)
                 .then(res => {
                     resolve(res.data);

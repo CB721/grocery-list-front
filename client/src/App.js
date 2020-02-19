@@ -7,7 +7,7 @@ import CreateAccount from "./components/CreateAccount";
 import Profile from "./components/Profile";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-// import "bootstrap/dist/css/bootstrap.min.css";
+import { ToastContainer } from 'react-toastify';
 import "shards-ui/dist/css/shards.min.css"
 import './App.scss';
 
@@ -31,6 +31,17 @@ function App() {
             <Redirect to="/" />
           </Route>
         </Switch>
+        <ToastContainer
+          position="bottom-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnVisibilityChange
+          draggable
+          pauseOnHover
+        />
         <Footer />
       </Container>
     </Router>

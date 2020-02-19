@@ -93,7 +93,7 @@ module.exports = {
         // would be updating position on list, if it has been purchased or it's priority level
         const column = Object.keys(update)[0];
         const value = sqlDB.escape(update[column]);
-        let date;
+        let date = " ";
         // if item is being purchased
         if (column === "purchased" && value === "true") {
             // add to column and value
@@ -102,7 +102,7 @@ module.exports = {
             date = `, date_purchased = ${null}`;
         }
         sqlDB
-            .query(`UPDATE ${listItemsTable} SET ${column} = ${value} ${date} WHERE id = ${ID};`,
+            .query(`UPDATE ${listItemsTable} SET ${column} = ${value}${date} WHERE id = ${ID};`,
                 function (err, results) {
                     if (err) {
                         return res.status(422).send(err);
