@@ -110,7 +110,6 @@ module.exports = {
                         if (results.affectedRows > 0) {
                             return res.status(200).send("Item updated");
                         } else {
-                            console.log(results);
                             return res.status(404).send("No item found");
                         }
                     }
@@ -167,7 +166,7 @@ module.exports = {
         // grab column name of what is to be updated
         const column = Object.keys(update)[0];
         // prevent injections
-        const value = sqlDB.escape(update[column]);   
+        const value = sqlDB.escape(update[column]);
         const userID = sqlDB.escape(req.body.user_id);
         const ID = sqlDB.escape(req.body.list_id);
         sqlDB
@@ -248,5 +247,23 @@ module.exports = {
             //     }
             // }
         }
+    },
+    deleteList: function (req, res) {
+        // prevent injects
+        const ID = sqlDB.escape(req.params.id);
+        const userID = sqlDB.escape(req.params.userid);
+        sqlDB
+            .query(`DELETE FROM ${listTable} WHERE id = ${ID} AND user_id = ${userID};`,
+                function (err, results) {
+                    if (err) {
+                        return res.status(422).send(err);
+                    } else {
+                        if (results.affectedRows > 0) {
+                            return res.status(200).send("List deleted");
+                        } else {
+                            return res.status(404).send("No list found");
+                        }
+                    }
+                });
     }
 }

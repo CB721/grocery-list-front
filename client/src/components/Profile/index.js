@@ -195,8 +195,9 @@ function Profile(props) {
             })
             .catch(err => console.log(err));
     }
-    function deleteList(id) {
-        
+    function deleteList(event, id) {
+        event.preventDefault();
+        console.log(id);
     }
     // function handleSwipe(event) {
     //     const time = new Date();
@@ -326,6 +327,7 @@ function Profile(props) {
                                             addItem={addItem}
                                             addEntirePreviousList={addEntirePreviousList}
                                             deleteItem={deleteItem}
+                                            deleteList={deleteList}
                                         />
                                     )}
                         </div>

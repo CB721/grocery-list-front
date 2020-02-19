@@ -226,7 +226,7 @@ function ViewList(props) {
                                     viewList={false}
                                     list={previousLists}
                                     action={openModal}
-                                    deleteItem={props.deleteItem}
+                                    deleteItem={props.deleteList}
                                 />
                             </div>
                         ) : (<div />)}

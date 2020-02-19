@@ -15,7 +15,8 @@ router
     .delete(controller.removeItem);
 router
     .route("/user/full/single/:id/:userid")
-    .get(controller.getListByID);
+    .get(controller.getListByID)
+    .delete(controller.deleteList);
 router
     .route("/user/full/all")
     .post(controller.getListsByUserID);
