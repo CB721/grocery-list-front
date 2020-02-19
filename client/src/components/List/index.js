@@ -128,7 +128,7 @@ function List(props) {
                                                         toggleClass={(event) => props.toggleClass(event, item.id, index)}
                                                     />
                                                 ) : (<Trash
-                                                    className="edit-icon"
+                                                    className={"edit-icon " + props.hidetrash}
                                                     onClick={(event) => props.deleteItem(event, item.id)}
                                                 />)}
                                             </div>

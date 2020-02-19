@@ -62,6 +62,9 @@
                     height: 20px;
                     width: 20px;
                     fill: $white;
+                    &.hide-trash {
+                        display: none;
+                    }
                     &:hover {
                         cursor: pointer;
                     }

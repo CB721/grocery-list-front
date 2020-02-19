@@ -175,6 +175,7 @@ function ViewList(props) {
                         viewList={false}
                         list={modalList}
                         action={addToCurrentList}
+                        hidetrash={"hide-trash"}
                     />}
                     // button={<Button
                     //     text="Add All To Current List"
