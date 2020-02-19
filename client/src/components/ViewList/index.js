@@ -136,6 +136,16 @@ function ViewList(props) {
         }, 3000);
         props.addItem(listItem);
     }
+    function deleteList(event, id) {
+        event.preventDefault();
+        props.deleteList(id)
+            .then(res => {
+                if (res === "List deleted") {
+                    getPreviousLists("DESC");
+                }
+            })
+            .catch(err => console.log(err));
+    }
 
     return (
         <div className="view-list">
@@ -226,7 +236,7 @@ function ViewList(props) {
                                     viewList={false}
                                     list={previousLists}
                                     action={openModal}
-                                    deleteItem={props.deleteList}
+                                    deleteItem={deleteList}
                                 />
                             </div>
                         ) : (<div />)}

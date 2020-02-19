@@ -195,9 +195,14 @@ function Profile(props) {
             })
             .catch(err => console.log(err));
     }
-    function deleteList(event, id) {
-        event.preventDefault();
-        console.log(id);
+    function deleteList(id) {
+        return new Promise(function(resolve, reject) {
+            API.deleteList(id, userID)
+                .then(res => {
+                    resolve(res.data);
+                })
+                .catch(err => reject(err));
+        });
     }
     // function handleSwipe(event) {
     //     const time = new Date();
