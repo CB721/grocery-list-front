@@ -42,5 +42,8 @@ export default {
     },
     deleteList: function(id, userID) {
         return axios.delete(`/api/lists/user/full/single/${id}/${userID}`);
+    },
+    createUser: function(data) {
+        return axios.post("/api/users/create", data);
     }
 }

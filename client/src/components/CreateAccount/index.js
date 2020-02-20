@@ -4,6 +4,7 @@ import { Row, Col } from "shards-react";
 import Form from "../Form";
 import Space from "../DivSpace";
 import "./style.scss";
+import API from '../../utilities/api';
 
 function CreateAccount(props) {
     useEffect(() => {
@@ -55,7 +56,7 @@ function CreateAccount(props) {
                 }
                 break;
             case "password":
-                if(!isByteLength(value, {min: 8, max: 16})) {
+                if (!isByteLength(value, { min: 8, max: 16 })) {
                     setError("Password must be between 8 and 16 characters");
                 } else {
                     setError("");
@@ -85,6 +86,21 @@ function CreateAccount(props) {
             setDisabled(true);
         }
     }
+    function handleFormSubmit() {
+        const user = {
+            first_name: firstName,
+            last_name: lastName,
+            email,
+            password
+        }
+        API.createUser(user)
+            .then(res => {
+                if (res.data.affectedRows > 0) {
+                    window.location.href = "/login";
+                }
+            })
+            .catch(err => console.log(err))
+    }
     return (
         <div className="create-account">
             <Space />
@@ -97,6 +113,7 @@ function CreateAccount(props) {
                         disableButton={disable}
                         error={error}
                         validateField={validateField}
+                        action={handleFormSubmit}
                     />
                 </Col>
             </Row>
