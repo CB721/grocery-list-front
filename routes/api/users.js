@@ -10,5 +10,8 @@ router
 router
     .route("/update/:id")
     .put(controller.updateUser);
+router
+    .route("/")
+    .post(controller.getUserByEmail);
 
 module.exports = router;

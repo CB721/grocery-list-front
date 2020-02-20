@@ -2,6 +2,7 @@ const sqlDB = require("../sql_connection");
 const { User } = require("../mongoose_models");
 const checkPass = require("../validation/checkPass");
 const bcrypt = require("bcryptjs");
+const crypto = require("crypto");
 const table = "uzzdv3povs4xqnxc.users";
 
 module.exports = {
@@ -157,6 +158,56 @@ module.exports = {
             } else {
                 return res.status(200).json(results);
             }
+        }
+    },
+    getUserByEmail: function (req, res) {
+        // prevent injectsions
+        const userEmail = sqlDB.escape(req.body.email);
+        // password does not go into db and is just compared to what is stored
+        const password = req.body.password;
+        sqlDB.query(`SELECT * FROM ${table} WHERE email = ${userEmail};`,
+            function (err, results) {
+                if (err) {
+                    return res.status(404).send("Email not found");
+                } else {
+                    if (results.length > 0) {
+                        bcrypt.compare(password, results[0].user_password)
+                            .then(
+                                match => {
+                                    if (match) {
+                                        const token = `'${crypto.randomBytes(64).toString('hex')}'`;
+                                        sqlDB.query(`UPDATE ${table} SET user_auth = ${token}, last_visit = NOW() WHERE id = '${results[0].id}';`,
+                                            function (err, tokenUpdate) {
+                                                if (err) {
+                                                    return res.status(502).send(err);
+                                                } else if (tokenUpdate.affectedRows == 1) {
+                                                    sendCompleteUser();
+                                                }
+                                            }
+                                        )
+                                    } else {
+                                        return res.status(404).send("Password does not match");
+                                    }
+                                }
+                            )
+                            .catch(err => res.status(500).send(err));
+                    } else {
+                        return res.status(404).send("Account not found");
+                    }
+                }
+            });
+        function sendCompleteUser() {
+            // only select certain columns, hashed password will not be used by the front end
+            const columns = "first_name, last_name, email, last_visit, joined, user_auth";
+            sqlDB
+                .query(`SELECT ${columns} FROM ${table} WHERE email = ${userEmail};`,
+                function(err, results) {
+                    if (err) {
+                        return res.status(500).send(err);
+                    } else {
+                        return res.status(200).json(results);
+                    }
+                });
         }
     }
 }
