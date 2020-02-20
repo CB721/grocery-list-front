@@ -209,5 +209,17 @@ module.exports = {
                     }
                 });
         }
+    },
+    verifyUser: function(req, res) {
+        const token = sqlDB.escape(req.params.token);
+        sqlDB
+            .query(`CALL verify_user(${token});`,
+            function(err, results) {
+                if (err) {
+                    return res.status(404).send(err);
+                } else {
+                    return res.status(200).json(results[0]);
+                }
+            })
     }
 }

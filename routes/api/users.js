@@ -13,5 +13,8 @@ router
 router
     .route("/")
     .post(controller.getUserByEmail);
+router
+    .route("/verify/:token")
+    .get(controller.verifyUser);
 
 module.exports = router;
