@@ -34,7 +34,8 @@ function Profile(props) {
             background: '#3C91E6',
             boxShadow: '0px 13px 12px -12px rgba(47,51,56,0.64)',
             borderRadius: '8px',
-            border: "3px solid #F9FCFF"
+            border: "3px solid #F9FCFF",
+            textTransform: "capitalize"
           }),
           bodyClassName: css({
             fontSize: '20px',
@@ -111,7 +112,10 @@ function Profile(props) {
             position
         }
         API.addItem(listItem)
-            .then(getUserList())
+            .then(() => {
+                getUserList();
+                notification(`${listItem.name} added to list`);
+            })
             .catch(err => console.log(err));
     }
     function updateItem(id, column, value) {
@@ -183,7 +187,10 @@ function Profile(props) {
             list_id: id
         }
         API.updateList(listInfo)
-            .then(getUserList())
+            .then(() => {
+                getUserList();
+                notification("List marked as complete");
+            })
             .catch(err => console.log(err));
     }
     function getListByID(id) {
@@ -211,6 +218,7 @@ function Profile(props) {
             .then(res => {
                 if (res.data.affectedRows > 0) {
                     getUserList();
+                    notification("Item removed from list");
                 }
             })
             .catch(err => console.log(err));
@@ -219,6 +227,7 @@ function Profile(props) {
         return new Promise(function (resolve, reject) {
             API.deleteList(id, userID)
                 .then(res => {
+                    notification("List deleted");
                     resolve(res.data);
                 })
                 .catch(err => reject(err));

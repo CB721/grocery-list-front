@@ -10,6 +10,9 @@ function Form(props) {
             <div className="form-head">
                 {props.type}
             </div>
+            <div className="form-error">
+                {props.error}
+            </div>
             {props.inputs.map((input, index) => (
                 <div className="form-input-area" key={index}>
                     <p className="form-input-headers">{Object.keys(input)}</p>
@@ -20,6 +23,7 @@ function Form(props) {
                         placeholder={"Your " + Object.keys(input)}
                         name={Object.keys(input)}
                         onChange={props.handleInputChange}
+                        onBlur={(event) => props.validateField(event)}
                     />
                 </div>
             ))}

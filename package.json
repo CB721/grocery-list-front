@@ -44,6 +44,7 @@
     "react-router-dom": "^5.1.2",
     "react-textfit": "^1.1.0",
     "react-toastify": "^5.5.0",
-    "shards-react": "^1.0.3"
+    "shards-react": "^1.0.3",
+    "validator": "^12.2.0"
   }
 }
