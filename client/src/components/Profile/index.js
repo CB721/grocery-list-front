@@ -12,8 +12,6 @@ import { css } from 'glamor';
 import "./style.scss";
 
 function Profile(props) {
-    const userID = "5e3afb5803935005eeeef6e9";
-
     const [create, setCreate] = useState("header-col");
     const [view, setView] = useState("header-col selected");
     const [store, setStore] = useState("header-col");
@@ -22,12 +20,12 @@ function Profile(props) {
     const [swipeTime, setSwipeTime] = useState(0);
     const [userStores, setUserStores] = useState([]);
     const [userList, setUserList] = useState([]);
-
+    
     useEffect(() => {
         document.title = document.title + " | Profile";
         getUserStores();
         getUserList();
-    }, []);
+    }, [props.user]);
     function notification(message) {
         toast(message, {
           className: css({
@@ -47,14 +45,14 @@ function Profile(props) {
         });
       }
     function getUserStores() {
-        API.getUserStores(userID)
+        API.getUserStores(props.user[0].id)
             .then(res => {
                 setUserStores(res.data);
             })
             .catch(err => console.log(err));
     }
     function getUserList() {
-        API.getUserList(userID)
+        API.getUserList(props.user[0].id)
             .then(res => {
                 setUserList(res.data);
             })
@@ -106,7 +104,7 @@ function Profile(props) {
     function addItem(item, position = userList.length + 1) {
         const listItem = {
             name: item.name,
-            user_id: userID,
+            user_id: props.user[0].id,
             store_id: item.store.store_id,
             priority: item.priority,
             position
@@ -160,7 +158,7 @@ function Profile(props) {
     function getPreviousLists(direction) {
         return new Promise(function (resolve, reject) {
             const listInfo = {
-                user_id: userID,
+                user_id: props.user[0].id,
                 direction: direction
             }
             API.getListsByUserID(listInfo)
@@ -173,7 +171,7 @@ function Profile(props) {
     function addListName(id, name) {
         const listInfo = {
             list_name: name,
-            user_id: userID,
+            user_id: props.user[0].id,
             list_id: id
         }
         API.updateList(listInfo)
@@ -183,7 +181,7 @@ function Profile(props) {
     function markListComplete(id) {
         const listInfo = {
             completed: 1,
-            user_id: userID,
+            user_id: props.user[0].id,
             list_id: id
         }
         API.updateList(listInfo)
@@ -195,7 +193,7 @@ function Profile(props) {
     }
     function getListByID(id) {
         return new Promise(function (resolve, reject) {
-            API.getListByID(id, userID)
+            API.getListByID(id, props.user[0].id)
                 .then(res => {
                     resolve(res.data);
                 })
@@ -205,7 +203,7 @@ function Profile(props) {
     function addEntirePreviousList(list) {
         const addList = {
             list: JSON.stringify(list),
-            user_id: userID
+            user_id: props.user[0].id
         }
         API.addPreviousListToCurrent(addList)
             .then(res => {
@@ -225,7 +223,7 @@ function Profile(props) {
     }
     function deleteList(id) {
         return new Promise(function (resolve, reject) {
-            API.deleteList(id, userID)
+            API.deleteList(id, props.user[0].id)
                 .then(res => {
                     notification("List deleted");
                     resolve(res.data);
@@ -348,6 +346,8 @@ function Profile(props) {
                                 <Store
                                     stores={userStores}
                                     refreshStores={getUserStores}
+                                    notification={notification}
+                                    userID={props.user[0].id}
                                 />
                             ) : (
                                         <ViewList

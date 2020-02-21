@@ -103,7 +103,7 @@ function Store(props) {
             id: store.id,
             name: store.structured_formatting.main_text,
             address: store.structured_formatting.secondary_text,
-            user_id: "5e3afb5803935005eeeef6e9"
+            user_id: props.userID
         }
         API.saveStore(storeData)
             .then(res => {
@@ -111,6 +111,7 @@ function Store(props) {
                     // notify user of sucessfully added store
                     props.refreshStores();
                     setCurrentView("view");
+                    props.notification(`${storeData.name} added to your stores`);
                 }
             })
             .catch(err => console.log(err));
@@ -122,6 +123,7 @@ function Store(props) {
                 if (res.data.affectedRows > 0) {
                     // notify user of successfully removed store
                     props.refreshStores();
+                    props.notification("Store removed");
                 }
             })
             .catch(err => console.log(err));

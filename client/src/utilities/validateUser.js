@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default {
     // if nothing is passed for the auth token, check localStorage
-    validate: (auth, IP, remember = false) => {
+    status: (auth, IP, remember = false) => {
         return new Promise((resolve, reject) => {
             // check if auth token is a valid length
             if (auth.length > 60) {

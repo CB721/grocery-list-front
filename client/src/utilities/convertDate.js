@@ -46,5 +46,6 @@ module.exports = function convertDate(data) {
             return;
     }
     newDate += ` ${day}, ${year}`;
+    console.log(newDate);
     return newDate;
 }

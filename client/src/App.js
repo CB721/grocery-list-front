@@ -59,7 +59,7 @@ function App() {
         setIP(res.data);
         switch (window.location.pathname) {
           case "/profile":
-            validateUser.validate(user.user_auth || token, IP || res.data, remember)
+            validateUser.status(user.user_auth || token, IP || res.data, remember)
               // if they are validated, allow them to continue to page
               .then((res) => {
                 setUser(res);
@@ -72,6 +72,15 @@ function App() {
               });
             break;
           default:
+            validateUser.status(user.user_auth || token, IP || res.data, remember)
+              // if they are validated, update content accordingly
+              .then((res) => {
+                setUser(res);
+                // change side menu options
+                setNavOptions([profile, signOut]);
+              })
+              // since they aren't on a page that requires user info, allow them to remain on current page
+              .catch();
             return;
         }
       })
@@ -91,10 +100,12 @@ function App() {
             render={props => <Login {...props} userLogin={userLogin} />}
           />
           <Route exact path="/join" component={CreateAccount} />
-          <Route
-            exact path="/profile"
-            render={props => <Profile {...props} user={user} />}
-          />
+          {user.length === 1 ? (
+            <Route
+              exact path="/profile"
+              render={props => <Profile {...props} user={user} />}
+            />
+          ) : (<div />)}
           <Route path="*">
             <Redirect to="/" />
           </Route>

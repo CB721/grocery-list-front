@@ -25,7 +25,10 @@ module.exports = {
                 const results = [];
                 places.forEach(place => {
                     place.types.forEach(type => {
-                        if (type === "supermarket" || type === "grocery_or_supermarket") {
+                        // check for costco
+                        const costco = type === "store" && place.structured_formatting.main_text === "Costco Wholesale";
+                        const samsClub = type === "storage" && place.structured_formatting.main_text === "Sam's Club Distribution Center";
+                        if (type === "supermarket" || type === "grocery_or_supermarket" || costco || samsClub) {
                             results.push(place);
                         }
                     });
