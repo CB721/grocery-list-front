@@ -24,6 +24,7 @@ function Store(props) {
             case "view":
                 setAdd("option-header");
                 setView("option-header selected");
+                setSearch("");
                 break;
             case "add":
                 setAdd("option-header selected");
@@ -138,6 +139,10 @@ function Store(props) {
             .then(res => {
                 let numberStr = (res.data).toString();
                 uniqueID += numberStr;
+                // limit unique id to 60 characters
+                if (uniqueID.length > 60) {
+                    uniqueID = uniqueID.substring(uniqueID.length - 60, uniqueID.length);
+                }
                 // repack info from user for save store function
                 const store = {
                     id: uniqueID,
