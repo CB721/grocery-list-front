@@ -15,15 +15,16 @@ function Login(props) {
     const [checkClass, setCheckClass] = useState("blue");
     const [disable, setDisabled] = useState(true);
     const [error, setError] = useState("");
+    const [remember, setRemember] = useState(false);
 
     function toggleClass(event) {
         event.preventDefault();
         if (checkClass === "done green") {
             setCheckClass("blue");
-            localStorage.setItem("remToken", "");
+            setRemember(false);
         } else {
             setCheckClass("done green");
-            localStorage.setItem("remToken", "user remember me token");
+            setRemember(true);
         }
     }
     function handleInputChange(event) {
@@ -64,6 +65,13 @@ function Login(props) {
             setDisabled(true);
         }
     }
+    function handleFormSubmit() {
+        const userData = {
+            email,
+            password
+        }
+        props.userLogin(userData, remember);
+    }
     return (
         <div className="login">
             <Space />
@@ -78,6 +86,7 @@ function Login(props) {
                         disableButton={disable}
                         error={error}
                         validateField={validateField}
+                        action={handleFormSubmit}
                     />
                 </Col>
             </Row>

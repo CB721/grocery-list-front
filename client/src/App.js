@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import { Container } from "shards-react";
 import Home from "./components/Home";
@@ -8,8 +8,10 @@ import Profile from "./components/Profile";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { ToastContainer } from 'react-toastify';
-import "shards-ui/dist/css/shards.min.css"
+import "shards-ui/dist/css/shards.min.css";
+import API from "./utilities/api";
 import './App.scss';
+import validateUser from './utilities/validateUser';
 
 function App() {
   const create = { name: "Join", link: "/join" };
@@ -17,6 +19,49 @@ function App() {
   const signOut = { name: "Logout", link: "/signout" };
   const profile = { name: "Profile", link: "/profile" };
   const [navOptions, setNavOptions] = useState([create, signIn]);
+  const [user, setUser] = useState([]);
+  const [IP, setIP] = useState("");
+
+  useEffect(() => {
+    // get user IP address to compare with DB
+    API.getIP()
+      .then(res => setIP(res.data))
+      .catch(err => console.log(err));
+  }, []);
+  function userLogin(userData, remember) {
+    API.userLogin(userData)
+      .then(res => {
+        setUser(res.data);
+        if (remember) {
+          localStorage.setItem("token", res.data[0].user_auth);
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+  // determine which page user is on in order to validate
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    let remember = false;
+    if (token && token.length > 60) {
+      remember = true;
+    }
+    switch (window.location.pathname) {
+      case "/profile":
+        validateUser.validate(user.user_auth || token, IP, remember)
+          .then()
+          .catch(() => {
+            // if not validated, send to login page
+            window.location.href = "/login";
+          });
+        break;
+      default:
+        return;
+    }
+  }, [window.location.pathname]);
+
+
 
   return (
     <Router>
@@ -24,7 +69,10 @@ function App() {
         <Navbar options={navOptions} />
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/login" component={Login} />
+          <Route
+            exact path="/login"
+            render={props => <Login {...props} userLogin={userLogin} />}
+          />
           <Route exact path="/join" component={CreateAccount} />
           <Route exact path="/profile" component={Profile} />
           <Route path="*">

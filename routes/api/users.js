@@ -11,10 +11,10 @@ router
     .route("/update/:id")
     .put(controller.updateUser);
 router
-    .route("/")
+    .route("/login")
     .post(controller.getUserByEmail);
 router
-    .route("/verify/:token")
+    .route("/verify/:token/:ip")
     .get(controller.verifyUser);
 
 module.exports = router;

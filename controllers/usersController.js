@@ -163,6 +163,7 @@ module.exports = {
     getUserByEmail: function (req, res) {
         // prevent injectsions
         const userEmail = sqlDB.escape(req.body.email);
+        const ip = sqlDB.escape(req.body.ip);
         // password does not go into db and is just compared to what is stored
         const password = req.body.password;
         sqlDB.query(`SELECT * FROM ${table} WHERE email = ${userEmail};`,
@@ -176,7 +177,7 @@ module.exports = {
                                 match => {
                                     if (match) {
                                         const token = `'${crypto.randomBytes(64).toString('hex')}'`;
-                                        sqlDB.query(`UPDATE ${table} SET user_auth = ${token}, last_visit = NOW() WHERE id = '${results[0].id}';`,
+                                        sqlDB.query(`UPDATE ${table} SET user_auth = ${token}, last_visit = NOW(), ip_address = ${ip} WHERE id = '${results[0].id}';`,
                                             function (err, tokenUpdate) {
                                                 if (err) {
                                                     return res.status(502).send(err);
@@ -212,13 +213,18 @@ module.exports = {
     },
     verifyUser: function(req, res) {
         const token = sqlDB.escape(req.params.token);
+        const ip = req.params.ip;
         sqlDB
             .query(`CALL verify_user(${token});`,
             function(err, results) {
                 if (err) {
                     return res.status(404).send(err);
                 } else {
-                    return res.status(200).json(results[0]);
+                    if (results[0][0].ip_address === ip) {
+                        return res.status(200).json(results[0]);
+                    } else {
+                        return res.status(401).send("Different IP address");
+                    }
                 }
             })
     }

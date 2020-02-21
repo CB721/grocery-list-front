@@ -45,5 +45,14 @@ export default {
     },
     createUser: function(data) {
         return axios.post("/api/users/create", data);
+    },
+    userLogin: function(data) {
+        return axios.post("/api/users/login", data);
+    },
+    validateUser: function(token, ip) {
+        return axios.get(`/api/users/verify/${token}/${ip}`);
+    },
+    getIP: function() {
+        return axios.get("https://api.ipify.org");
     }
 }
