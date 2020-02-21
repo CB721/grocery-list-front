@@ -65,13 +65,9 @@ function Login(props) {
             setDisabled(true);
         }
     }
-    function handleFormSubmit() {
-        const userData = {
-            email,
-            password
-        }
-        props.userLogin(userData, remember);
-    }
+    // function handleFormSubmit() {
+    //     props.userLogin(email, password, remember);
+    // }
     return (
         <div className="login">
             <Space />
@@ -86,7 +82,7 @@ function Login(props) {
                         disableButton={disable}
                         error={error}
                         validateField={validateField}
-                        action={handleFormSubmit}
+                        action={() => props.userLogin(email, password, remember)}
                     />
                 </Col>
             </Row>

@@ -22,19 +22,25 @@ function App() {
   const [user, setUser] = useState([]);
   const [IP, setIP] = useState("");
 
-  useEffect(() => {
-    // get user IP address to compare with DB
-    API.getIP()
-      .then(res => setIP(res.data))
-      .catch(err => console.log(err));
-  }, []);
-  function userLogin(userData, remember) {
+  // useEffect(() => {
+  //   // get user IP address to compare with DB
+  //   API.getIP()
+  //     .then(res => setIP(res.data))
+  //     .catch(err => console.log(err));
+  // }, []);
+  function userLogin(email, password, remember) {
+    const userData = {
+      email,
+      password,
+      ip: IP
+    }
     API.userLogin(userData)
       .then(res => {
         setUser(res.data);
         if (remember) {
           localStorage.setItem("token", res.data[0].user_auth);
         }
+        window.location.href = "/profile";
       })
       .catch(err => {
         console.log(err);
@@ -47,18 +53,29 @@ function App() {
     if (token && token.length > 60) {
       remember = true;
     }
-    switch (window.location.pathname) {
-      case "/profile":
-        validateUser.validate(user.user_auth || token, IP, remember)
-          .then()
-          .catch(() => {
-            // if not validated, send to login page
-            window.location.href = "/login";
-          });
-        break;
-      default:
-        return;
-    }
+    // make sure the IP has been found before attempting to validate
+    API.getIP()
+      .then(res => {
+        setIP(res.data);
+        switch (window.location.pathname) {
+          case "/profile":
+            validateUser.validate(user.user_auth || token, IP || res.data, remember)
+              // if they are validated, allow them to continue to page
+              .then((res) => {
+                setUser(res);
+                // change side menu options
+                setNavOptions([profile, signOut]);
+              })
+              .catch(() => {
+                // if not validated, send to login page
+                window.location.href = "/login";
+              });
+            break;
+          default:
+            return;
+        }
+      })
+      .catch(err => console.log(err));
   }, [window.location.pathname]);
 
 
@@ -74,7 +91,10 @@ function App() {
             render={props => <Login {...props} userLogin={userLogin} />}
           />
           <Route exact path="/join" component={CreateAccount} />
-          <Route exact path="/profile" component={Profile} />
+          <Route
+            exact path="/profile"
+            render={props => <Profile {...props} user={user} />}
+          />
           <Route path="*">
             <Redirect to="/" />
           </Route>

@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default {
     // if nothing is passed for the auth token, check localStorage
-    validate: (auth, IP, remember) => {
+    validate: (auth, IP, remember = false) => {
         return new Promise((resolve, reject) => {
             // check if auth token is a valid length
             if (auth.length > 60) {
@@ -10,7 +10,7 @@ export default {
                     .then(res => {
                         // if user has said to remember them, no need to check the time difference
                         if (remember) {
-                            resolve(true);
+                            resolve(res.data);
                         } else {
                             // check time difference returned from db
                             // should look like "-00:54:41"
@@ -18,7 +18,7 @@ export default {
                             const timeDifference = parseInt(res.data.time_difference.split(":")[1]);
                             // check if it has been more than 30 minutes
                             if (timeDifference <= 30) {
-                                resolve(true)
+                                resolve(res.data);
                             } else {
                                 reject(false);
                             }
