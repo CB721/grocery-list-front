@@ -4,5 +4,8 @@ const controller = require("../../controllers/notificationsController");
 router
     .route("/:user_id")
     .get(controller.getAllByUserID);
+router
+    .route("/single/:id")
+    .delete(controller.deleteByID);
 
 module.exports = router;
