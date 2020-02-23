@@ -32,6 +32,9 @@
     }
 }
 .burger-menu {
+    position: fixed;
+    right: 10px;
+    top: 2%;
     padding-right: 10px;
     display: inline-block;
     .bar1, .bar2, .bar3 {

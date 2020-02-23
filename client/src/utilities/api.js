@@ -57,5 +57,11 @@ export default {
     },
     getNotificationsByUser: function(id) {
         return axios.get("/api/notifications/" + id);
+    },
+    deleteNotificationByID: function(id) {
+        return axios.delete("/api/notifications/single/" + id);
+    },
+    updateNotificationByID: function(id) {
+        return axios.put("/api/notifications/single/" + id);
     }
 }

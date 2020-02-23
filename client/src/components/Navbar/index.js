@@ -2,15 +2,18 @@ import React, { useState } from 'react';
 import { Row, Col, Fade } from "shards-react";
 import { ReactComponent as Bell } from "../../assets/images/bell.svg";
 import SideMenu from "../SideMenu";
+import Notifcations from "../Notifications";
 import "./style.scss";
 
 function Navbar(props) {
     const [menuExpand, setMenuExpand] = useState("burger-menu");
+    const [showNotifications, setShowNotifications] = useState(false);
 
     function expandMenu(event) {
         event.preventDefault();
         if (menuExpand === "burger-menu") {
             setMenuExpand("burger-menu change");
+            setShowNotifications(false);
         } else {
             setMenuExpand("burger-menu");
         }
@@ -30,13 +33,21 @@ function Navbar(props) {
                     <div className="nav-items">
                         {props.isLogged > 0 ? (
                             <div className="notification-section">
-                                <Bell className="notification-bell" />
+                                <Bell
+                                    className="notification-bell"
+                                    onClick={() => setShowNotifications(!showNotifications)}
+                                />
                                 {props.notifications.length > 0 ? (
                                     <p className="notification">
                                         {props.notifications.length}
                                     </p>
                                 ) : (<div />)}
                             </div>
+                        ) : (<div />)}
+                        {showNotifications ? (
+                            <Notifcations
+                                items={props.notifications}
+                            />
                         ) : (<div />)}
                         <div className={menuExpand} onClick={(event) => expandMenu(event)}>
                             <div className="bar1" />
