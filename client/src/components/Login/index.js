@@ -17,6 +17,9 @@ function Login(props) {
     const [error, setError] = useState("");
     const [remember, setRemember] = useState(false);
 
+    useEffect(() => {
+        setError(props.error);
+    }, [props.error]);
     function toggleClass(event) {
         event.preventDefault();
         if (checkClass === "done green") {

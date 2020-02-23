@@ -165,18 +165,19 @@ module.exports = {
         const userEmail = sqlDB.escape(req.body.email);
         const ip = sqlDB.escape(req.body.ip);
         // password does not go into db and is just compared to what is stored
-        const password = req.body.password;
+        const password = sqlDB.escape(req.body.password);
         sqlDB.query(`SELECT * FROM ${table} WHERE email = ${userEmail};`,
             function (err, results) {
                 if (err) {
                     return res.status(404).send("Email not found");
                 } else {
                     if (results.length > 0) {
-                        bcrypt.compare(password, results[0].user_password)
+                        bcrypt.compare(password, sqlDB.escape(results[0].user_password))
                             .then(
                                 match => {
                                     if (match) {
                                         const token = `'${crypto.randomBytes(64).toString('hex')}'`;
+                                        // reset user auth token, set last visit to current date, update ip address
                                         sqlDB.query(`UPDATE ${table} SET user_auth = ${token}, last_visit = NOW(), ip_address = ${ip} WHERE id = '${results[0].id}';`,
                                             function (err, tokenUpdate) {
                                                 if (err) {

@@ -22,6 +22,7 @@ function App(props) {
   const [user, setUser] = useState([]);
   const [IP, setIP] = useState("");
   const [notifications, setNotifications] = useState(["asdf"]);
+  const [error, setError] = useState("");
   // let history = useHistory();
 
   useEffect(() => {
@@ -36,6 +37,8 @@ function App(props) {
       password,
       ip: IP
     }
+    // reset error message
+    setError("");
     API.userLogin(userData)
       .then(res => {
         setUser(res.data);
@@ -47,7 +50,7 @@ function App(props) {
         window.location.href = "/profile";
       })
       .catch(err => {
-        console.log(err);
+        setError(err);
       });
   }
   // determine which page user is on in order to validate
@@ -94,7 +97,18 @@ function App(props) {
             return;
         }
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log(err);
+        if (remember) {
+          // reset all tokens stored
+          localStorage.setItem("token", "");
+          sessionStorage.setItem("token", "");
+          // reset user info
+          setUser([]);
+          // present user with instructions
+          setError("Trouble determining your IP address.  Please try logging in again.");
+        }
+      });
   }, [window.location.pathname]);
 
 
@@ -111,7 +125,12 @@ function App(props) {
           <Route exact path="/" component={Home} />
           <Route
             exact path="/login"
-            render={props => <Login {...props} userLogin={userLogin} />}
+            render={props =>
+              <Login
+                {...props}
+                userLogin={userLogin}
+                error={error}
+              />}
           />
           <Route exact path="/join" component={CreateAccount} />
           {user.length === 1 ? (
