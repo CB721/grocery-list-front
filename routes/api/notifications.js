@@ -3,6 +3,6 @@ const controller = require("../../controllers/notificationsController");
 
 router
     .route("/:user_id")
-    .get()
+    .get(controller.getAllByUserID);
 
 module.exports = router;
