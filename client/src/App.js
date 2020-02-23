@@ -124,6 +124,16 @@ function App(props) {
         console.log(err);
       });
   }
+  function markNotificationAsRead(id) {
+    API.updateNotificationByID(id)
+      .then(() => getAllUserNotifications(user[0].id))
+      .catch(err => console.log(err));
+  }
+  function deleteNotification(id) {
+    API.deleteNotificationByID(id)
+      .then(() => getAllUserNotifications(user[0].id))
+      .catch(err => console.log(err));
+  }
 
 
   return (
@@ -133,6 +143,8 @@ function App(props) {
           options={navOptions}
           isLogged={user.length}
           notifications={notifications}
+          markNotificationAsRead={markNotificationAsRead}
+          deleteNotification={deleteNotification}
         />
         <Switch>
           <Route exact path="/" component={Home} />

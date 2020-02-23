@@ -11,10 +11,18 @@ function Notifications(props) {
                         className={item.acknowledged > 0 ? "notification read" : "notification unread"}
                         key={item.id}
                     >
-                        <div className="notification-content">
+                        <div
+                            className="notification-content"
+                            onClick={() => props.markNotificationAsRead(item.id)}
+                        >
                             {item.content}
                         </div>
-                        <div className="delete-notification">X</div>
+                        <div
+                            className="delete-notification"
+                            onClick={() => props.deleteNotification(item.id)}
+                        >
+                            X
+                        </div>
                     </div>
                 ))}
             </div>

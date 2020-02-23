@@ -47,6 +47,8 @@ function Navbar(props) {
                         {showNotifications ? (
                             <Notifcations
                                 items={props.notifications}
+                                markNotificationAsRead={props.markNotificationAsRead}
+                                deleteNotification={props.deleteNotification}
                             />
                         ) : (<div />)}
                         <div className={menuExpand} onClick={(event) => expandMenu(event)}>

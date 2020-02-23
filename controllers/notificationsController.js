@@ -6,7 +6,7 @@ module.exports = {
         // prevent injections
         const userID = sqlDB.escape(req.params.user_id);
         sqlDB
-            .query(`SELECT * FROM ${table} WHERE user_id = ${userID} ORDER BY date_added DESC;`,
+            .query(`SELECT * FROM ${table} WHERE user_id = ${userID} ORDER BY date_added DESC LIMIT 10;`,
             function(err, results) {
                 if (err) {
                     return res.status(404).send(err);
