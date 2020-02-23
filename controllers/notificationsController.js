@@ -5,6 +5,7 @@ module.exports = {
     getAllByUserID: function (req, res) {
         // prevent injections
         const userID = sqlDB.escape(req.params.user_id);
+        console.log(userID);
         sqlDB
             .query(`SELECT * FROM ${table} WHERE user_id = ${userID};`,
             function(err, results) {

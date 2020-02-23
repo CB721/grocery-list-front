@@ -54,5 +54,8 @@ export default {
     },
     getIP: function() {
         return axios.get("https://api.ipify.org");
+    },
+    getNotificationsByUser: function(id) {
+        return axios.get("/api/notifications/" + id);
     }
 }

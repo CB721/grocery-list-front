@@ -165,14 +165,14 @@ module.exports = {
         const userEmail = sqlDB.escape(req.body.email);
         const ip = sqlDB.escape(req.body.ip);
         // password does not go into db and is just compared to what is stored
-        const password = sqlDB.escape(req.body.password);
+        const password = req.body.password;
         sqlDB.query(`SELECT * FROM ${table} WHERE email = ${userEmail};`,
             function (err, results) {
                 if (err) {
                     return res.status(404).send("Email not found");
                 } else {
                     if (results.length > 0) {
-                        bcrypt.compare(password, sqlDB.escape(results[0].user_password))
+                        bcrypt.compare(password, results[0].user_password)
                             .then(
                                 match => {
                                     if (match) {

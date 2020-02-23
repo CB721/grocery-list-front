@@ -21,7 +21,7 @@ function App(props) {
   const [navOptions, setNavOptions] = useState([create, signIn]);
   const [user, setUser] = useState([]);
   const [IP, setIP] = useState("");
-  const [notifications, setNotifications] = useState(["asdf"]);
+  const [notifications, setNotifications] = useState([]);
   const [error, setError] = useState("");
   // let history = useHistory();
 
@@ -50,6 +50,7 @@ function App(props) {
         window.location.href = "/profile";
       })
       .catch(err => {
+        console.log("User login err", err);
         setError(err);
       });
   }
@@ -78,6 +79,8 @@ function App(props) {
                 setUser(res);
                 // change side menu options
                 setNavOptions([profile, signOut]);
+                // get notifications for user
+                getAllUserNotifications(res[0].id);
               })
               .catch(() => {
                 // if not validated, send to login page
@@ -91,6 +94,8 @@ function App(props) {
                 setUser(res);
                 // change side menu options
                 setNavOptions([profile, signOut]);
+                // get notifications for user
+                getAllUserNotifications(res[0].id);
               })
               // since they aren't on a page that requires user info, allow them to remain on current page
               .catch();
@@ -110,7 +115,15 @@ function App(props) {
         }
       });
   }, [window.location.pathname]);
-
+  function getAllUserNotifications(id) {
+    API.getNotificationsByUser(id)
+      .then(res => {
+        setNotifications(res.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
 
 
   return (
