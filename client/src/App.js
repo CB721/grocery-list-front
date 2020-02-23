@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect, useHistory, Link } from "react-router-dom";
 import { Container } from "shards-react";
 import Home from "./components/Home";
 import Login from "./components/Login";
@@ -13,7 +13,7 @@ import API from "./utilities/api";
 import './App.scss';
 import validateUser from './utilities/validateUser';
 
-function App() {
+function App(props) {
   const create = { name: "Join", link: "/join" };
   const signIn = { name: "Login", link: "/login" };
   const signOut = { name: "Logout", link: "/signout" };
@@ -21,13 +21,14 @@ function App() {
   const [navOptions, setNavOptions] = useState([create, signIn]);
   const [user, setUser] = useState([]);
   const [IP, setIP] = useState("");
+  // let history = useHistory();
 
-  // useEffect(() => {
-  //   // get user IP address to compare with DB
-  //   API.getIP()
-  //     .then(res => setIP(res.data))
-  //     .catch(err => console.log(err));
-  // }, []);
+  useEffect(() => {
+    // get user IP address to compare with DB
+    API.getIP()
+      .then(res => setIP(res.data))
+      .catch(err => console.log(err));
+  }, []);
   function userLogin(email, password, remember) {
     const userData = {
       email,
@@ -40,7 +41,9 @@ function App() {
         if (remember) {
           localStorage.setItem("token", res.data[0].user_auth);
         }
-        window.location.href = "/profile";
+        // history.push("/profile");
+        // <Link to="/profile" />
+        // window.location.href = "/profile";
       })
       .catch(err => {
         console.log(err);
@@ -59,7 +62,7 @@ function App() {
         setIP(res.data);
         switch (window.location.pathname) {
           case "/profile":
-            validateUser.status(user.user_auth || token, IP || res.data, remember)
+            validateUser.status(user.user_auth || token || " ", IP || res.data, remember)
               // if they are validated, allow them to continue to page
               .then((res) => {
                 setUser(res);
@@ -105,7 +108,7 @@ function App() {
               exact path="/profile"
               render={props => <Profile {...props} user={user} />}
             />
-          ) : (<div />)}
+          ) : (<Route  />)}
           <Route path="*">
             <Redirect to="/" />
           </Route>

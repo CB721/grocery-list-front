@@ -184,7 +184,9 @@ module.exports = {
                 });
     },
     addPreviousListToCurrent: function (req, res) {
-        const list = JSON.parse(req.body.list);
+        // prevent injections
+        // list id is the id of the list being added to the current list
+        const list_id = sqlDB.escape(req.body.list_id);
         const user_id = sqlDB.escape(req.body.user_id);
         // check if a list already exists
         // find current list
@@ -203,12 +205,25 @@ module.exports = {
                             if (results.completed > 0 || results.length < 1) {
                                 createList();
                             } else {
-                                addItemToList(results[0].id, results.length);
+                                // pass current id along with amount of items for positioning
+                                getPreviousList(results[0].id, results.length);
                             }
                         }
                     });
         }
         getCurrentList();
+        let getPreviousList = function (currID, resLen) {
+            sqlDB
+                .query(`SELECT * FROM ${listItemsTable} WHERE list_id = ${list_id};`,
+                    function (err, results) {
+                        if (err) {
+                            return res.status(500).send(err);
+                        } else {
+                            // send results with current list id
+                            addPrevListToCurrent(currID, resLen, results);
+                        }
+                    })
+        }
 
         let createList = function () {
             const columns = "(date_added, user_id)"
@@ -223,29 +238,39 @@ module.exports = {
                     });
             // console.log("create list");
         }
-        let addItemToList = function (id, position) {
-            const columns = "(date_added, list_id, name, store_id, position, priority)";
-            let i = 0;
-            // while (i <= list.length) {
-            //     console.log(list[i]);
-            //     if (i === list.length) {
-            //         return res.status(200).send("All items added");
-            //     } else {
-            //         sqlDB
-            //             .query(`INSERT INTO ${listItemsTable} ${columns} VALUES (NOW(), ${list[i].id}, ${list[i].name}, ${list[i].store_id}, ${position + 1}, "Normal");`,
-            //                 function (err, results) {
-            //                     if (err) {
-            //                         return res.status(422).send(err);
-            //                     } else {
-            //                         if (results.affectedRows > 0) {
-            //                             i++;
-            //                         } else {
-            //                             return res.status(404).send(`${list[i].name} not added`);
-            //                         }
-            //                     }
-            //                 });
-            //     }
-            // }
+        let addPrevListToCurrent = function (currID, resLen, itemsArr) {
+            // check if anything is in the previous list
+            if (itemsArr.length > 0) {
+                const columns = "(date_added, list_id, name, store_id, position, priority)";
+                let queryStr = `INSERT INTO ${listItemsTable} ${columns} VALUES`;
+                // loop through items
+                for (let i = 0; i < itemsArr.length; i++) {
+                    // add each item's info to the string
+                    // default date added to current time
+                    // place additional items at the end of the current list
+                    // default priority to Normal
+                    queryStr += `(NOW(), ${currID}, '${itemsArr[i].name}', '${itemsArr[i].store_id}', ${resLen + i + 1}, 'Normal'), `;
+                }
+                // remove last comma and space from string
+                queryStr = queryStr.substring(0, queryStr.length - 2);
+                // add semicolon to string
+                queryStr += ";";
+                sqlDB
+                    .query(queryStr,
+                        function (err, results) {
+                            if (err) {
+                                return res.status(422).send(err);
+                            } else {
+                                if (results.affectedRows > 0) {
+                                    return res.status(200).json({ status: "success" });
+                                } else {
+                                    return res.status(500).send("Error with database, nothing added");
+                                }
+                            }
+                        });
+            } else {
+                return res.status(404).send("Nothing is previous list");
+            }
         }
     },
     deleteList: function (req, res) {
