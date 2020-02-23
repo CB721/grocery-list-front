@@ -6,6 +6,7 @@ router
     .get(controller.getAllByUserID);
 router
     .route("/single/:id")
-    .delete(controller.deleteByID);
+    .delete(controller.deleteByID)
+    .put(controller.updateByID);
 
 module.exports = router;
