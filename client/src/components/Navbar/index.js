@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Row, Col, Fade } from "shards-react";
 import { ReactComponent as Bell } from "../../assets/images/bell.svg";
 import SideMenu from "../SideMenu";
@@ -8,7 +8,20 @@ import "./style.scss";
 function Navbar(props) {
     const [menuExpand, setMenuExpand] = useState("burger-menu");
     const [showNotifications, setShowNotifications] = useState(false);
+    const [unreadNotificationTotal, setUnreadNotificationTotal] = useState(0);
 
+    useEffect(() => {
+        // if there are any notifications
+        if (props.notifications.length > 0) {
+            // check for how many are unread and update total
+            for (let i = 0; i < props.notifications.length; i++) {
+                if (props.notifications[i].acknowledged === 0) {
+                    setUnreadNotificationTotal(unreadNotificationTotal + 1);
+                }
+            }
+        }
+    }, [props.notifications]);
+    
     function expandMenu(event) {
         event.preventDefault();
         if (menuExpand === "burger-menu") {
@@ -37,9 +50,9 @@ function Navbar(props) {
                                     className="notification-bell"
                                     onClick={() => setShowNotifications(!showNotifications)}
                                 />
-                                {props.notifications.length > 0 ? (
+                                {unreadNotificationTotal > 0 ? (
                                     <p className="notification">
-                                        {props.notifications.length}
+                                        {unreadNotificationTotal}
                                     </p>
                                 ) : (<div />)}
                             </div>
