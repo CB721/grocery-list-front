@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Row, Col, Fade } from "shards-react";
 import { ReactComponent as Bell } from "../../assets/images/bell.svg";
-import { Textfit } from "react-textfit";
 import SideMenu from "../SideMenu";
 import "./style.scss";
 
@@ -26,13 +25,7 @@ function Navbar(props) {
                 <div className="nav">
                     <div className="nav-items" />
                     <div className="app-text" onClick={(event) => goToHome(event)}>
-                        {/* <Textfit
-                            mode="single"
-                            min={16}
-                            max={48}
-                        > */}
-                            G-List
-                        {/* </Textfit> */}
+                        G-List
                     </div>
                     <div className="nav-items">
                         {props.isLogged > 0 ? (

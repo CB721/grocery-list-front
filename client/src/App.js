@@ -41,10 +41,10 @@ function App(props) {
         setUser(res.data);
         if (remember) {
           localStorage.setItem("token", res.data[0].user_auth);
+        } else {
+          sessionStorage.setItem("token", res.data[0].user_auth)
         }
-        // history.push("/profile");
-        // <Link to="/profile" />
-        // window.location.href = "/profile";
+        window.location.href = "/profile";
       })
       .catch(err => {
         console.log(err);
@@ -52,10 +52,16 @@ function App(props) {
   }
   // determine which page user is on in order to validate
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    let token = localStorage.getItem("token");
     let remember = false;
     if (token && token.length > 60) {
-      remember = true;
+      if (token.length > 0) {
+        remember = true;
+      }
+    } else if (sessionStorage.getItem("token")) {
+      token = sessionStorage.getItem("token");
+    } else {
+      token = " ";
     }
     // make sure the IP has been found before attempting to validate
     API.getIP()
@@ -63,7 +69,7 @@ function App(props) {
         setIP(res.data);
         switch (window.location.pathname) {
           case "/profile":
-            validateUser.status(user.user_auth || token || " ", IP || res.data, remember)
+            validateUser.status(user.user_auth || token, IP || res.data, remember)
               // if they are validated, allow them to continue to page
               .then((res) => {
                 setUser(res);
