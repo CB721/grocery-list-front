@@ -21,6 +21,7 @@ function App(props) {
   const [navOptions, setNavOptions] = useState([create, signIn]);
   const [user, setUser] = useState([]);
   const [IP, setIP] = useState("");
+  const [notifications, setNotifications] = useState(["asdf"]);
   // let history = useHistory();
 
   useEffect(() => {
@@ -95,7 +96,11 @@ function App(props) {
   return (
     <Router>
       <Container fluid={true}>
-        <Navbar options={navOptions} />
+        <Navbar
+          options={navOptions}
+          isLogged={user.length}
+          notifications={notifications}
+        />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route

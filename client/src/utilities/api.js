@@ -22,8 +22,8 @@ export default {
     updateItem: function(id, data) {
         return axios.put("/api/lists/user/item/" + id, data);
     },
-    getListByID: function(id, userID) {
-        return axios.get(`/api/lists/user/full/single/${id}/${userID}`);
+    getListByID: function(id, userID, start = 0, end = 5) {
+        return axios.get(`/api/lists/user/full/single/${id}/${userID}/${start}/${end}`);
     },
     getListsByUserID: function(data) {
         return axios.post("/api/lists/user/full/all", data);
@@ -41,7 +41,7 @@ export default {
         return axios.get("/api/stores/count");
     },
     deleteList: function(id, userID) {
-        return axios.delete(`/api/lists/user/full/single/${id}/${userID}`);
+        return axios.delete(`/api/lists/user/full/single/${id}/${userID}/start/end`);
     },
     createUser: function(data) {
         return axios.post("/api/users/create", data);

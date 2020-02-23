@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { Row, Col, Fade } from "shards-react";
+import { ReactComponent as Bell } from "../../assets/images/bell.svg";
 import { Textfit } from "react-textfit";
 import SideMenu from "../SideMenu";
 import "./style.scss";
 
 function Navbar(props) {
     const [menuExpand, setMenuExpand] = useState("burger-menu");
+
     function expandMenu(event) {
         event.preventDefault();
         if (menuExpand === "burger-menu") {
@@ -24,15 +26,25 @@ function Navbar(props) {
                 <div className="nav">
                     <div className="nav-items" />
                     <div className="app-text" onClick={(event) => goToHome(event)}>
-                        <Textfit
+                        {/* <Textfit
                             mode="single"
                             min={16}
                             max={48}
-                        >
+                        > */}
                             G-List
-                        </Textfit>
+                        {/* </Textfit> */}
                     </div>
                     <div className="nav-items">
+                        {props.isLogged > 0 ? (
+                            <div className="notification-section">
+                                <Bell className="notification-bell" />
+                                {props.notifications.length > 0 ? (
+                                    <p className="notification">
+                                        {props.notifications.length}
+                                    </p>
+                                ) : (<div />)}
+                            </div>
+                        ) : (<div />)}
                         <div className={menuExpand} onClick={(event) => expandMenu(event)}>
                             <div className="bar1" />
                             <div className="bar2" />

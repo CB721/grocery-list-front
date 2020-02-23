@@ -20,6 +20,10 @@ function Profile(props) {
     const [swipeTime, setSwipeTime] = useState(0);
     const [userStores, setUserStores] = useState([]);
     const [userList, setUserList] = useState([]);
+    const [listPage, setListPage] = useState({
+        start: -5,
+        end: 0
+    });
     
     useEffect(() => {
         document.title = document.title + " | Profile";

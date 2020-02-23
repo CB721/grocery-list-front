@@ -31,6 +31,9 @@
     margin-right: auto;
     text-align: center;
     font-family: 'Parisienne', cursive, sans-serif;
+    height: 10vh;
+    line-height: 10vh;
+    font-size: 6vh;
     &:hover {
         cursor: pointer;
     }
@@ -59,4 +62,49 @@
 .change .bar3 {
     -webkit-transform: rotate(45deg) translate(-8px, -8px);
     transform: rotate(45deg) translate(-8px, -8px);
+}
+.notification-section {
+    position: fixed;
+    overflow: auto;
+    display: inline-block;
+    right: 60px;
+    top: 3%;
+    &:hover {
+        cursor: pointer;
+    }
+    .notification-bell {
+        height: 30px;
+        width: 30px;
+        fill: $white;
+    }
+    .notification {
+        position: fixed;
+        right: 60px;
+        top: 2%;
+        height: 16px;
+        width: 16px;
+        line-height: 16px;
+        font-size: 8px;
+        border-radius: 50%;
+        border: 1px solid $white;
+        text-align: center;
+        background: $main-blue;
+        color: $white;
+        animation: pop-up 0.5s ease 0s 1 normal forwards;
+        @keyframes pop-up {
+            0% {
+                transform: scale(0.8);
+                background: $white;
+                color: $main-blue;
+            }
+            75% {
+                transform: scale(1.15);
+            }
+            100% {
+                transform: scale(1);
+                background: $main-blue;
+                color: $white;
+            }
+        }
+        }
 }
