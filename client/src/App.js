@@ -108,7 +108,7 @@ function App(props) {
               exact path="/profile"
               render={props => <Profile {...props} user={user} />}
             />
-          ) : (<Route  />)}
+          ) : (<Route />)}
           <Route path="*">
             <Redirect to="/" />
           </Route>

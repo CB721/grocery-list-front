@@ -200,14 +200,15 @@ function Profile(props) {
                 .catch(err => reject(err));
         });
     }
-    function addEntirePreviousList(list) {
+    function addEntirePreviousList(list_id) {
         const addList = {
-            list: JSON.stringify(list),
+            list_id,
             user_id: props.user[0].id
         }
         API.addPreviousListToCurrent(addList)
-            .then(res => {
-                console.log(res.data);
+            .then(() => {
+                getUserList();
+                notification("Previous list added to your current list");
             })
             .catch(err => console.log(err));
     }

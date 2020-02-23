@@ -188,6 +188,10 @@ module.exports = {
         // list id is the id of the list being added to the current list
         const list_id = sqlDB.escape(req.body.list_id);
         const user_id = sqlDB.escape(req.body.user_id);
+        // check if any values are null
+        if (!list_id || !user_id) {
+            return res.status(400).send("Missing field");
+        }
         // check if a list already exists
         // find current list
         let getCurrentList = function () {

@@ -146,7 +146,11 @@ function ViewList(props) {
             })
             .catch(err => console.log(err));
     }
-
+    function addEntirePreviousList() {
+        props.addEntirePreviousList(modalList[0].list_id);
+        setModal(false);
+        setCurrentView("current");
+    }
     return (
         <div className="view-list">
             <div className="list-view-options">
@@ -177,11 +181,11 @@ function ViewList(props) {
                         action={addToCurrentList}
                         hidetrash={"hide-trash"}
                     />}
-                    // button={<Button
-                    //     text="Add All To Current List"
-                    //     class="white-button"
-                    //     action={() => props.addEntirePreviousList(modalList)}
-                    // />}
+                    button={<Button
+                        text="Add All To Current List"
+                        class="white-button"
+                        action={addEntirePreviousList}
+                    />}
                 />
             ) : (<div />)}
             {currentView === "current" ? (
