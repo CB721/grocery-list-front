@@ -14,14 +14,16 @@ function Navbar(props) {
         // if there are any notifications
         if (props.notifications.length > 0) {
             // check for how many are unread and update total
+            let total = 0;
             for (let i = 0; i < props.notifications.length; i++) {
                 if (props.notifications[i].acknowledged === 0) {
-                    setUnreadNotificationTotal(unreadNotificationTotal + 1);
+                    total += 1;
                 }
             }
+            setUnreadNotificationTotal(total);
         }
     }, [props.notifications]);
-    
+
     function expandMenu(event) {
         event.preventDefault();
         if (menuExpand === "burger-menu") {

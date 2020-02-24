@@ -3,6 +3,15 @@ import Slide from 'react-reveal/Slide';
 import "./style.scss";
 
 function Notifications(props) {
+    function addressNotification(item) {
+        props.markNotificationAsRead(item.id);
+        if (item.other_user_id > 60) {
+
+        }
+        if (item.list_id) {
+
+        }
+    }
     return (
         <Slide right>
             <div className="notification-list">
@@ -11,9 +20,12 @@ function Notifications(props) {
                         className={item.acknowledged > 0 ? "notification read" : "notification unread"}
                         key={item.id}
                     >
+                        <div className="notification-image">
+                            GL
+                        </div>
                         <div
                             className="notification-content"
-                            onClick={() => props.markNotificationAsRead(item.id)}
+                            onClick={() => addressNotification(item)}
                         >
                             {item.content}
                         </div>

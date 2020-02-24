@@ -6,12 +6,12 @@ module.exports = {
         // prevent injections
         const userID = sqlDB.escape(req.params.user_id);
         sqlDB
-            .query(`SELECT * FROM ${table} WHERE user_id = ${userID} ORDER BY date_added DESC LIMIT 10;`,
+            .query(`CALL get_user_notifications(${userID});`,
             function(err, results) {
                 if (err) {
                     return res.status(404).send(err);
                 } else {
-                    return res.status(200).json(results);
+                    return res.status(200).json(results[0]);
                 }
             })
     },

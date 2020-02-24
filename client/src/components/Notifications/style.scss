@@ -7,7 +7,7 @@
     overflow: auto;
     height: auto;
     width: 20%;
-    border: 1px solid $secondary-blue;
+    border: 3px solid $secondary-blue;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
     text-transform: capitalize;
@@ -18,25 +18,42 @@
         width: 100%;
         height: 100px;
         border-bottom: 1px solid $secondary-blue;
-        .notification-content {
-            width: 70%;
+        .notification-image {
+            width: 10%;
+            height: 20px;
+            line-height: 20px;
+            font-size: 16px;
             float: left;
             text-align: center;
-            padding: 2.5%;
-            text-overflow: ellipsis
+            margin: 2%;
+            background: $main-blue;
+            color: $white;
+            border-radius: 50%;
+            border: 1px solid $white;
+            &:hover {
+                cursor: default;
+            }
+        }
+        .notification-content {
+            width: 60%;
+            float: left;
+            text-align: center;
+            margin: 2.5%;
+            text-overflow: ellipsis;
+            &:hover {
+                cursor: pointer;
+            }
         }
         .delete-notification {
-            width: 20%;
+            width: 15%;
             float: left;
             text-align: center;
-            padding: 2.5%;
+            margin: 2.5%;
             color: $main-blue;
             &:hover {
                 color: red;
+                cursor: pointer;
             }
-        }
-        &:hover {
-            cursor: pointer;
         }
         &:last-child {
             border-bottom: none;
