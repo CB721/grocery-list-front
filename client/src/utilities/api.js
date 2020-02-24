@@ -63,5 +63,17 @@ export default {
     },
     updateNotificationByID: function(id) {
         return axios.put("/api/notifications/single/" + id);
+    },
+    getConnectionsByID: function(id) {
+        return axios.get("/api/connections/" + id);
+    },
+    updateConnection: function(id) {
+        return axios.put("/api/connections/" + id);
+    },
+    removeConnection: function(id) {
+        return axios.delete("/api/connections/" + id);
+    },
+    createConnection: function(data) {
+        return axios.post("/api/connections/new", data);
     }
 }

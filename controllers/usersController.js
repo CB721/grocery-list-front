@@ -4,6 +4,7 @@ const checkPass = require("../validation/checkPass");
 const bcrypt = require("bcryptjs");
 const crypto = require("crypto");
 const table = "uzzdv3povs4xqnxc.users";
+const { isEmail } = require("validator");
 
 module.exports = {
     createUser: function (req, res) {
@@ -12,8 +13,8 @@ module.exports = {
         if (!checkPass(newUser.password)) {
             return res.status(400).send("Password must be at least 8 characters");
         }
-        // check for mongo injection
-        if (newUser.email.indexOf("$") > -1) {
+        // check for mongo injection and a valid email
+        if (newUser.email.indexOf("$") > -1 || !isEmail(newUser.email)) {
             return res.status(406).send("Invalid email");
         } else {
             // check if email already exists - mongo
