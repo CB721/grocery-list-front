@@ -9,12 +9,13 @@
         top: 10%;
         height: auto;
         width: 20%;
-        border: 3px solid $secondary-blue;
+        // border: 3px solid $secondary-blue;
         border-radius: 8px;
         margin-left: 20%;
         text-transform: uppercase;
         text-align: center;
         line-height: 100px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         .setting-tab {
             height: 100px;
             border-bottom: 3px solid $secondary-blue;
@@ -48,9 +49,10 @@
         top: 10%;
         height: auto;
         width: 35%;
-        border: 3px solid $secondary-blue;
+        // border: 3px solid $secondary-blue;
         border-radius: 8px;
         margin-left: 45%;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         .settings-info, .settings-connections {
             .info-name {
                 border-bottom: 3px solid $secondary-blue;
