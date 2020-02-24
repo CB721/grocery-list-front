@@ -6,6 +6,9 @@ router
     .get(controller.getUserConnections)
     .put(controller.updateConnection)
     .delete(controller.removeConnection);
+router
+    .route("/new")
+    .post(controller.connectionRequest);
 
 
 module.exports = router;

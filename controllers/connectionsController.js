@@ -1,5 +1,8 @@
 const sqlDB = require("../sql_connection");
-const table = "uzzdv3povs4xqnxc.connections";
+const { User } = require("../mongoose_models");
+const connectTable = "uzzdv3povs4xqnxc.connections";
+const notificationsTable = "uzzdv3povs4xqnxc.notifications";
+const { isEmail } = require("validator");
 
 module.exports = {
     getUserConnections: function (req, res) {
@@ -30,7 +33,7 @@ module.exports = {
         }
         updateItems = updateItems.substring(0, updateItems.length - 2);
         sqlDB
-            .query(`UPDATE ${table} SET ${updateItems} WHERE id = ${ID};`,
+            .query(`UPDATE ${connectTable} SET ${updateItems} WHERE id = ${ID};`,
                 function (err, results) {
                     if (err) {
                         return res.status(404).send(err);
@@ -46,7 +49,7 @@ module.exports = {
         const ID = sqlDB.escape(req.params.id);
         // instead of removing connection entirely, just update accepted to be false and pending to be false
         sqlDB
-            .query(`UPDATE ${table} SET pending = 0, accepted = 0 WHERE id = ${ID};`,
+            .query(`UPDATE ${connectTable} SET pending = 0, accepted = 0 WHERE id = ${ID};`,
                 function (err, results) {
                     if (err) {
                         return res.status(404).send(err);
@@ -56,5 +59,57 @@ module.exports = {
                         return res.status(404).send("nothing updated");
                     }
                 });
+    },
+    connectionRequest: function (req, res) {
+        // user would send an email of other user and their id
+        const request = req.body;
+        const email = request.email;
+        // prevent injections
+        if (email.indexOf("$") > -1 || !isEmail(email)) {
+            return res.status(406).send("Invalid email");
+        }
+        const ID = sqlDB.escape(request.id);
+        // check if email exists
+        User
+            .find({ email: email })
+            .then(response => {
+                if (response.length > 0) {
+                    // if it does, get user id of other user
+                    createConnection(response[0]._id);
+                } else {
+                    // if it does not, send email to person - configure nodemailer for this
+                    return res.status(404).send("User does not exist");
+                }
+            })
+            .catch(err => res.status(500).send(err));
+        // create connection row
+        function createConnection(requestedID) {
+            sqlDB
+                .query(`INSERT INTO ${connectTable} (requestor_id, requested_id, date_added) VALUES (${ID}, '${requestedID}', NOW());`,
+                function(err, results) {
+                    if (err) {
+                        return res.status(500).send(err);
+                    } else if (results.affectedRows === 1) {
+                        // if it successfully added, create a notification for the requested user
+                        createNotification(requestedID);
+                    } else {
+                        return res.status(500).send("Unable to create connection");
+                    }
+                })
+        }
+        // create notification for that user
+        function createNotification(requestedID) {
+            sqlDB
+                .query(`INSERT INTO ${notificationsTable} (content, date_added, user_id, other_user_id) VALUES("You have a connection request!", NOW(), ${ID}, '${requestedID}');`,
+                function(err, results) {
+                    if (err) {
+                        return res.status(500).send(err);
+                    } else if (results.affectedRows === 1) {
+                        return res.status(200).send("Connection request sent");
+                    } else {
+                        return res.status(500).send("Unable to send connection request");
+                    }
+                });
+        }
     }
 }
