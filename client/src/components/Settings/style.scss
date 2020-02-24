@@ -1,0 +1,83 @@
+@import "../../App.scss";
+
+.settings {
+    @include page-defaults;
+    overflow: scroll;
+    color: $black;
+    .setting-headers {
+        position: fixed;
+        top: 10%;
+        height: auto;
+        width: 20%;
+        border: 3px solid $secondary-blue;
+        border-radius: 8px;
+        margin-left: 20%;
+        text-transform: uppercase;
+        text-align: center;
+        line-height: 100px;
+        .setting-tab {
+            height: 100px;
+            border-bottom: 3px solid $secondary-blue;
+            background: $white;
+            transition: 0.3s;
+            &:first-child {
+                border-top-left-radius: inherit;
+                border-top-right-radius: inherit;
+            }
+            &:last-child {
+                border-bottom-left-radius: inherit;
+                border-bottom-right-radius: inherit;
+                border-bottom: none;
+            }
+            &:hover {
+                cursor: pointer;
+                background: $secondary-blue;
+                color: $white;
+            }
+            &.selected {
+                background: $secondary-blue;
+                color: $white;
+                -webkit-box-shadow: inset 0px 0px 5px 2px #4577a9;
+                -moz-box-shadow: inset 0px 0px 5px 2px #4577a9;
+                box-shadow: inset 0px 0px 5px 2px #4577a9;
+            }
+        }
+    }
+    .setting-content {
+        position: fixed;
+        top: 10%;
+        height: auto;
+        width: 35%;
+        border: 3px solid $secondary-blue;
+        border-radius: 8px;
+        margin-left: 45%;
+        .settings-info, .settings-connections {
+            .info-name {
+                border-bottom: 3px solid $secondary-blue;
+                text-align: left;
+                padding: 5%;
+                width: 90%;
+                height: auto;
+                min-height: 50px;
+                overflow: visible;
+                &:first-child {
+                    border-top-left-radius: inherit;
+                    border-top-right-radius: inherit;
+                }
+                &:last-child {
+                    border-bottom-left-radius: inherit;
+                    border-bottom-right-radius: inherit;
+                    border-bottom: none;
+                }
+            }
+            .form-input {
+                width: 80%;
+                margin: 10px 10%;
+                // margin-left: 10%;
+                // margin-bottom: 10px;
+                // margin-bottom: 10px;
+                @include form-input;
+            }
+        }
+    }
+    }

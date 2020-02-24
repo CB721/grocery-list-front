@@ -9,6 +9,7 @@ function Notifications(props) {
         if (item.list_id) {
             props.openModal(item)
         }
+        // add option to view and accept user connections
     }
     return (
         <Slide right>

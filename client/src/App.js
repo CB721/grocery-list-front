@@ -7,6 +7,7 @@ import CreateAccount from "./components/CreateAccount";
 import Profile from "./components/Profile";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import Settings from "./components/Settings";
 import { ToastContainer } from 'react-toastify';
 import "shards-ui/dist/css/shards.min.css";
 import API from "./utilities/api";
@@ -18,6 +19,7 @@ function App(props) {
   const signIn = { name: "Login", link: "/login" };
   const signOut = { name: "Logout", link: "/signout" };
   const profile = { name: "Profile", link: "/profile" };
+  const settings = { name: "Settings", link: "/settings" };
   const [navOptions, setNavOptions] = useState([create, signIn]);
   const [user, setUser] = useState([]);
   const [IP, setIP] = useState("");
@@ -79,7 +81,7 @@ function App(props) {
               .then((res) => {
                 setUser(res);
                 // change side menu options
-                setNavOptions([profile, signOut]);
+                setNavOptions([profile, settings, signOut]);
                 // get notifications for user
                 getAllUserNotifications(res[0].id);
               })
@@ -168,7 +170,8 @@ function App(props) {
                 {...props}
                 userLogin={userLogin}
                 error={error}
-              />}
+              />
+            }
           />
           <Route exact path="/join" component={CreateAccount} />
           {user.length === 1 ? (
@@ -180,7 +183,19 @@ function App(props) {
                   user={user}
                   setCurrList={setCurrList}
                   getListByID={getListByID}
-                />}
+                />
+              }
+            />
+          ) : (<Route />)}
+          {user.length === 1 ? (
+            <Route
+              exact path="/settings"
+              render={props =>
+                <Settings
+                  {...props}
+                  user={user}
+                />
+              }
             />
           ) : (<Route />)}
           <Route path="*">
