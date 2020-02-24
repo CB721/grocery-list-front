@@ -75,41 +75,57 @@ module.exports = {
             .then(response => {
                 if (response.length > 0) {
                     // if it does, get user id of other user
-                    createConnection(response[0]._id);
+                    checkExistConnection(response[0]._id);
                 } else {
                     // if it does not, send email to person - configure nodemailer for this
                     return res.status(404).send("User does not exist");
                 }
             })
             .catch(err => res.status(500).send(err));
+        // check if there is row where either the initial user or the requested user
+        function checkExistConnection(requestedID) {
+            sqlDB
+                .query(`SELECT * FROM ${connectTable} WHERE (requestor_id = ${ID} AND requested_id = ${requestedID}) OR (requestor_id = ${requestedID} AND requested_id = ${ID});`,
+                    function (err, results) {
+                        if (err) {
+                            return res.status(500).send(err);
+                        } else if (results.length > 0) {
+                            // if there are any results, a connection already exists
+                            return res.status(202).send("Connection already exists");
+                        } else {
+                            // if there are no results, create a new connection
+                            createConnection(requestedID);
+                        }
+                    });
+        }
         // create connection row
         function createConnection(requestedID) {
             sqlDB
                 .query(`INSERT INTO ${connectTable} (requestor_id, requested_id, date_added) VALUES (${ID}, '${requestedID}', NOW());`,
-                function(err, results) {
-                    if (err) {
-                        return res.status(500).send(err);
-                    } else if (results.affectedRows === 1) {
-                        // if it successfully added, create a notification for the requested user
-                        createNotification(requestedID);
-                    } else {
-                        return res.status(500).send("Unable to create connection");
-                    }
-                })
+                    function (err, results) {
+                        if (err) {
+                            return res.status(500).send(err);
+                        } else if (results.affectedRows === 1) {
+                            // if it successfully added, create a notification for the requested user
+                            createNotification(requestedID);
+                        } else {
+                            return res.status(500).send("Unable to create connection");
+                        }
+                    })
         }
         // create notification for that user
         function createNotification(requestedID) {
             sqlDB
                 .query(`INSERT INTO ${notificationsTable} (content, date_added, user_id, other_user_id) VALUES("You have a connection request!", NOW(), ${ID}, '${requestedID}');`,
-                function(err, results) {
-                    if (err) {
-                        return res.status(500).send(err);
-                    } else if (results.affectedRows === 1) {
-                        return res.status(200).send("Connection request sent");
-                    } else {
-                        return res.status(500).send("Unable to send connection request");
-                    }
-                });
+                    function (err, results) {
+                        if (err) {
+                            return res.status(500).send(err);
+                        } else if (results.affectedRows === 1) {
+                            return res.status(200).send("Connection request sent");
+                        } else {
+                            return res.status(500).send("Unable to send connection request");
+                        }
+                    });
         }
     }
 }
