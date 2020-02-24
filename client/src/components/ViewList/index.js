@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import List from "../List";
-import Flip from "react-reveal";
+import Flip from "react-reveal/Flip";
 import Button from "../Button";
 import Modal from "../Modal";
 import "./style.scss";

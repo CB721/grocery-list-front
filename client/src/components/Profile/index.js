@@ -24,7 +24,7 @@ function Profile(props) {
         start: -5,
         end: 0
     });
-    
+
     useEffect(() => {
         document.title = document.title + " | Profile";
         getUserStores();
@@ -32,22 +32,22 @@ function Profile(props) {
     }, [props.user]);
     function notification(message) {
         toast(message, {
-          className: css({
-            background: '#3C91E6',
-            boxShadow: '0px 13px 12px -12px rgba(47,51,56,0.64)',
-            borderRadius: '8px',
-            border: "3px solid #F9FCFF",
-            textTransform: "capitalize"
-          }),
-          bodyClassName: css({
-            fontSize: '20px',
-            color: '#F9FCFF'
-          }),
-          progressClassName: css({
-            background: "linear-gradient(90deg, rgb(86,149,211) 0%, rgb(249,252,255) 80%)"
-          })
+            className: css({
+                background: '#3C91E6',
+                boxShadow: '0px 13px 12px -12px rgba(47,51,56,0.64)',
+                borderRadius: '8px',
+                border: "3px solid #F9FCFF",
+                textTransform: "capitalize"
+            }),
+            bodyClassName: css({
+                fontSize: '20px',
+                color: '#F9FCFF'
+            }),
+            progressClassName: css({
+                background: "linear-gradient(90deg, rgb(86,149,211) 0%, rgb(249,252,255) 80%)"
+            })
         });
-      }
+    }
     function getUserStores() {
         API.getUserStores(props.user[0].id)
             .then(res => {
@@ -58,6 +58,7 @@ function Profile(props) {
     function getUserList() {
         API.getUserList(props.user[0].id)
             .then(res => {
+                props.setCurrList(res.data);
                 setUserList(res.data);
             })
             .catch(err => console.log(err));
@@ -195,27 +196,6 @@ function Profile(props) {
             })
             .catch(err => console.log(err));
     }
-    function getListByID(id) {
-        return new Promise(function (resolve, reject) {
-            API.getListByID(id, props.user[0].id)
-                .then(res => {
-                    resolve(res.data);
-                })
-                .catch(err => reject(err));
-        });
-    }
-    function addEntirePreviousList(list_id) {
-        const addList = {
-            list_id,
-            user_id: props.user[0].id
-        }
-        API.addPreviousListToCurrent(addList)
-            .then(() => {
-                getUserList();
-                notification("Previous list added to your current list");
-            })
-            .catch(err => console.log(err));
-    }
     function deleteItem(id) {
         API.removeItem(id)
             .then(res => {
@@ -235,6 +215,18 @@ function Profile(props) {
                 })
                 .catch(err => reject(err));
         });
+    }
+    function addEntirePreviousList(list_id) {
+        const addList = {
+            list_id,
+            user_id: props.user[0].id
+        }
+        API.addPreviousListToCurrent(addList)
+            .then(() => {
+                getUserList();
+                notification("Previous list added to your current list");
+            })
+            .catch(err => console.log(err));
     }
     // function handleSwipe(event) {
     //     const time = new Date();
@@ -362,7 +354,7 @@ function Profile(props) {
                                             updateItemPosition={updateItemPosition}
                                             getPreviousLists={getPreviousLists}
                                             markListComplete={markListComplete}
-                                            getListByID={getListByID}
+                                            getListByID={props.getListByID}
                                             addItem={addItem}
                                             addEntirePreviousList={addEntirePreviousList}
                                             deleteItem={deleteItem}

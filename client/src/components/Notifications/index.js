@@ -5,11 +5,9 @@ import "./style.scss";
 function Notifications(props) {
     function addressNotification(item) {
         props.markNotificationAsRead(item.id);
-        if (item.other_user_id > 60) {
-
-        }
+        // if a list exists, pop up modal with option to add items from it to current list
         if (item.list_id) {
-
+            props.openModal(item)
         }
     }
     return (
@@ -21,7 +19,7 @@ function Notifications(props) {
                         key={item.id}
                     >
                         <div className="notification-image">
-                            GL
+                            {item.other_user_id ? item.other_user_first_name.charAt(0) + item.other_user_last_name.charAt(0) : "GL"}
                         </div>
                         <div
                             className="notification-content"

@@ -57,11 +57,10 @@
         }
         &:last-child {
             border-bottom: none;
-            border-radius: inherit;
         }
     }
     .unread {
-        background: rgba(98, 163, 249, 0.303);
+        background: rgb(170, 201, 242);
     }
     .read {
         background: $white;

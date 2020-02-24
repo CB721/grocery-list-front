@@ -6,9 +6,10 @@
     top: 0%;
     width: 100%;
     height: 100%;
+    z-index: 975;
     .modal-content {
         position: fixed;
-        z-index: 3;
+        z-index: 975;
         left: 15%;
         top: 15%;
         width: 70%;

@@ -23,6 +23,7 @@ function App(props) {
   const [IP, setIP] = useState("");
   const [notifications, setNotifications] = useState([]);
   const [error, setError] = useState("");
+  const [currList, setCurrList] = useState([]);
   // let history = useHistory();
 
   useEffect(() => {
@@ -134,6 +135,15 @@ function App(props) {
       .then(() => getAllUserNotifications(user[0].id))
       .catch(err => console.log(err));
   }
+  function getListByID(id) {
+    return new Promise(function (resolve, reject) {
+      API.getListByID(id, user[0].id)
+        .then(res => {
+          resolve(res.data);
+        })
+        .catch(err => reject(err));
+    });
+  }
 
 
   return (
@@ -145,6 +155,9 @@ function App(props) {
           notifications={notifications}
           markNotificationAsRead={markNotificationAsRead}
           deleteNotification={deleteNotification}
+          currList={currList}
+          user={user}
+          getListByID={getListByID}
         />
         <Switch>
           <Route exact path="/" component={Home} />
@@ -161,7 +174,13 @@ function App(props) {
           {user.length === 1 ? (
             <Route
               exact path="/profile"
-              render={props => <Profile {...props} user={user} />}
+              render={props =>
+                <Profile
+                  {...props}
+                  user={user}
+                  setCurrList={setCurrList}
+                  getListByID={getListByID}
+                />}
             />
           ) : (<Route />)}
           <Route path="*">
