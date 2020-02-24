@@ -7,15 +7,15 @@ module.exports = {
         const ID = sqlDB.escape(req.params.id);
         sqlDB
             .query(`CALL get_user_connections(${ID});`,
-            function(err, results) {
-                if (err) {
-                    return res.status(404).send(err);
-                } else {
-                    return res.status(200).json(results[0]);
-                }
-            });
+                function (err, results) {
+                    if (err) {
+                        return res.status(404).send(err);
+                    } else {
+                        return res.status(200).json(results[0]);
+                    }
+                });
     },
-    updateConnection: function(req, res) {
+    updateConnection: function (req, res) {
         // prevent injections
         // id will be the id of the connection, not the user
         const ID = sqlDB.escape(req.params.id);
@@ -31,14 +31,30 @@ module.exports = {
         updateItems = updateItems.substring(0, updateItems.length - 2);
         sqlDB
             .query(`UPDATE ${table} SET ${updateItems} WHERE id = ${ID};`,
-            function(err, results) {
-                if (err) {
-                    return res.status(404).send(err);
-                } else if (results.affectedRows > 0) {
-                    return res.status(200).send("success");
-                } else {
-                    return res.status(404).send("nothing updated");
-                }
-            });
+                function (err, results) {
+                    if (err) {
+                        return res.status(404).send(err);
+                    } else if (results.affectedRows > 0) {
+                        return res.status(200).send("success");
+                    } else {
+                        return res.status(404).send("nothing updated");
+                    }
+                });
+    },
+    removeConnection: function (req, res) {
+        // prevent injections
+        const ID = sqlDB.escape(req.params.id);
+        // instead of removing connection entirely, just update accepted to be false and pending to be false
+        sqlDB
+            .query(`UPDATE ${table} SET pending = 0, accepted = 0 WHERE id = ${ID};`,
+                function (err, results) {
+                    if (err) {
+                        return res.status(404).send(err);
+                    } else if (results.affectedRows > 0) {
+                        return res.status(200).send("success");
+                    } else {
+                        return res.status(404).send("nothing updated");
+                    }
+                });
     }
 }
