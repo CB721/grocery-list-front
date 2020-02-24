@@ -4,6 +4,7 @@ import Checkbox from "../Checkbox";
 import "./style.scss";
 
 function Form(props) {
+    
     // expect array of objects with input type and value
     return (
         <div className="form">
