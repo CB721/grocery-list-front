@@ -1,10 +1,17 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { Textfit } from "react-textfit";
 import Slide from 'react-reveal/Slide';
 import { Fade } from "shards-react";
 import "./style.scss";
 
 function SideMenu(props) {
+    let history = useHistory();
+    function goToSelectedPage(event, path) {
+        event.preventDefault();
+        history.push(path);
+        // history.push("/profile");
+    }
     return (
         <Fade in={true}>
             <div className="side-menu-bg">
@@ -13,7 +20,7 @@ function SideMenu(props) {
                     <div className="side-menu">
                         {props.options.map((option, index) => (
                             <div className="nav-options" key={index}>
-                                <a href={option.link}>
+                                <div onClick={(event) => goToSelectedPage(event, option.link)}>
                                     <Textfit
                                         mode="single"
                                         min={6}
@@ -21,7 +28,7 @@ function SideMenu(props) {
                                     >
                                         {option.name}
                                     </Textfit>
-                                </a>
+                                </div>
                             </div>
                         ))}
                     </div>

@@ -6,11 +6,16 @@ import "./style.scss";
 function Settings(props) {
     const [tab, setTab] = useState("info");
     const [connectEmail, setConnectEmail] = useState("");
+    const [acceptedConnections, setAcceptedConnections] = useState([]);
+    const [pendingConnections, setPendingConnections] = useState([]);
 
     function handleInputChange(event) {
         const { name, value } = event.target;
         setConnectEmail(event.target.value);
     }
+    useEffect(() => {
+        console.log(props.connections);
+    }, [props.connections]);
     return (
         <div>
             <Space />

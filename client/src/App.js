@@ -26,6 +26,7 @@ function App(props) {
   const [notifications, setNotifications] = useState([]);
   const [error, setError] = useState("");
   const [currList, setCurrList] = useState([]);
+  const [connections, setConnections] = useState([]);
   // let history = useHistory();
 
   useEffect(() => {
@@ -35,27 +36,31 @@ function App(props) {
       .catch(err => console.log(err));
   }, []);
   function userLogin(email, password, remember) {
-    const userData = {
-      email,
-      password,
-      ip: IP
-    }
-    // reset error message
-    setError("");
-    API.userLogin(userData)
-      .then(res => {
-        setUser(res.data);
-        if (remember) {
-          localStorage.setItem("token", res.data[0].user_auth);
-        } else {
-          sessionStorage.setItem("token", res.data[0].user_auth)
-        }
-        window.location.href = "/profile";
-      })
-      .catch(err => {
-        console.log("User login err", err);
-        setError(err);
-      });
+    return new Promise((resolve, reject) => {
+      const userData = {
+        email,
+        password,
+        ip: IP
+      }
+      // reset error message
+      setError("");
+      API.userLogin(userData)
+        .then(res => {
+          setUser(res.data);
+          if (remember) {
+            localStorage.setItem("token", res.data[0].user_auth);
+          } else {
+            sessionStorage.setItem("token", res.data[0].user_auth)
+          }
+          resolve(true)
+          // window.location.href = "/profile";
+        })
+        .catch(err => {
+          console.log("User login err", err);
+          // setError(err);
+          reject(err);
+        });
+    });
   }
   // determine which page user is on in order to validate
   useEffect(() => {
@@ -86,8 +91,9 @@ function App(props) {
                 getAllUserNotifications(res[0].id);
               })
               .catch(() => {
+                setError("Not logged in");
                 // if not validated, send to login page
-                window.location.href = "/login";
+                // window.location.href = "/login";
               });
             break;
           case "/settings":
@@ -99,10 +105,13 @@ function App(props) {
                 setNavOptions([profile, settings, signOut]);
                 // get notifications for user
                 getAllUserNotifications(res[0].id);
+                // get all connections for user
+                getConnectionsByID(res[0].id);
               })
               .catch(() => {
+                setError("Not logged in");
                 // if not validated, send to login page
-                window.location.href = "/login";
+                // window.location.href = "/login";
               });
             break;
           default:
@@ -114,9 +123,13 @@ function App(props) {
                 setNavOptions([profile, signOut]);
                 // get notifications for user
                 getAllUserNotifications(res[0].id);
+                // get all connections for user
+                getConnectionsByID(res[0].id);
               })
               // since they aren't on a page that requires user info, allow them to remain on current page
-              .catch();
+              .catch(() => {
+                // setError("Not logged in")
+              });
             return;
         }
       })
@@ -161,6 +174,13 @@ function App(props) {
         .catch(err => reject(err));
     });
   }
+  function getConnectionsByID(id) {
+    API.getConnectionsByID(id || user[0].id)
+      .then(res => {
+        setConnections(res.data);
+      })
+      .catch(err => setError(err));
+  }
 
 
   return (
@@ -201,7 +221,7 @@ function App(props) {
                 />
               }
             />
-          ) : (<Route />)}
+          ) : (<Route><Redirect to="/login" /></Route>)}
           {user.length === 1 ? (
             <Route
               exact path="/settings"
@@ -209,10 +229,11 @@ function App(props) {
                 <Settings
                   {...props}
                   user={user}
+                  connections={connections}
                 />
               }
             />
-          ) : (<Route />)}
+          ) : (<Route><Redirect to="/login" /></Route>)}
           <Route path="*">
             <Redirect to="/" />
           </Route>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from "react-router-dom";
 import { isEmail, isByteLength } from 'validator';
 import { Row, Col } from "shards-react";
 import Form from "../Form";
@@ -52,7 +53,7 @@ function Login(props) {
                 }
                 break;
             case "password":
-                if(!isByteLength(value, {min: 8, max: 16})) {
+                if (!isByteLength(value, { min: 8, max: 16 })) {
                     setError("Password must be between 8 and 16 characters");
                 } else {
                     setError("");
@@ -68,9 +69,15 @@ function Login(props) {
             setDisabled(true);
         }
     }
-    // function handleFormSubmit() {
-    //     props.userLogin(email, password, remember);
-    // }
+    let history = useHistory();
+    function handleFormSubmit() {
+        props.userLogin(email, password, remember)
+            .then(res => {
+                console.log(res);
+                history.push("/profile");
+            })
+            .catch(err => console.log(err));
+    }
     return (
         <div className="login">
             <Space />
@@ -85,7 +92,7 @@ function Login(props) {
                         disableButton={disable}
                         error={error}
                         validateField={validateField}
-                        action={() => props.userLogin(email, password, remember)}
+                        action={handleFormSubmit}
                     />
                 </Col>
             </Row>
