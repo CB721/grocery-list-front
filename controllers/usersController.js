@@ -222,12 +222,16 @@ module.exports = {
                 if (err) {
                     return res.status(404).send(err);
                 } else {
-                    if (results[0][0].ip_address === ip) {
-                        return res.status(200).json(results[0]);
+                    if (results[0].length > 0) {
+                        if (results[0][0].ip_address === ip) {
+                            return res.status(200).json(results[0]);
+                        } else {
+                            return res.status(401).send("Different IP address");
+                        }
                     } else {
-                        return res.status(401).send("Different IP address");
+                        return res.status(404).send("No user found");
                     }
                 }
-            })
+            });
     }
 }

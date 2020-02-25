@@ -90,6 +90,21 @@ function App(props) {
                 window.location.href = "/login";
               });
             break;
+          case "/settings":
+            validateUser.status(user.user_auth || token, IP || res.data, remember)
+              // if they are validated, allow them to continue to page
+              .then((res) => {
+                setUser(res);
+                // change side menu options
+                setNavOptions([profile, settings, signOut]);
+                // get notifications for user
+                getAllUserNotifications(res[0].id);
+              })
+              .catch(() => {
+                // if not validated, send to login page
+                window.location.href = "/login";
+              });
+            break;
           default:
             validateUser.status(user.user_auth || token, IP || res.data, remember)
               // if they are validated, update content accordingly

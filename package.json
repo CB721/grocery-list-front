@@ -37,6 +37,8 @@
     "express": "^4.17.1",
     "glamor": "^2.20.40",
     "jest": "^24.9.0",
+    "moment": "^2.24.0",
+    "moment-timezone": "^0.5.28",
     "mongoose": "^5.8.9",
     "mysql": "^2.18.1",
     "node-sass": "^4.13.1",

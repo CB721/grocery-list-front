@@ -10,5 +10,4 @@ router
     .route("/new")
     .post(controller.connectionRequest);
 
-
 module.exports = router;

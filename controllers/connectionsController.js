@@ -85,7 +85,7 @@ module.exports = {
         // check if there is row where either the initial user or the requested user
         function checkExistConnection(requestedID) {
             sqlDB
-                .query(`SELECT * FROM ${connectTable} WHERE (requestor_id = ${ID} AND requested_id = ${requestedID}) OR (requestor_id = ${requestedID} AND requested_id = ${ID});`,
+                .query(`SELECT * FROM ${connectTable} WHERE (requestor_id = ${ID} AND requested_id = '${requestedID}') OR (requestor_id = '${requestedID}' AND requested_id = ${ID});`,
                     function (err, results) {
                         if (err) {
                             return res.status(500).send(err);
