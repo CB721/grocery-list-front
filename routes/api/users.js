@@ -3,13 +3,14 @@ const controller = require("../../controllers/usersController");
 
 router
     .route("/create")
-    .post(controller.createUser);
-router
+    .post(controller.createUser)
+    router
     .route("/delete/:id")
     .delete(controller.deleteUser);
 router
     .route("/update/:id")
-    .put(controller.updateUser);
+    .put(controller.updateUser)
+    .get(controller.checkEmailExists);
 router
     .route("/login")
     .post(controller.getUserByEmail);

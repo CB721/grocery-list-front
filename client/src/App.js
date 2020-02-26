@@ -64,6 +64,7 @@ function App(props) {
   }
   // determine which page user is on in order to validate
   useEffect(() => {
+    console.log(window.location.pathname);
     let token = localStorage.getItem("token");
     let remember = false;
     if (token && token.length > 60) {

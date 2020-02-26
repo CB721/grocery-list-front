@@ -78,5 +78,8 @@ export default {
     },
     updateUser: function(id, data) {
         return axios.put("/api/users/update/" + id, data);
+    },
+    checkEmailExists: function(email) {
+        return axios.get("/api/users/update/" + email);
     }
 }

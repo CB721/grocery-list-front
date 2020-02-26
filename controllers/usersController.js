@@ -233,5 +233,25 @@ module.exports = {
                     }
                 }
             });
+    },
+    checkEmailExists: function(req, res) {
+        const email = req.params.id;
+        // prevent injections
+        if (email.indexOf("$") > -1 || !isEmail(email)) {
+            return res.status(406).send("Invalid email");
+        } else {
+            // check if email already exists - mongo
+            User
+                .find({ email })
+                .then(response => {
+                    console.log(response);
+                    if (response.length > 0) {
+                        return res.status(400).send("Email already in use");
+                    } else {
+                        return res.status(200).send("Email is available");
+                    }
+                })
+                .catch(err => console.log(err));
+        }
     }
 }

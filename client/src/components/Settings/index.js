@@ -7,6 +7,7 @@ import { isEmail, isEmpty } from 'validator';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { css } from 'glamor';
+import API from "../../utilities/api";
 import Space from "../DivSpace";
 import Button from "../Button";
 import "./style.scss";
@@ -94,6 +95,7 @@ function Settings(props) {
         }
     }, [editFirst, editLast, editEmail]);
     function exitEdit() {
+        setUserError("");
         setEditFirst(false);
         setEditLast(false);
         setEditEmail(false);
@@ -107,7 +109,11 @@ function Settings(props) {
                 if (!isEmail(value)) {
                     setUserError("Invalid email provided");
                 } else {
-                    setUserError("");
+                    API.checkEmailExists(value)
+                        .then(() => {
+                            setUserError("");
+                        })
+                        .catch(err => setUserError(err.response.data));
                 }
                 break;
             case "first":
@@ -143,29 +149,41 @@ function Settings(props) {
             default:
                 return;
         }
-        props.updateUser(update)
-            .then(() => {
-                setEditFirst(false);
-                setEditLast(false);
-                setEditEmail(false);
-                toast("Update Successful", {
-                    className: css({
-                        background: '#3C91E6',
-                        boxShadow: '0px 13px 12px -12px rgba(47,51,56,0.64)',
-                        borderRadius: '8px',
-                        border: "3px solid #F9FCFF",
-                        textTransform: "capitalize"
-                    }),
-                    bodyClassName: css({
-                        fontSize: '20px',
-                        color: '#F9FCFF'
-                    }),
-                    progressClassName: css({
-                        background: "linear-gradient(90deg, rgb(86,149,211) 0%, rgb(249,252,255) 80%)"
-                    })
-                });
-            })
-            .catch(err => setUserError(err));
+        if (field === "email") {
+            API.checkEmailExists(email)
+                .then(() => {
+                    setUserError("");
+                    updateUser();
+                })
+                .catch(err => setUserError(err.response.data));
+        } else {
+            updateUser();
+        }
+        function updateUser() {
+            props.updateUser(update)
+                .then(() => {
+                    setEditFirst(false);
+                    setEditLast(false);
+                    setEditEmail(false);
+                    toast("Update Successful", {
+                        className: css({
+                            background: '#3C91E6',
+                            boxShadow: '0px 13px 12px -12px rgba(47,51,56,0.64)',
+                            borderRadius: '8px',
+                            border: "3px solid #F9FCFF",
+                            textTransform: "capitalize"
+                        }),
+                        bodyClassName: css({
+                            fontSize: '20px',
+                            color: '#F9FCFF'
+                        }),
+                        progressClassName: css({
+                            background: "linear-gradient(90deg, rgb(86,149,211) 0%, rgb(249,252,255) 80%)"
+                        })
+                    });
+                })
+                .catch(err => setUserError(err));
+        }
     }
     return (
         <div>
