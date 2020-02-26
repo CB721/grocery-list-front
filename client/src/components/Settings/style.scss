@@ -116,12 +116,17 @@
                 height: auto;
                 color: $black;
                 background: $white;
+                border-bottom-left-radius: 8px;
+                border-bottom-right-radius: 8px;
                 .connect-users-row {
                     width: 100%;
                     height: 50px;
                     border-bottom: 1px solid $secondary-blue;
+                    text-align: center;
                     &:last-child {
                         border-bottom: none;
+                        border-bottom-left-radius: 8px;
+                        border-bottom-right-radius: 8px;
                     }
                     .connect-user-name {
                         width: 50%;
@@ -134,12 +139,22 @@
                     .connect-user-options {
                         width: 50%;
                         float: left;
-                        .option-button {
-                            width: 33%;
+                        .option-button, .option-button-double {
                             float: left;
                             height: 40px;
                             text-align: center;
                             margin: 0 auto;
+                        }
+                        .option-button-double {
+                            width: 66%;
+                            text-overflow: ellipsis;
+                            .time-difference {
+                                line-height: 40px;
+                                text-align: center;
+                            }
+                        }
+                        .option-button {
+                            width: 33%;
                             .send-list, .view-list, .delete-user {
                                 height: 100%;
                                 width: 40px;
@@ -163,16 +178,17 @@
                                 visibility: hidden;
                                 text-transform: uppercase;
                                 color: white;
-                                background: $main-blue;
+                                background: rgb(129, 143, 156);
                                 text-align: center;
                                 border-radius: 8px;
-                                padding: 5px 0;
+                                padding: 5px;
                                 width: 70px;
                                 height: auto;
                                 position: absolute;
                                 z-index: 3;
                             }
                             &:hover .option-tooltip {
+                                transition-delay: 0.5s;
                                 visibility: visible;
                                 @include shadow;
                             }

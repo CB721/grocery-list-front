@@ -76,8 +76,7 @@ function Login(props) {
     }
     function handleFormSubmit() {
         props.userLogin(email, password, remember)
-            .then(res => {
-                console.log(res);
+            .then(() => {
                 history.push("/profile");
             })
             .catch(err => console.log(err));

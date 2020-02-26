@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ReactComponent as View } from "../../assets/images/view.svg";
 import { ReactComponent as Send } from "../../assets/images/send.svg";
 import { ReactComponent as Trash } from "../../assets/images/trash.svg";
+import { convertTimeDiff } from '../../utilities/convertTimeDifference';
 import Space from "../DivSpace";
 import Button from "../Button";
 import "./style.scss";
@@ -124,23 +125,66 @@ function Settings(props) {
                                             </div>
                                         ))}
                                     </div>
-                                ) : (<div></div>)}
+                                ) : (<div className="connet-users-row">
+                                    <input
+                                        type="email"
+                                        value={connectEmail}
+                                        placeholder="Type email here"
+                                        name="connection-request"
+                                        className="form-input"
+                                        onChange={(event) => handleInputChange(event)}
+                                    />
+                                    <Button
+                                        text="Send Connection Request"
+                                        class="blue-button"
+                                    />
+                                </div>)}
                             </div>
-                        ) : (<div>
-
+                        ) : (<div className="connect-users-section">
+                            <div className="connet-users-row">
+                                <input
+                                    type="email"
+                                    value={connectEmail}
+                                    placeholder="Type email here"
+                                    name="connection-request"
+                                    className="form-input"
+                                    onChange={(event) => handleInputChange(event)}
+                                />
+                                <Button
+                                    text="Send Connection Request"
+                                    class="blue-button"
+                                />
+                            </div>
+                            {pendingConnections.length > 0 ? (
+                                <div>
+                                    {pendingConnections.map(connection => (
+                                        <div
+                                            className="connect-users-row"
+                                            key={connection.id}
+                                        >
+                                            <div className="connect-user-name">
+                                                {`${connection.requestor_first_name || connection.requested_first_name} ${connection.requestor_last_name || connection.requested_last_name}`}
+                                            </div>
+                                            <div className="connect-user-options">
+                                                <div className="option-button-double">
+                                                    <div className="time-difference">
+                                                        {`Sent ${convertTimeDiff(connection.time_difference)}`}
+                                                    </div>
+                                                </div>
+                                                <div className="option-button">
+                                                    <div className="delete-user">
+                                                        <Trash className="icon" />
+                                                    </div>
+                                                    <div className="option-tooltip">
+                                                        Cancel Request
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            ) : (<div />)}
                         </div>)}
-                        {/* <input
-                            type="email"
-                            value={connectEmail}
-                            placeholder="Type email here"
-                            name="connection-request"
-                            className="form-input"
-                            onChange={(event) => handleInputChange(event)}
-                        />
-                        <Button
-                            text="Send Connection Request"
-                            class="blue-button"
-                        /> */}
                     </div>)}
                 </div>
             </div>

@@ -56,8 +56,8 @@ function App(props) {
           // window.location.href = "/profile";
         })
         .catch(err => {
-          console.log("User login err", err);
-          // setError(err);
+          // console.log(err.response);
+          setError(err.response.data);
           reject(err);
         });
     });
@@ -67,9 +67,7 @@ function App(props) {
     let token = localStorage.getItem("token");
     let remember = false;
     if (token && token.length > 60) {
-      if (token.length > 0) {
-        remember = true;
-      }
+      remember = true;
     } else if (sessionStorage.getItem("token")) {
       token = sessionStorage.getItem("token");
     } else {
@@ -92,8 +90,9 @@ function App(props) {
               })
               .catch(() => {
                 setError("Not logged in");
-                // if not validated, send to login page
-                // window.location.href = "/login";
+                // reset all tokens stored
+                localStorage.setItem("token", "");
+                sessionStorage.setItem("token", "");
               });
             break;
           case "/settings":
@@ -110,8 +109,9 @@ function App(props) {
               })
               .catch(() => {
                 setError("Not logged in");
-                // if not validated, send to login page
-                // window.location.href = "/login";
+                // reset all tokens stored
+                localStorage.setItem("token", "");
+                sessionStorage.setItem("token", "");
               });
             break;
           default:
@@ -128,7 +128,9 @@ function App(props) {
               })
               // since they aren't on a page that requires user info, allow them to remain on current page
               .catch(() => {
-                // setError("Not logged in")
+                // reset all tokens stored
+                localStorage.setItem("token", "");
+                sessionStorage.setItem("token", "");
               });
             return;
         }
@@ -145,7 +147,7 @@ function App(props) {
           setError("Trouble determining your IP address.  Please try logging in again.");
         }
       });
-  }, []);
+  }, [window.location.pathname]);
   function getAllUserNotifications(id) {
     API.getNotificationsByUser(id)
       .then(res => {
