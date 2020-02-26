@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { ReactComponent as View } from "../../assets/images/view.svg";
+import { ReactComponent as Send } from "../../assets/images/send.svg";
+import { ReactComponent as Trash } from "../../assets/images/trash.svg";
 import Space from "../DivSpace";
 import Button from "../Button";
 import "./style.scss";
 
 function Settings(props) {
     const [tab, setTab] = useState("info");
+    const [connectTab, setConnectTab] = useState("current");
     const [connectEmail, setConnectEmail] = useState("");
     const [acceptedConnections, setAcceptedConnections] = useState([]);
     const [pendingConnections, setPendingConnections] = useState([]);
@@ -14,8 +18,24 @@ function Settings(props) {
         setConnectEmail(event.target.value);
     }
     useEffect(() => {
-        console.log(props.connections);
+        const accepted = props.connections.filter(connection => {
+            // check that both a connection is no longer pending and that it has been accepted
+            if (connection.pending === 0 && connection.accepted === 1) {
+                return connection;
+            }
+        });
+        const pending = props.connections.filter(connection => {
+            // check that a connection is pending and has not been rejected
+            if (connection.pending === 1 && connection.accepted === 0) {
+                return connection;
+            }
+        });
+        setPendingConnections(pending);
+        setAcceptedConnections(accepted);
     }, [props.connections]);
+    useEffect(() => {
+        document.title = "G-List | Settings";
+    }, []);
     return (
         <div>
             <Space />
@@ -49,24 +69,78 @@ function Settings(props) {
 
                         </div>
                     ) : (<div className="settings-connections">
-                        {props.connections && props.connections.length > 0 ? (
-                            // map over connections
-                            <div>
+                        <div className="connect-header">
+                            <div
+                                className={connectTab === "current" ? "connect-half selected" : "connect-half"}
+                                onClick={() => setConnectTab("current")}
+                            >
+                                Current
+                            </div>
+                            <div
+                                className={connectTab === "pending" ? "connect-half selected" : "connect-half"}
+                                onClick={() => setConnectTab("pending")}
+                            >
+                                Pending
+                            </div>
+                        </div>
+                        {connectTab === "current" ? (
+                            <div className="connect-users-section">
+                                {acceptedConnections.length > 0 ? (
+                                    <div>
+                                        {acceptedConnections.map(connection => (
+                                            <div
+                                                className="connect-users-row"
+                                                key={connection.id}
+                                            >
+                                                <div className="connect-user-name">
+                                                    {`${connection.requestor_first_name || connection.requested_first_name} ${connection.requestor_last_name || connection.requested_last_name}`}
+                                                </div>
+                                                <div className="connect-user-options">
+                                                    <div className="option-button">
+                                                        <div className="send-list">
+                                                            <Send className="icon" />
+                                                        </div>
+                                                        <div className="option-tooltip">
+                                                            Send {connection.requestor_first_name || connection.requested_first_name} A List
+                                                        </div>
+                                                    </div>
+                                                    <div className="option-button">
+                                                        <div className="view-list">
+                                                            <View className="icon" />
+                                                        </div>
+                                                        <div className="option-tooltip">
+                                                            View All Lists From {connection.requestor_first_name || connection.requested_first_name}
+                                                        </div>
+                                                    </div>
+                                                    <div className="option-button">
+                                                        <div className="delete-user">
+                                                            <Trash className="icon" />
+                                                        </div>
+                                                        <div className="option-tooltip">
+                                                            Remove User
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                ) : (<div></div>)}
                             </div>
                         ) : (<div>
-                            <input
-                                type="email"
-                                value={connectEmail}
-                                placeholder="Type email here"
-                                name="connection-request"
-                                className="form-input"
-                                onChange={(event) => handleInputChange(event)}
-                            />
-                            <Button
-                                text="Send Connection Request"
-                                class="blue-button"
-                            />
+
                         </div>)}
+                        {/* <input
+                            type="email"
+                            value={connectEmail}
+                            placeholder="Type email here"
+                            name="connection-request"
+                            className="form-input"
+                            onChange={(event) => handleInputChange(event)}
+                        />
+                        <Button
+                            text="Send Connection Request"
+                            class="blue-button"
+                        /> */}
                     </div>)}
                 </div>
             </div>

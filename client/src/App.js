@@ -120,7 +120,7 @@ function App(props) {
               .then((res) => {
                 setUser(res);
                 // change side menu options
-                setNavOptions([profile, signOut]);
+                setNavOptions([profile, settings, signOut]);
                 // get notifications for user
                 getAllUserNotifications(res[0].id);
                 // get all connections for user
@@ -145,7 +145,7 @@ function App(props) {
           setError("Trouble determining your IP address.  Please try logging in again.");
         }
       });
-  }, [window.location.pathname]);
+  }, []);
   function getAllUserNotifications(id) {
     API.getNotificationsByUser(id)
       .then(res => {
@@ -205,6 +205,7 @@ function App(props) {
                 {...props}
                 userLogin={userLogin}
                 error={error}
+                user={user}
               />
             }
           />

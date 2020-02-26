@@ -26,7 +26,7 @@ function Profile(props) {
     });
 
     useEffect(() => {
-        document.title = document.title + " | Profile";
+        document.title = "G-List | Profile";
         getUserStores();
         getUserList();
     }, [props.user]);

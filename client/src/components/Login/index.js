@@ -17,7 +17,7 @@ function Login(props) {
     const [disable, setDisabled] = useState(true);
     const [error, setError] = useState("");
     const [remember, setRemember] = useState(false);
-
+    let history = useHistory();
     useEffect(() => {
         setError(props.error);
     }, [props.error]);
@@ -31,6 +31,11 @@ function Login(props) {
             setRemember(true);
         }
     }
+    useEffect(() => {
+        if (props.user.length === 1) {
+            history.push("/profile");
+        }
+    }, [props.user]);
     function handleInputChange(event) {
         let value = event.target.value.trim();
         const name = event.target.name.trim();
@@ -69,7 +74,6 @@ function Login(props) {
             setDisabled(true);
         }
     }
-    let history = useHistory();
     function handleFormSubmit() {
         props.userLogin(email, password, remember)
             .then(res => {

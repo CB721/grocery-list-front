@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { isEmail, isByteLength, isEmpty } from 'validator';
 import { Row, Col } from "shards-react";
 import Form from "../Form";
@@ -86,6 +87,7 @@ function CreateAccount(props) {
             setDisabled(true);
         }
     }
+    let history = useHistory();
     function handleFormSubmit() {
         const user = {
             first_name: firstName,
@@ -96,7 +98,7 @@ function CreateAccount(props) {
         API.createUser(user)
             .then(res => {
                 if (res.data.affectedRows > 0) {
-                    window.location.href = "/login";
+                    history.push("/login");
                 }
             })
             .catch(err => console.log(err))

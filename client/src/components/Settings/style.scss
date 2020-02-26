@@ -74,11 +74,130 @@
             .form-input {
                 width: 80%;
                 margin: 10px 10%;
-                // margin-left: 10%;
-                // margin-bottom: 10px;
-                // margin-bottom: 10px;
                 @include form-input;
+            }
+            .connect-header {
+                width: 100%;
+                height: auto;
+                display: inline-block;
+                .connect-half {
+                    color: $black;
+                    background: $white;
+                    transition: 0.3s;
+                    width: 50%;
+                    float: left;
+                    height: 100px;
+                    line-height: 100px;
+                    text-align: center;
+                    &:first-child {
+                        border-top-left-radius: 8px;
+                        border-bottom-left-radius: 8px;
+                    }
+                    &:last-child {
+                        border-top-right-radius: 8px;
+                        border-bottom-right-radius: 8px;
+                    }
+                    &:hover {
+                        color: $white;
+                        background: $main-blue;
+                    }
+                    &.selected {
+                        background: $main-blue;
+                        color: $white;
+                        -webkit-box-shadow: inset 0px 0px 5px 2px #4577a9;
+                        -moz-box-shadow: inset 0px 0px 5px 2px #4577a9;
+                        box-shadow: inset 0px 0px 5px 2px #4577a9;
+                    }
+                }
+            }
+            .connect-users-section {
+                margin-top: 50px;
+                width: 100%;
+                height: auto;
+                color: $black;
+                background: $white;
+                .connect-users-row {
+                    width: 100%;
+                    height: 50px;
+                    border-bottom: 1px solid $secondary-blue;
+                    &:last-child {
+                        border-bottom: none;
+                    }
+                    .connect-user-name {
+                        width: 50%;
+                        float: left;
+                        line-height: 50px;
+                        text-align: center;
+                        text-transform: uppercase;
+                        text-overflow: ellipsis;
+                    }
+                    .connect-user-options {
+                        width: 50%;
+                        float: left;
+                        .option-button {
+                            width: 33%;
+                            float: left;
+                            height: 40px;
+                            text-align: center;
+                            margin: 0 auto;
+                            .send-list, .view-list, .delete-user {
+                                height: 100%;
+                                width: 40px;
+                                display: inline-block;
+                                margin-top: 4px;
+                                border-radius: 50%;
+                                text-align: center;
+                                transition: 0.3s;
+                                &:hover {
+                                    cursor: pointer;
+                                }
+                                .icon {
+                                    display: inline-block;
+                                    padding-top: 10px;
+                                    height: 20px;
+                                    width: 20px;
+                                    fill: $white;
+                                }
+                            }
+                            .option-tooltip {
+                                visibility: hidden;
+                                text-transform: uppercase;
+                                color: white;
+                                background: $main-blue;
+                                text-align: center;
+                                border-radius: 8px;
+                                padding: 5px 0;
+                                width: 70px;
+                                height: auto;
+                                position: absolute;
+                                z-index: 3;
+                            }
+                            &:hover .option-tooltip {
+                                visibility: visible;
+                                @include shadow;
+                            }
+                            .send-list {
+                                background: rgb(88, 210, 88);
+                                &:hover {
+                                    background: rgb(17, 140, 17);
+                                }
+                            }
+                            .view-list {
+                                background: rgb(132, 184, 240);
+                                &:hover {
+                                    background: rgb(29, 89, 154);
+                                }
+                            }
+                            .delete-user {
+                                background: rgb(228, 87, 87);
+                                &:hover {
+                                    background: rgb(159, 20, 20);
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }
-    }
+}
