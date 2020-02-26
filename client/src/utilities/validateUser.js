@@ -5,7 +5,6 @@ export default {
     // if nothing is passed for the auth token, check localStorage
     status: (auth, IP, remember = false) => {
         return new Promise((resolve, reject) => {
-
             if (!auth) {
                 reject(false);
             } else {

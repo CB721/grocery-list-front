@@ -75,5 +75,8 @@ export default {
     },
     createConnection: function(data) {
         return axios.post("/api/connections/new", data);
+    },
+    updateUser: function(id, data) {
+        return axios.put("/api/users/update/" + id, data);
     }
 }

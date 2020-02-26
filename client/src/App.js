@@ -79,7 +79,7 @@ function App(props) {
         setIP(res.data);
         switch (window.location.pathname) {
           case "/profile":
-            validateUser.status(user.user_auth || token, IP || res.data, remember)
+            validateUser.status(user[0].user_auth || token, IP || res.data, remember)
               // if they are validated, allow them to continue to page
               .then((res) => {
                 setUser(res);
@@ -96,7 +96,7 @@ function App(props) {
               });
             break;
           case "/settings":
-            validateUser.status(user.user_auth || token, IP || res.data, remember)
+            validateUser.status(user[0].user_auth || token, IP || res.data, remember)
               // if they are validated, allow them to continue to page
               .then((res) => {
                 setUser(res);
@@ -115,7 +115,7 @@ function App(props) {
               });
             break;
           default:
-            validateUser.status(user.user_auth || token, IP || res.data, remember)
+            validateUser.status(user[0].user_auth || token, IP || res.data, remember)
               // if they are validated, update content accordingly
               .then((res) => {
                 setUser(res);
@@ -183,6 +183,35 @@ function App(props) {
       })
       .catch(err => setError(err));
   }
+  function updateUser(data) {
+    return new Promise(function(resolve, reject) {
+      API.updateUser(user[0].id, data)
+        .then(res => {
+          if (res.data.affectedRows === 1) {
+            validateUser.status(user[0].user_auth || localStorage.getItem("token") || sessionStorage.getItem("token"), IP, true)
+              .then(res => {
+                setUser(res);
+                // change side menu options
+                setNavOptions([profile, settings, signOut]);
+                // get notifications for user
+                getAllUserNotifications(res[0].id);
+                resolve();
+              })
+              .catch(() => {
+                reject("Authentication error");
+                setError("Authentication error");
+                // reset all tokens stored
+                localStorage.setItem("token", "");
+                sessionStorage.setItem("token", "");
+              })
+          }
+        })
+        .catch(err => {
+          setError(err.response.data);
+          reject(err.response.data);
+        });
+    })
+  }
 
 
   return (
@@ -233,6 +262,7 @@ function App(props) {
                   {...props}
                   user={user}
                   connections={connections}
+                  updateUser={updateUser}
                 />
               }
             />

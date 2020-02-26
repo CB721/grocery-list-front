@@ -4,6 +4,9 @@ import { ReactComponent as Send } from "../../assets/images/send.svg";
 import { ReactComponent as Trash } from "../../assets/images/trash.svg";
 import { convertTimeDiff } from '../../utilities/convertTimeDifference';
 import { isEmail, isEmpty } from 'validator';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { css } from 'glamor';
 import Space from "../DivSpace";
 import Button from "../Button";
 import "./style.scss";
@@ -125,6 +128,45 @@ function Settings(props) {
                 return;
         }
     }
+    function editUser(field) {
+        let update = {};
+        switch (field) {
+            case "first":
+                update["first_name"] = first;
+                break;
+            case "last":
+                update["last_name"] = last;
+                break;
+            case "email":
+                update["email"] = email;
+                break;
+            default:
+                return;
+        }
+        props.updateUser(update)
+            .then(() => {
+                setEditFirst(false);
+                setEditLast(false);
+                setEditEmail(false);
+                toast("Update Successful", {
+                    className: css({
+                        background: '#3C91E6',
+                        boxShadow: '0px 13px 12px -12px rgba(47,51,56,0.64)',
+                        borderRadius: '8px',
+                        border: "3px solid #F9FCFF",
+                        textTransform: "capitalize"
+                    }),
+                    bodyClassName: css({
+                        fontSize: '20px',
+                        color: '#F9FCFF'
+                    }),
+                    progressClassName: css({
+                        background: "linear-gradient(90deg, rgb(86,149,211) 0%, rgb(249,252,255) 80%)"
+                    })
+                });
+            })
+            .catch(err => setUserError(err));
+    }
     return (
         <div>
             <Space />
@@ -169,6 +211,7 @@ function Settings(props) {
                                         text="Submit"
                                         class="blue-button"
                                         disabled={first.length <= 0 ? true : false}
+                                        action={() => editUser("first")}
                                     />
                                 </div>
                             ) : (
@@ -193,6 +236,7 @@ function Settings(props) {
                                         text="Submit"
                                         class="blue-button"
                                         disabled={last.length <= 0 ? true : false}
+                                        action={() => editUser("last")}
                                     />
                                 </div>
                             ) : (
@@ -217,6 +261,7 @@ function Settings(props) {
                                         text="Submit"
                                         class="blue-button"
                                         disabled={email.length <= 0 ? true : false}
+                                        action={() => editUser("email")}
                                     />
                                 </div>
                             ) : (
