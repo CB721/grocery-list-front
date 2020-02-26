@@ -71,7 +71,7 @@ function CreateAccount(props) {
                 }
                 break;
             case "last name":
-                if (isEmpty.value) {
+                if (isEmpty(value)) {
                     setError("Name cannot be blank");
                 } else {
                     setError("");
