@@ -84,5 +84,8 @@ export default {
     },
     createNotification: function(data) {
         return axios.post("/api/notifications/create", data);
+    },
+    getSentLists: function(user_id, other_user_id) {
+        return axios.get(`/api/lists/multiple/${user_id}/${other_user_id}`);
     }
 }

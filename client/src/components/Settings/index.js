@@ -33,6 +33,7 @@ function Settings(props) {
     const [modalMessage, setModalMessage] = useState("");
     const [modalName, setModalName] = useState("Your Previous Lists");
     const [selectedConnection, setSelectedConnection] = useState([]);
+    const [viewList, setViewList] = useState(true);
 
     function handleInputChange(event) {
         const { name, value } = event.target;
@@ -203,7 +204,6 @@ function Settings(props) {
         setSelectedConnection(connection);
         API.getListsByUserID(listInfo)
             .then(res => {
-                console.log(res.data);
                 setModal(true);
                 setModalList(res.data);
                 setModalMessage(`Click To Send To ${connection.requestor_first_name || connection.requested_first_name}`);
@@ -211,22 +211,63 @@ function Settings(props) {
             .catch(err => console.log(err));
     }
     function sendListToUser(list) {
-        // other user is who the list is being sent to
-        let otherUserId = "";
-        if (selectedConnection.requested_id !== props.user[0].id) {
-            otherUserId = selectedConnection.requested_id;
+        if (list.other_user_id) {
+            API.getListByID(list.list_id, list.other_user_id)
+                .then(res => {
+                    setModalList(res.data);
+                    setViewList(false);
+                    setModalMessage("Click to add to your current list");
+                })
+                .catch(err => console.log(err.response.data));
         } else {
-            otherUserId = selectedConnection.requestor_id;
+            // other user is who the list is being sent to
+            let otherUserId = "";
+            if (selectedConnection.requested_id !== props.user[0].id) {
+                otherUserId = selectedConnection.requested_id;
+            } else {
+                otherUserId = selectedConnection.requestor_id;
+            }
+            const data = {
+                other_user_id: props.user[0].id,
+                user_id: otherUserId,
+                list_id: list.id
+            }
+            API.createNotification(data)
+                .then(() => {
+                    setModal(false);
+                    setViewList(true);
+                    toastNotification("List sent!");
+                })
+                .catch(err => console.log(err.response.data));
         }
-        const data = {
-            other_user_id: props.user[0].id,
-            user_id: otherUserId,
-            list_id: list.id
+    }
+    function viewSentLists(connection) {
+        setSelectedConnection(connection);
+        let otherUserID = "";
+        if (connection.requested_id !== props.user[0].id) {
+            otherUserID = connection.requested_id;
+        } else {
+            otherUserID = connection.requestor_id;
         }
-        API.createNotification(data)
+        API.getSentLists(props.user[0].id, otherUserID)
+            .then(res => {
+                setModal(true);
+                setModalList(res.data);
+                setModalMessage("Click a list to view");
+            })
+            .catch(err => console.log(err.response.data));
+    }
+    function addItemToCurrentList(item) {
+        const completeItem = {
+            name: item.name,
+            store_id: item.store_id,
+            priority: "Normal",
+            user_id: props.user[0].id,
+            position: props.currList.length
+        }
+        API.addItem(completeItem)
             .then(() => {
-                setModal(false);
-                toastNotification("List sent!");
+                toastNotification(`${item.name} has been added to your list!`);
             })
             .catch(err => console.log(err.response.data));
     }
@@ -241,14 +282,10 @@ function Settings(props) {
                     content={<List
                         viewList={false}
                         list={modalList}
-                        action={sendListToUser}
+                        action={viewList ? sendListToUser : addItemToCurrentList}
+                        // action={sendListToUser}
                         hidetrash={"hide-trash"}
                     />}
-                // button={<Button
-                //     text="Send"
-                //     class="white-button"
-                //     action={sendListToUser}
-                // />}
                 />
             ) : (<div />)}
             <Space />
@@ -396,7 +433,10 @@ function Settings(props) {
                                                     </div>
                                                     <div className="option-button">
                                                         <div className="view-list">
-                                                            <View className="icon" />
+                                                            <View
+                                                                className="icon"
+                                                                onClick={() => viewSentLists(connection)}
+                                                            />
                                                         </div>
                                                         <div className="option-tooltip">
                                                             View All Lists From {connection.requestor_first_name || connection.requested_first_name}

@@ -273,6 +273,7 @@ function App(props) {
                   user={user}
                   connections={connections}
                   updateUser={updateUser}
+                  currList={currList}
                 />
               ) : (
                   <Redirect to="/login" />
