@@ -8,5 +8,8 @@ router
     .route("/single/:id")
     .delete(controller.deleteByID)
     .put(controller.updateByID);
+router
+    .route("/create")
+    .post(controller.createNotification);
 
 module.exports = router;
