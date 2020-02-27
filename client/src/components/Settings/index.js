@@ -10,6 +10,8 @@ import { css } from 'glamor';
 import API from "../../utilities/api";
 import Space from "../DivSpace";
 import Button from "../Button";
+import Modal from "../Modal";
+import List from "../List";
 import "./style.scss";
 
 function Settings(props) {
@@ -26,6 +28,11 @@ function Settings(props) {
     const [email, setEmail] = useState("");
     const [userError, setUserError] = useState("");
     const [editMessage, setEditMessage] = useState("Click Any Field Edit");
+    const [modal, setModal] = useState(false);
+    const [modalList, setModalList] = useState([]);
+    const [modalMessage, setModalMessage] = useState("");
+    const [modalName, setModalName] = useState("Your Previous Lists");
+    const [selectedConnection, setSelectedConnection] = useState([]);
 
     function handleInputChange(event) {
         const { name, value } = event.target;
@@ -165,28 +172,81 @@ function Settings(props) {
                     setEditFirst(false);
                     setEditLast(false);
                     setEditEmail(false);
-                    toast("Update Successful", {
-                        className: css({
-                            background: '#3C91E6',
-                            boxShadow: '0px 13px 12px -12px rgba(47,51,56,0.64)',
-                            borderRadius: '8px',
-                            border: "3px solid #F9FCFF",
-                            textTransform: "capitalize"
-                        }),
-                        bodyClassName: css({
-                            fontSize: '20px',
-                            color: '#F9FCFF'
-                        }),
-                        progressClassName: css({
-                            background: "linear-gradient(90deg, rgb(86,149,211) 0%, rgb(249,252,255) 80%)"
-                        })
-                    });
+                    toastNotification("Update Successful");
                 })
                 .catch(err => setUserError(err));
         }
     }
+    function toastNotification(message) {
+        toast(message, {
+            className: css({
+                background: '#3C91E6',
+                boxShadow: '0px 13px 12px -12px rgba(47,51,56,0.64)',
+                borderRadius: '8px',
+                border: "3px solid #F9FCFF",
+                textTransform: "capitalize"
+            }),
+            bodyClassName: css({
+                fontSize: '20px',
+                color: '#F9FCFF'
+            }),
+            progressClassName: css({
+                background: "linear-gradient(90deg, rgb(86,149,211) 0%, rgb(249,252,255) 80%)"
+            })
+        });
+    }
+    function getPreviousLists(direction, connection) {
+        const listInfo = {
+            user_id: props.user[0].id,
+            direction: direction
+        }
+        setSelectedConnection(connection);
+        API.getListsByUserID(listInfo)
+            .then(res => {
+                console.log(res.data);
+                setModal(true);
+                setModalList(res.data);
+                setModalMessage(`Click To Send To ${connection.requestor_first_name || connection.requested_first_name}`);
+            })
+            .catch(err => console.log(err));
+    }
+    function sendListToUser(list) {
+        let otherUserId = "";
+        if (selectedConnection.requested_id !== props.user[0].id) {
+            otherUserId = selectedConnection.requested_id;
+        } else {
+            otherUserId = selectedConnection.requestor_id;
+        }
+        const data = {
+            other_user_id: props.user[0].id,
+            user_id: otherUserId,
+            list_id: list.id
+        }
+        // send to API
+        console.log(data);
+        toastNotification("List sent!");
+    }
     return (
         <div>
+            {modal ? (
+                <Modal
+                    open={modal}
+                    name={modalName}
+                    message={modalMessage}
+                    close={setModal}
+                    content={<List
+                        viewList={false}
+                        list={modalList}
+                        action={sendListToUser}
+                        hidetrash={"hide-trash"}
+                    />}
+                // button={<Button
+                //     text="Send"
+                //     class="white-button"
+                //     action={sendListToUser}
+                // />}
+                />
+            ) : (<div />)}
             <Space />
             <div className="settings">
                 <div className="setting-headers">
@@ -321,7 +381,10 @@ function Settings(props) {
                                                 <div className="connect-user-options">
                                                     <div className="option-button">
                                                         <div className="send-list">
-                                                            <Send className="icon" />
+                                                            <Send
+                                                                className="icon"
+                                                                onClick={() => getPreviousLists("DESC", connection)}
+                                                            />
                                                         </div>
                                                         <div className="option-tooltip">
                                                             Send {connection.requestor_first_name || connection.requested_first_name} A List

@@ -132,7 +132,6 @@ function App(props) {
       API.validateUser(token || user[0].user_auth, ip)
         .then(res => {
           setUser(res.data);
-          console.log(res.data);
           setIsValid(true);
           // change side menu options
           setNavOptions([profile, settings, signOut]);
@@ -221,7 +220,7 @@ function App(props) {
         });
     })
   }
-
+  
 
   return (
     <Router>
