@@ -271,6 +271,13 @@ function Settings(props) {
             })
             .catch(err => console.log(err.response.data));
     }
+    function removeConnection(connection) {
+        props.removeConnection(connection.id)
+            .then(res => {
+                toastNotification("Connection removed");
+            })
+            .catch(err => console.log(err));
+    }
     return (
         <div>
             {modal ? (
@@ -444,7 +451,10 @@ function Settings(props) {
                                                     </div>
                                                     <div className="option-button">
                                                         <div className="delete-user">
-                                                            <Trash className="icon" />
+                                                            <Trash
+                                                                className="icon"
+                                                                onClick={() => removeConnection(connection)}
+                                                            />
                                                         </div>
                                                         <div className="option-tooltip">
                                                             Remove User

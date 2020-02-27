@@ -220,6 +220,18 @@ function App(props) {
         });
     })
   }
+  function removeConnection(id) {
+    return new Promise(function(resolve, reject) {
+      API.removeConnection(id)
+        .then(res => {
+          resolve(res.data);
+          getConnectionsByID();
+        })
+        .catch(err => {
+          reject(err.response.data);
+        });
+    })
+  }
   
 
   return (
@@ -274,6 +286,7 @@ function App(props) {
                   connections={connections}
                   updateUser={updateUser}
                   currList={currList}
+                  removeConnection={removeConnection}
                 />
               ) : (
                   <Redirect to="/login" />
