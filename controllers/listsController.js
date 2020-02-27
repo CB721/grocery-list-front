@@ -1,6 +1,7 @@
 const sqlDB = require("../sql_connection");
 const listTable = "uzzdv3povs4xqnxc.lists";
 const listItemsTable = "uzzdv3povs4xqnxc.list_items";
+const notificationsTable = "uzzdv3povs4xqnxc.notifications";
 
 module.exports = {
     addItem: function (req, res) {
@@ -278,7 +279,7 @@ module.exports = {
         }
     },
     deleteList: function (req, res) {
-        // prevent injects
+        // prevent injections
         const ID = sqlDB.escape(req.params.id);
         const userID = sqlDB.escape(req.params.userid);
         sqlDB
@@ -294,5 +295,22 @@ module.exports = {
                         }
                     }
                 });
+    },
+    getSentLists: function(req, res) {
+        // prevent injections
+        const user_id = sqlDB.escape(req.params.userid);
+        const other_user_id = sqlDB.escape(req.params.otheruserid);
+        if (!user_id || !other_user_id) {
+            return res.status(400).send("No user or other user id provided");
+        }
+        sqlDB
+            .query(`CALL get_sent_lists(${user_id}, ${other_user_id});`,
+            function(err, results) {
+                if (err) {
+                    return res.status(500).send(err);
+                } else {
+                    return res.status(200).json(results[0]);
+                }
+            })
     }
 }

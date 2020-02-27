@@ -211,6 +211,7 @@ function Settings(props) {
             .catch(err => console.log(err));
     }
     function sendListToUser(list) {
+        // other user is who the list is being sent to
         let otherUserId = "";
         if (selectedConnection.requested_id !== props.user[0].id) {
             otherUserId = selectedConnection.requested_id;
@@ -222,9 +223,12 @@ function Settings(props) {
             user_id: otherUserId,
             list_id: list.id
         }
-        // send to API
-        console.log(data);
-        toastNotification("List sent!");
+        API.createNotification(data)
+            .then(() => {
+                setModal(false);
+                toastNotification("List sent!");
+            })
+            .catch(err => console.log(err.response.data));
     }
     return (
         <div>

@@ -81,5 +81,8 @@ export default {
     },
     checkEmailExists: function(email) {
         return axios.get("/api/users/update/" + email);
+    },
+    createNotification: function(data) {
+        return axios.post("/api/notifications/create", data);
     }
 }

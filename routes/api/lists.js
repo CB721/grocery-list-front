@@ -25,6 +25,9 @@ router
     .put(controller.updateList);
 router
     .route("/user/previous")
-    .post(controller.addPreviousListToCurrent)
+    .post(controller.addPreviousListToCurrent);
+router
+    .route("/multiple/:userid/:otheruserid")
+    .get(controller.getSentLists);
 
 module.exports = router;
