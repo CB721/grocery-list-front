@@ -27,8 +27,10 @@ function Profile(props) {
 
     useEffect(() => {
         document.title = "G-List | Profile";
-        getUserStores();
-        getUserList();
+        if (props.user.length > 0) {
+            getUserStores();
+            getUserList();
+        }
     }, [props.user]);
     function notification(message) {
         toast(message, {

@@ -124,7 +124,11 @@ module.exports = {
         for (const column in update) {
             if (update[column] !== "null") {
                 // prevent injection and add column/value to query string
-                query += ` ${column} = ${sqlDB.escape(update[column])}, `
+                if (column === "last_visit") {
+                    query += `${column} = NOW(), `;
+                } else {
+                    query += ` ${column} = ${sqlDB.escape(update[column])}, `;
+                }
             } else if (column === "email") {
                 // prevent injection
                 if (update[column].indexOf("$") > -1) {
@@ -201,7 +205,7 @@ module.exports = {
             });
         function sendCompleteUser() {
             // only select certain columns, hashed password will not be used by the front end
-            const columns = "first_name, last_name, email, last_visit, joined, user_auth";
+            const columns = "id, first_name, last_name, email, last_visit, joined, user_auth";
             sqlDB
                 .query(`SELECT ${columns} FROM ${table} WHERE email = ${userEmail};`,
                 function(err, results) {
@@ -224,7 +228,15 @@ module.exports = {
                 } else {
                     if (results[0].length > 0) {
                         if (results[0][0].ip_address === ip) {
-                            return res.status(200).json(results[0]);
+                            sqlDB
+                                .query(`UPDATE ${table} SET last_visit = NOW() WHERE id = '${results[0][0].id}';`,
+                                function(err) {
+                                    if (err) {
+                                        return res.status(500).send(err);
+                                    } else {
+                                        return res.status(200).json(results[0]);
+                                    }
+                                })
                         } else {
                             return res.status(401).send("Different IP address");
                         }

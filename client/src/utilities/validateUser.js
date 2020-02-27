@@ -1,9 +1,9 @@
-import axios from "axios";
+const axios = require("axios");
 
 
-export default {
+module.exports =  {
     // if nothing is passed for the auth token, check localStorage
-    status: (auth, IP, remember = false) => {
+    status: function(auth, IP, remember = false) {
         return new Promise((resolve, reject) => {
             if (!auth) {
                 reject(false);

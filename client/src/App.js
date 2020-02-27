@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect, useHistory, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import { Container } from "shards-react";
+import { isIP } from "validator";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import CreateAccount from "./components/CreateAccount";
@@ -12,7 +13,7 @@ import { ToastContainer } from 'react-toastify';
 import "shards-ui/dist/css/shards.min.css";
 import API from "./utilities/api";
 import './App.scss';
-import validateUser from './utilities/validateUser';
+// import validateUser from './utilities/validateUser';
 
 function App(props) {
   const create = { name: "Join", link: "/join" };
@@ -22,49 +23,62 @@ function App(props) {
   const settings = { name: "Settings", link: "/settings" };
   const [navOptions, setNavOptions] = useState([create, signIn]);
   const [user, setUser] = useState([]);
+  const [isValid, setIsValid] = useState(false);
   const [IP, setIP] = useState("");
   const [notifications, setNotifications] = useState([]);
   const [error, setError] = useState("");
   const [currList, setCurrList] = useState([]);
   const [connections, setConnections] = useState([]);
-  // let history = useHistory();
 
   useEffect(() => {
-    // get user IP address to compare with DB
-    API.getIP()
-      .then(res => setIP(res.data))
-      .catch(err => console.log(err));
+    const storedIP = localStorage.getItem("IP");
+    if (isIP(storedIP)) {
+      setIP(storedIP);
+    } else {
+      getIP()
+        .then()
+        .catch();
+    }
   }, []);
   function userLogin(email, password, remember) {
     return new Promise((resolve, reject) => {
-      const userData = {
-        email,
-        password,
-        ip: IP
-      }
-      // reset error message
-      setError("");
-      API.userLogin(userData)
-        .then(res => {
-          setUser(res.data);
-          if (remember) {
-            localStorage.setItem("token", res.data[0].user_auth);
-          } else {
-            sessionStorage.setItem("token", res.data[0].user_auth)
+      getIP()
+        .then(response => {
+          const userData = {
+            email,
+            password,
+            ip: response
           }
-          resolve(true)
-          // window.location.href = "/profile";
-        })
-        .catch(err => {
-          // console.log(err.response);
-          setError(err.response.data);
-          reject(err);
+          // reset error message
+          setError("");
+          API.userLogin(userData)
+            .then(res => {
+              setUser(res.data);
+              console.log(res.data);
+              setIsValid(true);
+              // change side menu options
+              setNavOptions([profile, settings, signOut]);
+              // get notifications for user
+              getAllUserNotifications(res.data[0].id);
+              // get all connections for user
+              getConnectionsByID(res.data[0].id);
+              // if the user has clicked the remember me button
+              if (remember) {
+                localStorage.setItem("token", res.data[0].user_auth);
+              } else {
+                sessionStorage.setItem("token", res.data[0].user_auth)
+              }
+              resolve(true);
+            })
+            .catch(err => {
+              setError(err.response.data);
+              reject(err);
+            });
         });
-    });
+    })
+      .catch();
   }
-  // determine which page user is on in order to validate
-  useEffect(() => {
-    console.log(window.location.pathname);
+  function validateUser() {
     let token = localStorage.getItem("token");
     let remember = false;
     if (token && token.length > 60) {
@@ -72,83 +86,92 @@ function App(props) {
     } else if (sessionStorage.getItem("token")) {
       token = sessionStorage.getItem("token");
     } else {
-      token = " ";
+      return false;
     }
     // make sure the IP has been found before attempting to validate
-    API.getIP()
+    getIP()
       .then(res => {
-        setIP(res.data);
-        switch (window.location.pathname) {
-          case "/profile":
-            validateUser.status(user[0].user_auth || token, IP || res.data, remember)
-              // if they are validated, allow them to continue to page
-              .then((res) => {
-                setUser(res);
-                // change side menu options
-                setNavOptions([profile, settings, signOut]);
-                // get notifications for user
-                getAllUserNotifications(res[0].id);
-              })
-              .catch(() => {
-                setError("Not logged in");
-                // reset all tokens stored
-                localStorage.setItem("token", "");
-                sessionStorage.setItem("token", "");
-              });
-            break;
-          case "/settings":
-            validateUser.status(user[0].user_auth || token, IP || res.data, remember)
-              // if they are validated, allow them to continue to page
-              .then((res) => {
-                setUser(res);
-                // change side menu options
-                setNavOptions([profile, settings, signOut]);
-                // get notifications for user
-                getAllUserNotifications(res[0].id);
-                // get all connections for user
-                getConnectionsByID(res[0].id);
-              })
-              .catch(() => {
-                setError("Not logged in");
-                // reset all tokens stored
-                localStorage.setItem("token", "");
-                sessionStorage.setItem("token", "");
-              });
-            break;
-          default:
-            validateUser.status(user[0].user_auth || token, IP || res.data, remember)
-              // if they are validated, update content accordingly
-              .then((res) => {
-                setUser(res);
-                // change side menu options
-                setNavOptions([profile, settings, signOut]);
-                // get notifications for user
-                getAllUserNotifications(res[0].id);
-                // get all connections for user
-                getConnectionsByID(res[0].id);
-              })
-              // since they aren't on a page that requires user info, allow them to remain on current page
-              .catch(() => {
-                // reset all tokens stored
-                localStorage.setItem("token", "");
-                sessionStorage.setItem("token", "");
-              });
-            return;
-        }
+        getStatus(token, res, remember)
+          .then(response => {
+            if (response) {
+              return true;
+            } else {
+              return false;
+            }
+          })
       })
-      .catch(err => {
-        console.log(err);
-        if (remember) {
-          // reset all tokens stored
-          localStorage.setItem("token", "");
-          sessionStorage.setItem("token", "");
-          // reset user info
-          setUser([]);
-          // present user with instructions
-          setError("Trouble determining your IP address.  Please try logging in again.");
-        }
-      });
-  }, [window.location.pathname]);
+      .catch(() => { return false });
+  }
+  function getIP() {
+    return new Promise(function (resolve, reject) {
+      // check if an IP is already stored
+      let storedIP = localStorage.getItem("IP");
+      // if it is a valid IP address, return the value and avoid the API call
+      if (isIP(storedIP)) {
+        resolve(storedIP);
+      } else if (isIP(IP)) {
+        resolve(IP);
+      } else {
+        // get user IP address to compare with DB
+        API.getIP()
+          .then(res => {
+            setIP(res.data);
+            localStorage.setItem("IP", res.data);
+            resolve(res.data);
+          })
+          .catch(err => {
+            console.log(err.response.data);
+            reject();
+          });
+      }
+    })
+  }
+  function getStatus(token, ip, remember) {
+    return new Promise(function (resolve, reject) {
+      // move this function from external file to this file
+      API.validateUser(token || user[0].user_auth, ip)
+        .then(res => {
+          setUser(res.data);
+          console.log(res.data);
+          setIsValid(true);
+          // change side menu options
+          setNavOptions([profile, settings, signOut]);
+          // get notifications for user
+          getAllUserNotifications(res.data[0].id);
+          // get all connections for user
+          getConnectionsByID(res.data[0].id);
+          // if user has said to remember them, no need to check the time difference
+          if (remember) {
+            resolve(true);
+          } else {
+            // check time difference returned from db
+            // should look like "-00:54:41"
+            // grab second element from spliting the string and convert to a number
+            const timeDifference = parseInt(res.data.time_difference.split(":")[1]);
+            // check if it has been more than 30 minutes
+            if (timeDifference <= 30) {
+              resolve(true);
+            } else {
+              reject(false);
+            }
+          }
+        })
+        // if there is an error from the db, the user token does not match
+        .catch(err => {
+          console.log(err.response.data);
+          // remove what is store in local storate
+          localStorage.removeItem("token");
+          sessionStorage.removeItem("token");
+          // reset navbar
+          setNavOptions([create, signIn]);
+          // reset connections
+          setConnections([]);
+          // reset notifications
+          setNotifications([]);
+          reject(false);
+        });
+    });
+  }
   function getAllUserNotifications(id) {
     API.getNotificationsByUser(id)
       .then(res => {
@@ -185,26 +208,11 @@ function App(props) {
       .catch(err => setError(err));
   }
   function updateUser(data) {
-    return new Promise(function(resolve, reject) {
+    return new Promise(function (resolve, reject) {
       API.updateUser(user[0].id, data)
         .then(res => {
           if (res.data.affectedRows === 1) {
-            validateUser.status(user[0].user_auth || localStorage.getItem("token") || sessionStorage.getItem("token"), IP, true)
-              .then(res => {
-                setUser(res);
-                // change side menu options
-                setNavOptions([profile, settings, signOut]);
-                // get notifications for user
-                getAllUserNotifications(res[0].id);
-                resolve();
-              })
-              .catch(() => {
-                reject("Authentication error");
-                setError("Authentication error");
-                // reset all tokens stored
-                localStorage.setItem("token", "");
-                sessionStorage.setItem("token", "");
-              })
+            resolve();
           }
         })
         .catch(err => {
@@ -242,32 +250,36 @@ function App(props) {
             }
           />
           <Route exact path="/join" component={CreateAccount} />
-          {user.length === 1 ? (
-            <Route
-              exact path="/profile"
-              render={props =>
+          <Route
+            exact path="/profile"
+            render={props => (
+              (isValid && user.length === 1) || validateUser() ? (
                 <Profile
                   {...props}
                   user={user}
                   setCurrList={setCurrList}
                   getListByID={getListByID}
                 />
-              }
-            />
-          ) : (<Route><Redirect to="/login" /></Route>)}
-          {user.length === 1 ? (
-            <Route
-              exact path="/settings"
-              render={props =>
+              ) : (
+                  <Redirect to="/login" />
+                )
+            )}
+          />
+          <Route
+            exact path="/settings"
+            render={props => (
+              (isValid && user.length === 1) || validateUser() ? (
                 <Settings
                   {...props}
                   user={user}
                   connections={connections}
                   updateUser={updateUser}
                 />
-              }
-            />
-          ) : (<Route><Redirect to="/login" /></Route>)}
+              ) : (
+                  <Redirect to="/login" />
+                )
+            )}
+          />
           <Route path="*">
             <Redirect to="/" />
           </Route>
