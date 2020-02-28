@@ -3,6 +3,7 @@ import List from "../List";
 import Flip from "react-reveal/Flip";
 import Button from "../Button";
 import Modal from "../Modal";
+import LoadingSpinner from "../LoadingSpinner";
 import "./style.scss";
 
 function ViewList(props) {
@@ -191,36 +192,36 @@ function ViewList(props) {
             {currentView === "current" ? (
                 <div>
                     {list.length > 0 ? (
-                        <select
-                            className="store-filter"
-                            defaultValue="All"
-                            onChange={(event) => viewByStore(event)}
-                        >
-                            {stores.map((store, index) => (
-                                <option value={store} key={index}>
-                                    {store}
-                                </option>
-                            ))}
-                        </select>
-                    ) : (<div />)}
-                    <Flip bottom cascade>
-                        <List
-                            viewList={true}
-                            list={displayList}
-                            toggleClass={toggleClass}
-                            changePriority={changePriority}
-                            updateItemPosition={props.updateItemPosition}
-                        />
-                    </Flip>
-                    {/* <div style={{ marginBottom: "25px" }}> */}
-                    {showComplete && list.length > 0 ? (
-                        <Button
-                            text="Mark Complete"
-                            class="white-button"
-                            action={() => props.markListComplete(list[0].list_id)}
-                        />
-                    ) : (<div />)}
-                    {/* </div> */}
+                        <div>
+                            <select
+                                className="store-filter"
+                                defaultValue="All"
+                                onChange={(event) => viewByStore(event)}
+                            >
+                                {stores.map((store, index) => (
+                                    <option value={store} key={index}>
+                                        {store}
+                                    </option>
+                                ))}
+                            </select>
+                            <Flip bottom cascade>
+                                <List
+                                    viewList={true}
+                                    list={displayList}
+                                    toggleClass={toggleClass}
+                                    changePriority={changePriority}
+                                    updateItemPosition={props.updateItemPosition}
+                                />
+                            </Flip>
+                            {showComplete && list.length > 0 ? (
+                                <Button
+                                    text="Mark Complete"
+                                    class="white-button"
+                                    action={() => props.markListComplete(list[0].list_id)}
+                                />
+                            ) : (<div />)}
+                        </div>
+                    ) : (<LoadingSpinner />)}
                 </div>
             ) : (
                     <div>
