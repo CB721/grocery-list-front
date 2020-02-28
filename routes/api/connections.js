@@ -9,5 +9,8 @@ router
 router
     .route("/new")
     .post(controller.connectionRequest);
+router
+    .route("/cancel/:id")
+    .delete(controller.cancelConnectionRequest);
 
 module.exports = router;

@@ -127,5 +127,18 @@ module.exports = {
                         }
                     });
         }
+    },
+    cancelConnectionRequest: function(req, res) {
+        // prevent injections
+        const ID = sqlDB.escape(req.params.id);
+        sqlDB
+            .query(`DELETE FROM ${connectTable} WHERE id = ${ID};`,
+            function(err, results) {
+                if (err) {
+                    return res.status(500).send(err);
+                } else if (results.affectedRows === 1) {
+                    return res.status(200).send("Connection request cancelled");
+                }
+            })
     }
 }

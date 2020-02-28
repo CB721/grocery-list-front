@@ -278,6 +278,13 @@ function Settings(props) {
             })
             .catch(err => console.log(err));
     }
+    function cancelConnectionRequest(connection) {
+        props.cancelConnectionRequest(connection.id)
+            .then(res => {
+                toastNotification(res);
+            })
+            .catch(err => console.log(err));
+    }
     return (
         <div>
             {modal ? (
@@ -512,7 +519,10 @@ function Settings(props) {
                                                 </div>
                                                 <div className="option-button">
                                                     <div className="delete-user">
-                                                        <Trash className="icon" />
+                                                        <Trash
+                                                            className="icon"
+                                                            onClick={() => cancelConnectionRequest(connection)}
+                                                        />
                                                     </div>
                                                     <div className="option-tooltip">
                                                         Cancel Request
