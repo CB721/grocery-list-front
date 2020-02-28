@@ -18,6 +18,12 @@
             color: $white;
         }
     }
+    &.show {
+        display: contents;
+    }
+    &.hide {
+        display: none;
+    }
     .inner-circle {
         height: 16px;
         width: 496px;
@@ -30,7 +36,7 @@
         background: -moz-linear-gradient(90deg, rgba(60,145,230,1) 0%, rgba(249,252,255,0) 0%);
         background: -webkit-linear-gradient(90deg, rgba(60,145,230,1) 0%, rgba(249,252,255,0) 0%);
         background: linear-gradient(90deg, rgba(60,145,230,1) 0%, rgba(249,252,255,0) 0%);
-        transition: 0.1s;
+        transition: 0.3s;
         animation: flash-text 2.2s linear infinite;
         &.s1 {
             background: -moz-linear-gradient(90deg, rgba(60,145,230,1) 0%, rgba(249,252,255,0) 1%);

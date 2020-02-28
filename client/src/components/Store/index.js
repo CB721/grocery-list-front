@@ -5,6 +5,8 @@ import Form from "../Form";
 import Error from "../Error";
 import Flip from 'react-reveal/Flip';
 import API from "../../utilities/api";
+import LoadingBar from "../LoadingBar";
+import Modal from "../Modal";
 import "./style.scss";
 
 function Store(props) {
@@ -18,7 +20,16 @@ function Store(props) {
     const [storeName, setStoreName] = useState("");
     const inputs = [{ "Store Address": storeAddress }, { "Store Name": storeName }];
     const [disableFormButton, setDisableFormButton] = useState(true);
+    const [progress, setProgress] = useState(0);
+    const [showProgress, setShowProgress] = useState("hide");
+    const [modal, setModal] = useState(false);
 
+    const config = {
+        onUploadProgress: progressEvent => {
+            const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+            setProgress(percentCompleted);
+        }
+    };
     useEffect(() => {
         switch (currentView) {
             case "view":
@@ -47,8 +58,7 @@ function Store(props) {
     }
     function handleInputChange(event) {
         event.preventDefault();
-        let value = event.target.value;
-        let name = event.target.name;
+        const { value, name } = event.target;
         switch (name) {
             case "Store Address":
                 setStoreAddress(value);
@@ -76,6 +86,16 @@ function Store(props) {
         } else {
             setManualStore(false);
         }
+        // if there is text in the search bar, show the loading bar
+        if (value.length > 0) {
+            setShowProgress("show");
+        } else {
+            setShowProgress("hide");
+        }
+        // if the text goes below the threshold for searching, reset progress bar
+        if (value.length <= 4) {
+            setProgress(value.length * 25);
+        }
     }
     function validateCustomStore() {
         if (storeAddress.length < 1) {
@@ -92,7 +112,7 @@ function Store(props) {
         const data = {
             search,
         }
-        API.searchPlaces(data)
+        API.searchPlaces(data, config)
             .then(res => {
                 setResults(res.data);
             })
@@ -106,25 +126,33 @@ function Store(props) {
             address: store.structured_formatting.secondary_text,
             user_id: props.userID
         }
-        API.saveStore(storeData)
+        setProgress(0);
+        setModal(true);
+        API.saveStore(storeData, config)
             .then(res => {
                 if (res.data.affectedRows > 0) {
                     // notify user of sucessfully added store
                     props.refreshStores();
                     setCurrentView("view");
-                    props.notification(`${storeData.name} added to your stores`);
+                    setModal(false);
+                    setProgress(0);
+                    props.notification(`${storeData.name} saved to your stores`);
                 }
             })
-            .catch(err => console.log(err));
+            .catch(err => console.log(err.response.data));
     }
     function removeStore(event, id) {
         event.preventDefault();
-        API.deleteUserStore(id)
+        setProgress(0);
+        setModal(true);
+        API.deleteUserStore(id, config)
             .then(res => {
                 if (res.data.affectedRows > 0) {
                     // notify user of successfully removed store
                     props.refreshStores();
                     props.notification("Store removed");
+                    setModal(false);
+                    setProgress(0);
                 }
             })
             .catch(err => console.log(err));
@@ -157,6 +185,15 @@ function Store(props) {
     }
     return (
         <div className="store">
+            {modal ? (
+                <Modal
+                    open={modal}
+                    content={<LoadingBar
+                        progress={progress}
+                        show={"show"}
+                    />}
+                />
+            ) : (<div />)}
             <div className="store-options">
                 <div
                     className={view}
@@ -231,7 +268,10 @@ function Store(props) {
                                     ))}
                                 </div>
                             </Flip>
-                        ) : (<div />)}
+                        ) : (<LoadingBar
+                            progress={progress}
+                            show={showProgress}
+                        />)}
                     </div>
                 )}
             {currentView === "add" && manualStore ? (

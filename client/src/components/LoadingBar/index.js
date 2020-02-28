@@ -1,9 +1,9 @@
 import React from "react";
 import "./style.scss";
 
-function Loading(props) {
+function LoadingBar(props) {
     return (
-        <div className={`loading-spinner ${props.color} ${props.size}`}>
+        <div className={`loading-spinner ${props.show || 'show'}`}>
             <div className={`inner-circle s${props.progress}`}>
                 {props.progress}%
             </div>
@@ -11,4 +11,4 @@ function Loading(props) {
     )
 }
 
-export default Loading;
+export default LoadingBar;

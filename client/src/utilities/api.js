@@ -1,94 +1,94 @@
 import axios from "axios";
 
 export default {
-    searchPlaces: function(data) {
-        return axios.post("/api/places/", data);
+    searchPlaces: function (data, config) {
+        return axios.post("/api/places/", data, config);
     },
-    saveStore: function(data) {
-        return axios.post("/api/stores/add", data);
+    saveStore: function (data, config) {
+        return axios.post("/api/stores/add", data, config);
     },
-    getUserStores: function(id) {
+    getUserStores: function (id) {
         return axios.get("/api/stores/user/" + id);
     },
-    deleteUserStore: function(id) {
-        return axios.delete("/api/stores/user/delete/" + id);
+    deleteUserStore: function (id, config) {
+        return axios.delete("/api/stores/user/delete/" + id, config);
     },
-    getUserList: function(id) {
+    getUserList: function (id) {
         return axios.get("/api/lists/user/" + id);
     },
-    addItem: function(data) {
-        return axios.post("/api/lists/add", data);
+    addItem: function (data, config) {
+        return axios.post("/api/lists/add", data, config);
     },
-    updateItem: function(id, data) {
-        return axios.put("/api/lists/user/item/" + id, data);
+    updateItem: function (id, data, config) {
+        return axios.put("/api/lists/user/item/" + id, data, config);
     },
-    getListByID: function(id, userID) {
+    getListByID: function (id, userID) {
         return axios.get(`/api/lists/user/full/single/${id}/${userID}`);
     },
-    getListsByUserID: function(data) {
-        return axios.post("/api/lists/user/full/all", data);
+    getListsByUserID: function (data, config) {
+        return axios.post("/api/lists/user/full/all", data, config);
     },
-    updateList: function(data) {
-        return axios.put("/api/lists/user/info/update", data);
+    updateList: function (data, config) {
+        return axios.put("/api/lists/user/info/update", data, config);
     },
-    addPreviousListToCurrent: function(data) {
-        return axios.post("/api/lists/user/previous", data);
+    addPreviousListToCurrent: function (data, config) {
+        return axios.post("/api/lists/user/previous", data, config);
     },
-    removeItem: function(id) {
-        return axios.delete("/api/lists/user/item/remove/" + id);
+    removeItem: function (id, config) {
+        return axios.delete("/api/lists/user/item/remove/" + id, config);
     },
-    getStoreCount: function() {
+    getStoreCount: function () {
         return axios.get("/api/stores/count");
     },
-    deleteList: function(id, userID) {
-        return axios.delete(`/api/lists/user/full/single/${id}/${userID}/start/end`);
+    deleteList: function (id, userID, config) {
+        return axios.delete(`/api/lists/user/full/single/${id}/${userID}/start/end`, config);
     },
-    createUser: function(data) {
-        return axios.post("/api/users/create", data);
+    createUser: function (data, config) {
+        return axios.post("/api/users/create", data, config);
     },
-    userLogin: function(data) {
-        return axios.post("/api/users/login", data);
+    userLogin: function (data, config) {
+        return axios.post("/api/users/login", data, config);
     },
-    validateUser: function(token, ip) {
+    validateUser: function (token, ip) {
         return axios.get(`/api/users/verify/${token}/${ip}`);
     },
-    getIP: function() {
+    getIP: function () {
         return axios.get("https://api.ipify.org");
     },
-    getNotificationsByUser: function(id) {
+    getNotificationsByUser: function (id) {
         return axios.get("/api/notifications/" + id);
     },
-    deleteNotificationByID: function(id) {
-        return axios.delete("/api/notifications/single/" + id);
+    deleteNotificationByID: function (id, config) {
+        return axios.delete("/api/notifications/single/" + id, config);
     },
-    updateNotificationByID: function(id) {
-        return axios.put("/api/notifications/single/" + id);
+    updateNotificationByID: function (id, config) {
+        return axios.put("/api/notifications/single/" + id, config);
     },
-    getConnectionsByID: function(id) {
+    getConnectionsByID: function (id) {
         return axios.get("/api/connections/" + id);
     },
-    updateConnection: function(id) {
-        return axios.put("/api/connections/" + id);
+    updateConnection: function (id, config) {
+        return axios.put("/api/connections/" + id, config);
     },
-    removeConnection: function(id) {
-        return axios.delete("/api/connections/" + id);
+    removeConnection: function (id, config) {
+        return axios.delete("/api/connections/" + id, config);
     },
-    createConnection: function(data) {
-        return axios.post("/api/connections/new", data);
+    createConnection: function (data, config) {
+        return axios.post("/api/connections/new", data, config);
     },
-    updateUser: function(id, data) {
-        return axios.put("/api/users/update/" + id, data);
+    updateUser: function (id, data, config) {
+        return axios.put("/api/users/update/" + id, data, config);
     },
-    checkEmailExists: function(email) {
+    checkEmailExists: function (email) {
         return axios.get("/api/users/update/" + email);
     },
-    createNotification: function(data) {
-        return axios.post("/api/notifications/create", data);
+    createNotification: function (data, config) {
+        return axios.post("/api/notifications/create", data, config);
     },
-    getSentLists: function(user_id, other_user_id) {
+    getSentLists: function (user_id, other_user_id) {
         return axios.get(`/api/lists/multiple/${user_id}/${other_user_id}`);
     },
-    cancelConnectionRequest: function(id) {
-        return axios.delete("/api/connections/cancel/" + id);
+    cancelConnectionRequest: function (id, config) {
+        return axios.delete("/api/connections/cancel/" + id, config);
     }
 }

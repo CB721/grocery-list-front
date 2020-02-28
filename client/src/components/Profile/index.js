@@ -9,6 +9,8 @@ import API from "../../utilities/api";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { css } from 'glamor';
+import Modal from "../Modal";
+import LoadingBar from "../LoadingBar";
 import "./style.scss";
 
 function Profile(props) {
@@ -20,11 +22,16 @@ function Profile(props) {
     const [swipeTime, setSwipeTime] = useState(0);
     const [userStores, setUserStores] = useState([]);
     const [userList, setUserList] = useState([]);
-    const [listPage, setListPage] = useState({
-        start: -5,
-        end: 0
-    });
+    const [progress, setProgress] = useState(0);
+    const [modal, setModal] = useState(false);
 
+    const config = {
+        onUploadProgress: progressEvent => {
+            const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+            setProgress(percentCompleted);
+            console.log(percentCompleted);
+        }
+    };
     useEffect(() => {
         document.title = "G-List | Profile";
         if (props.user.length > 0) {
@@ -116,10 +123,14 @@ function Profile(props) {
             priority: item.priority,
             position
         }
-        API.addItem(listItem)
+        setProgress(0);
+        setModal(true);
+        API.addItem(listItem, config)
             .then(() => {
                 getUserList();
                 notification(`${listItem.name} added to list`);
+                setModal(false);
+                setProgress(0);
             })
             .catch(err => console.log(err));
     }
@@ -135,14 +146,20 @@ function Profile(props) {
             default:
                 return;
         }
-        API.updateItem(id, listItem)
+        setProgress(0);
+        setModal(true);
+        API.updateItem(id, listItem, config)
             .then(() => {
                 getUserList();
                 notification("Item updated!");
+                setModal(false);
+                setProgress(0);
             })
             .catch(err => console.log(err));
     }
     function updateItemPosition(items) {
+        setProgress(0);
+        setModal(true);
         const updateItems = [];
         for (let i = 0; i < items.length; i++) {
             if (items[i].id !== userList[i].id) {
@@ -157,7 +174,10 @@ function Profile(props) {
                 getUserList()
             } else {
                 API.updateItem(updateItems[i].id, { position: updateItems[i].position })
-                    .then()
+                    .then(() => {
+                        setModal(false);
+                        setProgress(0);
+                    })
                     .catch(err => console.log(err));
             }
         }
@@ -181,8 +201,14 @@ function Profile(props) {
             user_id: props.user[0].id,
             list_id: id
         }
-        API.updateList(listInfo)
-            .then(getUserList())
+        setProgress(0);
+        setModal(true);
+        API.updateList(listInfo, config)
+            .then(() => {
+                getUserList();
+                setModal(false);
+                setProgress(0);
+            })
             .catch(err => console.log(err));
     }
     function markListComplete(id) {
@@ -191,29 +217,41 @@ function Profile(props) {
             user_id: props.user[0].id,
             list_id: id
         }
-        API.updateList(listInfo)
+        setProgress(0);
+        setModal(true);
+        API.updateList(listInfo, config)
             .then(() => {
                 getUserList();
                 notification("List marked as complete");
+                setModal(false);
+                setProgress(0);
             })
             .catch(err => console.log(err));
     }
     function deleteItem(id) {
-        API.removeItem(id)
+        setProgress(0);
+        setModal(true);
+        API.removeItem(id, config)
             .then(res => {
                 if (res.data.affectedRows > 0) {
                     getUserList();
                     notification("Item removed from list");
+                    setModal(false);
+                    setProgress(0);
                 }
             })
             .catch(err => console.log(err));
     }
     function deleteList(id) {
         return new Promise(function (resolve, reject) {
-            API.deleteList(id, props.user[0].id)
+            setProgress(0);
+            setModal(true);
+            API.deleteList(id, props.user[0].id, config)
                 .then(res => {
                     notification("List deleted");
                     resolve(res.data);
+                    setModal(false);
+                    setProgress(0);
                 })
                 .catch(err => reject(err));
         });
@@ -223,10 +261,14 @@ function Profile(props) {
             list_id,
             user_id: props.user[0].id
         }
-        API.addPreviousListToCurrent(addList)
+        setProgress(0);
+        setModal(true);
+        API.addPreviousListToCurrent(addList, config)
             .then(() => {
                 getUserList();
                 notification("Previous list added to your current list");
+                setModal(false);
+                setProgress(0);
             })
             .catch(err => console.log(err));
     }
@@ -296,6 +338,15 @@ function Profile(props) {
     // }
     return (
         <div className="profile">
+            {modal ? (
+                <Modal
+                    open={modal}
+                    content={<LoadingBar
+                        progress={progress}
+                        show={"show"}
+                    />}
+                />
+            ) : (<div />)}
             <Space />
             <Row>
                 <Col>

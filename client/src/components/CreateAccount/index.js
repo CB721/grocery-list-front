@@ -4,8 +4,10 @@ import { isEmail, isByteLength, isEmpty } from 'validator';
 import { Row, Col } from "shards-react";
 import Form from "../Form";
 import Space from "../DivSpace";
-import "./style.scss";
+import Modal from "../Modal";
+import LoadingBar from "../LoadingBar";
 import API from '../../utilities/api';
+import "./style.scss";
 
 function CreateAccount(props) {
     useEffect(() => {
@@ -23,6 +25,15 @@ function CreateAccount(props) {
     ];
     const [disable, setDisabled] = useState(true);
     const [error, setError] = useState("");
+    const [progress, setProgress] = useState(0);
+    const [modal, setModal] = useState(false);
+
+    const config = {
+        onUploadProgress: progressEvent => {
+            const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+            setProgress(percentCompleted);
+        }
+    };
 
     function handleInputChange(event) {
         let value = event.target.value.trim();
@@ -95,16 +106,29 @@ function CreateAccount(props) {
             email,
             password
         }
-        API.createUser(user)
+        setProgress(0);
+        setModal(true);
+        API.createUser(user, config)
             .then(res => {
                 if (res.data.affectedRows > 0) {
+                    setModal(false);
                     history.push("/login");
+                    setProgress(0);
                 }
             })
             .catch(err => console.log(err))
     }
     return (
         <div className="create-account">
+            {modal ? (
+                <Modal
+                    open={modal}
+                    content={<LoadingBar
+                        progress={progress}
+                        show={"show"}
+                    />}
+                />
+            ) : (<div />)}
             <Space />
             <Row>
                 <Col>

@@ -12,7 +12,7 @@ import Space from "../DivSpace";
 import Button from "../Button";
 import Modal from "../Modal";
 import List from "../List";
-import Loading from "../Loading";
+import LoadingBar from "../LoadingBar";
 import "./style.scss";
 
 function Settings(props) {
@@ -298,7 +298,6 @@ function Settings(props) {
                         viewList={false}
                         list={modalList}
                         action={viewList ? sendListToUser : addItemToCurrentList}
-                        // action={sendListToUser}
                         hidetrash={"hide-trash"}
                     />}
                 />
@@ -473,10 +472,7 @@ function Settings(props) {
                                             </div>
                                         ))}
                                     </div>
-                                ) : (<Loading
-                                    progress={99}
-                                />)}
-                                {/* ) : (<div className="connet-users-row">
+                                ) : (<div className="connet-users-row">
                                     <input
                                         type="email"
                                         value={connectEmail}
@@ -489,7 +485,7 @@ function Settings(props) {
                                         text="Send Connection Request"
                                         class="blue-button"
                                     />
-                                </div>)} */}
+                                </div>)}
                             </div>
                         ) : (<div className="connect-users-section">
                             <div className="connet-users-row">
