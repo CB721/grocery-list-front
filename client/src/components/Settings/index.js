@@ -12,6 +12,7 @@ import Space from "../DivSpace";
 import Button from "../Button";
 import Modal from "../Modal";
 import List from "../List";
+import Loading from "../Loading";
 import "./style.scss";
 
 function Settings(props) {
@@ -423,7 +424,8 @@ function Settings(props) {
                         </div>
                         {connectTab === "current" ? (
                             <div className="connect-users-section">
-                                {acceptedConnections.length > 0 ? (
+                            {/* change to 0 */}
+                                {acceptedConnections.length > 10 ? (
                                     <div>
                                         {acceptedConnections.map(connection => (
                                             <div
@@ -471,7 +473,10 @@ function Settings(props) {
                                             </div>
                                         ))}
                                     </div>
-                                ) : (<div className="connet-users-row">
+                                ) : (<Loading
+                                    progress={99}
+                                />)}
+                                {/* ) : (<div className="connet-users-row">
                                     <input
                                         type="email"
                                         value={connectEmail}
@@ -484,7 +489,7 @@ function Settings(props) {
                                         text="Send Connection Request"
                                         class="blue-button"
                                     />
-                                </div>)}
+                                </div>)} */}
                             </div>
                         ) : (<div className="connect-users-section">
                             <div className="connet-users-row">
