@@ -1,9 +1,8 @@
 @import "../../App.scss";
 
 .loader {
-    position: absolute;
-    top: 50%;
-    left: 50%;
+    position: relative;
+    margin: 15% 50%;
     transform: translate(-50%, -50%);
     width: 200px;
     height: 200px;
@@ -30,8 +29,8 @@
             bottom: 30px;
             box-shadow: 0 0 10px $white;
             border-radius: 50%;
-            border-right: 2px solid $black;
-            border-bottom: 2px solid $black;
+            border-right: 2px solid rgb(214, 41, 194);
+            border-bottom: 2px solid rgb(214, 41, 194);
             border-left: 2px solid rgba(255, 255, 255, 0);
             border-top: 2px solid rgba(255, 255, 255, 0);
             animation: animate 2s linear reverse infinite;
@@ -71,12 +70,12 @@
 .loader .face.face2 .circle {
     transform: rotate(-45deg);
     &::before {
-        background: $black;
-        box-shadow: 0 0 20px $black,
-                    0 0 40px $black,
-                    0 0 60px $black,
-                    0 0 80px $black,
-                    0 0 190px $black,
+        background: rgb(214, 41, 194);
+        box-shadow: 0 0 20px rgb(214, 41, 194),
+                    0 0 40px rgb(214, 41, 194),
+                    0 0 60px rgb(214, 41, 194),
+                    0 0 80px rgb(214, 41, 194),
+                    0 0 100px rgb(214, 41, 194),
                     0 0 5px rgba(255, 255, 0, 0.1);
     }
 }
@@ -86,5 +85,10 @@
     }
     100% {
         transform: rotate(360deg);
+    }
+}
+@media only screen and (max-width: 500px) {
+    .loader {
+        margin: 40% 50%;
     }
 }

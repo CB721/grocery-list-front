@@ -191,7 +191,7 @@ function ViewList(props) {
             ) : (<div />)}
             {currentView === "current" ? (
                 <div>
-                    {list.length > 0 ? (
+                    {list.length > 100 ? (
                         <div>
                             <select
                                 className="store-filter"
