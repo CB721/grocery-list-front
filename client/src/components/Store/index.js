@@ -7,6 +7,7 @@ import Flip from 'react-reveal/Flip';
 import API from "../../utilities/api";
 import LoadingBar from "../LoadingBar";
 import Modal from "../Modal";
+import LoadingSpinner from "../LoadingSpinner";
 import "./style.scss";
 
 function Store(props) {
@@ -212,22 +213,26 @@ function Store(props) {
             </div>
             {currentView === "view" ? (
                 <div className="list">
-                    {props.stores.map((store, index) => (
-                        <div
-                            className="list-item"
-                            key={index}
-                        >
-                            <div className="store-li-col left">
-                                {store.name}
-                            </div>
-                            <div className="store-li-col right">
-                                <Trash
-                                    className="edit-icon"
-                                    onClick={(event) => removeStore(event, store.id)}
-                                />
-                            </div>
+                    {props.stores.length > 0 ? (
+                        <div>
+                            {props.stores.map((store, index) => (
+                                <div
+                                    className="list-item"
+                                    key={index}
+                                >
+                                    <div className="store-li-col left">
+                                        {store.name}
+                                    </div>
+                                    <div className="store-li-col right">
+                                        <Trash
+                                            className="edit-icon"
+                                            onClick={(event) => removeStore(event, store.id)}
+                                        />
+                                    </div>
+                                </div>
+                            ))}
                         </div>
-                    ))}
+                    ) : (<LoadingSpinner />)}
                 </div>
             ) : (
                     <div className="store-search">

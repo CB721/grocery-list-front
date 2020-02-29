@@ -35,14 +35,8 @@
             .right {
                 transition: 0.3s;
                 .edit-icon {
-                    height: 20px;
                     width: 20px;
                     fill: $white;
-                }
-                &:hover {
-                    .edit-icon {
-                        fill: $main-blue;
-                    }
                 }
             }
         }
