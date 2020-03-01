@@ -3,6 +3,15 @@ const { User } = require("../mongoose_models");
 const connectTable = "uzzdv3povs4xqnxc.connections";
 const notificationsTable = "uzzdv3povs4xqnxc.notifications";
 const { isEmail } = require("validator");
+const nodemailer = require('nodemailer');
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'invite.glist@gmail.com',
+        pass: process.env.NODEMAILER
+    }
+});
+const invite = require("../templates/invite");
 
 module.exports = {
     getUserConnections: function (req, res) {
@@ -77,8 +86,30 @@ module.exports = {
                     // if it does, get user id of other user
                     checkExistConnection(response[0]._id);
                 } else {
-                    // if it does not, send email to person - configure nodemailer for this
-                    return res.status(404).send("User does not exist");
+                    // get invite template
+                    let template = invite();
+                    // replace username with name from request
+                    template = template.replace("{{username}}", request.username);
+                    // set up mail options
+                    const mailOptions = {
+                        from: 'invite.glist@gmail.com', // sender address
+                        to: email, // list of receivers
+                        subject: `${request.username} has inivited you to try G-List!`, // Subject line
+                        html: template,// plain text body,
+                        priority: "normal"
+                    };
+                    // send mail to specified address
+                    transporter.sendMail(mailOptions, function (err, info) {
+                        if (err)
+                            return res.status(503).send(err);
+                        else
+                            if (info.rejected.length > 0) {
+                                return res.status(403).send("Email blocked");
+                            } else {
+                                // create user
+                                return res.status(200).send(info);
+                            }
+                    });
                 }
             })
             .catch(err => res.status(500).send(err));
@@ -128,17 +159,17 @@ module.exports = {
                     });
         }
     },
-    cancelConnectionRequest: function(req, res) {
+    cancelConnectionRequest: function (req, res) {
         // prevent injections
         const ID = sqlDB.escape(req.params.id);
         sqlDB
             .query(`DELETE FROM ${connectTable} WHERE id = ${ID};`,
-            function(err, results) {
-                if (err) {
-                    return res.status(500).send(err);
-                } else if (results.affectedRows === 1) {
-                    return res.status(200).send("Connection request cancelled");
-                }
-            })
+                function (err, results) {
+                    if (err) {
+                        return res.status(500).send(err);
+                    } else if (results.affectedRows === 1) {
+                        return res.status(200).send("Connection request cancelled");
+                    }
+                })
     }
 }
