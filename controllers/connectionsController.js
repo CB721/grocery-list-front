@@ -12,6 +12,7 @@ const transporter = nodemailer.createTransport({
     }
 });
 const invite = require("../templates/invite");
+const crypto = require("crypto");
 
 module.exports = {
     getUserConnections: function (req, res) {
@@ -88,8 +89,12 @@ module.exports = {
                 } else {
                     // get invite template
                     let template = invite();
+                    // replace password with unique generated string
+                    template = template.replace("{{password}}", crypto.randomBytes(8).toString('hex'));
                     // replace username with name from request
                     template = template.replace("{{username}}", request.username);
+                    // replace email
+                    template = template.replace("{{email}}", request.email);
                     // set up mail options
                     const mailOptions = {
                         from: 'invite.glist@gmail.com', // sender address
@@ -106,7 +111,13 @@ module.exports = {
                             if (info.rejected.length > 0) {
                                 return res.status(403).send("Email blocked");
                             } else {
-                                // create user
+                                // change href to link to create account
+                                // add boolean column "created" for if they have signed up or not
+                                // create user in mongo
+                                // create user in sql
+                                // check if user has been "created" or not
+                                // if they have been created, redirect to login page
+                                // if not update user to be created with the user's first and last name
                                 return res.status(200).send(info);
                             }
                     });
