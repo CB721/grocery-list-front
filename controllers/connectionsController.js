@@ -2,6 +2,7 @@ const sqlDB = require("../sql_connection");
 const { User } = require("../mongoose_models");
 const connectTable = "uzzdv3povs4xqnxc.connections";
 const notificationsTable = "uzzdv3povs4xqnxc.notifications";
+const usersTable = "uzzdv3povs4xqnxc.users";
 const { isEmail } = require("validator");
 const nodemailer = require('nodemailer');
 const transporter = nodemailer.createTransport({
@@ -13,6 +14,7 @@ const transporter = nodemailer.createTransport({
 });
 const invite = require("../templates/invite");
 const crypto = require("crypto");
+const bcrypt = require("bcryptjs");
 
 module.exports = {
     getUserConnections: function (req, res) {
@@ -79,6 +81,8 @@ module.exports = {
             return res.status(406).send("Invalid email");
         }
         const ID = sqlDB.escape(request.id);
+        // create password for new user
+        const password = crypto.randomBytes(8).toString('hex');
         // check if email exists
         User
             .find({ email: email })
@@ -90,7 +94,7 @@ module.exports = {
                     // get invite template
                     let template = invite();
                     // replace password with unique generated string
-                    template = template.replace("{{password}}", crypto.randomBytes(8).toString('hex'));
+                    template = template.replace("{{password}}", password);
                     // replace username with name from request
                     template = template.replace("{{username}}", request.username);
                     // replace email
@@ -103,6 +107,7 @@ module.exports = {
                         html: template,// plain text body,
                         priority: "normal"
                     };
+                    createUserMongo(password);
                     // send mail to specified address
                     transporter.sendMail(mailOptions, function (err, info) {
                         if (err)
@@ -111,19 +116,63 @@ module.exports = {
                             if (info.rejected.length > 0) {
                                 return res.status(403).send("Email blocked");
                             } else {
-                                // change href to link to create account
-                                // add boolean column "created" for if they have signed up or not
-                                // create user in mongo
-                                // create user in sql
+                                createUserMongo();
                                 // check if user has been "created" or not
                                 // if they have been created, redirect to login page
                                 // if not update user to be created with the user's first and last name
-                                return res.status(200).send(info);
                             }
                     });
                 }
             })
             .catch(err => res.status(500).send(err));
+        // hash user password
+        let corbato = function (resistance) {
+            return new Promise(function (resolve, reject) {
+                bcrypt.genSalt(10, (err, salt) => {
+                    bcrypt.hash(resistance, salt, (err, hash) => {
+                        if (err) {
+                            return reject(err);
+                        } else {
+                            return resolve(hash);
+                        }
+                    });
+                });
+            })
+        }
+        // create user in mongo
+        function createUserMongo(pass) {
+            User
+                .create({ email: email })
+                .then(response => {
+                    // get id from mongo
+                    let id = response.id;
+                    corbato(pass)
+                        .then(res => {
+                            createUserSQL(res, id);
+                        })
+                        .catch(err => {
+                            return res.status(500).send(err);
+                        });
+                })
+                .catch(err => res.status(422).json(err));
+        }
+        // create user in sql
+        let createUserSQL = function (pass, identity) {
+            let columns = "(id, first_name, last_name, email, user_password, last_visit, joined)";
+            const id = sqlDB.escape(identity);
+            const password = sqlDB.escape(pass);
+            sqlDB
+                .query(`INSERT INTO ${usersTable} ${columns} VALUES(${id}, "Grocery", "List", '${email}', ${password}, NOW(), NOW());`,
+                    function (err, results) {
+                        if (err) {
+                            return res.status(422).send(err);
+                        } else if (results.affectedRows === 1) {
+                            // if a row has successfully been added to the table, create a connection between the newly created user and the existing user
+                            // we can skip the check because we know there isn't one
+                            createConnection(identity);
+                        }
+                    });
+        }
         // check if there is row where either the initial user or the requested user
         function checkExistConnection(requestedID) {
             sqlDB
