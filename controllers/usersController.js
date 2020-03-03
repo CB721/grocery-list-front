@@ -22,22 +22,52 @@ module.exports = {
                 .find({ email: newUser.email })
                 .then(response => {
                     if (response.length > 0) {
-                        return res.status(400).send("Email already exists");
+                        console.log(response);
+                        // check sql to see if this user has been created or not
+                        userIsCreated(response[0]._id);
                     }
                 })
                 .catch(err => console.log(err));
         }
-        // hash user password
-        let corbato = function (resistance, id) {
-            return new Promise(function (resolve, reject) {
-                resolve(
-                    bcrypt.genSalt(10, (err, salt) => {
-                        bcrypt.hash(resistance, salt, (err, hash) => {
-                            if (err) throw err;
-                            completeUser(hash, id);
-                        });
+        function userIsCreated(id) {
+            const ID = sqlDB.escape(id);
+            sqlDB
+                .query(`SELECT * FROM ${table} WHERE id = ${ID};`,
+                    function (err, results) {
+                        console.log(results)
+                        if (err) {
+                            return res.status(500).send(err);
+                            // if the user has already been completed
+                        } else if (results.created === 1) {
+                            return res.status(400).send("Email already exists");
+                        } else {
+                            // hash user password
+                            corbato()
+                                .then(hash => {
+                                    // update created user with new password and name
+
+                                })
+                                .catch(err => {
+                                    return res.status(500).send(err);
+                                });
+
+                            // login
+                            // if user isn't created, redirect them to create account page
+                        }
                     })
-                )
+        }
+        // hash user password
+        let corbato = function (resistance) {
+            return new Promise(function (resolve, reject) {
+                bcrypt.genSalt(10, (err, salt) => {
+                    bcrypt.hash(resistance, salt, (err, hash) => {
+                        if (err) {
+                            return reject(err);
+                        } else {
+                            return resolve(hash);
+                        }
+                    });
+                });
             })
         }
         if (newUser.email.indexOf("$") > -1) {
@@ -58,9 +88,11 @@ module.exports = {
                         return res.status(400).send("Complete all fields before continuing")
                     } else {
                         // password gets hashed and sent directly to sql
-                        corbato(newUser.password, id)
-                            .then()
-                            .catch(err => console.log(err));
+                        corbato(newUser.password)
+                            .then(hash => completeUser(hash, id))
+                            .catch(err => {
+                                return res.status(500).send(err);
+                            });
                     }
                 })
                 .catch(err => res.status(422).json(err));
@@ -208,45 +240,45 @@ module.exports = {
             const columns = "id, first_name, last_name, email, last_visit, joined, user_auth";
             sqlDB
                 .query(`SELECT ${columns} FROM ${table} WHERE email = ${userEmail};`,
-                function(err, results) {
-                    if (err) {
-                        return res.status(500).send(err);
-                    } else {
-                        return res.status(200).json(results);
-                    }
-                });
+                    function (err, results) {
+                        if (err) {
+                            return res.status(500).send(err);
+                        } else {
+                            return res.status(200).json(results);
+                        }
+                    });
         }
     },
-    verifyUser: function(req, res) {
+    verifyUser: function (req, res) {
         const token = sqlDB.escape(req.params.token);
         const ip = req.params.ip;
         sqlDB
             .query(`CALL verify_user(${token});`,
-            function(err, results) {
-                if (err) {
-                    return res.status(404).send(err);
-                } else {
-                    if (results[0].length > 0) {
-                        if (results[0][0].ip_address === ip) {
-                            sqlDB
-                                .query(`UPDATE ${table} SET last_visit = NOW() WHERE id = '${results[0][0].id}';`,
-                                function(err) {
-                                    if (err) {
-                                        return res.status(500).send(err);
-                                    } else {
-                                        return res.status(200).json(results[0]);
-                                    }
-                                })
-                        } else {
-                            return res.status(401).send("Different IP address");
-                        }
+                function (err, results) {
+                    if (err) {
+                        return res.status(404).send(err);
                     } else {
-                        return res.status(404).send("No user found");
+                        if (results[0].length > 0) {
+                            if (results[0][0].ip_address === ip) {
+                                sqlDB
+                                    .query(`UPDATE ${table} SET last_visit = NOW() WHERE id = '${results[0][0].id}';`,
+                                        function (err) {
+                                            if (err) {
+                                                return res.status(500).send(err);
+                                            } else {
+                                                return res.status(200).json(results[0]);
+                                            }
+                                        })
+                            } else {
+                                return res.status(401).send("Different IP address");
+                            }
+                        } else {
+                            return res.status(404).send("No user found");
+                        }
                     }
-                }
-            });
+                });
     },
-    checkEmailExists: function(req, res) {
+    checkEmailExists: function (req, res) {
         const email = req.params.id;
         // prevent injections
         if (email.indexOf("$") > -1 || !isEmail(email)) {

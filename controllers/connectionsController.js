@@ -107,7 +107,6 @@ module.exports = {
                         html: template,// plain text body,
                         priority: "normal"
                     };
-                    createUserMongo(password);
                     // send mail to specified address
                     transporter.sendMail(mailOptions, function (err, info) {
                         if (err)
@@ -116,8 +115,8 @@ module.exports = {
                             if (info.rejected.length > 0) {
                                 return res.status(403).send("Email blocked");
                             } else {
-                                createUserMongo();
-                                // check if user has been "created" or not
+                                createUserMongo(password);
+                                // check sql to see if user has been "created" or not
                                 // if they have been created, redirect to login page
                                 // if not update user to be created with the user's first and last name
                             }
@@ -145,7 +144,7 @@ module.exports = {
                 .create({ email: email })
                 .then(response => {
                     // get id from mongo
-                    let id = response.id;
+                    let id = response[0]._id;
                     corbato(pass)
                         .then(res => {
                             createUserSQL(res, id);
@@ -158,23 +157,24 @@ module.exports = {
         }
         // create user in sql
         let createUserSQL = function (pass, identity) {
-            let columns = "(id, first_name, last_name, email, user_password, last_visit, joined)";
+            let columns = "(id, first_name, last_name, email, user_password, last_visit, joined, created)";
             const id = sqlDB.escape(identity);
             const password = sqlDB.escape(pass);
             sqlDB
-                .query(`INSERT INTO ${usersTable} ${columns} VALUES(${id}, "Grocery", "List", '${email}', ${password}, NOW(), NOW());`,
+                .query(`INSERT INTO ${usersTable} ${columns} VALUES(${id}, "Grocery", "List", '${email}', ${password}, NOW(), NOW(), FALSE);`,
                     function (err, results) {
                         if (err) {
                             return res.status(422).send(err);
                         } else if (results.affectedRows === 1) {
                             // if a row has successfully been added to the table, create a connection between the newly created user and the existing user
-                            // we can skip the check because we know there isn't one
+                            // we can skip the check because we know there isn't one because a user was just created
                             createConnection(identity);
                         }
                     });
         }
         // check if there is row where either the initial user or the requested user
         function checkExistConnection(requestedID) {
+            // if an email exists in mongo, we can assume one was also created in SQL
             sqlDB
                 .query(`SELECT * FROM ${connectTable} WHERE (requestor_id = ${ID} AND requested_id = '${requestedID}') OR (requestor_id = '${requestedID}' AND requested_id = ${ID});`,
                     function (err, results) {
