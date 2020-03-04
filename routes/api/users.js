@@ -4,7 +4,7 @@ const controller = require("../../controllers/usersController");
 router
     .route("/create")
     .post(controller.createUser)
-    router
+router
     .route("/delete/:id")
     .delete(controller.deleteUser);
 router

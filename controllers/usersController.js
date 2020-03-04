@@ -25,6 +25,8 @@ module.exports = {
                         console.log(response);
                         // check sql to see if this user has been created or not
                         userIsCreated(response[0]._id);
+                    } else {
+                        createUserMongo();
                     }
                 })
                 .catch(err => console.log(err));
@@ -70,11 +72,9 @@ module.exports = {
                 });
             })
         }
-        if (newUser.email.indexOf("$") > -1) {
-            return res.status(406).send("Invalid email");
-        } else {
-            // create user in mongo
-            // only email is saved in mongo
+        // create user in mongo
+        // only email is saved in mongo
+        function createUserMongo() {
             User
                 .create({ email: newUser.email })
                 .then(response => {
@@ -206,7 +206,7 @@ module.exports = {
         sqlDB.query(`SELECT * FROM ${table} WHERE email = ${userEmail};`,
             function (err, results) {
                 if (err) {
-                    return res.status(404).send("Email not found");
+                    return res.status(500).send(err);
                 } else {
                     if (results.length > 0) {
                         bcrypt.compare(password, results[0].user_password)
