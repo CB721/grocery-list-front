@@ -17,7 +17,6 @@ function CreateList(props) {
 
     useEffect(() => {
         setList(props.list);
-        setShowAdd(false);
         if (props.list.length > 0) {
             setSavedListName(props.list[0].list_name || "");
         }
@@ -32,17 +31,9 @@ function CreateList(props) {
         if (newItem.length > 1) {
             setShowStores(true);
         } else {
-            setShowAdd(false);
             setShowStores(false);
         }
     }, [newItem]);
-    useEffect(() => {
-        if (storeSelect) {
-            setShowAdd(true);
-        } else {
-            setShowAdd(false);
-        }
-    }, [storeSelect]);
     function addStore(event) {
         event.preventDefault();
         setShowAdd(true);
@@ -61,18 +52,15 @@ function CreateList(props) {
             setShowAdd(false);
             setNewItem("");
             setPriority("Normal");
+            setShowStores(false);
             props.addItem(completeItem, list.length + 1);
             completeItem = [completeItem];
             setList(list => [...list, completeItem]);
         }
     }
-    // function saveList(event) {
-    //     event.preventDefault();
-    //     setPriority("Normal");
-    //     props.addItem();
-    // }
     function changePriority(event) {
         event.preventDefault();
+        setShowStores(true);
         setPriority(event.target.value);
     }
     function handleListName(event) {
@@ -93,24 +81,24 @@ function CreateList(props) {
             </div>
             {savedListName.length > 0 && list.length > 0 ? (
                 <div />
-            ) : (
-                    <div>
-                        <input
-                            type="text"
-                            className="form-input"
-                            value={listName}
-                            placeholder="Name your list"
-                            name={"list_name"}
-                            onChange={handleListName}
-                        />
-                        <Button
-                            text="Add List Name"
-                            class="white-button"
-                            disabled={listName.length < 1 ? true : false}
-                            action={() => props.addListName(list[0].list_id, listName)}
-                        />
-                    </div>
-                )}
+            ) : list.length > 0 && savedListName.length < 1 ? (
+                <div>
+                    <input
+                        type="text"
+                        className="form-input"
+                        value={listName}
+                        placeholder="Name your list"
+                        name={"list_name"}
+                        onChange={handleListName}
+                    />
+                    <Button
+                        text="Add List Name"
+                        class="white-button"
+                        disabled={listName.length < 1 ? true : false}
+                        action={() => props.addListName(list[0].list_id, listName)}
+                    />
+                </div>
+            ) : (<div />)}
             <input
                 type="text"
                 className="form-input"
@@ -119,26 +107,35 @@ function CreateList(props) {
                 onChange={handleInputChange}
                 name={"item"}
             />
-            <select
-                className="store-dropdown"
-                defaultValue={priority}
-                onChange={changePriority}
-            >
-                <option className="store-select-item" value="Low">
-                    Low
-                </option>
-                <option className="store-select-item" value="Normal">
-                    Normal
-                </option>
-                <option className="store-select-item" value="High">
-                    High
-                </option>
-            </select>
+            {newItem.length > 1 ? (
+                <select
+                    className="store-dropdown"
+                    defaultValue="select"
+                    onChange={changePriority}
+                >
+                    <option className="store-select-item" value="select" disabled={true}>
+                        Select A Priority Level
+                    </option>
+                    <option className="store-select-item" value="Low">
+                        Low
+                    </option>
+                    <option className="store-select-item" value="Normal">
+                        Normal
+                    </option>
+                    <option className="store-select-item" value="High">
+                        High
+                    </option>
+                </select>
+            ) : (<div />)}
             {showStores && props.stores.length > 0 ? (
                 <select
                     className="store-dropdown"
                     onChange={addStore}
+                    defaultValue="select"
                 >
+                    <option className="store-select-item" value="select" disabled={true}>
+                        Select A Store
+                    </option>
                     {props.stores.map((store, index) => (
                         <option
                             key={store.id + index}
@@ -149,6 +146,10 @@ function CreateList(props) {
                         </option>
                     ))}
                 </select>
+            ) : showStores && props.stores.length < 1 ? (
+                <div className="create-add-store">
+                    Add A Store To Continue
+                </div>
             ) : (<div />)}
             {list.length > 0 ? (
                 <div>

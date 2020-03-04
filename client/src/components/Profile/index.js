@@ -127,10 +127,12 @@ function Profile(props) {
         setModal(true);
         API.addItem(listItem, config)
             .then(() => {
-                getUserList();
                 notification(`${listItem.name} added to list`);
                 setModal(false);
                 setProgress(0);
+                setTimeout(() => {
+                    getUserList();
+                }, 2000);
             })
             .catch(err => console.log(err));
     }

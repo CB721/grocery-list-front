@@ -68,7 +68,7 @@ module.exports = {
         // get current list
         sqlDB
             .query(`SELECT * FROM ${listTable} WHERE user_id = ${ID};`,
-                function (err, results) {
+                function (err) {
                     if (err) {
                         return res.status(422).send(err);
                     } else {
