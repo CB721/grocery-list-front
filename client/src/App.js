@@ -31,7 +31,7 @@ function App(props) {
   const [connections, setConnections] = useState([]);
 
   useEffect(() => {
-    const storedIP = localStorage.getItem("IP");
+    const storedIP = localStorage.getItem("IP") || " ";
     if (isIP(storedIP)) {
       setIP(storedIP);
     } else {
@@ -40,7 +40,7 @@ function App(props) {
         .catch();
     }
   }, []);
-  function userLogin(email, password, remember) {
+  function userLogin(email, password, remember, config) {
     return new Promise((resolve, reject) => {
       getIP()
         .then(response => {
@@ -51,7 +51,7 @@ function App(props) {
           }
           // reset error message
           setError("");
-          API.userLogin(userData)
+          API.userLogin(userData, config)
             .then(res => {
               setUser(res.data);
               console.log(res.data);
@@ -105,7 +105,7 @@ function App(props) {
   function getIP() {
     return new Promise(function (resolve, reject) {
       // check if an IP is already stored
-      let storedIP = localStorage.getItem("IP");
+      let storedIP = localStorage.getItem("IP") || " ";
       // if it is a valid IP address, return the value and avoid the API call
       if (isIP(storedIP)) {
         resolve(storedIP);
@@ -221,7 +221,7 @@ function App(props) {
     })
   }
   function removeConnection(id) {
-    return new Promise(function(resolve, reject) {
+    return new Promise(function (resolve, reject) {
       API.removeConnection(id)
         .then(res => {
           resolve(res.data);
@@ -233,7 +233,7 @@ function App(props) {
     })
   }
   function cancelConnectionRequest(id) {
-    return new Promise(function(resolve, reject) {
+    return new Promise(function (resolve, reject) {
       API.cancelConnectionRequest(id)
         .then(res => {
           resolve(res.data);
@@ -244,7 +244,15 @@ function App(props) {
         })
     })
   }
-  
+  function logout() {
+    return new Promise(function(resolve, reject) {
+      localStorage.clear();
+      sessionStorage.clear();
+      setNavOptions([create, signIn]);
+      resolve();
+    });
+  }
+
 
   return (
     <Router>
@@ -258,6 +266,7 @@ function App(props) {
           currList={currList}
           user={user}
           getListByID={getListByID}
+          logout={logout}
         />
         <Switch>
           <Route exact path="/" component={Home} />

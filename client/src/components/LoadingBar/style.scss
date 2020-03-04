@@ -5,7 +5,9 @@
     width: 500px;
     border: 2px solid $main-blue;
     border-radius: 8px;
-    position: relative;
+    position: absolute;
+    top: 25%;
+    left: 50%;
     @include shadow;
     @keyframes flash-text {
         0% {

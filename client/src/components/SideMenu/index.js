@@ -9,10 +9,23 @@ function SideMenu(props) {
     let history = useHistory();
     function goToSelectedPage(event, path) {
         event.preventDefault();
-        // redirect to selected page
-        history.push(path);
-        // close side menu
-        props.expandMenu(event);
+        if (path === "/signout") {
+            props.logout()
+                .then(() => {
+                    history.push(path);
+                    props.expandMenu(event);
+                })
+                .catch(err => {
+                    console.log(err);
+                    history.push(path);
+                    props.expandMenu(event);
+                });
+        } else {
+            // redirect to selected page
+            history.push(path);
+            // close side menu
+            props.expandMenu(event);
+        }
     }
     return (
         <Fade in={true}>

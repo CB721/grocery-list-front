@@ -4,11 +4,12 @@ import { isEmail, isByteLength } from 'validator';
 import { Row, Col } from "shards-react";
 import Form from "../Form";
 import Space from "../DivSpace";
+import LoadingBar from "../LoadingBar";
 import "./style.scss";
 
 function Login(props) {
     useEffect(() => {
-        document.title = document.title + " | Login";
+        document.title = "G-List | Login";
     }, []);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -17,6 +18,15 @@ function Login(props) {
     const [disable, setDisabled] = useState(true);
     const [error, setError] = useState("");
     const [remember, setRemember] = useState(false);
+    const [progress, setProgress] = useState(0);
+    const [showProgress, setShowProgress] = useState(false);
+    const config = {
+        onUploadProgress: progressEvent => {
+            const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+            setProgress(percentCompleted);
+        }
+    };
+
     let history = useHistory();
     useEffect(() => {
         setError(props.error);
@@ -75,15 +85,25 @@ function Login(props) {
         }
     }
     function handleFormSubmit() {
-        props.userLogin(email, password, remember)
+        setShowProgress(true);
+        setProgress(0);
+        props.userLogin(email, password, remember, config)
             .then(() => {
+                setShowProgress(false);
                 history.push("/profile");
+                setProgress(0);
             })
             .catch(err => console.log(err));
     }
     return (
         <div className="login">
             <Space />
+            {showProgress ? (
+                <LoadingBar
+                    progress={progress}
+                    show={"show"}
+                />
+            ) : (<div />)}
             <Row>
                 <Col>
                     <Form

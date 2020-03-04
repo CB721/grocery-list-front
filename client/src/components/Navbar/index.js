@@ -144,7 +144,11 @@ function Navbar(props) {
                             </div>
                             {menuExpand === "burger-menu change" ? (
                                 <Fade>
-                                    <SideMenu options={props.options} expandMenu={expandMenu} />
+                                    <SideMenu 
+                                    options={props.options} 
+                                    expandMenu={expandMenu} 
+                                    logout={props.logout}
+                                    />
                                 </Fade>
                             ) : (<div />)}
                         </div>
