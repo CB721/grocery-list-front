@@ -4,6 +4,7 @@ const checkPass = require("../validation/checkPass");
 const bcrypt = require("bcryptjs");
 const crypto = require("crypto");
 const table = "uzzdv3povs4xqnxc.users";
+const notificationTable = "uzzdv3povs4xqnxc.notifications";
 const { isEmail } = require("validator");
 
 module.exports = {
@@ -36,7 +37,6 @@ module.exports = {
             sqlDB
                 .query(`SELECT * FROM ${table} WHERE id = ${ID};`,
                     function (err, results) {
-                        console.log(results)
                         if (err) {
                             return res.status(500).send(err);
                             // if the user has already been completed
@@ -47,16 +47,32 @@ module.exports = {
                             corbato()
                                 .then(hash => {
                                     // update created user with new password and name
-
+                                    updateUser(hash, ID);
                                 })
                                 .catch(err => {
                                     return res.status(500).send(err);
                                 });
-
-                            // login
-                            // if user isn't created, redirect them to create account page
+                        }
+                    });
+        }
+        // update user info
+        function updateUser(pass, ID) {
+            if (newUser.first_name == undefined ||
+                newUser.last_name == undefined ||
+                pass == undefined) {
+                return res.status(400).send("Complete all fields before continuing");
+            } else {
+                sqlDB
+                    .query(`UPDATE ${table} SET first_name = ${newUser.first_name}, last_name = ${newUser.last_name}, password = ${pass}, last_visit = NOW(), joined = NOW() WHERE id = ${ID};`,
+                    function(err, results) {
+                        if (err) {
+                            return res.status(500).send(err);
+                        } else {
+                            newUserNotification(ID);
+                            return res.status(200).json(results);
                         }
                     })
+            }
         }
         // hash user password
         let corbato = function (resistance) {
@@ -111,9 +127,19 @@ module.exports = {
                         if (err) {
                             return res.status(422).send(err);
                         } else {
+                            newUserNotification(id)
                             return res.status(200).json(results);
                         }
                     });
+        }
+        function newUserNotification(ID) {
+            sqlDB
+                .query(`INSERT INTO ${notificationsTable} (content, date_added, user_id) VALUES("Welcome to G-List!", NOW(), ${ID});`,
+                function(err) {
+                    if (err) {
+                        console.log(err);
+                    }
+                })
         }
     },
     deleteUser: function (req, res) {
