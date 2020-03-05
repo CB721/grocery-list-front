@@ -1,7 +1,7 @@
 const sqlDB = require("../sql_connection");
-const listTable = "uzzdv3povs4xqnxc.lists";
-const listItemsTable = "uzzdv3povs4xqnxc.list_items";
-const notificationsTable = "uzzdv3povs4xqnxc.notifications";
+const listTable = "lists";
+const listItemsTable = "list_items";
+const notificationsTable = "notifications";
 
 module.exports = {
     addItem: function (req, res) {

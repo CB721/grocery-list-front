@@ -1,6 +1,6 @@
 const sqlDB = require("../sql_connection");
-const storeTable = "uzzdv3povs4xqnxc.stores";
-const userStoreTable = "uzzdv3povs4xqnxc.user_stores";
+const storeTable = "stores";
+const userStoreTable = "user_stores";
 const checkStore = require("../validation/checkStore");
 const { Store } = require("../mongoose_models");
 

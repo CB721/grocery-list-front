@@ -3,8 +3,8 @@ const { User } = require("../mongoose_models");
 const checkPass = require("../validation/checkPass");
 const bcrypt = require("bcryptjs");
 const crypto = require("crypto");
-const table = "uzzdv3povs4xqnxc.users";
-const notificationTable = "uzzdv3povs4xqnxc.notifications";
+const table = "users";
+const notificationTable = "notifications";
 const { isEmail } = require("validator");
 
 module.exports = {
@@ -64,14 +64,14 @@ module.exports = {
             } else {
                 sqlDB
                     .query(`UPDATE ${table} SET first_name = ${newUser.first_name}, last_name = ${newUser.last_name}, password = ${pass}, last_visit = NOW(), joined = NOW() WHERE id = ${ID};`,
-                    function(err, results) {
-                        if (err) {
-                            return res.status(500).send(err);
-                        } else {
-                            newUserNotification(ID);
-                            return res.status(200).json(results);
-                        }
-                    })
+                        function (err, results) {
+                            if (err) {
+                                return res.status(500).send(err);
+                            } else {
+                                newUserNotification(ID);
+                                return res.status(200).json(results);
+                            }
+                        })
             }
         }
         // hash user password
@@ -135,11 +135,11 @@ module.exports = {
         function newUserNotification(ID) {
             sqlDB
                 .query(`INSERT INTO ${notificationsTable} (content, date_added, user_id) VALUES("Welcome to G-List!", NOW(), ${ID});`,
-                function(err) {
-                    if (err) {
-                        console.log(err);
-                    }
-                })
+                    function (err) {
+                        if (err) {
+                            console.log(err);
+                        }
+                    })
         }
     },
     deleteUser: function (req, res) {
@@ -292,7 +292,18 @@ module.exports = {
                                             if (err) {
                                                 return res.status(500).send(err);
                                             } else {
-                                                return res.status(200).json(results[0]);
+                                                // don't return IP address in results
+                                                // this will rely on the IP address secured from API
+                                                const data = {
+                                                    first_name: results[0].first_name,
+                                                    last_name: results[0].last_name,
+                                                    last_visit: results[0].last_visit,
+                                                    email: results[0].email,
+                                                    joined: results[0].joined,
+                                                    time_difference: results[0].time_difference,
+                                                    user_auth: results[0].user_auth
+                                                }
+                                                return res.status(200).json(data);
                                             }
                                         })
                             } else {

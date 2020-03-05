@@ -1,8 +1,8 @@
 const sqlDB = require("../sql_connection");
 const { User } = require("../mongoose_models");
-const connectTable = "uzzdv3povs4xqnxc.connections";
-const notificationsTable = "uzzdv3povs4xqnxc.notifications";
-const usersTable = "uzzdv3povs4xqnxc.users";
+const connectTable = "connections";
+const notificationsTable = "notifications";
+const usersTable = "users";
 const { isEmail } = require("validator");
 const nodemailer = require('nodemailer');
 const transporter = nodemailer.createTransport({
