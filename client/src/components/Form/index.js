@@ -41,7 +41,6 @@ function Form(props) {
                             <div className="form-check-text">Remember me</div>
                         </div>
                         <div className="login-sections">
-                            {/* on click, take to reset password page */}
                             <div
                                 className="form-forgot-pass"
                                 onClick={props.openForgotPass}
