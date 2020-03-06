@@ -4,7 +4,7 @@ import Checkbox from "../Checkbox";
 import "./style.scss";
 
 function Form(props) {
-    
+
     // expect array of objects with input type and value
     return (
         <div className="form">
@@ -42,7 +42,12 @@ function Form(props) {
                         </div>
                         <div className="login-sections">
                             {/* on click, take to reset password page */}
-                            <div className="form-forgot-pass">Forgot Password?</div>
+                            <div
+                                className="form-forgot-pass"
+                                onClick={props.openForgotPass}
+                            >
+                                Forgot Password?
+                            </div>
                         </div>
                     </div>
                 ) : (<div />)}

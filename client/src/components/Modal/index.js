@@ -13,9 +13,9 @@ function Modal(props) {
                                 <Row>
                                     <Col>
                                         <div className="modal-col-3">
-                                            <div 
-                                            className="modal-close-x"
-                                            onClick={() => props.close(false)}
+                                            <div
+                                                className="modal-close-x"
+                                                onClick={() => props.close(false)}
                                             >
                                                 <div className="x-bar-1" />
                                                 <div className="x-bar-2" />
@@ -32,13 +32,15 @@ function Modal(props) {
                                         <div className="modal-col-3" />
                                     </Col>
                                 </Row>
-                                <Row>
-                                    <Col>
-                                        <div className="modal-col-12 modal-message">
-                                            {props.message}
-                                        </div>
-                                    </Col>
-                                </Row>
+                                {props.message ? (
+                                    <Row>
+                                        <Col>
+                                            <div className="modal-col-12 modal-message">
+                                                {props.message}
+                                            </div>
+                                        </Col>
+                                    </Row>
+                                ) : (<div />)}
                                 <Row>
                                     <Col>
                                         <div>

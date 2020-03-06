@@ -5,6 +5,7 @@ import { Row, Col } from "shards-react";
 import Form from "../Form";
 import Space from "../DivSpace";
 import LoadingBar from "../LoadingBar";
+import Modal from "../Modal";
 import "./style.scss";
 
 function Login(props) {
@@ -20,6 +21,10 @@ function Login(props) {
     const [remember, setRemember] = useState(false);
     const [progress, setProgress] = useState(0);
     const [showProgress, setShowProgress] = useState(false);
+    const [modal, setModal] = useState(false);
+    const [forgotEmail, setForgotEmail] = useState();
+    const forgotPassInput = [{ email: forgotEmail }];
+    const [forgotPassDisable, setForgotPassDisable] = useState(true);
     const config = {
         onUploadProgress: progressEvent => {
             const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
@@ -83,6 +88,11 @@ function Login(props) {
         } else {
             setDisabled(true);
         }
+        if (forgotEmail && error.length < 1) {
+            setForgotPassDisable(false);
+        } else {
+            setForgotPassDisable(true);
+        }
     }
     function handleFormSubmit() {
         setShowProgress(true);
@@ -99,13 +109,34 @@ function Login(props) {
                 setProgress(0);
             });
     }
+    function submitForgotPassword() {
+
+    }
+    function handleInputForgotPassword(event) {
+        const value = event.target.value;
+        setForgotEmail(value);
+    }
     return (
         <div className="login">
-            {/* <Space /> */}
             {showProgress ? (
                 <LoadingBar
                     progress={progress}
                     show={"show"}
+                />
+            ) : (<div />)}
+            {modal ? (
+                <Modal
+                    open={modal}
+                    close={() => setModal(false)}
+                    content={<Form
+                        inputs={forgotPassInput}
+                        type="Reset Your Password"
+                        handleInputChange={handleInputForgotPassword}
+                        disableButton={forgotPassDisable}
+                        error={error}
+                        validateField={validateField}
+                        action={submitForgotPassword}
+                    />}
                 />
             ) : (<div />)}
             <Row>
@@ -120,6 +151,7 @@ function Login(props) {
                         error={error}
                         validateField={validateField}
                         action={handleFormSubmit}
+                        openForgotPass={() => setModal(true)}
                     />
                 </Col>
             </Row>
