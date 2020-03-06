@@ -17,7 +17,7 @@ app.use(routes);
 
 // mongo connection
 mongoose
-  .connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(process.env.COSMOS_URL, { useNewUrlParser: true, useUnifiedTopology: true })
   .catch(err => console.log(err));
 mongoose.set('useFindAndModify', false);
 

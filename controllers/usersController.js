@@ -4,7 +4,7 @@ const checkPass = require("../validation/checkPass");
 const bcrypt = require("bcryptjs");
 const crypto = require("crypto");
 const table = "users";
-const notificationTable = "notifications";
+const notificationsTable = "notifications";
 const { isEmail } = require("validator");
 
 module.exports = {

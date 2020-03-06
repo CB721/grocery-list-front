@@ -1,7 +1,7 @@
 const mysql = require("mysql");
 
-var connection;
-var config = {
+let connection;
+const config = {
   host: process.env.HOST,
   user: process.env.USERNAME,
   password: process.env.PASSWORD,
@@ -16,7 +16,5 @@ connection.connect(err => {
     console.log(err);
   }
 });
-
-// console.log(connection);
 
 module.exports = connection;
