@@ -13,7 +13,6 @@ sessionToken =
     seconds +
     UTCms;
 
-
 module.exports = {
     getUserPlace: function (req, res) {
         const search = req.body.search;

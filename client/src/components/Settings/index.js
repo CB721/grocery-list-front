@@ -13,6 +13,7 @@ import Button from "../Button";
 import Modal from "../Modal";
 import List from "../List";
 import LoadingSpinner from "../LoadingSpinner";
+import LoadingBar from "../LoadingBar";
 import "./style.scss";
 
 function Settings(props) {
@@ -35,6 +36,14 @@ function Settings(props) {
     const [modalName, setModalName] = useState("Your Previous Lists");
     const [selectedConnection, setSelectedConnection] = useState([]);
     const [viewList, setViewList] = useState(true);
+    const [progress, setProgress] = useState(0);
+    const [showProgress, setShowProgress] = useState(false);
+    const config = {
+        onUploadProgress: progressEvent => {
+            const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+            setProgress(percentCompleted);
+        }
+    };
 
     function handleInputChange(event) {
         const { name, value } = event.target;
@@ -286,6 +295,22 @@ function Settings(props) {
             })
             .catch(err => console.log(err));
     }
+    function createConnection() {
+        setShowProgress(true);
+        setProgress(0);
+        props.createConnection(connectEmail, config)
+            .then(res => {
+                setShowProgress(false);
+                toastNotification(res);
+                setProgress(0);
+                console.log(res);
+            })
+            .catch(err => {
+                console.log(err);
+                setProgress(0);
+                setShowProgress(false);
+            });
+    }
     return (
         <div>
             {modal ? (
@@ -303,6 +328,12 @@ function Settings(props) {
                 />
             ) : (<div />)}
             <Space />
+            {showProgress ? (
+                <LoadingBar
+                    progress={progress}
+                    show={"show"}
+                />
+            ) : (<div />)}
             <div className="settings">
                 {props.user.length > 0 ? (
                     <div>
@@ -426,8 +457,7 @@ function Settings(props) {
                                 </div>
                                 {connectTab === "current" ? (
                                     <div className="connect-users-section">
-                                        {/* change to 0 */}
-                                        {acceptedConnections.length > 10 ? (
+                                        {acceptedConnections.length > 0 ? (
                                             <div>
                                                 {acceptedConnections.map(connection => (
                                                     <div
@@ -487,6 +517,7 @@ function Settings(props) {
                                             <Button
                                                 text="Send Connection Request"
                                                 class="blue-button"
+                                                action={createConnection}
                                             />
                                         </div>)}
                                     </div>
@@ -503,6 +534,7 @@ function Settings(props) {
                                         <Button
                                             text="Send Connection Request"
                                             class="blue-button"
+                                            action={createConnection}
                                         />
                                     </div>
                                     {pendingConnections.length > 0 ? (

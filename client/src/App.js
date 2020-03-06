@@ -54,7 +54,6 @@ function App(props) {
           API.userLogin(userData, config)
             .then(res => {
               setUser(res.data);
-              console.log(res.data);
               setIsValid(true);
               // change side menu options
               setNavOptions([profile, settings, signOut]);
@@ -157,7 +156,7 @@ function App(props) {
         })
         // if there is an error from the db, the user token does not match
         .catch(err => {
-          console.log(err.response.data);
+          console.log(err);
           // remove what is store in local storate
           localStorage.removeItem("token");
           sessionStorage.removeItem("token");
@@ -252,6 +251,24 @@ function App(props) {
       resolve();
     });
   }
+  function createConnection(connectEmail, config) {
+    return new Promise(function(resolve, reject) {
+      const data = {
+        email: connectEmail,
+        username: `${user[0].first_name} ${user[0].last_name.charAt(0)}`,
+        id: user[0].id
+      }
+      console.log(data, config);
+      API.createConnection(data, config)
+        .then(res => {
+          resolve(res.data);
+        })
+        .catch(err => {
+          console.log(err.response.data);
+          reject(err);
+        });
+    });
+  }
 
 
   return (
@@ -309,6 +326,7 @@ function App(props) {
                   currList={currList}
                   removeConnection={removeConnection}
                   cancelConnectionRequest={cancelConnectionRequest}
+                  createConnection={createConnection}
                 />
               ) : (
                   <Redirect to="/login" />

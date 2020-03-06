@@ -47,7 +47,6 @@ module.exports = {
                             getCurrentList();
                         }
                     });
-            // console.log("create list");
         }
         // add item to list
         let addItemToList = function (id) {

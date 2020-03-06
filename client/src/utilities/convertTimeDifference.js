@@ -24,7 +24,7 @@ module.exports = {
             timeStr = `${seconds} seconds ago`;
         // otherwise, just display minutes
         } else {
-            timeStr = `${minutes} minuts ago`;
+            timeStr = `${minutes} minutes ago`;
         }
         return timeStr;
     }

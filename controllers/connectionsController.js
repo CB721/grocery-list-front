@@ -75,6 +75,7 @@ module.exports = {
     connectionRequest: function (req, res) {
         // user would send an email of other user and their id
         const request = req.body;
+        console.log(request);
         const email = request.email;
         // prevent injections
         if (email.indexOf("$") > -1 || !isEmail(email)) {
@@ -89,7 +90,7 @@ module.exports = {
             .then(response => {
                 if (response.length > 0) {
                     // if it does, get user id of other user
-                    checkExistConnection(response[0]._id);
+                    checkExistConnection(response.id);
                 } else {
                     // get invite template
                     let template = invite();
@@ -144,10 +145,10 @@ module.exports = {
                 .create({ email: email })
                 .then(response => {
                     // get id from mongo
-                    let id = response[0]._id;
+                    let id = response.id;
                     corbato(pass)
-                        .then(res => {
-                            createUserSQL(res, id);
+                        .then(response => {
+                            createUserSQL(response, id);
                         })
                         .catch(err => {
                             return res.status(500).send(err);
