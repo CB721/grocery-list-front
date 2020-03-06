@@ -284,7 +284,7 @@ module.exports = {
                     if (err) {
                         return res.status(404).send(err);
                     } else {
-                        if (results[0].length > 0) {
+                        if (results && results[0].length > 0) {
                             if (results[0][0].ip_address === ip) {
                                 sqlDB
                                     .query(`UPDATE ${table} SET last_visit = NOW() WHERE id = '${results[0][0].id}';`,
@@ -294,15 +294,16 @@ module.exports = {
                                             } else {
                                                 // don't return IP address in results
                                                 // this will rely on the IP address secured from API
-                                                const data = {
-                                                    first_name: results[0].first_name,
-                                                    last_name: results[0].last_name,
-                                                    last_visit: results[0].last_visit,
-                                                    email: results[0].email,
-                                                    joined: results[0].joined,
-                                                    time_difference: results[0].time_difference,
-                                                    user_auth: results[0].user_auth
-                                                }
+                                                const data = [{
+                                                    first_name: results[0][0].first_name,
+                                                    last_name: results[0][0].last_name,
+                                                    last_visit: results[0][0].last_visit,
+                                                    email: results[0][0].email,
+                                                    joined: results[0][0].joined,
+                                                    time_difference: results[0][0].time_difference,
+                                                    user_auth: results[0][0].user_auth,
+                                                    id: results[0][0].id
+                                                }]
                                                 return res.status(200).json(data);
                                             }
                                         })

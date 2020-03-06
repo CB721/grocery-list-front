@@ -101,7 +101,7 @@ function Login(props) {
     }
     return (
         <div className="login">
-            <Space />
+            {/* <Space /> */}
             {showProgress ? (
                 <LoadingBar
                     progress={progress}

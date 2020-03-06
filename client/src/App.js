@@ -13,9 +13,8 @@ import { ToastContainer } from 'react-toastify';
 import "shards-ui/dist/css/shards.min.css";
 import API from "./utilities/api";
 import './App.scss';
-// import validateUser from './utilities/validateUser';
 
-function App(props) {
+function App() {
   const create = { name: "Join", link: "/join" };
   const signIn = { name: "Login", link: "/login" };
   const signOut = { name: "Logout", link: "/signout" };
