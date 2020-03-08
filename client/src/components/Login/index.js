@@ -7,6 +7,7 @@ import Space from "../DivSpace";
 import LoadingBar from "../LoadingBar";
 import Modal from "../Modal";
 import "./style.scss";
+import API from '../../utilities/api';
 
 function Login(props) {
     useEffect(() => {
@@ -110,7 +111,7 @@ function Login(props) {
             });
     }
     function submitForgotPassword() {
-
+        API.passwordReset()
     }
     function handleInputForgotPassword(event) {
         const value = event.target.value;

@@ -23,10 +23,10 @@ module.exports = {
                 .find({ email: newUser.email })
                 .then(response => {
                     if (response.length > 0) {
-                        console.log(response);
                         // check sql to see if this user has been created or not
-                        userIsCreated(response[0]._id);
+                        userIsCreated(response[0].id);
                     } else {
+                        // otherwise create a new user
                         createUserMongo();
                     }
                 })
@@ -40,7 +40,7 @@ module.exports = {
                         if (err) {
                             return res.status(500).send(err);
                             // if the user has already been completed
-                        } else if (results.created === 1) {
+                        } else if (results[0].created === 1) {
                             return res.status(400).send("Email already exists");
                         } else {
                             // hash user password

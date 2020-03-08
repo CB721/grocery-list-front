@@ -90,5 +90,8 @@ export default {
     },
     cancelConnectionRequest: function (id, config) {
         return axios.delete("/api/connections/cancel/" + id, config);
+    },
+    passwordReset: function(data, config) {
+        return axios.post("/api/resets/requests", data, config);
     }
 }
