@@ -9,6 +9,7 @@ import Profile from "./components/Profile";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Settings from "./components/Settings";
+import PassReset from "./components/PassReset";
 import { ToastContainer } from 'react-toastify';
 import "shards-ui/dist/css/shards.min.css";
 import API from "./utilities/api";
@@ -298,6 +299,7 @@ function App() {
             }
           />
           <Route exact path="/join" component={CreateAccount} />
+          <Route exact path="/reset" component={PassReset} />
           <Route
             exact path="/profile"
             render={props => (
