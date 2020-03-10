@@ -1,99 +1,118 @@
 @import "../../App.scss";
 
 .form {
-    position: relative;
-    border-radius: 8px;
-    width: 50%;
-    height: auto;
-    margin: 10% auto;
-    background: $white;
-    color: $black;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    padding-bottom: 25px;
-    .form-head {
-        color: $white;
-        padding-top: 25px;
-        text-transform: capitalize;
-        font-size: 24px;
-        text-align: center;
-        height: 50px;
-        background-color: $main-blue;
-        border-top-left-radius: 8px;
-        border-top-right-radius: 8px;
-        margin-bottom: 20px;
+  position: relative;
+  border-radius: 8px;
+  width: 50%;
+  height: auto;
+  margin: 10% auto;
+  background: $white;
+  color: $black;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding-bottom: 25px;
+  .form-head {
+    color: $white;
+    padding-top: 25px;
+    text-transform: capitalize;
+    font-size: 24px;
+    text-align: center;
+    height: 50px;
+    background-color: $main-blue;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    margin-bottom: 20px;
+  }
+  .form-error {
+    transition: 0.3s;
+    text-transform: capitalize;
+    font-size: 24px;
+    text-align: center;
+    height: 50px;
+    margin-bottom: 20px;
+    color: red;
+  }
+  .form-input-area {
+    margin: 0 auto;
+    width: 75%;
+    .form-input {
+      width: 100%;
+      @include form-input;
     }
-    .form-error {
-        transition: 0.3s;
-        text-transform: capitalize;
-        font-size: 24px;
-        text-align: center;
-        height: 50px;
-        margin-bottom: 20px;
-        color: red;
+    .input-error {
+      border-color: rgb(255, 0, 0);
+      transition: 0.5s;
+      animation: input-flash 0.7s linear 0s 5 normal forwards;
+      &:focus {
+        outline: none;
+        border-color: rgb(255, 0, 0);
+      }
+      @keyframes input-flash {
+          0% {
+              border-color: rgb(255, 77, 0);
+              color: rgb(255, 77, 0);
+          }
+          50% {
+              border-color: rgb(255, 0, 0);
+              color: rgb(255, 0, 0);
+          }
+      }
     }
-    .form-input-area {
-        margin: 0 auto;
-        width: 75%;
-        .form-input {
-            width: 100%;
-            @include form-input;
-        }
-        .form-input:last-child {
-            margin-bottom: 20px;
-        }
-        .form-input-headers {
-            text-transform: uppercase;
-            color: $black;
-            text-align: left;
-            margin:none !important;
-        }
-        .login-sections {
-            float: left;
-            width: 50%;
-            height: 25px;
-            margin-bottom: 10px;
-            .form-checkbox {
-                margin: 0 10px 0 10px;
-                float: left;
-            }
-            .form-check-text {
-                padding-top: 5px;
-                color: $black;
-                float: left;
-                font-size: 16px;
-            }
-            .form-forgot-pass {
-                padding-top: 5px;
-                color: $main-blue;
-                float: right;
-                font-size: 16px;
-                &:hover {
-                    cursor: pointer;
-                    text-decoration: underline;
-                }
-            }
-        }
+    .form-input:last-child {
+      margin-bottom: 20px;
     }
+    .form-input-headers {
+      text-transform: uppercase;
+      color: $black;
+      text-align: left;
+      margin: none !important;
+    }
+    .login-sections {
+      float: left;
+      width: 50%;
+      height: 25px;
+      margin-bottom: 10px;
+      .form-checkbox {
+        margin: 0 10px 0 10px;
+        float: left;
+      }
+      .form-check-text {
+        padding-top: 5px;
+        color: $black;
+        float: left;
+        font-size: 16px;
+      }
+      .form-forgot-pass {
+        padding-top: 5px;
+        color: $main-blue;
+        float: right;
+        font-size: 16px;
+        &:hover {
+          cursor: pointer;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
 }
 
 @media only screen and(max-width: 450px) {
-    .form {
-        width: 100%;
-        .form-input-area {
-            width: 75%;
-        }
+  .form {
+    width: 100%;
+    .form-input-area {
+      width: 75%;
     }
+  }
 }
 @media only screen and(max-width: 850px) {
-    .form {
-        width: 75%;
-        .form-input-area {
-            .login-sections {
-                width: 100%;
-                .form-forgot-pass {
-                    float: left;
-                }
-            }
+  .form {
+    width: 75%;
+    .form-input-area {
+      .login-sections {
+        width: 100%;
+        .form-forgot-pass {
+          float: left;
         }
+      }
     }
+  }
 }

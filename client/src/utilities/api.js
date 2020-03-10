@@ -93,5 +93,9 @@ export default {
     },
     passwordReset: function(data, config) {
         return axios.post("/api/resets/requests", data, config);
+    },
+    updatePasswordReset: function(data, config) {
+        console.log(data);
+        return axios.post("/api/resets/new/update", data, config);
     }
 }

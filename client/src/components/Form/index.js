@@ -4,7 +4,6 @@ import Checkbox from "../Checkbox";
 import "./style.scss";
 
 function Form(props) {
-    console.log(Object.keys(props.inputs[1])[0]);
     // expect array of objects with input type and value
     return (
         <div className="form">
@@ -16,12 +15,21 @@ function Form(props) {
             </div>
             {props.inputs.map((input, index) => (
                 <div className="form-input-area" key={index}>
-                    <p className="form-input-headers">{Object.keys(input)}</p>
+                    <p
+                        className={"form-input-headers " + input.error}
+                    >
+                        {Object.keys(input)[0]}
+                    </p>
                     <input
-                        type={Object.keys(input)[0] === "temp password" || Object.keys(input)[0] === "new password" ? "password" : Object.keys(input)}
+                        type={
+                            Object.keys(input)[0] === "temp password" ||
+                                Object.keys(input)[0] === "new password" ||
+                                Object.keys(input)[0] === "confirm password" ?
+                                "password" : Object.keys(input)
+                        }
                         value={input[Object.keys(input)]}
-                        className="form-input"
-                        placeholder={"Your " + Object.keys(input)}
+                        className={"form-input " + input.error}
+                        placeholder={"Your " + Object.keys(input)[0]}
                         name={Object.keys(input)}
                         onChange={props.handleInputChange}
                         onBlur={(event) => props.validateField(event)}

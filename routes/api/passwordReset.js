@@ -5,7 +5,7 @@ router
     .route("/request")
     .post(controller.createReset);
 router
-    .route("/new")
+    .route("/new/update")
     .post(controller.updatePassword);
 
 module.exports = router;
