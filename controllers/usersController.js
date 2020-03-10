@@ -44,7 +44,7 @@ module.exports = {
                             return res.status(400).send("Email already exists");
                         } else {
                             // hash user password
-                            corbato()
+                            corbato(newUser.password)
                                 .then(hash => {
                                     // update created user with new password and name
                                     updateUser(hash, ID);
@@ -326,7 +326,6 @@ module.exports = {
             User
                 .find({ email })
                 .then(response => {
-                    console.log(response);
                     if (response.length > 0) {
                         return res.status(400).send("Email already in use");
                     } else {
