@@ -129,12 +129,13 @@ function PassReset(props) {
                 .then(res => {
                     setShowProgress(false);
                     setProgress(0);
-                    if (res.data === "User password updated") {
-                        notification("Password succesfully updated!");
-                        setTimeout(() => {
-                            history.push("/login");
-                        }, 3000);
-                    }
+                    console.log(res.data);
+                    // if (res.data === "User password updated") {
+                    //     notification("Password succesfully updated!");
+                    //     setTimeout(() => {
+                    //         history.push("/login");
+                    //     }, 3000);
+                    // }
                 })
                 .catch(err => {
                     setError(err.response);

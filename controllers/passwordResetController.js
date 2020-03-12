@@ -111,6 +111,7 @@ module.exports = {
         const email = sqlDB.escape(req.body.email);
         const tempPass = sqlDB.escape(req.body.temp);
         const newPass = sqlDB.escape(req.body.update);
+        
         // validate data
         // the escaping adds two more characters than what is needed
         if (newPass.length < 10 || tempPass.length < 10) {

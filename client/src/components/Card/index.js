@@ -4,10 +4,10 @@ import "./style.scss";
 
 function Card(props) {
     return (
-        <div className="card">
+        <div className="card" aria-label={props.cardName + " card"}>
             <img
-                src="https://images.unsplash.com/photo-1517817748493-49ec54a32465?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"
-                alt=""
+                src={props.imageLink || "https://images.unsplash.com/photo-1517817748493-49ec54a32465?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"}
+                alt={props.text}
                 className="card-image"
             />
             <div className="card-body-text">
@@ -16,11 +16,11 @@ function Card(props) {
                     min={4}
                     max={16}
                 >
-                    Such a great card!
+                    {props.text}
                 </Textfit>
             </div>
             <div className="card-tooltip">
-                Card name
+                {props.cardName}
             </div>
         </div>
     )

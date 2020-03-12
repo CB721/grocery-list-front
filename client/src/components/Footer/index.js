@@ -7,7 +7,7 @@ function Footer(props) {
 
     return (
         <div className="footer">
-            <span>Copyright &copy; {currentYear} Clint Brodar</span>
+            <span aria-label={"copyright " + currentYear + " Clint Brodar"}>Copyright &copy; {currentYear} Clint Brodar</span>
         </div>
     )
 }

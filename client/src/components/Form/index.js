@@ -6,7 +6,7 @@ import "./style.scss";
 function Form(props) {
     // expect array of objects with input type and value
     return (
-        <div className="form">
+        <div className="form" id={props.type}>
             <div className="form-head">
                 {props.type}
             </div>
@@ -33,6 +33,7 @@ function Form(props) {
                         name={Object.keys(input)}
                         onChange={props.handleInputChange}
                         onBlur={(event) => props.validateField(event)}
+                        aria-labelledby={props.type + Object.keys(input)}
                     />
                 </div>
             ))}
@@ -46,12 +47,13 @@ function Form(props) {
                                     toggleClass={props.toggleClass}
                                 />
                             </div>
-                            <div className="form-check-text">Remember me</div>
+                            <div className="form-check-text" aria-label="remember me checkbox">Remember me</div>
                         </div>
                         <div className="login-sections">
                             <div
                                 className="form-forgot-pass"
                                 onClick={props.openForgotPass}
+                                aria-label="forgot password link"
                             >
                                 Forgot Password?
                             </div>

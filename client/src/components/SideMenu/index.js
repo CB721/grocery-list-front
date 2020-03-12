@@ -29,12 +29,12 @@ function SideMenu(props) {
     }
     return (
         <Fade in={true}>
-            <div className="side-menu-bg">
+            <div className="side-menu-bg" aria-label="side menu">
                 <Slide right>
                     <div className="menu-side" onClick={(event) => props.expandMenu(event)} />
-                    <div className="side-menu">
+                    <div className="side-menu" aria-label="side menu options">
                         {props.options.map((option, index) => (
-                            <div className="nav-options" key={index}>
+                            <div className="nav-options" key={index} aria-label={"go to the " + option.name + " page"}>
                                 <div onClick={(event) => goToSelectedPage(event, option.link)}>
                                     <Textfit
                                         mode="single"

@@ -54,7 +54,7 @@ function List(props) {
     }
 
     return (
-        <DragDropContext onDragEnd={onDragEnd}>
+        <DragDropContext onDragEnd={onDragEnd} aria-label="list">
             <Droppable
                 droppableId="droppable"
             >
@@ -84,12 +84,14 @@ function List(props) {
                                         <div
                                             className="list-item-col"
                                             onClick={(event) => action(event, item)}
+                                            aria-label={item.name}
                                         >
                                             {item.name}
                                         </div>
                                         <div
                                             className="list-item-col"
                                             onClick={(event) => action(event, item)}
+                                            aria-label={item.store_name || item.list_name || "date"}
                                         >
                                             {item.store_name || item.list_name || convertDate(item.date_added.split("T")[0])}
                                         </div>
@@ -101,14 +103,15 @@ function List(props) {
                                                             className="store-dropdown"
                                                             defaultValue={item.priority}
                                                             onChange={(event) => props.changePriority(event, item.id)}
+                                                            aria-label="select a priority level"
                                                         >
-                                                            <option className="store-select-item" value="Low">
+                                                            <option className="store-select-item" value="Low" aria-label="low priority">
                                                                 Low
                                                             </option>
-                                                            <option className="store-select-item" value="Normal">
+                                                            <option className="store-select-item" value="Normal" aria-label="normal priority">
                                                                 Normal
                                                             </option>
-                                                            <option className="store-select-item" value="High">
+                                                            <option className="store-select-item" value="High" aria-label="high-priority">
                                                                 High
                                                             </option>
                                                         </select>
@@ -130,6 +133,7 @@ function List(props) {
                                                 ) : (<Trash
                                                     className={"edit-icon " + props.hidetrash}
                                                     onClick={(event) => props.deleteItem(event, item.id)}
+                                                    aria-label="remove item"
                                                 />)}
                                             </div>
                                         </div>

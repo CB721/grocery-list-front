@@ -61,8 +61,8 @@ export default {
     deleteNotificationByID: function (id, config) {
         return axios.delete("/api/notifications/single/" + id, config);
     },
-    updateNotificationByID: function (id, config) {
-        return axios.put("/api/notifications/single/" + id, config);
+    updateNotificationByID: function (id) {
+        return axios.put("/api/notifications/single/" + id);
     },
     getConnectionsByID: function (id) {
         return axios.get("/api/connections/" + id);
@@ -95,7 +95,6 @@ export default {
         return axios.post("/api/resets/requests", data, config);
     },
     updatePasswordReset: function(data, config) {
-        console.log(data);
         return axios.post("/api/resets/new/update", data, config);
     }
 }

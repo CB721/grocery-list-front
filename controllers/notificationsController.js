@@ -1,5 +1,5 @@
 const sqlDB = require("../sql_connection");
-const table = "uzzdv3povs4xqnxc.notifications";
+const table = "notifications";
 
 module.exports = {
     getAllByUserID: function (req, res) {

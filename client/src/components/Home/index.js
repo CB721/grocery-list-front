@@ -15,7 +15,7 @@ function Home(props) {
         <div className="home">
             <Row>
                 <Col>
-                    <div className="home-splash-image">
+                    <div className="home-splash-image" aria-label="shopping image">
                         <div className="center-image-text">
                             <Textfit
                                 mode="single"

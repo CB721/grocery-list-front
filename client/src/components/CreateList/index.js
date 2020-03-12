@@ -71,11 +71,13 @@ function CreateList(props) {
         <div className="create-list">
             <div
                 className="create-list-header"
+                aria-label={list[0].list_name || "list"}
             >
                 {list.length > 0 ? `Add to ${list[0].list_name || "list"}` : "New List"}
             </div>
             <div
                 className="create-list-header error"
+                aria-label={"error message " + inputErr}
             >
                 {inputErr}
             </div>
@@ -90,6 +92,7 @@ function CreateList(props) {
                         placeholder="Name your list"
                         name={"list_name"}
                         onChange={handleListName}
+                        aria-label={"list name"}
                     />
                     <Button
                         text="Add List Name"
@@ -106,23 +109,25 @@ function CreateList(props) {
                 placeholder={"Add an item"}
                 onChange={handleInputChange}
                 name={"item"}
+                aria-label="new item"
             />
             {newItem.length > 1 ? (
                 <select
                     className="store-dropdown"
                     defaultValue="select"
                     onChange={changePriority}
+                    aria-label="item priority selection"
                 >
-                    <option className="store-select-item" value="select" disabled={true}>
+                    <option className="store-select-item" value="select" disabled={true} aria-label="select a priority level">
                         Select A Priority Level
                     </option>
-                    <option className="store-select-item" value="Low">
+                    <option className="store-select-item" value="Low" aria-label="low priority">
                         Low
                     </option>
-                    <option className="store-select-item" value="Normal">
+                    <option className="store-select-item" value="Normal" aria-label="normal priority">
                         Normal
                     </option>
-                    <option className="store-select-item" value="High">
+                    <option className="store-select-item" value="High" aria-label="high-priority">
                         High
                     </option>
                 </select>
@@ -132,8 +137,9 @@ function CreateList(props) {
                     className="store-dropdown"
                     onChange={addStore}
                     defaultValue="select"
+                    aria-label="store selection"
                 >
-                    <option className="store-select-item" value="select" disabled={true}>
+                    <option className="store-select-item" value="select" disabled={true} aria-label="select a store">
                         Select A Store
                     </option>
                     {props.stores.map((store, index) => (
@@ -141,6 +147,7 @@ function CreateList(props) {
                             key={store.id + index}
                             value={JSON.stringify(store)}
                             className="store-select-item"
+                            aria-label={store.name}
                         >
                             {store.name}
                         </option>

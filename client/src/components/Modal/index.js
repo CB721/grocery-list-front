@@ -6,7 +6,7 @@ function Modal(props) {
     return (
         <div>
             {props.open ? (
-                <div className="cust-modal">
+                <div className="cust-modal" aria-label="open modal">
                     <Row>
                         <Col>
                             <div className="modal-content">
@@ -16,6 +16,7 @@ function Modal(props) {
                                             <div
                                                 className="modal-close-x"
                                                 onClick={() => props.close(false)}
+                                                aria-label="close modal"
                                             >
                                                 <div className="x-bar-1" />
                                                 <div className="x-bar-2" />
@@ -24,7 +25,7 @@ function Modal(props) {
 
                                     </Col>
                                     <Col>
-                                        <div className="modal-col-3">
+                                        <div className="modal-col-3" aria-label={props.name}>
                                             {props.name}
                                         </div>
                                     </Col>
@@ -35,7 +36,7 @@ function Modal(props) {
                                 {props.message ? (
                                     <Row>
                                         <Col>
-                                            <div className="modal-col-12 modal-message">
+                                            <div className="modal-col-12 modal-message" aria-label={props.message}>
                                                 {props.message}
                                             </div>
                                         </Col>

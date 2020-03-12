@@ -3,7 +3,7 @@ import "./style.scss";
 
 function LoadingSpinner() {
     return (
-        <div className="loader">
+        <div className="loader" aria-label="loading spinner">
             <div className="face face1">
                 <div className="circle">
 

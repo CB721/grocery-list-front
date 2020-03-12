@@ -7,6 +7,7 @@ function Button(props) {
             className={"cust-button " + props.class}
             onClick={props.action}
             disabled={props.disabled || false}
+            aria-label={props.text}
         >
             {props.text}
         </button>

@@ -3,7 +3,7 @@ import "./style.scss";
 
 function LoadingBar(props) {
     return (
-        <div className={`loading-bar ${props.show || 'show'}`}>
+        <div className={`loading-bar ${props.show || 'show'}`} aria-label="loading bar">
             <div className={`inner-circle s${props.progress}`}>
                 {props.progress}%
             </div>

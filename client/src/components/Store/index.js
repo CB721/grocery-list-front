@@ -195,11 +195,12 @@ function Store(props) {
                     />}
                 />
             ) : (<div />)}
-            <div className="store-options">
+            <div className="store-options" aria-label="store options">
                 <div
                     className={view}
                     id="view"
                     onClick={(event) => toggleOptions(event)}
+                    aria-label="view your saved stores"
                 >
                     View Stores
                 </div>
@@ -207,12 +208,13 @@ function Store(props) {
                     className={add}
                     id="add"
                     onClick={(event) => toggleOptions(event)}
+                    aria-label="save a new store"
                 >
                     Add a Store
                 </div>
             </div>
             {currentView === "view" ? (
-                <div className="list">
+                <div className="list" aria-label="saved stores list">
                     {props.stores.length > 0 ? (
                         <div>
                             {props.stores.map((store, index) => (
@@ -227,6 +229,7 @@ function Store(props) {
                                         <Trash
                                             className="edit-icon"
                                             onClick={(event) => removeStore(event, store.id)}
+                                            aria-label="remove store from saved list"
                                         />
                                     </div>
                                 </div>
@@ -243,15 +246,17 @@ function Store(props) {
                             placeholder={"Search for a store"}
                             onChange={handleInputChange}
                             name={"search"}
+                            aria-label="search for a new store"
                         />
                         {results.length > 0 ? (
                             <Flip bottom cascade>
-                                <div className="store-results-section">
+                                <div className="store-results-section" aria-label="store search results">
                                     {results.map((result, index) => (
                                         <div
                                             key={result.id + index}
                                             className="search-result"
                                             onClick={(event) => saveStore(event, result)}
+                                            aria-label="save store"
                                         >
                                             <Textfit
                                                 mode="single"

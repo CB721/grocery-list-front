@@ -18,7 +18,10 @@ app.use(routes);
 // mongo connection
 mongoose
   .connect(process.env.COSMOS_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-  .catch(err => console.log(err));
+  .catch(err => {
+    console.log("mongo connect error: ");
+    console.log(err);
+  });
 mongoose.set('useFindAndModify', false);
 
 app.get("*", (req, res) => {

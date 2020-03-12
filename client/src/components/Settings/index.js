@@ -312,7 +312,7 @@ function Settings(props) {
             });
     }
     return (
-        <div>
+        <div aria-label="settings page">
             {modal ? (
                 <Modal
                     open={modal}
@@ -337,26 +337,28 @@ function Settings(props) {
             <div className="settings">
                 {props.user.length > 0 ? (
                     <div>
-                        <div className="setting-headers">
+                        <div className="setting-headers" aria-label="setting selection">
                             <div
                                 className={tab === "info" ? "setting-tab selected" : "setting-tab"}
                                 onClick={() => setTab("info")}
+                                aria-label="view and edit your information"
                             >
                                 View Info
-                    </div>
+                            </div>
                             <div
                                 className={tab === "connections" ? "setting-tab selected" : "setting-tab"}
                                 onClick={() => setTab("connections")}
+                                aria-label="view and edit your connections"
                             >
                                 View Connections
                     </div>
                         </div>
                         <div className="setting-content">
-                            <div className="edit-header" onClick={exitEdit}>
+                            <div className="edit-header" onClick={exitEdit} aria-label={editMessage}>
                                 {editMessage}
                             </div>
                             {userError.length > 0 ? (
-                                <div className="edit-header err">
+                                <div className="edit-header err" aria-label={"error " + userError}>
                                     {userError}
                                 </div>
                             ) : (<div />)}
@@ -364,7 +366,7 @@ function Settings(props) {
                             {tab === "info" ? (
                                 <div className="settings-info">
                                     {editFirst ? (
-                                        <div>
+                                        <div aria-label="edit your first name">
                                             <input
                                                 type="text"
                                                 value={first}
@@ -373,6 +375,7 @@ function Settings(props) {
                                                 className="form-input"
                                                 onChange={(event) => handleInputChange(event)}
                                                 onBlur={(event) => validateField(event)}
+                                                aria-label="new first name"
                                             />
                                             <Button
                                                 text="Submit"
@@ -385,12 +388,13 @@ function Settings(props) {
                                             <div
                                                 className="info-name"
                                                 onClick={() => editInfo("first")}
+                                                aria-label="click to edit first name"
                                             >
                                                 First Name: {props.user[0].first_name}
                                             </div>
                                         )}
                                     {editLast ? (
-                                        <div>
+                                        <div aria-label="edit your last name">
                                             <input
                                                 type="text"
                                                 value={last}
@@ -398,6 +402,7 @@ function Settings(props) {
                                                 name="last"
                                                 className="form-input"
                                                 onChange={(event) => handleInputChange(event)}
+                                                aria-label="new last name"
                                             />
                                             <Button
                                                 text="Submit"
@@ -410,12 +415,13 @@ function Settings(props) {
                                             <div
                                                 className="info-name"
                                                 onClick={() => editInfo("last")}
+                                                aria-label="click to edit last name"
                                             >
                                                 Last Name: {props.user[0].last_name}
                                             </div>
                                         )}
                                     {editEmail ? (
-                                        <div>
+                                        <div aria-label="edit your email address">
                                             <input
                                                 type="email"
                                                 value={email}
@@ -423,6 +429,7 @@ function Settings(props) {
                                                 name="email"
                                                 className="form-input"
                                                 onChange={(event) => handleInputChange(event)}
+                                                aria-label="new email address"
                                             />
                                             <Button
                                                 text="Submit"
@@ -435,36 +442,39 @@ function Settings(props) {
                                             <div
                                                 className="info-name"
                                                 onClick={() => editInfo("email")}
+                                                aria-label="click to edit email address"
                                             >
                                                 Email: {props.user[0].email}
                                             </div>
                                         )}
                                 </div>
-                            ) : (<div className="settings-connections">
-                                <div className="connect-header">
+                            ) : (<div className="settings-connections" aria-label="connection section">
+                                <div className="connect-header" aria-label="connection options">
                                     <div
                                         className={connectTab === "current" ? "connect-half selected" : "connect-half"}
                                         onClick={() => setConnectTab("current")}
+                                        aria-label="view current connections"
                                     >
                                         Current
-                            </div>
+                                    </div>
                                     <div
                                         className={connectTab === "pending" ? "connect-half selected" : "connect-half"}
                                         onClick={() => setConnectTab("pending")}
+                                        aria-label="view pending connection requests"
                                     >
                                         Pending
-                            </div>
+                                    </div>
                                 </div>
                                 {connectTab === "current" ? (
                                     <div className="connect-users-section">
                                         {acceptedConnections.length > 0 ? (
-                                            <div>
+                                            <div aria-label="list of connections">
                                                 {acceptedConnections.map(connection => (
                                                     <div
                                                         className="connect-users-row"
                                                         key={connection.id}
                                                     >
-                                                        <div className="connect-user-name">
+                                                        <div className="connect-user-name" aria-label="connection name">
                                                             {`${connection.requestor_first_name || connection.requested_first_name} ${connection.requestor_last_name || connection.requested_last_name}`}
                                                         </div>
                                                         <div className="connect-user-options">
@@ -473,17 +483,19 @@ function Settings(props) {
                                                                     <Send
                                                                         className="icon"
                                                                         onClick={() => getPreviousLists("DESC", connection)}
+                                                                        aria-label="send connection a list"
                                                                     />
                                                                 </div>
                                                                 <div className="option-tooltip">
                                                                     Send {connection.requestor_first_name || connection.requested_first_name} A List
-                                                        </div>
+                                                                </div>
                                                             </div>
                                                             <div className="option-button">
                                                                 <div className="view-list">
                                                                     <View
                                                                         className="icon"
                                                                         onClick={() => viewSentLists(connection)}
+                                                                        aria-label="view lists from this connection"
                                                                     />
                                                                 </div>
                                                                 <div className="option-tooltip">
@@ -495,11 +507,12 @@ function Settings(props) {
                                                                     <Trash
                                                                         className="icon"
                                                                         onClick={() => removeConnection(connection)}
+                                                                        aria-label="remove this connection"
                                                                     />
                                                                 </div>
                                                                 <div className="option-tooltip">
                                                                     Remove User
-                                                        </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -513,6 +526,7 @@ function Settings(props) {
                                                 name="connection-request"
                                                 className="form-input"
                                                 onChange={(event) => handleInputChange(event)}
+                                                aria-label="email address of new connection request"
                                             />
                                             <Button
                                                 text="Send Connection Request"
@@ -530,6 +544,7 @@ function Settings(props) {
                                             name="connection-request"
                                             className="form-input"
                                             onChange={(event) => handleInputChange(event)}
+                                            aria-label="email address of new connection request"
                                         />
                                         <Button
                                             text="Send Connection Request"
@@ -538,18 +553,18 @@ function Settings(props) {
                                         />
                                     </div>
                                     {pendingConnections.length > 0 ? (
-                                        <div>
+                                        <div aria-label="pending connections">
                                             {pendingConnections.map(connection => (
                                                 <div
                                                     className="connect-users-row"
                                                     key={connection.id}
                                                 >
-                                                    <div className="connect-user-name">
+                                                    <div className="connect-user-name" aria-label="connection request name">
                                                         {`${connection.requestor_first_name || connection.requested_first_name} ${connection.requestor_last_name || connection.requested_last_name}`}
                                                     </div>
-                                                    <div className="connect-user-options">
+                                                    <div className="connect-user-options" aria-label="pending connection options">
                                                         <div className="option-button-double">
-                                                            <div className="time-difference">
+                                                            <div className="time-difference" aria-label="time since connection request">
                                                                 {`Sent ${convertTimeDiff(connection.time_difference)}`}
                                                             </div>
                                                         </div>
@@ -558,11 +573,12 @@ function Settings(props) {
                                                                 <Trash
                                                                     className="icon"
                                                                     onClick={() => cancelConnectionRequest(connection)}
+                                                                    aria-label="cancel connection request"
                                                                 />
                                                             </div>
                                                             <div className="option-tooltip">
                                                                 Cancel Request
-                                                    </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>

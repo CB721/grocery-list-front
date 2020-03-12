@@ -112,18 +112,19 @@ function Navbar(props) {
                 <Col>
                     <div className="nav">
                         <div className="nav-items" />
-                        <div className="app-text" onClick={(event) => goToHome(event)}>
+                        <div className="app-text" onClick={(event) => goToHome(event)} aria-label="go to home page">
                             G-List
-                    </div>
+                        </div>
                         <div className="nav-items">
                             {props.isLogged > 0 ? (
-                                <div className="notification-section">
+                                <div className="notification-section" aria-label="notifications">
                                     <Bell
                                         className="notification-bell"
                                         onClick={() => setShowNotifications(!showNotifications)}
+                                        aria-label={showNotifications ? "close notification panel" : "open notification panel"}
                                     />
                                     {unreadNotificationTotal > 0 ? (
-                                        <p className="notification">
+                                        <p className="notification" aria-label={unreadNotificationTotal + " unread notifications"}>
                                             {unreadNotificationTotal}
                                         </p>
                                     ) : (<div />)}
@@ -137,7 +138,7 @@ function Navbar(props) {
                                     openModal={openModal}
                                 />
                             ) : (<div />)}
-                            <div className={menuExpand} onClick={(event) => expandMenu(event)}>
+                            <div className={menuExpand} onClick={(event) => expandMenu(event)} aria-label="open side menu">
                                 <div className="bar1" />
                                 <div className="bar2" />
                                 <div className="bar3" />

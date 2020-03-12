@@ -7,6 +7,7 @@ function Checkbox(props) {
         <div
             className={"cust-checkbox " + props.class}
             onClick={(event) => props.toggleClass(event)}
+            aria-label={"check box " + props.class}
         />
     )
 }

@@ -352,11 +352,12 @@ function Profile(props) {
             <Space />
             <Row>
                 <Col>
-                    <div className="header">
+                    <div className="header" aria-label="profile options">
                         <div
                             className={create}
                             id="create-list"
                             onClick={(event) => toggleOptions(event)}
+                            aria-label={userList.length > 0 ? "Add to list" : "Create a list"}
                         >
                             {userList.length > 0 ? "Add to list" : "Create a list"}
                         </div>
@@ -364,6 +365,7 @@ function Profile(props) {
                             className={view}
                             id="view-lists"
                             onClick={(event) => toggleOptions(event)}
+                            aria-label="view lists"
                         >
                             View Lists
                         </div>
@@ -371,6 +373,7 @@ function Profile(props) {
                             className={store}
                             id="store-list"
                             onClick={(event) => toggleOptions(event)}
+                            aria-label="view or add stores"
                         >
                             Stores
                         </div>

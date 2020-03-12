@@ -13,6 +13,7 @@ const config = {
 connection = mysql.createConnection(config);
 connection.connect(err => {
   if (err) {
+    console.log("sql connection error: ");
     console.log(err);
   }
 });

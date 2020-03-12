@@ -154,11 +154,12 @@ function ViewList(props) {
     }
     return (
         <div className="view-list">
-            <div className="list-view-options">
+            <div className="list-view-options" aria-label="list options">
                 <div
                     className={current}
                     id="current"
                     onClick={(event) => toggleOptions(event)}
+                    aria-label="view current list"
                 >
                     Current List
                 </div>
@@ -166,6 +167,7 @@ function ViewList(props) {
                     className={prev}
                     id="prev"
                     onClick={(event) => toggleOptions(event)}
+                    aria-label="view previous lists"
                 >
                     Previous Lists
                 </div>
@@ -192,11 +194,12 @@ function ViewList(props) {
             {currentView === "current" ? (
                 <div>
                     {list.length > 0 ? (
-                        <div>
+                        <div aria-label="current list">
                             <select
                                 className="store-filter"
                                 defaultValue="All"
                                 onChange={(event) => viewByStore(event)}
+                                aria-label="filter by store name"
                             >
                                 {stores.map((store, index) => (
                                     <option value={store} key={index}>
@@ -226,14 +229,15 @@ function ViewList(props) {
             ) : (
                     <div>
                         {previousLists.length > 0 ? (
-                            <div>
+                            <div aria-label="previous lists">
                                 <select
                                     className="store-filter"
                                     default="DESC"
                                     onChange={(event) => viewListByDate(event)}
+                                    aria-label="view by date"
                                 >
-                                    <option value="DESC">Newest First</option>
-                                    <option value="ASC">Oldest First</option>
+                                    <option value="DESC" aria-label="most recent">Newest First</option>
+                                    <option value="ASC" aria-label="oldest">Oldest First</option>
                                 </select>
                                 <div style={{ textAlign: "center" }}>
                                     Click To View List
