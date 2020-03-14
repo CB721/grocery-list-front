@@ -54,8 +54,6 @@ function CreateList(props) {
             setPriority("Normal");
             setShowStores(false);
             props.addItem(completeItem, list.length + 1);
-            completeItem = [completeItem];
-            setList(list => [...list, completeItem]);
         }
     }
     function changePriority(event) {
@@ -73,7 +71,7 @@ function CreateList(props) {
                 className="create-list-header"
                 aria-label={list.length > 0 ? list[0].list_name || "list" : "new list"}
             >
-                {list.length > 0 ? `Add to ${list[0].list_name || "list"}` : "New List"}
+                {list.length > 0 ? `Edit ${list[0].list_name || "list"}` : "New List"}
             </div>
             <div
                 className="create-list-header error"

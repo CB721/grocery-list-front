@@ -130,9 +130,9 @@ function Profile(props) {
                 notification(`${listItem.name} added to list`);
                 setModal(false);
                 setProgress(0);
-                setTimeout(() => {
+                // setTimeout(() => {
                     getUserList();
-                }, 2000);
+                // }, 2000);
             })
             .catch(err => console.log(err));
     }
@@ -357,9 +357,9 @@ function Profile(props) {
                             className={create}
                             id="create-list"
                             onClick={(event) => toggleOptions(event)}
-                            aria-label={userList.length > 0 ? "Add to list" : "Create a list"}
+                            aria-label={userList.length > 0 ? "Edit list" : "Create a list"}
                         >
-                            {userList.length > 0 ? "Add to list" : "Create a list"}
+                            {userList.length > 0 ? "Edit List" : "Create a list"}
                         </div>
                         <div
                             className={view}

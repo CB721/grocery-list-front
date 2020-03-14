@@ -3,6 +3,7 @@ import { Textfit } from "react-textfit";
 import { ReactComponent as Trash } from "../../assets/images/trash.svg";
 import Form from "../Form";
 import Error from "../Error";
+import { isByteLength } from "validator"
 import Flip from 'react-reveal/Flip';
 import API from "../../utilities/api";
 import LoadingBar from "../LoadingBar";
@@ -109,6 +110,12 @@ function Store(props) {
             setDisableFormButton(false);
         }
     }
+    // function validateField(event) {
+    //     const type = event.target.name;
+    //     const value = event.target.value;
+    //     // set error message for individual input fields
+    //     console.log(type, value);
+    // }
     function getSearchResults() {
         const data = {
             search,
@@ -291,6 +298,7 @@ function Store(props) {
                     handleInputChange={handleInputChange}
                     action={customStore}
                     disableButton={disableFormButton}
+                    validateField={validateCustomStore}
                 />
             ) : (<div />)}
         </div>
