@@ -71,7 +71,7 @@ function CreateList(props) {
         <div className="create-list">
             <div
                 className="create-list-header"
-                aria-label={list[0].list_name || "list"}
+                aria-label={list.length > 0 ? list[0].list_name || "list" : "new list"}
             >
                 {list.length > 0 ? `Add to ${list[0].list_name || "list"}` : "New List"}
             </div>
