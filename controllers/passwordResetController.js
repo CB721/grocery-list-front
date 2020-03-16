@@ -32,8 +32,7 @@ module.exports = {
                         corbato(tempPassword)
                             .then(hashedPassword => {
                                 // create reset request
-                                // resetRequest(response[0].id, hashedPassword);
-                                checkPastReset(response[0].id, hashedPassword);
+                                checkPastReset(response[0].id, hashedPassword, tempPassword);
                             })
                     } else {
                         return res.status(404).send("Email not on file");
@@ -44,7 +43,7 @@ module.exports = {
                 });
         }
         // check if a request has already been sent in the past 24 hours
-        function checkPastReset(id, password) {
+        function checkPastReset(id, hashedPassword, tempPassword) {
             // db will return all requests for specified user within the past 24-hours where the password has not been updated, instruct user to check their email
             sqlDB
                 .query(`CALL check_pass_reset_requests('${id}')`,
@@ -55,18 +54,18 @@ module.exports = {
                             // if any are returned, a request has already been placed
                             return res.status(418).send("A request has already been made for this email address in the last 24-hours.  Please check your email for the reset link.");
                         } else {
-                            resetRequest(id, password);
+                            resetRequest(id, hashedPassword, tempPassword);
                         }
                     })
         }
-        function resetRequest(id, password) {
+        function resetRequest(id, hashedPassword, tempPassword) {
             sqlDB
-                .query(`INSERT INTO ${resetTable} (user_id, temp_password) VALUES('${id}', '${password}');`,
+                .query(`INSERT INTO ${resetTable} (user_id, temp_password) VALUES('${id}', '${hashedPassword}');`,
                     function (err, results) {
                         if (err) {
                             return res.status(500).send(err);
                         } else if (results.affectedRows === 1) {
-                            sendResetEmail(password);
+                            sendResetEmail(tempPassword);
                         }
                     })
         }
@@ -84,13 +83,13 @@ module.exports = {
                 });
             })
         }
-        function sendResetEmail(password) {
+        function sendResetEmail(tempPassword) {
             // set up mail options
             const mailOptions = {
                 from: 'invite.glist@gmail.com', // sender address
                 to: req.body.email, // list of receivers
                 subject: `G-List Password Reset`, // Subject line
-                html: resetEmail(req.body.email, password),// plain text body,
+                html: resetEmail(req.body.email, tempPassword),// plain text body,
                 priority: "normal"
             };
             // send mail to specified address

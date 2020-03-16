@@ -19,8 +19,8 @@ export default {
     addItem: function (data, config) {
         return axios.post("/api/lists/add", data, config);
     },
-    updateItem: function (id, data, config) {
-        return axios.put("/api/lists/user/item/" + id, data, config);
+    updateItem: function (id, data) {
+        return axios.put("/api/lists/user/item/" + id, data);
     },
     getListByID: function (id, userID) {
         return axios.get(`/api/lists/user/full/single/${id}/${userID}`);
@@ -28,8 +28,8 @@ export default {
     getListsByUserID: function (data, config) {
         return axios.post("/api/lists/user/full/all", data, config);
     },
-    updateList: function (data, config) {
-        return axios.put("/api/lists/user/info/update", data, config);
+    updateList: function (data) {
+        return axios.put("/api/lists/user/info/update", data);
     },
     addPreviousListToCurrent: function (data, config) {
         return axios.post("/api/lists/user/previous", data, config);
@@ -67,8 +67,8 @@ export default {
     getConnectionsByID: function (id) {
         return axios.get("/api/connections/" + id);
     },
-    updateConnection: function (id, config) {
-        return axios.put("/api/connections/" + id, config);
+    updateConnection: function (id) {
+        return axios.put("/api/connections/" + id);
     },
     removeConnection: function (id, config) {
         return axios.delete("/api/connections/" + id, config);
@@ -76,8 +76,8 @@ export default {
     createConnection: function (data, config) {
         return axios.post("/api/connections/new", data, config);
     },
-    updateUser: function (id, data, config) {
-        return axios.put("/api/users/update/" + id, data, config);
+    updateUser: function (id, data) {
+        return axios.put("/api/users/update/" + id, data);
     },
     checkEmailExists: function (email) {
         return axios.get("/api/users/update/" + email);

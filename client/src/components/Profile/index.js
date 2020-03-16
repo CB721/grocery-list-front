@@ -148,20 +148,14 @@ function Profile(props) {
             default:
                 return;
         }
-        setProgress(0);
-        setModal(true);
-        API.updateItem(id, listItem, config)
+        API.updateItem(id, listItem)
             .then(() => {
                 getUserList();
                 notification("Item updated!");
-                setModal(false);
-                setProgress(0);
             })
             .catch(err => console.log(err));
     }
     function updateItemPosition(items) {
-        setProgress(0);
-        setModal(true);
         const updateItems = [];
         for (let i = 0; i < items.length; i++) {
             if (items[i].id !== userList[i].id) {
@@ -176,10 +170,7 @@ function Profile(props) {
                 getUserList()
             } else {
                 API.updateItem(updateItems[i].id, { position: updateItems[i].position })
-                    .then(() => {
-                        setModal(false);
-                        setProgress(0);
-                    })
+                    .then()
                     .catch(err => console.log(err));
             }
         }
@@ -203,13 +194,9 @@ function Profile(props) {
             user_id: props.user[0].id,
             list_id: id
         }
-        setProgress(0);
-        setModal(true);
-        API.updateList(listInfo, config)
+        API.updateList(listInfo)
             .then(() => {
                 getUserList();
-                setModal(false);
-                setProgress(0);
             })
             .catch(err => console.log(err));
     }
@@ -219,14 +206,10 @@ function Profile(props) {
             user_id: props.user[0].id,
             list_id: id
         }
-        setProgress(0);
-        setModal(true);
-        API.updateList(listInfo, config)
+        API.updateList(listInfo)
             .then(() => {
                 getUserList();
                 notification("List marked as complete");
-                setModal(false);
-                setProgress(0);
             })
             .catch(err => console.log(err));
     }

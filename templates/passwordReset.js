@@ -113,7 +113,7 @@ module.exports = function (email, password) {
         <div class="content" style="position: fixed;top: 10%;width: 100%;overflow: scroll;height: 75vh;font-family: sans-serif;padding: 2.5% 0;">
             <div class="inner-content" style="width: 75%;margin-left: 12.5%;height: auto;overflow: scroll;border-radius: 8px;">
                 <div class="invite-message" style="height: auto;text-align: center;padding: 2%;line-height: 16px;color: #2F3338;">
-                    Someone requested to reset the password for ${email}.  If that was you, click the link below:
+                    Someone requested to reset the password for ${email}.  If that was you, copy and paste the password below below:
                 </div>
                 <div class="invite-message" style="height: auto;text-align: center;padding: 2%;line-height: 16px;color: #2F3338;">
                 Here is your new password: ${password}

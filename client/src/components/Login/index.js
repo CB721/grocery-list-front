@@ -111,7 +111,16 @@ function Login(props) {
             });
     }
     function submitForgotPassword() {
-        API.passwordReset()
+        const data = {
+            email: forgotEmail
+        }
+        API.passwordReset(data)
+            .then(res => {
+                console.log(res.data);
+            })
+            .catch(err => {
+                console.log(err);
+            });
     }
     function handleInputForgotPassword(event) {
         const value = event.target.value;
