@@ -7,6 +7,7 @@ const lists = require("./lists");
 const notifications = require("./notifications");
 const connections = require("./connections");
 const passResets = require("./passwordReset");
+const issues = require("./issues");
 
 router.use("/places", places);
 router.use("/users", users);
@@ -15,9 +16,10 @@ router.use("/lists", lists);
 router.use("/notifications", notifications);
 router.use("/connections", connections);
 router.use("/resets", passResets);
+router.use("/issues", issues);
 
 router.use(function (req, res) {
-    res.sendFile(path.join(__dirname, "../../client/build/index.html"));
+    res.sendFile(path.join(__dirname, "../../client/public/index.html"));
 });
 
 module.exports = router;

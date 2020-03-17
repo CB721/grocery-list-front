@@ -2,13 +2,14 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const IssueSchema = new Schema({
-    code: {
+    error_code: {
         type: Number
     },
-    content: {
+    error_message: {
         type: String
     },
-    action: {
+    // what triggered the error to occur
+    action_trigger: {
         type: String,
         required: true
     },
