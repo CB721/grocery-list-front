@@ -36,7 +36,14 @@ module.exports = {
             });
     },
     getAll: function (req, res) {
+        Issue
+            .find({})
+            .then(response => {
+                return res.status(200).json(response);
+            })
+            .catch(err => {
 
+            });
     },
     getAllFrontEnd: function (req, res) {
         Issue
@@ -56,7 +63,7 @@ module.exports = {
                         front_end: false,
                         back_end: true
                     })
-                    .then(errResponse => {
+                    .then(() => {
                         // send back the error to the user
                         return res.status(500).send(err)
                     })
@@ -83,7 +90,7 @@ module.exports = {
                         front_end: false,
                         back_end: true
                     })
-                    .then(errResponse => {
+                    .then(() => {
                         // send back the error to the user
                         return res.status(500).send(err)
                     })
