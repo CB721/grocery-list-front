@@ -10,7 +10,7 @@ router
     .get(controller.getAllBackEnd)
     .post(controller.backEnd);
 router
-    .router("/all")
+    .route("/all")
     .get(controller.getAll);
 
 module.exports = router;

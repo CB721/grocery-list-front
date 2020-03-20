@@ -2,7 +2,17 @@ const { Issue } = require("../mongoose_models");
 
 module.exports = {
     frontEnd: function (req, res) {
-
+        const issue = req.body;
+        issue["front_end"] = true;
+        issue["back_end"] = false;
+        Issue
+            .create(issue)
+            .then(response => {
+                return res.status(200).json(response);
+            })
+            .catch(err => {
+                return res.status(500).json(err);
+            });
     },
     backEnd: function (req, res) {
 
