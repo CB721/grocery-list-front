@@ -15,6 +15,7 @@ const transporter = nodemailer.createTransport({
 const invite = require("../templates/invite");
 const crypto = require("crypto");
 const bcrypt = require("bcryptjs");
+const { backEnd } = require("../utilities/createIssue");
 
 module.exports = {
     getUserConnections: function (req, res) {
@@ -24,7 +25,17 @@ module.exports = {
             .query(`CALL get_user_connections(${ID});`,
                 function (err, results) {
                     if (err) {
-                        return res.status(404).send(err);
+                        backEnd({
+                            error_code: err.code,
+                            error_message: err.sqlMessage,
+                            action_trigger: "get all user connections"
+                        })
+                            .then(() => {
+                                return res.status(404).json(err);
+                            })
+                            .catch(() => {
+                                return res.status(404).json(err);
+                            });
                     } else {
                         return res.status(200).json(results[0]);
                     }
@@ -48,7 +59,17 @@ module.exports = {
             .query(`UPDATE ${connectTable} SET ${updateItems} WHERE id = ${ID};`,
                 function (err, results) {
                     if (err) {
-                        return res.status(404).send(err);
+                        backEnd({
+                            error_code: err.code,
+                            error_message: err.sqlMessage,
+                            action_trigger: `update connection.  connection id: ${ID}`
+                        })
+                            .then(() => {
+                                return res.status(404).json(err);
+                            })
+                            .catch(() => {
+                                return res.status(404).json(err);
+                            });
                     } else if (results.affectedRows > 0) {
                         return res.status(200).send("success");
                     } else {
@@ -64,7 +85,17 @@ module.exports = {
             .query(`UPDATE ${connectTable} SET pending = 0, accepted = 0 WHERE id = ${ID};`,
                 function (err, results) {
                     if (err) {
-                        return res.status(404).send(err);
+                        backEnd({
+                            error_code: err.code,
+                            error_message: err.sqlMessage,
+                            action_trigger: `remove connection. id: ${ID}`
+                        })
+                            .then(() => {
+                                return res.status(400).json(err);
+                            })
+                            .catch(() => {
+                                return res.status(404).json(err);
+                            });
                     } else if (results.affectedRows > 0) {
                         return res.status(200).send("success");
                     } else {
@@ -75,10 +106,19 @@ module.exports = {
     connectionRequest: function (req, res) {
         // user would send an email of other user and their id
         const request = req.body;
-        console.log(request);
         const email = request.email;
         // prevent injections
         if (email.indexOf("$") > -1 || !isEmail(email)) {
+            backEnd({
+                error_message: "Mongo injection",
+                action_trigger: `connection request: ${request}`
+            })
+                .then(() => {
+                    return res.status(400).json(err);
+                })
+                .catch(() => {
+                    return res.status(404).json(err);
+                });
             return res.status(406).send("Invalid email");
         }
         const ID = sqlDB.escape(request.id);
@@ -110,10 +150,27 @@ module.exports = {
                     };
                     // send mail to specified address
                     transporter.sendMail(mailOptions, function (err, info) {
-                        if (err)
-                            return res.status(503).send(err);
-                        else
+                        if (err) {
+                            backEnd({
+                                action_trigger: `send mail error: ${err}`;
+                            })
+                                .then(() => {
+                                    return res.status(503).json(err);
+                                })
+                                .catch(() => {
+                                    return res.status(503).json(err);
+                                });
+                        } else {
                             if (info.rejected.length > 0) {
+                                backEnd({
+                                    action_trigger: `email blocked: ${info}`
+                                })
+                                    .then(() => {
+                                        return res.status(500).json(err);
+                                    })
+                                    .catch(() => {
+                                        return res.status(500).json(err);
+                                    });
                                 return res.status(403).send("Email blocked");
                             } else {
                                 createUserMongo(password);
@@ -121,6 +178,7 @@ module.exports = {
                                 // if they have been created, redirect to login page
                                 // if not update user to be created with the user's first and last name
                             }
+                        }
                     });
                 }
             })
@@ -131,7 +189,15 @@ module.exports = {
                 bcrypt.genSalt(10, (err, salt) => {
                     bcrypt.hash(resistance, salt, (err, hash) => {
                         if (err) {
-                            return reject(err);
+                            backEnd({
+                                action_trigger: `hash user password, connection request: ${err}`
+                            })
+                                .then(() => {
+                                    return reject(err);
+                                })
+                                .catch(() => {
+                                    return reject(err);
+                                });
                         } else {
                             return resolve(hash);
                         }
@@ -165,7 +231,17 @@ module.exports = {
                 .query(`INSERT INTO ${usersTable} ${columns} VALUES(${id}, "Grocery", "List", '${email}', ${password}, NOW(), NOW(), FALSE);`,
                     function (err, results) {
                         if (err) {
-                            return res.status(422).send(err);
+                            backEnd({
+                                error_code: err.code,
+                                error_message: err.sqlMessage,
+                                action_trigger: `create user in sql.  connection id: ${ID}, user id: ${id}`
+                            })
+                                .then(() => {
+                                    return res.status(422).json(err);
+                                })
+                                .catch(() => {
+                                    return res.status(422).json(err);
+                                });
                         } else if (results.affectedRows === 1) {
                             // if a row has successfully been added to the table, create a connection between the newly created user and the existing user
                             // we can skip the check because we know there isn't one because a user was just created
@@ -180,7 +256,17 @@ module.exports = {
                 .query(`SELECT * FROM ${connectTable} WHERE (requestor_id = ${ID} AND requested_id = '${requestedID}') OR (requestor_id = '${requestedID}' AND requested_id = ${ID});`,
                     function (err, results) {
                         if (err) {
-                            return res.status(500).send(err);
+                            backEnd({
+                                error_code: err.code,
+                                error_message: err.sqlMessage,
+                                action_trigger: `check existing connection`
+                            })
+                                .then(() => {
+                                    return res.status(500).json(err);
+                                })
+                                .catch(() => {
+                                    return res.status(500).json(err);
+                                });
                         } else if (results.length > 0) {
                             // if there are any results, a connection already exists
                             return res.status(202).send("Connection already exists");
@@ -196,12 +282,30 @@ module.exports = {
                 .query(`INSERT INTO ${connectTable} (requestor_id, requested_id, date_added) VALUES (${ID}, '${requestedID}', NOW());`,
                     function (err, results) {
                         if (err) {
-                            return res.status(500).send(err);
+                            backEnd({
+                                error_code: err.code,
+                                error_message: err.sqlMessage,
+                                action_trigger: `create connection`
+                            })
+                                .then(() => {
+                                    return res.status(500).json(err);
+                                })
+                                .catch(() => {
+                                    return res.status(500).json(err);
+                                });
                         } else if (results.affectedRows === 1) {
                             // if it successfully added, create a notification for the requested user
                             createNotification(requestedID);
                         } else {
-                            return res.status(500).send("Unable to create connection");
+                            backEnd({
+                                action_trigger: `unable to create connection`
+                            })
+                                .then(() => {
+                                    return res.status(500).send("Unable to create connection");
+                                })
+                                .catch(() => {
+                                    return res.status(500).send("Unable to create connection");
+                                });
                         }
                     })
         }
@@ -211,11 +315,29 @@ module.exports = {
                 .query(`INSERT INTO ${notificationsTable} (content, date_added, user_id, other_user_id) VALUES("You have a connection request!", NOW(), ${ID}, '${requestedID}');`,
                     function (err, results) {
                         if (err) {
-                            return res.status(500).send(err);
+                            backEnd({
+                                error_code: err.code,
+                                error_message: err.sqlMessage,
+                                action_trigger: `create notification for connection request`
+                            })
+                                .then(() => {
+                                    return res.status(500).json(err);
+                                })
+                                .catch(() => {
+                                    return res.status(500).json(err);
+                                });
                         } else if (results.affectedRows === 1) {
                             return res.status(200).send("Connection request sent");
                         } else {
-                            return res.status(500).send("Unable to send connection request");
+                            backEnd({
+                                action_trigger: `Unable to send connection request`
+                            })
+                                .then(() => {
+                                    return res.status(500).send("Unable to create connection");
+                                })
+                                .catch(() => {
+                                    return res.status(500).send("Unable to create connection");
+                                });
                         }
                     });
         }
@@ -227,7 +349,17 @@ module.exports = {
             .query(`DELETE FROM ${connectTable} WHERE id = ${ID};`,
                 function (err, results) {
                     if (err) {
-                        return res.status(500).send(err);
+                        backEnd({
+                            error_code: err.code,
+                            error_message: err.sqlMessage,
+                            action_trigger: `cancel connection request`
+                        })
+                            .then(() => {
+                                return res.status(500).json(err);
+                            })
+                            .catch(() => {
+                                return res.status(500).json(err);
+                            });
                     } else if (results.affectedRows === 1) {
                         return res.status(200).send("Connection request cancelled");
                     }
