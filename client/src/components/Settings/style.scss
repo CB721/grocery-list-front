@@ -210,7 +210,7 @@
                             .send-list {
                                 background: rgb(88, 210, 88);
                                 &:hover {
-                                    background: rgb(17, 140, 17);
+                                    background: $green;
                                 }
                             }
                             .view-list {
@@ -222,7 +222,7 @@
                             .delete-user {
                                 background: rgb(228, 87, 87);
                                 &:hover {
-                                    background: rgb(159, 20, 20);
+                                    background: $red;
                                 }
                             }
                         }

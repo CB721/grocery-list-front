@@ -3,12 +3,12 @@
 .card-carousel {
     position: relative;
     width: 100%;
-    height: -moz-calc(50% - 50px);
-    height: -webkit-calc(50% - 50px);
-    height: -o-calc(50% - 50px);
-    height: calc(50% - 50px);
-    border-top: 3px solid $black;
-    border-bottom: 3px solid $black;
+    height: 100%;
+    margin: 25% 0;
+    // height: -moz-calc(50% - 50px);
+    // height: -webkit-calc(50% - 50px);
+    // height: -o-calc(50% - 50px);
+    // height: calc(50% - 50px);
     & .card {
         transition: 0.5s;
         z-index: 1;

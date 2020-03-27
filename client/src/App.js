@@ -244,7 +244,7 @@ function App() {
     })
   }
   function logout() {
-    return new Promise(function(resolve, reject) {
+    return new Promise(function (resolve, reject) {
       localStorage.clear();
       sessionStorage.clear();
       setNavOptions([create, signIn]);
@@ -252,7 +252,7 @@ function App() {
     });
   }
   function createConnection(connectEmail, config) {
-    return new Promise(function(resolve, reject) {
+    return new Promise(function (resolve, reject) {
       const data = {
         email: connectEmail,
         username: `${user[0].first_name} ${user[0].last_name.charAt(0)}`,
@@ -286,7 +286,9 @@ function App() {
           logout={logout}
         />
         <Switch>
-          <Route exact path="/" component={Home} />
+          <Route exact path="/" render={props => (
+              <Home {...props} />
+          )} />
           <Route
             exact path="/login"
             render={props =>

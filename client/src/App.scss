@@ -2,6 +2,12 @@ $black: #2F3338;
 $white: #F9FCFF;
 $main-blue: #3C91E6;
 $secondary-blue: #5695D3;
+$green: rgb(17, 140, 17);
+$red: rgb(159, 20, 20);
+$yellow: rgb(159, 131, 20);
+$pink: rgb(214, 41, 194);
+$orange: rgb(214, 107, 41);
+$purple: rgb(107, 41, 214);
 
 @mixin shadow {
     -webkit-box-shadow: 0px 3px 2px -2px rgba(47,51,56,0.64);

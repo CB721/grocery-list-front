@@ -15,7 +15,7 @@ const transporter = nodemailer.createTransport({
 const invite = require("../templates/invite");
 const crypto = require("crypto");
 const bcrypt = require("bcryptjs");
-const { backEnd } = require("../utilities/createIssue");
+const { backEnd, frontEnd } = require("../utilities/createIssue");
 
 module.exports = {
     getUserConnections: function (req, res) {
@@ -53,6 +53,13 @@ module.exports = {
             if (key === "pending" || key === "accepted") {
                 updateItems += `${key} = ${sqlDB.escape(value)}, `;
             }
+        }
+        if (!updateItems) {
+            const issue = req.body;
+            issue["action_trigger"] = "invalid columns";
+            frontEnd(issue)
+                .then(() => res.status(400).send("invalid columns"))
+                .catch(() => res.status(400).send("invalid columns"));
         }
         updateItems = updateItems.substring(0, updateItems.length - 2);
         sqlDB
@@ -109,8 +116,8 @@ module.exports = {
         const email = request.email;
         // prevent injections
         if (email.indexOf("$") > -1 || !isEmail(email)) {
-            backEnd({
-                error_message: "Mongo injection",
+            frontEnd({
+                error_message: "Mongo injection attempt",
                 action_trigger: `connection request: ${request}`
             })
                 .then(() => {
@@ -152,7 +159,7 @@ module.exports = {
                     transporter.sendMail(mailOptions, function (err, info) {
                         if (err) {
                             backEnd({
-                                action_trigger: `send mail error: ${err}`;
+                                action_trigger: `send mail error: ${err}`
                             })
                                 .then(() => {
                                     return res.status(503).json(err);
@@ -160,24 +167,22 @@ module.exports = {
                                 .catch(() => {
                                     return res.status(503).json(err);
                                 });
-                        } else {
-                            if (info.rejected.length > 0) {
-                                backEnd({
-                                    action_trigger: `email blocked: ${info}`
+                        } else if (info.rejected.length > 0) {
+                            backEnd({
+                                action_trigger: `email blocked: ${info}`
+                            })
+                                .then(() => {
+                                    return res.status(500).json(err);
                                 })
-                                    .then(() => {
-                                        return res.status(500).json(err);
-                                    })
-                                    .catch(() => {
-                                        return res.status(500).json(err);
-                                    });
-                                return res.status(403).send("Email blocked");
-                            } else {
-                                createUserMongo(password);
-                                // check sql to see if user has been "created" or not
-                                // if they have been created, redirect to login page
-                                // if not update user to be created with the user's first and last name
-                            }
+                                .catch(() => {
+                                    return res.status(500).json(err);
+                                });
+                            return res.status(403).send("Email blocked");
+                        } else {
+                            createUserMongo(password);
+                            // check sql to see if user has been "created" or not
+                            // if they have been created, redirect to login page
+                            // if not update user to be created with the user's first and last name
                         }
                     });
                 }
