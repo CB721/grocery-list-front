@@ -156,6 +156,14 @@ function CreateList(props) {
                     Add A Store To Continue
                 </div>
             ) : (<div />)}
+            {showAdd ? (
+                <Button
+                    text="Add"
+                    class="blue-button"
+                    action={addItem}
+                    disabled={newItem.length < 1 ? true : false}
+                />
+            ) : (<div />)}
             {list.length > 0 ? (
                 <div>
                     <Flip bottom cascade>
@@ -166,14 +174,6 @@ function CreateList(props) {
                         />
                     </Flip>
                 </div>
-            ) : (<div />)}
-            {showAdd ? (
-                <Button
-                    text="Add"
-                    class="blue-button"
-                    action={addItem}
-                    disabled={newItem.length < 1 ? true : false}
-                />
             ) : (<div />)}
         </div>
     )

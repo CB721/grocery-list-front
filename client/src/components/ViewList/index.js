@@ -50,11 +50,12 @@ function ViewList(props) {
         if (storeFilter === "All") {
             setDisplayList(list);
         } else {
+            const copy = [...list];
             const newList = [];
             // iterate over list and add to list
-            for (let i = 0; i < list.length; i++) {
-                if (list[i].store_name === storeFilter) {
-                    newList.push(list[i]);
+            for (let i = 0; i < copy.length; i++) {
+                if (copy[i].store_name === storeFilter) {
+                    newList.push(copy[i]);
                 }
             }
             setDisplayList(newList);
@@ -105,10 +106,18 @@ function ViewList(props) {
         event.preventDefault();
         setCurrentView(event.currentTarget.id);
     }
-    function toggleClass(event, id = 1, index = 0) {
+    function toggleClass(event, id = 1) {
         event.preventDefault();
         let status = true;
-        if (list[index].purchased) {
+        let itemID = 0;
+        // get id from iterating over the list
+        for (let i = 0; i < list.length; i++) {
+            if (list[i].id === id) {
+                itemID = i;
+                break;
+            }
+        }
+        if (list[itemID].purchased) {
             status = false;
         }
         props.updateItem(id, "purchased", status);

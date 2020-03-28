@@ -128,7 +128,7 @@ function List(props) {
                                                     <Checkbox
                                                         // if item has been purchased or not, change class
                                                         class={item.purchased === 0 ? "to-get" : "done"}
-                                                        toggleClass={(event) => props.toggleClass(event, item.id, index)}
+                                                        toggleClass={(event) => props.toggleClass(event, item.id)}
                                                     />
                                                 ) : (<Trash
                                                     className={"edit-icon " + props.hidetrash}
