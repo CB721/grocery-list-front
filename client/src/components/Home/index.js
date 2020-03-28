@@ -60,59 +60,22 @@ function Home(props) {
                         ))}
                     </div>
                 </ParallaxLayer>
-                {/* <ParallaxLayer offset={0.999} speed={0.4} >
-                    <div className="home-page-section" />
+                <ParallaxLayer offset={1.2} speed={-0.2} style={{ pointerEvents: 'none' }}>
+                    <Rice style={{ height: "10%", width: "10%", marginLeft: "12%" }} />
                 </ParallaxLayer>
-                <ParallaxLayer offset={1} speed={0.4} factor={0.8}>
-                    <div className="home-page-section red">
-                    </div>
+                <ParallaxLayer offset={1} speed={1.8} style={{ pointerEvents: 'none' }}>
+                    <Taco style={{ height: "10%", width: "10%", marginLeft: "87%" }} />
                 </ParallaxLayer>
-                <ParallaxLayer offset={1} speed={0.5} factor={0.5}>
-                    <div style={{ marginLeft: "25%", marginRight: "25%" }}>
-                        <Card
-                            cardName={Benefits[0].cardName}
-                            imageLink={Benefits[0].imageLink}
-                            text={Benefits[0].text}
-                        />
-                    </div>
+                <ParallaxLayer offset={0.999} speed={0.5} style={{ opacity: 0.3, zIndex: 3 }}>
+                    <Potato style={{ height: "10%", width: "10%", marginLeft: "58%" }} />
                 </ParallaxLayer>
-                <ParallaxLayer offset={1.5} speed={0.5} factor={0.5}>
-                    <div style={{ marginLeft: "35%" }}>
-                        <Card
-                            cardName={Benefits[1].cardName}
-                            imageLink={Benefits[1].imageLink}
-                            text={Benefits[1].text}
-                        />
-                    </div>
-                </ParallaxLayer> */}
-                {/* <ParallaxLayer offset={2} speed={0.5} factor={0.5}>
-                    <div style={{ marginLeft: "35%" }}>
-                        <Card
-                            cardName={Benefits[2].cardName}
-                            imageLink={Benefits[2].imageLink}
-                            text={Benefits[2].text}
-                        />
-                    </div>
-                </ParallaxLayer> */}
-                {/* <ParallaxLayer offset={2} speed={0.4} factor={0.8}>
-                    <div className="home-page-section blue" />
-                </ParallaxLayer> */}
-                {/* <ParallaxLayer offset={1.3} speed={1.5} style={{ pointerEvents: 'none' }}>
-                    <Rice style={{ height: "10%", width: "10%", marginLeft: "25%", opacity: 0.1  }} />
-                </ParallaxLayer>
-                <ParallaxLayer offset={1.5} speed={0.7} style={{ pointerEvents: 'none' }}>
+                {/* <ParallaxLayer offset={0.99999999999999999} speed={1.4} style={{ pointerEvents: 'none' }}>
                     <IceCream style={{ height: "10%", width: "10%", marginLeft: "65%" }} />
                 </ParallaxLayer>
-                <ParallaxLayer offset={1} speed={0.7} style={{ pointerEvents: 'none' }}>
-                    <Potato style={{ height: "10%", width: "10%", marginLeft: "88%" }} />
-                </ParallaxLayer>
-                <ParallaxLayer offset={1} speed={1.2} style={{ pointerEvents: 'none' }}>
-                    <Taco style={{ height: "10%", width: "10%", marginLeft: "37%", opacity: 0.1  }} />
-                </ParallaxLayer>
-                <ParallaxLayer offset={1.5} speed={0.9} style={{ pointerEvents: 'none' }}>
+                <ParallaxLayer offset={1} speed={-0.5} style={{ pointerEvents: 'none' }}>
                     <Tomato style={{ height: "10%", width: "10%", marginLeft: "12%" }} />
                 </ParallaxLayer>
-                <ParallaxLayer offset={2.6} speed={0.7} style={{ pointerEvents: 'none' }}>
+                <ParallaxLayer offset={0.99999999999999999} speed={0.1} style={{ pointerEvents: 'none' }}>
                     <Cart style={{ height: "10%", width: "10%", marginLeft: "76%", fill: "white" }} />
                 </ParallaxLayer> */}
             </Parallax>

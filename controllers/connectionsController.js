@@ -140,13 +140,13 @@ module.exports = {
                     checkExistConnection(response.id);
                 } else {
                     // get invite template
-                    let template = invite();
-                    // replace password with unique generated string
-                    template = template.replace("{{password}}", password);
-                    // replace username with name from request
-                    template = template.replace("{{username}}", request.username);
-                    // replace email
-                    template = template.replace("{{email}}", request.email);
+                    const template = invite(password, request.email, request.username);
+                    // // replace password with unique generated string
+                    // template = template.replace("{{password}}", password);
+                    // // replace username with name from request
+                    // template = template.replace("{{username}}", request.username);
+                    // // replace email
+                    // template = template.replace("{{email}}", request.email);
                     // set up mail options
                     const mailOptions = {
                         from: 'invite.glist@gmail.com', // sender address

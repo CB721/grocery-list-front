@@ -8,6 +8,7 @@
     position: relative;
     border-radius: 8px;
     margin: 5vh auto;
+    z-index: 800;
     & .card-tooltip {
         visibility: hidden;
         background: $main-blue;
