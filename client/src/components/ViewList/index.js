@@ -230,6 +230,7 @@ function ViewList(props) {
                                     toggleClass={toggleClass}
                                     changePriority={changePriority}
                                     updateItemPosition={props.updateItemPosition}
+                                    deleteItem={props.deleteItem}
                                 />
                             </Flip>
                             {showComplete && list.length > 0 ? (

@@ -29,7 +29,6 @@ function Profile(props) {
         onUploadProgress: progressEvent => {
             const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
             setProgress(percentCompleted);
-            console.log(percentCompleted);
         }
     };
     useEffect(() => {

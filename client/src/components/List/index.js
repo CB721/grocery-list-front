@@ -7,6 +7,13 @@ import "./style.scss";
 
 function List(props) {
     const [list, setList] = useState([]);
+    const [selectedItem, setSelectedItem] = useState();
+    const [offset, setOffset] = useState(0);
+    const [velocity, setVelocity] = useState(0);
+    const [timeOfLastDrag, setTimeOfLastDrag] = useState();
+    const [touchStartX, setTouchStartX] = useState(0);
+    const [prevTouchX, setPrevTouchX] = useState(0);
+    const [left, setLeft] = useState(0);
 
     useEffect(() => {
         setList(props.list);
@@ -52,6 +59,51 @@ function List(props) {
             props.action(info);
         }
     }
+    function start(event, item) {
+        event.preventDefault();
+        // set selected item to state
+        setSelectedItem(item);
+        // get offset
+        setOffset(left);
+        // set starting time
+        setTimeOfLastDrag(Date.now());
+        // set starting position
+        setTouchStartX(event.touches[0].clientX);
+    }
+    function end(event) {
+        event.preventDefault();
+        // set selected item to null
+        setSelectedItem();
+        // reset touch start x
+        setTouchStartX(0)
+    }
+    function move(event) {
+        event.preventDefault();
+        if (selectedItem) {
+            // get current x axis value
+            const touchX = event.touches[0].clientX;
+            // get current time
+            const currTime = Date.now();
+            // calculate time difference between now and last movement
+            const elapsed = currTime - timeOfLastDrag;
+            // calculate velocity
+            const moveVelocity = 20 * (touchX - prevTouchX) / elapsed;
+            // calcuate how far the item has been dragged
+            let deltaX = touchX - touchStartX + offset;
+            // if it is dragged to the left and a delete option has been passed in
+            if (deltaX < -350 && props.deleteItem) {
+                props.deleteItem(selectedItem.id);
+            } else if (deltaX > 0) {
+                deltaX = 0;
+            }
+            // update state
+            setVelocity(moveVelocity);
+            setTimeOfLastDrag(currTime);
+            setPrevTouchX(touchX);
+            setLeft(deltaX);
+            // the velocity can be used later for animating the background of an item to indicate it is being deleted
+        }
+    }
 
     return (
         <DragDropContext onDragEnd={onDragEnd} aria-label="list">
@@ -80,6 +132,9 @@ function List(props) {
                                             snapshot.isDragging,
                                             provided.draggableProps.style
                                         )}
+                                        onTouchStart={event => start(event, item)}
+                                        onTouchEnd={event => end(event)}
+                                        onTouchMove={event => move(event)}
                                     >
                                         <div
                                             className="list-item-col"
