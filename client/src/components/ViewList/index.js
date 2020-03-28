@@ -18,6 +18,7 @@ function ViewList(props) {
     const [modal, setModal] = useState(false);
     const [modalList, setModalList] = useState([]);
     const [modalMessage, setModalMessage] = useState("");
+    const [listMessage, setListMessage] = useState("");
 
     useEffect(() => {
         setList(props.list);
@@ -31,6 +32,12 @@ function ViewList(props) {
                 setShowComplete(false);
                 break;
             }
+        }
+        // if it has been over 5 seconds, display a message replacing the loading bar
+        if (props.list.length < 1) {
+            setTimeout(() => {
+                setListMessage("Create a list to get started!");
+            }, 5000);
         }
     }, [props.list]);
     useEffect(() => {
@@ -224,6 +231,9 @@ function ViewList(props) {
                                 />
                             ) : (<div />)}
                         </div>
+                    ) : listMessage.length > 0 ? (<div className="view-list-message">
+                        {listMessage}
+                    </div>
                     ) : (<LoadingSpinner />)}
                 </div>
             ) : (

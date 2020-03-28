@@ -12,7 +12,6 @@
         float: left;
         width: 50%;
         height: 20px;
-        display: grid;
         &.left {
             text-align: left;
         }
@@ -31,7 +30,7 @@
     }
     .list {
         .list-item {
-            padding: 0 5px;
+            // padding: 0 5px;
             .right {
                 transition: 0.3s;
                 .edit-icon {
