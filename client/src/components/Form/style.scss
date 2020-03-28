@@ -47,14 +47,14 @@
         border-color: rgb(255, 0, 0);
       }
       @keyframes input-flash {
-          0% {
-              border-color: rgb(255, 77, 0);
-              color: rgb(255, 77, 0);
-          }
-          50% {
-              border-color: rgb(255, 0, 0);
-              color: rgb(255, 0, 0);
-          }
+        0% {
+          border-color: rgb(255, 77, 0);
+          color: rgb(255, 77, 0);
+        }
+        50% {
+          border-color: rgb(255, 0, 0);
+          color: rgb(255, 0, 0);
+        }
       }
     }
     .form-input:last-child {
@@ -95,14 +95,6 @@
   }
 }
 
-@media only screen and(max-width: 450px) {
-  .form {
-    width: 100%;
-    .form-input-area {
-      width: 75%;
-    }
-  }
-}
 @media only screen and(max-width: 850px) {
   .form {
     width: 75%;
@@ -113,6 +105,14 @@
           float: left;
         }
       }
+    }
+  }
+}
+@media only screen and(max-width: 450px) {
+  .form {
+    width: 100%;
+    .form-input-area {
+      width: 75%;
     }
   }
 }
