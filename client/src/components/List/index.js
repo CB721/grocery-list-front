@@ -14,6 +14,7 @@ function List(props) {
     const [touchStartX, setTouchStartX] = useState(0);
     const [prevTouchX, setPrevTouchX] = useState(0);
     const [left, setLeft] = useState(0);
+    const [itemProps, setItemProps] = useState({});
 
     useEffect(() => {
         setList(props.list);
@@ -54,6 +55,7 @@ function List(props) {
     }
     function action(event, info) {
         event.preventDefault();
+        // event.stopPropagation();
         // if list has been provided a action function
         if (props.action && typeof (props.action) === "function") {
             props.action(info);
@@ -116,86 +118,156 @@ function List(props) {
                         {...provided.droppableProps}
                         className="list"
                     >
-                        {list.map((item, index) => (
-                            <Draggable
-                                draggableId={index.toString()}
-                                index={index}
-                                key={index}
-                            >
-                                {(provided, snapshot) => (
-                                    <div
-                                        className="list-item"
-                                        ref={provided.innerRef}
-                                        {...provided.draggableProps}
-                                        {...provided.dragHandleProps}
-                                        style={getListItemStyle(
-                                            snapshot.isDragging,
-                                            provided.draggableProps.style
-                                        )}
-                                        onTouchStart={event => start(event, item)}
-                                        onTouchEnd={event => end(event)}
-                                        onTouchMove={event => move(event)}
+                        {props.viewList ? (
+                            <div>
+                                {list.map((item, index) => (
+                                    <Draggable
+                                        draggableId={index.toString()}
+                                        index={index}
+                                        key={index}
                                     >
-                                        <div
-                                            className="list-item-col"
-                                            onClick={(event) => action(event, item)}
-                                            aria-label={item.name}
-                                        >
-                                            {item.name}
-                                        </div>
-                                        <div
-                                            className="list-item-col"
-                                            onClick={(event) => action(event, item)}
-                                            aria-label={item.store_name || item.list_name || "date"}
-                                        >
-                                            {item.store_name || item.list_name || convertDate(item.date_added.split("T")[0])}
-                                        </div>
-                                        <div className="list-item-col">
-                                            <div className="sub-col priority">
-                                                {props.viewList ? (
-                                                    <div>
-                                                        <select
-                                                            className="store-dropdown"
-                                                            defaultValue={item.priority}
-                                                            onChange={(event) => props.changePriority(event, item.id)}
-                                                            aria-label="select a priority level"
-                                                        >
-                                                            <option className="store-select-item" value="Low" aria-label="low priority">
-                                                                Low
-                                                            </option>
-                                                            <option className="store-select-item" value="Normal" aria-label="normal priority">
-                                                                Normal
-                                                            </option>
-                                                            <option className="store-select-item" value="High" aria-label="high-priority">
-                                                                High
-                                                            </option>
-                                                        </select>
-                                                    </div>
-                                                ) : (
-                                                        <div>
-                                                            {item.priority}
-                                                        </div>
-                                                    )}
+                                        {(provided, snapshot) => (
+                                            <div
+                                                className="list-item"
+                                                ref={provided.innerRef}
+                                                {...provided.draggableProps}
+                                                {...provided.dragHandleProps}
+                                                style={getListItemStyle(
+                                                    snapshot.isDragging,
+                                                    provided.draggableProps.style
+                                                )}
+                                                onTouchStart={event => start(event, item)}
+                                                onTouchEnd={event => end(event)}
+                                                onTouchMove={event => move(event)}
+                                            >
+                                                <div
+                                                    className="list-item-col"
+                                                    aria-label={item.name}
+                                                >
+                                                    {item.name}
+                                                </div>
+                                                <div
+                                                    className="list-item-col"
+                                                    aria-label={item.store_name || item.list_name || "date"}
+                                                >
+                                                    {item.store_name || item.list_name || convertDate(item.date_added.split("T")[0])}
+                                                </div>
+                                                <div className="list-item-col">
+                                                    <div className="sub-col priority">
+                                                        {props.viewList ? (
+                                                            <div>
+                                                                <select
+                                                                    className="store-dropdown"
+                                                                    defaultValue={item.priority}
+                                                                    onChange={(event) => props.changePriority(event, item.id)}
+                                                                    aria-label="select a priority level"
+                                                                >
+                                                                    <option className="store-select-item" value="Low" aria-label="low priority">
+                                                                        Low
+                                                                    </option>
+                                                                    <option className="store-select-item" value="Normal" aria-label="normal priority">
+                                                                        Normal
+                                                                    </option>
+                                                                    <option className="store-select-item" value="High" aria-label="high-priority">
+                                                                        High
+                                                                    </option>
+                                                                </select>
+                                                            </div>
+                                                        ) : (
+                                                                <div>
+                                                                    {item.priority}
+                                                                </div>
+                                                            )}
 
+                                                    </div>
+                                                    <div className="sub-col">
+                                                        <Checkbox
+                                                            // if item has been purchased or not, change class
+                                                            class={item.purchased === 0 ? "to-get" : "done"}
+                                                            toggleClass={(event) => props.toggleClass(event, item.id)}
+                                                        />
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div className="sub-col">
-                                                {props.viewList ? (
-                                                    <Checkbox
-                                                        // if item has been purchased or not, change class
-                                                        class={item.purchased === 0 ? "to-get" : "done"}
-                                                        toggleClass={(event) => props.toggleClass(event, item.id)}
-                                                    />
-                                                ) : (<Trash
-                                                    className={"edit-icon " + props.hidetrash}
-                                                    onClick={(event) => props.deleteItem(event, item.id)}
-                                                    aria-label="remove item"
-                                                />)}
-                                            </div>
-                                        </div>
-                                    </div>
-                                )}
-                            </Draggable>
-                        ))}
+                                        )}
+                                    </Draggable>
+                                ))}
+                            </div>
+                        ) : (
+                                <div>
+                                    {list.map((item, index) => (
+                                        <Draggable
+                                            draggableId={index.toString()}
+                                            index={index}
+                                            key={index}
+                                        >
+                                            {(provided, snapshot) => (
+                                                <div
+                                                    className="list-item"
+                                                    ref={provided.innerRef}
+                                                    {...provided.draggableProps}
+                                                    {...provided.dragHandleProps}
+                                                    style={getListItemStyle(
+                                                        snapshot.isDragging,
+                                                        provided.draggableProps.style
+                                                    )}
+                                                >
+                                                    <div
+                                                        className="list-item-col"
+                                                        onClick={(event) => action(event, item)}
+                                                        aria-label={item.name}
+                                                    >
+                                                        {item.name}
+                                                    </div>
+                                                    <div
+                                                        className="list-item-col"
+                                                        onClick={(event) => action(event, item)}
+                                                        aria-label={item.store_name || item.list_name || "date"}
+                                                    >
+                                                        {item.store_name || item.list_name || convertDate(item.date_added.split("T")[0])}
+                                                    </div>
+                                                    <div className="list-item-col">
+                                                        <div className="sub-col priority">
+                                                            {props.viewList ? (
+                                                                <div>
+                                                                    <select
+                                                                        className="store-dropdown"
+                                                                        defaultValue={item.priority}
+                                                                        onChange={(event) => props.changePriority(event, item.id)}
+                                                                        aria-label="select a priority level"
+                                                                    >
+                                                                        <option className="store-select-item" value="Low" aria-label="low priority">
+                                                                            Low
+                                                                        </option>
+                                                                        <option className="store-select-item" value="Normal" aria-label="normal priority">
+                                                                            Normal
+                                                                        </option>
+                                                                        <option className="store-select-item" value="High" aria-label="high-priority">
+                                                                            High
+                                                                        </option>
+                                                                    </select>
+                                                                </div>
+                                                            ) : (
+                                                                    <div>
+                                                                        {item.priority}
+                                                                    </div>
+                                                                )}
+
+                                                        </div>
+                                                        <div className="sub-col">
+                                                            <Trash
+                                                                className={"edit-icon " + props.hidetrash}
+                                                                onClick={(event) => props.deleteItem(event, item.id)}
+                                                                aria-label="remove item"
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </Draggable>
+                                    ))}
+                                </div>
+                            )}
                         {provided.placeholder}
                     </div>
                 )}
