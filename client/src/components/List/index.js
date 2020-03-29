@@ -14,7 +14,6 @@ function List(props) {
     const [touchStartX, setTouchStartX] = useState(0);
     const [prevTouchX, setPrevTouchX] = useState(0);
     const [left, setLeft] = useState(0);
-    const [itemProps, setItemProps] = useState({});
 
     useEffect(() => {
         setList(props.list);
@@ -177,7 +176,6 @@ function List(props) {
                                                                     {item.priority}
                                                                 </div>
                                                             )}
-
                                                     </div>
                                                     <div className="sub-col">
                                                         <Checkbox

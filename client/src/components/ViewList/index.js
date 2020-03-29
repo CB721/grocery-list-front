@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import List from "../List";
+import StaticList from "../StaticList";
 import Flip from "react-reveal/Flip";
 import Button from "../Button";
 import Modal from "../Modal";
@@ -194,7 +195,7 @@ function ViewList(props) {
                     name={modalList[0].list_name}
                     message={modalMessage}
                     close={setModal}
-                    content={<List
+                    content={<StaticList
                         viewList={false}
                         list={modalList}
                         action={addToCurrentList}
@@ -262,7 +263,7 @@ function ViewList(props) {
                                 <div style={{ textAlign: "center" }}>
                                     Click To View List
                                 </div>
-                                <List
+                                <StaticList
                                     viewList={false}
                                     list={previousLists}
                                     action={openModal}
