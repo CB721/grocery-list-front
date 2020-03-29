@@ -11,7 +11,7 @@ import API from "../../utilities/api";
 import Space from "../DivSpace";
 import Button from "../Button";
 import Modal from "../Modal";
-import List from "../List";
+import StaticList from "../StaticList";
 import LoadingSpinner from "../LoadingSpinner";
 import LoadingBar from "../LoadingBar";
 import "./style.scss";
@@ -29,7 +29,7 @@ function Settings(props) {
     const [last, setLast] = useState("");
     const [email, setEmail] = useState("");
     const [userError, setUserError] = useState("");
-    const [editMessage, setEditMessage] = useState("Click Any Field Edit");
+    const [editMessage, setEditMessage] = useState("");
     const [modal, setModal] = useState(false);
     const [modalList, setModalList] = useState([]);
     const [modalMessage, setModalMessage] = useState("");
@@ -107,9 +107,9 @@ function Settings(props) {
     }, []);
     useEffect(() => {
         if (editFirst || editLast || editEmail) {
-            setEditMessage("Click To Stop Editing");
+            setEditMessage("Click Here To Stop Editing");
         } else {
-            setEditMessage("Click Any Field Edit");
+            setEditMessage("Click Any Field To Edit");
         }
     }, [editFirst, editLast, editEmail]);
     function exitEdit() {
@@ -311,6 +311,13 @@ function Settings(props) {
                 setShowProgress(false);
             });
     }
+    useEffect(() => {
+        if (tab === "info") {
+            setEditMessage("Click Any Field to Edit");
+        } else {
+            setEditMessage("");
+        }
+    }, [tab]);
     return (
         <div aria-label="settings page">
             {modal ? (
@@ -319,7 +326,7 @@ function Settings(props) {
                     name={modalName}
                     message={modalMessage}
                     close={setModal}
-                    content={<List
+                    content={<StaticList
                         viewList={false}
                         list={modalList}
                         action={viewList ? sendListToUser : addItemToCurrentList}
@@ -341,22 +348,26 @@ function Settings(props) {
                             <div
                                 className={tab === "info" ? "setting-tab selected" : "setting-tab"}
                                 onClick={() => setTab("info")}
-                                aria-label="view and edit your information"
+                                aria-label="view and edit your account information"
                             >
-                                View Info
+                                Account
                             </div>
                             <div
                                 className={tab === "connections" ? "setting-tab selected" : "setting-tab"}
                                 onClick={() => setTab("connections")}
                                 aria-label="view and edit your connections"
                             >
-                                View Connections
-                    </div>
+                                Connect
+                            </div>
                         </div>
                         <div className="setting-content">
-                            <div className="edit-header" onClick={exitEdit} aria-label={editMessage}>
-                                {editMessage}
-                            </div>
+                            {editMessage ? (
+                                <div className="edit-header" onClick={exitEdit} aria-label={editMessage}>
+                                    {editMessage}
+                                </div>
+                            ) : (
+                                    <div />
+                                )}
                             {userError.length > 0 ? (
                                 <div className="edit-header err" aria-label={"error " + userError}>
                                     {userError}
