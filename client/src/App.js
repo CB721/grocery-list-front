@@ -248,6 +248,7 @@ function App() {
       localStorage.clear();
       sessionStorage.clear();
       setNavOptions([create, signIn]);
+      setUser([]);
       resolve();
     });
   }
