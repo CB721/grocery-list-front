@@ -55,7 +55,6 @@ function List(props) {
     }
     function action(event, info) {
         event.preventDefault();
-        // event.stopPropagation();
         // if list has been provided a action function
         if (props.action && typeof (props.action) === "function") {
             props.action(info);
