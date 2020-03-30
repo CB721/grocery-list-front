@@ -126,7 +126,7 @@ function Store(props) {
     function searchCache() {
         for (let i = 0; i < cache.length; i++) {
             // if the item in cache includes what is being searched or if what is being searched includes the item in cache
-            if (cache[i].search && cache[i].search.includes(search) || search.includes(cache[i].search)) {
+            if (cache[i].search && (cache[i].search.includes(search) || search.includes(cache[i].search))) {
                 // add results to current results
                 let newResults = [...results, cache[i].results];
                 // flatten array

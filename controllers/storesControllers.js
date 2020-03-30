@@ -38,7 +38,7 @@ module.exports = {
                         let total = response[0].total_items + 1;
                         Store
                             .findOneAndUpdate({ _id: mongoID }, { $set: { total_items: total } })
-                            .then(response => {
+                            .then(() => {
                                 // if it is in mongo, it has already been added to sql
                                 assignToUser();
                             })
@@ -46,7 +46,7 @@ module.exports = {
                     } else {
                         addToMongo();
                     }
-                })
+                });
         }
         // add to mongo
         let addToMongo = function () {
@@ -56,7 +56,7 @@ module.exports = {
                     name: name,
                     total_items: 1
                 })
-                .then(response => {
+                .then(() => {
                     addToSQL();
                 })
                 .catch(err => res.status(422).json(err));
@@ -72,7 +72,7 @@ module.exports = {
                         } else {
                             assignToUser();
                         }
-                    })
+                    });
         }
         // assign store to user
         let assignToUser = function () {
@@ -85,7 +85,7 @@ module.exports = {
                         } else {
                             return res.status(200).json(results);
                         }
-                    })
+                    });
         }
     },
     getUserStores: function (req, res) {

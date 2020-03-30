@@ -5,8 +5,7 @@ import "./style.scss";
 
 function Form(props) {
     function setAutoComplete(input) {
-        console.log(input);
-        if (input === "temp password" || input === "new password" || input === "confirm password" ) {
+        if (input === "temp password" || input === "new password" || input === "confirm password") {
             return "new-password"
         } else if (input === "password") {
             return "current-password"
@@ -24,9 +23,13 @@ function Form(props) {
             <div className="form-head">
                 {props.type}
             </div>
-            <div className="form-error">
-                {props.error}
-            </div>
+            {props.error ? (
+                <div className="form-error">
+                    {props.error}
+                </div>
+            ) : (
+                    <div />
+                )}
             {props.inputs.map((input, index) => (
                 <form className="form-input-area" key={index}>
                     <p
@@ -56,13 +59,17 @@ function Form(props) {
                 {props.type === "login" ? (
                     <div>
                         <div className="login-sections">
-                            <div className="form-checkbox">
-                                <Checkbox
-                                    class={props.checkClass}
-                                    toggleClass={props.toggleClass}
-                                />
+                            <div className="form-remember-me">
+                                <div className="form-checkbox">
+                                    <Checkbox
+                                        class={props.checkClass}
+                                        toggleClass={props.toggleClass}
+                                    />
+                                </div>
+                                <div className="form-check-text" aria-label="remember me checkbox">
+                                    Remember me
+                                </div>
                             </div>
-                            <div className="form-check-text" aria-label="remember me checkbox">Remember me</div>
                         </div>
                         <div className="login-sections">
                             <div

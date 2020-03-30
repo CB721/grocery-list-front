@@ -149,6 +149,7 @@ function Login(props) {
                     />}
                 />
             ) : (<div />)}
+            <Space />
             <Row>
                 <Col>
                     <Form
@@ -165,8 +166,6 @@ function Login(props) {
                     />
                 </Col>
             </Row>
-            <Space />
-
         </div>
     )
 }

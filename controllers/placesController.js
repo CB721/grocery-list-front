@@ -17,10 +17,11 @@ module.exports = {
     getUserPlace: function (req, res) {
         const search = req.body.search;
 
-        // place autocomplete
-        axios.get(`https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${search}&key=${process.env.PLACES}&types=establishment&sessiontoken=${sessionToken}`)
+        place autocomplete
+        axios.get(`https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${search}&key=${process.env.PLACES}&types=address&sessiontoken=${sessionToken}`)
             .then(response => {
                 const places = response.data.predictions;
+                // console.log(response.data);
                 const results = [];
                 places.forEach(place => {
                     place.types.forEach(type => {
