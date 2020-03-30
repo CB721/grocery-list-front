@@ -14,7 +14,7 @@ function Form(props) {
                 {props.error}
             </div>
             {props.inputs.map((input, index) => (
-                <div className="form-input-area" key={index}>
+                <form className="form-input-area" key={index}>
                     <p
                         className={"form-input-headers " + input.error}
                     >
@@ -35,7 +35,7 @@ function Form(props) {
                         onBlur={(event) => props.validateField(event)}
                         aria-labelledby={props.type + Object.keys(input)}
                     />
-                </div>
+                </form>
             ))}
             <div className="form-input-area">
                 {props.type === "login" ? (

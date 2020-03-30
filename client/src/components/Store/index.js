@@ -72,6 +72,9 @@ function Store(props) {
                 break;
             default:
                 setSearch(value);
+                // start animation once the user has type one character
+                if (search.length >= 1) {
+                }
                 // only call autocomplete api after user has typed at least 4 characters
                 if (search.length > 3) {
                     getSearchResults();
