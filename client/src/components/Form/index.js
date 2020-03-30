@@ -4,6 +4,20 @@ import Checkbox from "../Checkbox";
 import "./style.scss";
 
 function Form(props) {
+    function setAutoComplete(input) {
+        console.log(input);
+        if (input === "temp password" || input === "new password" || input === "confirm password" ) {
+            return "new-password"
+        } else if (input === "password") {
+            return "current-password"
+        } else if (input === "first name") {
+            return "given-name"
+        } else if (input === "last name") {
+            return "family-name"
+        } else {
+            return input;
+        }
+    }
     // expect array of objects with input type and value
     return (
         <div className="form" id={props.type}>
@@ -27,6 +41,7 @@ function Form(props) {
                                 Object.keys(input)[0] === "confirm password" ?
                                 "password" : Object.keys(input)
                         }
+                        autoComplete={setAutoComplete(Object.keys(input)[0])}
                         value={input[Object.keys(input)]}
                         className={"form-input " + input.error}
                         placeholder={"Your " + Object.keys(input)[0]}

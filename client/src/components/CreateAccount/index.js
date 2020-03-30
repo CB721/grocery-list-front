@@ -21,7 +21,7 @@ function CreateAccount(props) {
         { "first name": firstName },
         { "last name": lastName },
         { email: email },
-        { password: password }
+        { "new password": password }
     ];
     const [disable, setDisabled] = useState(true);
     const [error, setError] = useState("");
