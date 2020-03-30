@@ -19,7 +19,7 @@ function Form(props) {
     }
     // expect array of objects with input type and value
     return (
-        <div className="form" id={props.type}>
+        <form className="form" id={props.type}>
             <div className="form-head">
                 {props.type}
             </div>
@@ -31,7 +31,7 @@ function Form(props) {
                     <div />
                 )}
             {props.inputs.map((input, index) => (
-                <form className="form-input-area" key={index}>
+                <div className="form-input-area" key={index}>
                     <p
                         className={"form-input-headers " + input.error}
                     >
@@ -53,7 +53,7 @@ function Form(props) {
                         onBlur={(event) => props.validateField(event)}
                         aria-labelledby={props.type + Object.keys(input)}
                     />
-                </form>
+                </div>
             ))}
             <div className="form-input-area">
                 {props.type === "login" ? (
@@ -89,7 +89,7 @@ function Form(props) {
                     disabled={props.disableButton}
                 />
             </div>
-        </div>
+        </form>
     )
 }
 

@@ -1,50 +1,44 @@
 [
     {
-        "cardName": "Tech Ipsum",
-        "text": "Tech virtual drone online browser platform through in a system.",
+        "cardName": "Stores",
+        "text": "Add the stores where you shop!",
         "color": "#F9FCFF",
         "background": "rgb(107, 41, 214)"
     },
     {
-        "cardName": "Tech Ipsum",
-        "text": "Tech virtual drone online browser platform through in a system.",
+        "cardName": "Filter By Store",
+        "text": "At the store right now? Select the store to only view items from that store.",
         "color": "#F9FCFF",
         "background": "rgb(159, 131, 20)"
     },
     {
-        "cardName": "Tech Ipsum",
-        "text": "Tech virtual drone online browser platform through in a system.",
+        "cardName": "Past Lists",
+        "text": "View previous lists and add some or all of the items to your current one!",
         "color": "#F9FCFF",
         "background": "#3C91E6"
     },
     {
-        "cardName": "Tech Ipsum",
-        "text": "Tech virtual drone online browser platform through in a system.",
+        "cardName": "Update List",
+        "text": "Already added an item to your cart?  Mark it as complete to track your progress.",
         "color": "#F9FCFF",
         "background": "rgb(159, 20, 20)"
     },
     {
-        "cardName": "Tech Ipsum",
-        "text": "Tech virtual drone online browser platform through in a system.",
+        "cardName": "Recipes",
+        "text": "Got a recipe you love?  Save a G-List with all of the ingredients to quickly add to your current list!",
         "color": "#F9FCFF",
         "background": "rgb(214, 41, 194)"
     },
     {
-        "cardName": "Tech Ipsum",
-        "text": "Tech virtual drone online browser platform through in a system.",
+        "cardName": "Share",
+        "text": "Connect with friends and family members to share lists with each other!",
         "color": "#F9FCFF",
         "background": "rgb(17, 140, 17)"
     },
     {
-        "cardName": "Tech Ipsum",
-        "text": "Tech virtual drone online browser platform through in a system.",
+        "cardName": "Delete",
+        "text": "No longer need to purchase an item? Swipe it away to remove it from your list.",
         "color": "#F9FCFF",
-        "background": "rgb(214, 107, 41)"
-    },
-    {
-        "cardName": "Tech Ipsum",
-        "text": "Tech virtual drone online browser platform through in a system.",
-        "color": "#2F3338",
-        "background": "#F9FCFF"
+        "background": "#2F3338"
     }
 ]

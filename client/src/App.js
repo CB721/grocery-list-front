@@ -90,6 +90,7 @@ function App() {
     // make sure the IP has been found before attempting to validate
     getIP()
       .then(res => {
+        console.log(res)
         getStatus(token, res, remember)
           .then(response => {
             if (response) {

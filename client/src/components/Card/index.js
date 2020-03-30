@@ -1,5 +1,4 @@
 import React from 'react';
-import { Textfit } from "react-textfit";
 import "./style.scss";
 
 function Card(props) {

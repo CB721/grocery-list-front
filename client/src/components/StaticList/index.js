@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import Checkbox from "../Checkbox";
 import convertDate from "../../utilities/convertDate";
 import { ReactComponent as Trash } from "../../assets/images/trash.svg";
@@ -11,40 +10,6 @@ function StaticList(props) {
     useEffect(() => {
         setList(props.list);
     }, [props.list]);
-
-    function getListItemStyle(isDragging, draggableStyle) {
-        const style = {
-            userSelect: "none",
-            background: isDragging ? "#F9FCFF" : "#3C91E6",
-            color: isDragging ? "#3C91E6" : "#F9FCFF",
-            cursor: isDragging ? "pointer" : "default",
-            "WebkitBoxShadow": isDragging ? "0px 3px 2px -2px rgba(47,51,56,0.64)" : "",
-            "MozBoxShadow": isDragging ? "0px 3px 2px -2px rgba(47,51,56,0.64)" : "",
-            "boxShadow": isDragging ? "0px 3px 2px -2px rgba(47,51,56,0.64)" : "",
-            ...draggableStyle
-        }
-        return style;
-    }
-    function reorder(userList, startIndex, endIndex) {
-        const result = Array.from(userList);
-        const [removed] = result.splice(startIndex, 1);
-        result.splice(endIndex, 0, removed);
-        return result;
-    }
-    function onDragEnd(result) {
-        if (!result.destination) {
-            return;
-        }
-        const items = reorder(
-            list,
-            result.source.index,
-            result.destination.index
-        )
-        if (props.updateItemPosition) {
-            props.updateItemPosition(items);
-            setList(items);
-        }
-    }
     function action(event, info) {
         event.preventDefault();
         // if list has been provided a action function

@@ -90,13 +90,17 @@ function Settings(props) {
         const accepted = props.connections.filter(connection => {
             // check that both a connection is no longer pending and that it has been accepted
             if (connection.pending === 0 && connection.accepted === 1) {
-                return connection;
+                return true;
+            } else {
+                return false
             }
         });
         const pending = props.connections.filter(connection => {
             // check that a connection is pending and has not been rejected
             if (connection.pending === 1 && connection.accepted === 0) {
-                return connection;
+                return true;
+            } else {
+                return false;
             }
         });
         setPendingConnections(pending);
