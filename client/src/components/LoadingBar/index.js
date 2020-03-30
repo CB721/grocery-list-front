@@ -17,10 +17,10 @@ function LoadingBar(props) {
     function timer() {
         const timer = setInterval(() => {
             setProgress(progress => progress + 1);
-        }, 60);
+        }, 75);
         setTimeout(() => {
             clearInterval(timer);
-        }, 6000);
+        }, 7499);
     }
     return (
         <div className={`loading-bar ${props.show || 'show'}`} aria-label="loading bar">

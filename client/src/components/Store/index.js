@@ -25,6 +25,7 @@ function Store(props) {
     const [progress, setProgress] = useState(0);
     const [showProgress, setShowProgress] = useState("hide");
     const [modal, setModal] = useState(false);
+    const [cache, setCache] = useState([]);
 
     const config = {
         onUploadProgress: progressEvent => {
@@ -72,9 +73,6 @@ function Store(props) {
                 break;
             default:
                 setSearch(value);
-                // start animation once the user has type one character
-                if (search.length >= 1) {
-                }
                 // only call autocomplete api after user has typed at least 4 characters
                 if (search.length > 3) {
                     getSearchResults();
@@ -119,16 +117,71 @@ function Store(props) {
     //     // set error message for individual input fields
     //     console.log(type, value);
     // }
+    useEffect(() => {
+        const savedCache = localStorage.getItem("storeSearches");
+        if (savedCache) {
+            setCache(JSON.parse(savedCache));
+        }
+    }, []);
+    function searchCache() {
+        for (let i = 0; i < cache.length; i++) {
+            // if the item in cache includes what is being searched or if what is being searched includes the item in cache
+            if (cache[i].search && cache[i].search.includes(search) || search.includes(cache[i].search)) {
+                // add results to current results
+                let newResults = [...results, cache[i].results];
+                // flatten array
+                function flatDeep(arr, d = 1) {
+                    return d > 0 ? arr.reduce((acc, val) => acc.concat(Array.isArray(val) ? flatDeep(val, d - 1) : val), [])
+                        : arr.slice();
+                };
+                newResults = flatDeep(newResults, Infinity);
+                // save to state
+                setResults(newResults);
+            }
+        }
+    }
     function getSearchResults() {
         const data = {
             search,
         }
-        API.searchPlaces(data, config)
-            .then(res => {
-                setResults(res.data);
-            })
-            .catch(err => console.log(err));
+        // check if there is a cache in state / local storage and the manually add a store option hasn't been triggered and nothing has been added to the results yet
+        if (!manualStore && cache.length > 0 && results.length < 1) {
+            // search the cache for any items that include the current search value
+            searchCache();
+            // if there isn't search the api
+        } else {
+            API.searchPlaces(data, config)
+                .then(res => {
+                    setResults(res.data);
+                    // set a cache to avoid excessive calls to the api
+                    const cacheResult = {
+                        results: res.data,
+                        search
+                    }
+                    let newCache;
+                    if (cache.length > 0) {
+                        newCache = [...cache, cacheResult];
+                    } else {
+                        newCache = [cacheResult];
+                    }
+                    // save to state
+                    setCache(newCache);
+                    // save to local storage
+                    localStorage.setItem("storeSearches", JSON.stringify(newCache));
+                })
+                .catch(err => {
+                    console.log(err);
+                    // save what the user attempted to search to local storage to prepopulate the search field with on refresh
+                    localStorage.setItem("storeSearchErr", search);
+                });
+        }
     }
+    useEffect(() => {
+        const errSearch = localStorage.getItem("storeSearchErr");
+        if (errSearch) {
+            setSearch(errSearch);
+        }
+    }, []);
     function saveStore(event, store) {
         event.preventDefault();
         const storeData = {
@@ -172,7 +225,12 @@ function Store(props) {
         event.preventDefault();
         // unique id to append count total to
         // this will ensure a unique id is created for the custom store
-        let uniqueID = "dbcad414febafecbdfd2bc48438c7c649acdae36";
+        let uniqueIDChoices = "dbcad414febafecbdfd2bc48438c7c649acdae36";
+        let uniqueID = "";
+        for (let i = 0; i < uniqueIDChoices.length; i++) {
+            let randomCharacter = Math.floor(Math.random() * uniqueIDChoices.length);
+            uniqueID += randomCharacter;
+        }
         // get count of stores already saved to db
         API.getStoreCount()
             .then(res => {
