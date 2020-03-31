@@ -99,7 +99,8 @@ function CreateAccount(props) {
         }
     }
     let history = useHistory();
-    function handleFormSubmit() {
+    function handleFormSubmit(event) {
+        event.preventDefault();
         const user = {
             first_name: firstName,
             last_name: lastName,

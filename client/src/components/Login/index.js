@@ -95,13 +95,14 @@ function Login(props) {
             setForgotPassDisable(true);
         }
     }
-    function handleFormSubmit() {
+    function handleFormSubmit(event) {
+        event.preventDefault();
         setShowProgress(true);
         setProgress(0);
         props.userLogin(email, password, remember, config)
             .then(() => {
                 setShowProgress(false);
-                history.push("/profile");
+                // history.push("/profile");
                 setProgress(0);
             })
             .catch(err => {
