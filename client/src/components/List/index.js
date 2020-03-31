@@ -93,7 +93,9 @@ function List(props) {
             // if it is dragged to the left and a delete option has been passed in
             if (deltaX < -350 && props.deleteItem) {
                 props.deleteItem(selectedItem.id);
-            } else if (deltaX > 0) {
+            } else if (deltaX > 350 && props.toggleClass) {
+                props.toggleClass(event, selectedItem.id);
+            } else {
                 deltaX = 0;
             }
             // update state
