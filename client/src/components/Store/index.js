@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Textfit } from "react-textfit";
 import { ReactComponent as Trash } from "../../assets/images/trash.svg";
 import Form from "../Form";
-import Error from "../Error";
-import { isByteLength } from "validator"
 import Flip from 'react-reveal/Flip';
 import API from "../../utilities/api";
 import LoadingBar from "../LoadingBar";
@@ -118,63 +116,75 @@ function Store(props) {
     //     console.log(type, value);
     // }
     useEffect(() => {
+        getCache();
+    }, []);
+    function getCache() {
         const savedCache = localStorage.getItem("storeSearches");
         if (savedCache) {
             setCache(JSON.parse(savedCache));
         }
-    }, []);
+    }
     function searchCache() {
-        for (let i = 0; i < cache.length; i++) {
-            // if the item in cache includes what is being searched or if what is being searched includes the item in cache
-            if (cache[i].search && (cache[i].search.includes(search) || search.includes(cache[i].search))) {
-                // add results to current results
-                let newResults = [...results, cache[i].results];
-                // flatten array
-                function flatDeep(arr, d = 1) {
-                    return d > 0 ? arr.reduce((acc, val) => acc.concat(Array.isArray(val) ? flatDeep(val, d - 1) : val), [])
-                        : arr.slice();
-                };
-                newResults = flatDeep(newResults, Infinity);
-                // save to state
-                setResults(newResults);
+        return new Promise((resolve, reject) => {
+            let newResults = [];
+            for (let i = 0; i <= cache.length; i++) {
+                // if the item in cache includes what is being searched or if what is being searched includes the item in cache
+                if (i === cache.length) {
+                    resolve(newResults);
+                } else if (cache[i].search && (cache[i].search.includes(search) || search.includes(cache[i].search))) {
+                    // add results to current results
+                    newResults = [...results, cache[i].results];
+                    // flatten array
+                    function flatDeep(arr, d = 1) {
+                        return d > 0 ? arr.reduce((acc, val) => acc.concat(Array.isArray(val) ? flatDeep(val, d - 1) : val), [])
+                            : arr.slice();
+                    };
+                    newResults = flatDeep(newResults, Infinity);
+                    // save to state
+                    setResults(newResults);
+                }
             }
-        }
+        });
     }
     function getSearchResults() {
         const data = {
             search,
         }
         // check if there is a cache in state / local storage and the manually add a store option hasn't been triggered and nothing has been added to the results yet
-        if (!manualStore && cache.length > 0 && results.length < 1) {
-            // search the cache for any items that include the current search value
-            searchCache();
-            // if there isn't search the api
-        } else {
-            API.searchPlaces(data, config)
-                .then(res => {
-                    setResults(res.data);
-                    // set a cache to avoid excessive calls to the api
-                    const cacheResult = {
-                        results: res.data,
-                        search
-                    }
-                    let newCache;
-                    if (cache.length > 0) {
-                        newCache = [...cache, cacheResult];
-                    } else {
-                        newCache = [cacheResult];
-                    }
-                    // save to state
-                    setCache(newCache);
-                    // save to local storage
-                    localStorage.setItem("storeSearches", JSON.stringify(newCache));
-                })
-                .catch(err => {
-                    console.log(err);
-                    // save what the user attempted to search to local storage to prepopulate the search field with on refresh
-                    localStorage.setItem("storeSearchErr", search);
-                });
-        }
+        // search the cache for any items that include the current search value
+        searchCache()
+            .then(res => {
+                // if no results were found in the cache, search the api
+                if (!res.length) {
+                    API.searchPlaces(data, config)
+                        .then(res => {
+                            setResults(res.data);
+                            // set a cache to avoid excessive calls to the api
+                            if (res.data.length) {
+                                const cacheResult = {
+                                    results: res.data,
+                                    search
+                                }
+                                let newCache = [cacheResult];
+                                if (cache.length > 0) {
+                                    newCache = [...cache, cacheResult];
+                                }
+                                console.log(newCache);
+                                // save to state
+                                setCache(newCache);
+                                // save to local storage
+                                localStorage.setItem("storeSearches", JSON.stringify(newCache));
+                            }
+                        })
+                        .catch(err => {
+                            console.log(err);
+                            // save what the user attempted to search to local storage to prepopulate the search field with on refresh
+                            localStorage.setItem("storeSearchErr", search);
+                        });
+                } else {
+                    console.log("api not searched");
+                }
+            });
     }
     useEffect(() => {
         const errSearch = localStorage.getItem("storeSearchErr");

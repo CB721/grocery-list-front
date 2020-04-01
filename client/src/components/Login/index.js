@@ -102,7 +102,7 @@ function Login(props) {
         props.userLogin(email, password, remember, config)
             .then(() => {
                 setShowProgress(false);
-                // history.push("/profile");
+                history.push("/profile");
                 setProgress(0);
             })
             .catch(err => {

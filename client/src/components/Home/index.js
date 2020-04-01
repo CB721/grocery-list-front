@@ -36,10 +36,11 @@ function Home(props) {
         //     block: 'start'
         // });
     }
+    let parallax;
     return (
         <div className="home">
             <div style={{ height: "10vh" }} />
-            <Parallax pages={10} scrolling={true}>
+            <Parallax pages={10} scrolling={true} ref={ref => parallax = ref}>
                 <ParallaxLayer offset={0} speed={1} style={{ background: "#2F3338" }} />
                 <ParallaxLayer offset={0.99} speed={1} style={{ background: "#F9FCFF" }} />
                 <ParallaxLayer offset={1.99} speed={1} style={{ background: "rgb(107, 41, 214)" }}>
