@@ -42,6 +42,7 @@
         text-align: center;
         word-wrap: normal;
         text-overflow: ellipsis;
+        margin: 0 auto;
         @media only screen and (max-width: 500px) {
             min-height: 24px;
             line-height: 24px;

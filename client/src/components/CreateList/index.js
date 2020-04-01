@@ -47,7 +47,8 @@ function CreateList(props) {
             let completeItem = {
                 name: newItem,
                 store: storeSelect,
-                priority
+                priority,
+                list_id: props.list[0].list_id
             }
             setShowAdd(false);
             setNewItem("");

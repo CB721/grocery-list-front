@@ -1,5 +1,11 @@
 [
     {
+        "cardName": "Create Lists",
+        "text": "Create a list and set priority levels for each item.",
+        "color": "#F9FCFF",
+        "background": "#2F3338"
+    },
+    {
         "cardName": "Add Stores",
         "text": "Add the stores where you shop!",
         "color": "#F9FCFF",
@@ -39,6 +45,6 @@
         "cardName": "Delete",
         "text": "No longer need to purchase an item? Swipe it away to remove it from your list.",
         "color": "#F9FCFF",
-        "background": "#2F3338"
+        "background": "rgb(214, 107, 41)"
     }
 ]

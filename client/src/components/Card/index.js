@@ -10,13 +10,13 @@ function Card(props) {
             onClick={() => props.action(props.cardName)}
             ref={props.referral}
         >
-            <a
+            <div
                 className="card-body-text"
                 style={{ color: props.color }}
-                href={`#${props.cardName}`}
+                // href={`#${props.cardName}`}
             >
                 {props.text}
-            </a>
+            </div>
         </div>
     )
 }

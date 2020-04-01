@@ -120,7 +120,8 @@ function Profile(props) {
             user_id: props.user[0].id,
             store_id: item.store.store_id,
             priority: item.priority,
-            position
+            position,
+            list_id: item.list_id
         }
         setProgress(0);
         setModal(true);

@@ -11,20 +11,18 @@ module.exports = {
         const store_id = sqlDB.escape(req.body.store_id);
         const position = sqlDB.escape(req.body.position);
         const priority = sqlDB.escape(req.body.priority);
+        const list_id = sqlDB.escape(req.body.list_id);
 
         // find current list
         let getCurrentList = function () {
+            let queryStr = `SELECT * FROM ${listTable} WHERE user_id = ${user_id} AND lists.completed = false;`;
             sqlDB
-                .query(`SELECT * FROM ${listTable} WHERE user_id = ${user_id} AND lists.completed = false;`,
+                .query(queryStr,
                     function (err, results) {
                         if (err) {
                             return res.status(422).send(err);
                         } else {
-                            if (results.length < 1) {
-                                // if no lists, create a new list
-                                createList();
-                            }
-                            // if completed, create a new list
+                            // if completed, or no lists create a new list
                             if (results.completed > 0 || results.length < 1) {
                                 createList();
                             } else {
@@ -33,8 +31,6 @@ module.exports = {
                         }
                     });
         }
-        getCurrentList();
-
         // create list
         let createList = function () {
             const columns = "(date_added, user_id)"
@@ -60,31 +56,26 @@ module.exports = {
                         }
                     });
         }
+        // if a list id has been sent, there is an existing list that we can add to
+        if (list_id) {
+            addItemToList(list_id);
+        } else {
+            // otherwise create a list
+            createList();
+        }
     },
     getCurrentUserList: function (req, res) {
         // prevent injections
         const ID = sqlDB.escape(req.params.id);
-        // get current list
         sqlDB
-            .query(`SELECT * FROM ${listTable} WHERE user_id = ${ID};`,
-                function (err) {
+            .query(`CALL current_list(${ID});`,
+                function (err, results) {
                     if (err) {
                         return res.status(422).send(err);
                     } else {
-                        getFullList();
+                        return res.status(200).json(results[0]);
                     }
                 });
-        let getFullList = function () {
-            sqlDB
-                .query(`CALL current_list(${ID});`,
-                    function (err, results) {
-                        if (err) {
-                            return res.status(422).send(err);
-                        } else {
-                            return res.status(200).json(results[0]);
-                        }
-                    })
-        }
     },
     updateItem: function (req, res) {
         // prevent injections
@@ -295,7 +286,7 @@ module.exports = {
                     }
                 });
     },
-    getSentLists: function(req, res) {
+    getSentLists: function (req, res) {
         // prevent injections
         const user_id = sqlDB.escape(req.params.userid);
         const other_user_id = sqlDB.escape(req.params.otheruserid);
@@ -304,12 +295,12 @@ module.exports = {
         }
         sqlDB
             .query(`CALL get_sent_lists(${user_id}, ${other_user_id});`,
-            function(err, results) {
-                if (err) {
-                    return res.status(500).send(err);
-                } else {
-                    return res.status(200).json(results[0]);
-                }
-            });
+                function (err, results) {
+                    if (err) {
+                        return res.status(500).send(err);
+                    } else {
+                        return res.status(200).json(results[0]);
+                    }
+                });
     }
 }
