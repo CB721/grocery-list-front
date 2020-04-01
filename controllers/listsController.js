@@ -50,6 +50,7 @@ module.exports = {
                 .query(`CALL add_item(${id}, ${name}, ${store_id}, ${position}, ${priority});`,
                     function (err, results) {
                         if (err) {
+                            console.log(err);
                             return res.status(422).send(err);
                         } else {
                             return res.status(200).json(results);
@@ -57,7 +58,7 @@ module.exports = {
                     });
         }
         // if a list id has been sent, there is an existing list that we can add to
-        if (list_id) {
+        if (req.body.list_id) {
             addItemToList(list_id);
         } else {
             // otherwise create a list

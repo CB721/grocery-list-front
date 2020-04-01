@@ -256,7 +256,7 @@ function List(props) {
                                                         <div className="sub-col">
                                                             <Trash
                                                                 className={"edit-icon " + props.hidetrash}
-                                                                onClick={(event) => props.deleteItem(event, item.id)}
+                                                                onClick={() => props.deleteItem(item.id)}
                                                                 aria-label="remove item"
                                                             />
                                                         </div>
