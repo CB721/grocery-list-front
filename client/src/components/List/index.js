@@ -88,13 +88,15 @@ function List(props) {
             const elapsed = currTime - timeOfLastDrag;
             // calculate velocity
             const moveVelocity = 20 * (touchX - prevTouchX) / elapsed;
+            console.log(moveVelocity);
             // calcuate how far the item has been dragged
             let deltaX = touchX - touchStartX + offset;
             // if it is dragged to the left and a delete option has been passed in
-            if (deltaX < -350 && props.deleteItem) {
+            if (deltaX < -350 && props.deleteItem && moveVelocity < -120) {
                 props.deleteItem(selectedItem.id);
-            } else if (deltaX > 350 && props.toggleClass) {
+            } else if (deltaX > 350 && props.toggleClass && moveVelocity > 120) {
                 props.toggleClass(event, selectedItem.id);
+                deltaX = 0;
             } else {
                 deltaX = 0;
             }
