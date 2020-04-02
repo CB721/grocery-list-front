@@ -42,7 +42,7 @@ function CreateAccount(props) {
             case "email":
                 setEmail(value);
                 break;
-            case "password":
+            case "new password":
                 setPassword(value);
                 break;
             case "first name":
@@ -67,7 +67,7 @@ function CreateAccount(props) {
                     setError("");
                 }
                 break;
-            case "password":
+            case "new password":
                 if (!isByteLength(value, { min: 8, max: 16 })) {
                     setError("Password must be between 8 and 16 characters");
                 } else {
