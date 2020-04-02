@@ -39,13 +39,20 @@ function Settings(props) {
     const [viewList, setViewList] = useState(true);
     const [progress, setProgress] = useState(0);
     const [showProgress, setShowProgress] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
     const config = {
         onUploadProgress: progressEvent => {
             const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
             setProgress(percentCompleted);
         }
     };
-
+    useEffect(() => {
+        if (window.screen.availWidth < 500) {
+            setIsMobile(true);
+        } else {
+            setIsMobile(false);
+        }
+    }, [window.screen]);
     function handleInputChange(event) {
         const { name, value } = event.target;
         switch (name) {
@@ -324,13 +331,8 @@ function Settings(props) {
         }
     }, [tab]);
     function acceptRequest(connection) {
-        for (const param in connection) {
-            if (param === "accepted") {
-                connection[param] = 1;
-            } else if (param === "pending") {
-                connection[param] = 0;
-            }
-        }
+        connection["accepted"] = 1;
+        connection["pending"] = 0;
         const { first_name } = props.user[0];
         const { requestor_first_name, requested_first_name } = connection;
         let newConnectName = "";
@@ -341,7 +343,6 @@ function Settings(props) {
         }
         props.updateConnection(connection)
             .then(res => {
-                console.log(res);
                 if (res) {
                     toastNotification(`You are now connected with ${newConnectName}!`)
                 }
@@ -349,6 +350,18 @@ function Settings(props) {
             .catch(err => {
                 console.log(err);
             });
+    }
+    function ignoreRequest(connection) {
+        connection["pending"] = 0;
+        props.updateConnection(connection)
+            .then(res => {
+                if (res) {
+                    toastNotification(`Connection ignored`);
+                }
+            })
+            .catch(err => {
+                console.log(err);
+            })
     }
     return (
         <div aria-label="settings page">
@@ -606,35 +619,65 @@ function Settings(props) {
                                                         {`${connection.requestor_first_name || connection.requested_first_name} ${connection.requestor_last_name || connection.requested_last_name}`}
                                                     </div>
                                                     <div className="connect-user-options" aria-label="pending connection options">
-                                                        <div className="option-button">
-                                                            <div className="time-difference" aria-label="time since connection request">
-                                                                {`Sent ${convertTimeDiff(connection.time_difference)}`}
+                                                        {isMobile ? (
+                                                            <div />
+                                                        ) : (
+                                                                <div className="option-button">
+                                                                    {connection.requested_email ? (
+                                                                        <div className="time-difference" aria-label="time since connection request">
+                                                                            {`Received ${convertTimeDiff(connection.time_difference)}`}
+                                                                        </div>
+                                                                    ) : (
+                                                                            <div className="time-difference" aria-label="time since connection request">
+                                                                                {`Sent ${convertTimeDiff(connection.time_difference)}`}
+                                                                            </div>
+                                                                        )}
+                                                                </div>
+                                                            )}
+                                                        {/* if there is requested email, than this is a received request.  otherwise it was sent */}
+                                                        {connection.requested_email ? (
+                                                            <div className="option-button">
+                                                                <div className="send-list">
+                                                                    <Accept
+                                                                        className="icon"
+                                                                        onClick={() => acceptRequest(connection)}
+                                                                        aria-label="accept connection request"
+                                                                    />
+                                                                </div>
+                                                                <div className="option-tooltip">
+                                                                    Accept Request
                                                             </div>
-                                                        </div>
-                                                        <div className="option-button">
-                                                            <div className="delete-user">
-                                                                <Trash
-                                                                    className="icon"
-                                                                    onClick={() => cancelConnectionRequest(connection)}
-                                                                    aria-label="cancel connection request"
-                                                                />
                                                             </div>
-                                                            <div className="option-tooltip">
-                                                                Cancel Request
+                                                        ) : (
+                                                                <div />
+                                                            )}
+                                                        {connection.requested_email ? (
+                                                            <div className="option-button">
+                                                                <div className="delete-user">
+                                                                    <Trash
+                                                                        className="icon"
+                                                                        onClick={() => ignoreRequest(connection)}
+                                                                        aria-label="ignore connection request"
+                                                                    />
+                                                                </div>
+                                                                <div className="option-tooltip">
+                                                                    Ignore Request
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div className="option-button">
-                                                            <div className="send-list">
-                                                                <Accept
-                                                                    className="icon"
-                                                                    onClick={() => acceptRequest(connection)}
-                                                                    aria-label="accept connection request"
-                                                                />
-                                                            </div>
-                                                            <div className="option-tooltip">
-                                                                Accept Request
-                                                            </div>
-                                                        </div>
+                                                        ) : (
+                                                                <div className="option-button">
+                                                                    <div className="delete-user">
+                                                                        <Trash
+                                                                            className="icon"
+                                                                            onClick={() => cancelConnectionRequest(connection)}
+                                                                            aria-label="cancel connection request"
+                                                                        />
+                                                                    </div>
+                                                                    <div className="option-tooltip">
+                                                                        Cancel Request
+                                                                    </div>
+                                                                </div>
+                                                            )}
                                                     </div>
                                                 </div>
                                             ))}
