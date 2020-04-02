@@ -90,7 +90,6 @@ function App() {
     // make sure the IP has been found before attempting to validate
     getIP()
       .then(res => {
-        console.log(res)
         getStatus(token, res, remember)
           .then(response => {
             if (response) {
@@ -244,6 +243,24 @@ function App() {
         })
     })
   }
+  function updateConnection(connection) {
+    // console.log(connection, connection.id);
+    return new Promise((resolve, reject) => {
+      API.updateConnection(connection.id, connection)
+        .then(res => {
+          if (res.data === "success") {
+            getConnectionsByID();
+            resolve(true);
+          } else {
+            reject(res.data);
+          }
+        })
+        .catch(err => {
+          console.log(err);
+          reject(err);
+        });
+    });
+  }
   function logout() {
     return new Promise(function (resolve, reject) {
       localStorage.clear();
@@ -260,12 +277,13 @@ function App() {
         username: `${user[0].first_name} ${user[0].last_name.charAt(0)}`,
         id: user[0].id
       }
-      console.log(data, config);
       API.createConnection(data, config)
         .then(res => {
+          getConnectionsByID();
           resolve(res.data);
         })
         .catch(err => {
+          console.log(err);
           console.log(err.response.data);
           reject(err);
         });
@@ -332,6 +350,7 @@ function App() {
                   removeConnection={removeConnection}
                   cancelConnectionRequest={cancelConnectionRequest}
                   createConnection={createConnection}
+                  updateConnection={updateConnection}
                 />
               ) : (
                   <Redirect to="/login" />

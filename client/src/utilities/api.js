@@ -67,8 +67,8 @@ export default {
     getConnectionsByID: function (id) {
         return axios.get("/api/connections/" + id);
     },
-    updateConnection: function (id) {
-        return axios.put("/api/connections/" + id);
+    updateConnection: function (id, data) {
+        return axios.put("/api/connections/" + id, data);
     },
     removeConnection: function (id, config) {
         return axios.delete("/api/connections/" + id, config);

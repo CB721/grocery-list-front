@@ -137,7 +137,7 @@ module.exports = {
             .then(response => {
                 if (response.length > 0) {
                     // if it does, get user id of other user
-                    checkExistConnection(response.id);
+                    checkExistConnection(response[0].id);
                 } else {
                     // get invite template
                     const template = invite(password, request.email, request.username);
@@ -187,7 +187,10 @@ module.exports = {
                     });
                 }
             })
-            .catch(err => res.status(500).send(err));
+            .catch(err => {
+                console.log(err);
+                res.status(500).send(err);
+            });
         // hash user password
         let corbato = function (resistance) {
             return new Promise(function (resolve, reject) {
@@ -317,7 +320,7 @@ module.exports = {
         // create notification for that user
         function createNotification(requestedID) {
             sqlDB
-                .query(`INSERT INTO ${notificationsTable} (content, date_added, user_id, other_user_id) VALUES("You have a connection request!", NOW(), ${ID}, '${requestedID}');`,
+                .query(`INSERT INTO ${notificationsTable} (content, date_added, user_id, other_user_id) VALUES("You have a connection request!", NOW(), '${requestedID}', ${ID});`,
                     function (err, results) {
                         if (err) {
                             backEnd({

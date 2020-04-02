@@ -11,7 +11,7 @@
     height: auto;
     width: 20%;
     border-radius: 8px;
-    margin-left: 20%;
+    margin-left: 15%;
     text-transform: uppercase;
     text-align: center;
     line-height: 100px;
@@ -49,9 +49,9 @@
     position: fixed;
     top: 10%;
     height: auto;
-    width: 40%;
+    width: 47.5%;
     border-radius: 8px;
-    margin-left: 45%;
+    margin-left: 37.5%;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     .edit-header {
       height: 50px;
@@ -70,6 +70,9 @@
     }
     .settings-info,
     .settings-connections {
+      height: auto;
+      // min-height: 50vh;
+      // overflow: scroll;
       .info-name {
         border-bottom: 3px solid $main-blue;
         text-align: left;
@@ -141,7 +144,8 @@
         border-bottom-right-radius: 8px;
         .connect-users-row {
           width: 100%;
-          height: 50px;
+          min-height: 50px;
+          height: auto;
           border-bottom: 1px solid $secondary-blue;
           text-align: center;
           &:last-child {
@@ -171,12 +175,14 @@
               width: 66%;
               text-overflow: ellipsis;
               .time-difference {
-                line-height: 40px;
+                line-height: 20px;
                 text-align: center;
+                overflow: scroll;
               }
             }
             .option-button {
               width: 33%;
+              text-overflow: ellipsis;
               .send-list,
               .view-list,
               .delete-user {

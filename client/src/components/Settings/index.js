@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ReactComponent as View } from "../../assets/images/view.svg";
 import { ReactComponent as Send } from "../../assets/images/send.svg";
 import { ReactComponent as Trash } from "../../assets/images/trash.svg";
+import { ReactComponent as Accept } from "../../assets/images/accept.svg";
 import { convertTimeDiff } from '../../utilities/convertTimeDifference';
 import { isEmail, isEmpty } from 'validator';
 import { toast } from 'react-toastify';
@@ -322,6 +323,33 @@ function Settings(props) {
             setEditMessage("");
         }
     }, [tab]);
+    function acceptRequest(connection) {
+        for (const param in connection) {
+            if (param === "accepted") {
+                connection[param] = 1;
+            } else if (param === "pending") {
+                connection[param] = 0;
+            }
+        }
+        const { first_name } = props.user[0];
+        const { requestor_first_name, requested_first_name } = connection;
+        let newConnectName = "";
+        if (first_name !== requestor_first_name && requestor_first_name) {
+            newConnectName = requestor_first_name;
+        } else if (first_name !== requested_first_name && requested_first_name) {
+            newConnectName = requested_first_name;
+        }
+        props.updateConnection(connection)
+            .then(res => {
+                console.log(res);
+                if (res) {
+                    toastNotification(`You are now connected with ${newConnectName}!`)
+                }
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }
     return (
         <div aria-label="settings page">
             {modal ? (
@@ -578,7 +606,7 @@ function Settings(props) {
                                                         {`${connection.requestor_first_name || connection.requested_first_name} ${connection.requestor_last_name || connection.requested_last_name}`}
                                                     </div>
                                                     <div className="connect-user-options" aria-label="pending connection options">
-                                                        <div className="option-button-double">
+                                                        <div className="option-button">
                                                             <div className="time-difference" aria-label="time since connection request">
                                                                 {`Sent ${convertTimeDiff(connection.time_difference)}`}
                                                             </div>
@@ -593,6 +621,18 @@ function Settings(props) {
                                                             </div>
                                                             <div className="option-tooltip">
                                                                 Cancel Request
+                                                            </div>
+                                                        </div>
+                                                        <div className="option-button">
+                                                            <div className="send-list">
+                                                                <Accept
+                                                                    className="icon"
+                                                                    onClick={() => acceptRequest(connection)}
+                                                                    aria-label="accept connection request"
+                                                                />
+                                                            </div>
+                                                            <div className="option-tooltip">
+                                                                Accept Request
                                                             </div>
                                                         </div>
                                                     </div>
