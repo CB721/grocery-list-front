@@ -36,14 +36,14 @@
         "background": "rgb(214, 41, 194)"
     },
     {
-        "cardName": "Share",
-        "text": "Connect with friends and family members to share lists with each other!",
+        "cardName": "Connections",
+        "text": "Connect with friends and family members!",
         "color": "#F9FCFF",
         "background": "rgb(17, 140, 17)"
     },
     {
-        "cardName": "Delete",
-        "text": "No longer need to purchase an item? Swipe it away to remove it from your list.",
+        "cardName": "Share",
+        "text": "Send and receive lists from your connections",
         "color": "#F9FCFF",
         "background": "rgb(214, 107, 41)"
     }
