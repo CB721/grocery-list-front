@@ -5,9 +5,7 @@ class ExtendedCard extends Component {
     render() {
         return (
             <div
-                ref={this.props.referral}
                 className={`extended-card ${this.props.headerText}`}
-                id={this.props.headerText}
             >
                 <div
                     className="ext-card-header"
@@ -20,7 +18,16 @@ class ExtendedCard extends Component {
                     {this.props.headerText}
                 </div>
                 <div className="ext-card-image">
-                    <img src={"https://images.unsplash.com/photo-1517092756309-24071485f6db?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=940&q=80"} alt={this.props.headerText} />
+                    <video
+                        loop autoPlay playsInline muted
+                        aria-label={`${this.props.headerText} demo`}
+                        style={{
+                            objectFit: 'cover',
+                            width: '100vw',
+                            height: '65vh',
+                        }}>
+                        <source src={this.props.video} type="video/mp4" />
+                    </video>
                 </div>
             </div>
         )

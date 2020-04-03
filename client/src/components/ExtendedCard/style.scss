@@ -2,30 +2,22 @@
 
 .extended-card {
     width: 100vw;
-    height: 100%;
+    height: auto;
+    max-height: 80vh;
+    border-radius: 8px;
     .ext-card-header {
         width: calc(100vw - 6px);
         height: 10vh;
-        border-radius: 8px;
+        border-radius: inherit;
         text-align: center;
         line-height: 10vh;
         font-size: 2rem;
     }
     .ext-card-image {
-        width: 80vw;
-        height: 80%;
+        width: 100vw;
+        // height: 70%;
         margin: 0 auto;
-        padding: 10% 0;
+        // padding: 5% 0;
         display: block;
-        img {
-            height: 80%;
-            width: 100%;
-            transition: 0.3s;
-            &:hover {
-                -webkit-box-shadow: 0px 18px 12px -12px rgba(47,51,56,0.64);
-                -moz-box-shadow: 0px 18px 12px -12px rgba(47,51,56,0.64);
-                box-shadow: 0px 18px 12px -12px rgba(47,51,56,0.64);
-            }
-        }
     }
 }
