@@ -59,6 +59,7 @@
       text-align: center;
       text-transform: uppercase;
       border-radius: inherit;
+      transition: 0.3s;
       &:hover {
         cursor: pointer;
         color: $white;
@@ -66,6 +67,18 @@
       }
       &.err {
         color: $red;
+        animation: fade-out 5s linear 0 1 normal forwards;
+        @keyframes fade-out {
+          0% {
+            color: $red;
+          }
+          75% {
+            color: $red;
+          }
+          100% {
+            color: rgba(159, 20, 20, 0);
+          }
+        }
       }
     }
     .settings-info,

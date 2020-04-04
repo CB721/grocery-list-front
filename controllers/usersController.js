@@ -179,6 +179,7 @@ module.exports = {
 
         let query = `UPDATE ${table} SET`;
         let hasEmail = false;
+        let email = update.email;
         for (const column in update) {
             if (update[column] !== "null") {
                 // prevent injection and add column/value to query string
@@ -196,22 +197,50 @@ module.exports = {
                 }
             }
         }
-        // remove last comma and space from query string
-        query = query.substring(0, query.length - 2);
-        query += ` WHERE id = ${sqlDB.escape(id)};`;
-        // all fields can be updated in sql
-        sqlDB
-            .query(query,
-                function (err, results) {
-                    if (err) {
-                        return res.status(422).send(err);
-                    } else {
-                        updateMongo(hasEmail, results);
-                    }
+        let checkIfEmailExists = function () {
+            return new Promise((resolve, reject) => {
+                User
+                    .find({ email: email })
+                    .then(response => {
+                        if (response.length > 0) {
+                            reject(new Error("Email already in use"));
+                        } else {
+                            resolve();
+                        }
+                    })
+                    .catch(err => console.log(err));
+            });
+        }
+        if (hasEmail) {
+            checkIfEmailExists()
+                .then(() => {
+                    updateUserSQL();
+                })
+                .catch(err => {
+                    return res.status(409).send(err);
                 });
-        let updateMongo = function (email, results) {
+        } else {
+            updateUserSQL();
+        }
+
+        function updateUserSQL() {
+            // remove last comma and space from query string
+            query = query.substring(0, query.length - 2);
+            query += ` WHERE id = ${sqlDB.escape(id)};`;
+            // all fields can be updated in sql
+            sqlDB
+                .query(query,
+                    function (err, results) {
+                        if (err) {
+                            return res.status(422).send(err);
+                        } else {
+                            updateMongo(hasEmail, results);
+                        }
+                    });
+        }
+        let updateMongo = function (results) {
             // only email can be updated in mongo
-            if (email) {
+            if (has) {
                 User
                     .findOneAndUpdate({ _id: id }, { $set: { email: update.email } })
                     .then(() => {

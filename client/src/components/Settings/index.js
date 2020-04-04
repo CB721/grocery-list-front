@@ -137,25 +137,28 @@ function Settings(props) {
         switch (type) {
             case "email":
                 if (!isEmail(value)) {
-                    setUserError("Invalid email provided");
+                    displayError("Invalid email provided");
                 } else {
                     API.checkEmailExists(value)
                         .then(() => {
                             setUserError("");
                         })
-                        .catch(err => setUserError(err.response.data));
+                        .catch(err => {
+                            displayError(err.response.data);
+                            setEmail("");
+                        });
                 }
                 break;
             case "first":
                 if (isEmpty(value)) {
-                    setUserError("First name cannot be blank");
+                    displayError("First name cannot be blank");
                 } else {
                     setUserError("");
                 }
                 break;
             case "last":
                 if (isEmpty(value)) {
-                    setUserError("Last name cannot be blank");
+                    displayError("Last name cannot be blank");
                 } else {
                     setUserError("");
                 }
@@ -185,7 +188,10 @@ function Settings(props) {
                     setUserError("");
                     updateUser();
                 })
-                .catch(err => setUserError(err.response.data));
+                .catch(err => {
+                    displayError(err.response.data);
+                    setEmail("");
+                });
         } else {
             updateUser();
         }
@@ -197,7 +203,9 @@ function Settings(props) {
                     setEditEmail(false);
                     toastNotification("Update Successful");
                 })
-                .catch(err => setUserError(err));
+                .catch(err => {
+                    displayError(err);
+                });
         }
     }
     function toastNotification(message) {
@@ -362,6 +370,12 @@ function Settings(props) {
             .catch(err => {
                 console.log(err);
             })
+    }
+    function displayError(message) {
+        setUserError(message);
+        setTimeout(() => {
+            setUserError("");
+        }, 5000);
     }
     return (
         <div aria-label="settings page">
