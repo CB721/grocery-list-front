@@ -71,6 +71,10 @@ function Home(props) {
             history.push("/join");
         }
     }
+    function goToPrivacy(event) {
+        event.preventDefault();
+        history.push("/privacy");
+    }
     return (
         <div className="home">
             <div className="divider" />
@@ -145,7 +149,7 @@ function Home(props) {
             ) : (
                     <div>
                         {Benefits.map((item, index) => (
-                            <div className="home-sections" key={index} style={{ background: item.background, borderRadius: "8px" }} id={item.cardName}>
+                            <div className="home-sections" key={index} style={{ background: item.background, borderRadius: "8px", marginBottom: "5vh" }} id={item.cardName}>
                                 <ExtendedCard
                                     headerColor={item.color}
                                     headerTextColor={item.color}
@@ -159,9 +163,9 @@ function Home(props) {
             <div
                 className="divider"
                 style={{ margin: "5vh 0", cursor: "pointer" }}
-                onClick={(event) => goToJoin(event)}
+                onClick={(event) => goToPrivacy(event)}
             >
-                Join Today!
+                View Our Privacy Statement
             </div>
         </div>
     )

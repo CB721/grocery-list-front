@@ -9,6 +9,7 @@
 .home {
   @include page-defaults;
   z-index: 1;
+  overflow-x: hidden;
   .divider {
     height: 10vh;
     line-height: 10vh;

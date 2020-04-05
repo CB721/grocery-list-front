@@ -2,4 +2,43 @@
 
 .privacy-page {
     @include page-defaults;
+    .privacy-desc {
+        border-radius: 8px;
+        @include shadow;
+        height: 50vh;
+        width: 75vw;
+        margin: 0 auto;
+        overflow: scroll;
+        header {
+            height: 5vh;
+            line-height: 5vh;
+            font-size: 4vh;
+            text-align: center;
+            color: $white;
+            background: $main-blue;
+            border-top-left-radius: inherit;
+            border-top-right-radius: inherit;
+        }
+        p {
+            text-align: center;
+            color: $black;
+            line-height: 24px;
+            font-size: 16px;
+            padding: 1%;
+        }
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .privacy-page {
+        .privacy-desc {
+            width: 100vw;
+            header {
+                font-size: 32px;
+            }
+            p {
+                line-height: 16px;
+            }
+        }
+    }
 }
