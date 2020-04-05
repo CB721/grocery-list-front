@@ -11,7 +11,7 @@ function Modal(props) {
                         <Col>
                             <div className="modal-content">
                                 <Row>
-                                    <Col>
+                                    {/* <Col> */}
                                         <div className="modal-col-3">
                                             <div
                                                 className="modal-close-x"
@@ -23,15 +23,15 @@ function Modal(props) {
                                             </div>
                                         </div>
 
-                                    </Col>
-                                    <Col>
+                                    {/* </Col>
+                                    <Col> */}
                                         <div className="modal-col-3" aria-label={props.name}>
                                             {props.name}
                                         </div>
-                                    </Col>
-                                    <Col>
+                                    {/* </Col>
+                                    <Col> */}
                                         <div className="modal-col-3" />
-                                    </Col>
+                                    {/* </Col> */}
                                 </Row>
                                 {props.message ? (
                                     <Row>
