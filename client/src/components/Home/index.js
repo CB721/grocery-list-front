@@ -1,4 +1,4 @@
-import React, { useEffect, useState, createRef, useRef } from 'react';
+import React, { useEffect, useState, createRef, useRef, Suspense, lazy } from 'react';
 import { useHistory } from "react-router-dom";
 // import { ReactComponent as IceCream } from "../../assets/images/ice-cream.svg";
 // import { ReactComponent as Potato } from "../../assets/images/potato.svg";

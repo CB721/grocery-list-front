@@ -41,6 +41,7 @@
     "crypto": "^1.0.1",
     "express": "^4.17.1",
     "glamor": "^2.20.40",
+    "http-proxy-middleware": "^1.0.3",
     "i": "^0.3.6",
     "jest": "^24.9.0",
     "moment": "^2.24.0",

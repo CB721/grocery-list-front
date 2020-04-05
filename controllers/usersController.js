@@ -6,6 +6,7 @@ const crypto = require("crypto");
 const table = "users";
 const notificationsTable = "notifications";
 const { isEmail } = require("validator");
+const { corbato } = require("../utilities/hashPass");
 
 module.exports = {
     createUser: function (req, res) {
@@ -73,20 +74,6 @@ module.exports = {
                             }
                         })
             }
-        }
-        // hash user password
-        let corbato = function (resistance) {
-            return new Promise(function (resolve, reject) {
-                bcrypt.genSalt(10, (err, salt) => {
-                    bcrypt.hash(resistance, salt, (err, hash) => {
-                        if (err) {
-                            return reject(err);
-                        } else {
-                            return resolve(hash);
-                        }
-                    });
-                });
-            })
         }
         // create user in mongo
         // only email is saved in mongo

@@ -191,28 +191,6 @@ module.exports = {
                 console.log(err);
                 res.status(500).send(err);
             });
-        // hash user password
-        let corbato = function (resistance) {
-            return new Promise(function (resolve, reject) {
-                bcrypt.genSalt(10, (err, salt) => {
-                    bcrypt.hash(resistance, salt, (err, hash) => {
-                        if (err) {
-                            backEnd({
-                                action_trigger: `hash user password, connection request: ${err}`
-                            })
-                                .then(() => {
-                                    return reject(err);
-                                })
-                                .catch(() => {
-                                    return reject(err);
-                                });
-                        } else {
-                            return resolve(hash);
-                        }
-                    });
-                });
-            })
-        }
         // create user in mongo
         function createUserMongo(pass) {
             User
@@ -221,8 +199,8 @@ module.exports = {
                     // get id from mongo
                     let id = response.id;
                     corbato(pass)
-                        .then(response => {
-                            createUserSQL(response, id);
+                        .then(hashPass => {
+                            createUserSQL(hashPass, id);
                         })
                         .catch(err => {
                             return res.status(500).send(err);

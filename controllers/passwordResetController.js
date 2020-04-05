@@ -14,6 +14,7 @@ const resetEmail = require("../templates/passwordReset");
 const { isEmail } = require("validator");
 const crypto = require("crypto");
 const bcrypt = require("bcryptjs");
+const { corbato } = require("../utilities/hashPass");
 
 module.exports = {
     createReset: function (req, res) {
@@ -69,20 +70,6 @@ module.exports = {
                         }
                     })
         }
-        // hash user password
-        let corbato = function (resistance) {
-            return new Promise(function (resolve, reject) {
-                bcrypt.genSalt(10, (err, salt) => {
-                    bcrypt.hash(resistance, salt, (err, hash) => {
-                        if (err) {
-                            return reject(err);
-                        } else {
-                            return resolve(hash);
-                        }
-                    });
-                });
-            })
-        }
         function sendResetEmail(tempPassword) {
             // set up mail options
             const mailOptions = {
@@ -110,7 +97,7 @@ module.exports = {
         const email = sqlDB.escape(req.body.email);
         const tempPass = sqlDB.escape(req.body.temp);
         const newPass = sqlDB.escape(req.body.update);
-        
+
         // validate data
         // the escaping adds two more characters than what is needed
         if (newPass.length < 10 || tempPass.length < 10) {
@@ -167,31 +154,17 @@ module.exports = {
                             }
                         })
             }
-            // hash user password
-            let corbato = function (resistance) {
-                return new Promise(function (resolve, reject) {
-                    bcrypt.genSalt(10, (err, salt) => {
-                        bcrypt.hash(resistance, salt, (err, hash) => {
-                            if (err) {
-                                return reject(err);
-                            } else {
-                                return resolve(hash);
-                            }
-                        });
-                    });
-                })
-            }
             // update user with new password
             function updateUser(userID, password) {
                 sqlDB
                     .query(`UPDATE ${userTable} SET user_password = '${password}' WHERE id = '${userID}' AND email = ${email};`,
-                    function(err, results) {
-                        if (err) {
-                            return res.status(500).send(err);
-                        } else if (results.length > 0) {
-                            return res.status(200).send("User password updated");
-                        }
-                    })
+                        function (err, results) {
+                            if (err) {
+                                return res.status(500).send(err);
+                            } else if (results.length > 0) {
+                                return res.status(200).send("User password updated");
+                            }
+                        })
             }
         }
     }
