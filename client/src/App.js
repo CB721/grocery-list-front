@@ -10,6 +10,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Settings from "./components/Settings";
 import PassReset from "./components/PassReset";
+import Privacy from "./components/Privacy";
 import { ToastContainer } from 'react-toastify';
 import "shards-ui/dist/css/shards.min.css";
 import API from "./utilities/api";
@@ -319,18 +320,56 @@ function App() {
                 />
               ))
           )} />
-          <Route
-            exact path="/login"
-            render={props =>
-              <Login
+          <Route exact path="/privacy" render={props => (
+            (validateUser() ? (
+              <Privacy
                 {...props}
-                userLogin={userLogin}
-                error={error}
                 user={user}
               />
-            }
+            ) : (
+                <Privacy
+                  {...props}
+                />
+              ))
+          )} />
+          <Route
+            exact path="/login"
+            render={props => (
+              (validateUser() ? (
+                <Profile
+                  {...props}
+                  user={user}
+                  setCurrList={setCurrList}
+                  getListByID={getListByID}
+                />
+              ) : (
+                  <Login
+                    {...props}
+                    userLogin={userLogin}
+                    error={error}
+                    user={user}
+                  />
+                ))
+            )}
           />
-          <Route exact path="/join" component={CreateAccount} />
+          <Route
+            exact path="/join"
+            render={props => (
+              (validateUser() ? (
+                <Profile
+                  {...props}
+                  user={user}
+                  setCurrList={setCurrList}
+                  getListByID={getListByID}
+                />
+              ) : (
+                  <CreateAccount
+                    {...props}
+                    user={user}
+                  />
+                ))
+            )}
+          />
           <Route exact path="/reset" component={PassReset} />
           <Route
             exact path="/profile"

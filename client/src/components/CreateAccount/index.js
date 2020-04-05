@@ -13,6 +13,11 @@ function CreateAccount(props) {
     useEffect(() => {
         document.title = document.title + " | Create Account";
     }, []);
+    useEffect(() => {
+        if (props.user.length === 1) {
+            history.push("/profile");
+        }
+    }, [props.user]);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [firstName, setFirstName] = useState("");

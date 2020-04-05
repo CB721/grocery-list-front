@@ -6,6 +6,7 @@ class ExtendedCard extends Component {
         return (
             <div
                 className={`extended-card ${this.props.headerText}`}
+                ref={this.props.headerText}
             >
                 <div
                     className="ext-card-header"

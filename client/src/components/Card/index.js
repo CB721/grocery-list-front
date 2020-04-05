@@ -13,7 +13,6 @@ function Card(props) {
             <div
                 className="card-body-text"
                 style={{ color: props.color }}
-                // href={`#${props.cardName}`}
             >
                 {props.text}
             </div>

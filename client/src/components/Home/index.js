@@ -44,28 +44,28 @@ function Home(props) {
         }
     }, [window.screen]);
     let history = useHistory();
-    // // iterate once for the highlight cards
-    // const highlightRefs = Benefits.reduce((acc, val) => {
-    //     acc[val.cardName] = createRef();
-    //     return acc;
-    // }, {});
+    // iterate once for the highlight cards
+    const highlightRefs = Benefits.reduce((acc, val) => {
+        acc[val.cardName] = createRef();
+        return acc;
+    }, {});
     // // iterate again for the sections themselves
     // const sectionRefs = Benefits.reduce((acc, val) => {
     //     acc[val.cardName + "Ext"] = createRef();
     //     return acc;
     // }, {});
-    // console.log(sectionRefs);
+    // console.log(highlightRefs);
     function handleClick(name) {
-        window.location.href = `#${name}`;
+        // window.location.href = `#${name}`;
         // console.log(sectionRefs[name + "Ext"]);
-        // sectionRefs[name + "Ext"].current.scrollIntoView({
-        //     behavior: 'smooth',
-        //     block: 'start'
-        // });
+        highlightRefs[name].current.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
     }
     function goToJoin(event) {
         event.preventDefault();
-        if (props.user.length > 0) {
+        if (props.user && props.user.length > 0) {
             history.push("/profile");
         } else {
             history.push("/join");
@@ -93,7 +93,7 @@ function Home(props) {
                                 color={item.color}
                                 index={index}
                                 action={handleClick}
-                            // referral={highlightRefs[item.cardName]}
+                                referral={highlightRefs[item.cardName]}
                             />
                         </Slide>
                     ))}
