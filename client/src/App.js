@@ -307,7 +307,17 @@ function App() {
         />
         <Switch>
           <Route exact path="/" render={props => (
-              <Home {...props} />
+            (validateUser() ? (
+              <Home
+                {...props}
+                user={user}
+              />
+            ) : (
+                <Home
+                  {...props}
+                  user={user}
+                />
+              ))
           )} />
           <Route
             exact path="/login"

@@ -11,27 +11,20 @@ function Modal(props) {
                         <Col>
                             <div className="modal-content">
                                 <Row>
-                                    {/* <Col> */}
-                                        <div className="modal-col-3">
-                                            <div
-                                                className="modal-close-x"
-                                                onClick={() => props.close(false)}
-                                                aria-label="close modal"
-                                            >
-                                                <div className="x-bar-1" />
-                                                <div className="x-bar-2" />
-                                            </div>
+                                    <div className="modal-col-3">
+                                        <div
+                                            className="modal-close-x"
+                                            onClick={() => props.close(false)}
+                                            aria-label="close modal"
+                                        >
+                                            <div className="x-bar-1" />
+                                            <div className="x-bar-2" />
                                         </div>
-
-                                    {/* </Col>
-                                    <Col> */}
-                                        <div className="modal-col-3" aria-label={props.name}>
-                                            {props.name}
-                                        </div>
-                                    {/* </Col>
-                                    <Col> */}
-                                        <div className="modal-col-3" />
-                                    {/* </Col> */}
+                                    </div>
+                                    <div className="modal-col-3" aria-label={props.name}>
+                                        {props.name}
+                                    </div>
+                                    <div className="modal-col-3" />
                                 </Row>
                                 {props.message ? (
                                     <Row>
