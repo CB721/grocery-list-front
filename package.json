@@ -1,56 +1,18 @@
 {
-  "name": "grocery-list",
-  "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
-  "proxy": "http://0.0.0.0:3001",
-  "scripts": {
-    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
-    "start:prod": "node server.js",
-    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
-    "client": "cd client && npm run start",
-    "install": "cd client && npm install",
-    "build": "cd client && npm run build",
-    "build:prod": "webpack server.js dist/bundle.js -p",
-    "heroku-postbuild": "npm run build",
-    "test": "jest"
-  },
-  "engines": {
-    "node": "10.14.x"
-  },
-  "devDependencies": {
-    "nodemon": "^1.18.7"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/CB721/grocery-list.git"
-  },
-  "author": "Clint Brodar",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/CB721/grocery-list/issues"
-  },
-  "homepage": "https://github.com/CB721/grocery-list#readme",
+  "name": "grocery",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
     "@react-spring/addons": "^9.0.0-beta.33",
     "@svgr/webpack": "^5.1.0",
     "axios": "^0.19.2",
-    "bcrypt": "^3.0.7",
-    "bcryptjs": "^2.4.3",
-    "concurrently": "^4.1.0",
-    "crypto": "^1.0.1",
-    "express": "^4.17.1",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.4.0",
+    "@testing-library/user-event": "^7.2.1",
     "glamor": "^2.20.40",
-    "http-proxy-middleware": "^1.0.3",
-    "i": "^0.3.6",
     "jest": "^24.9.0",
     "moment": "^2.24.0",
-    "moment-timezone": "^0.5.28",
-    "mongoose": "^5.8.9",
-    "mysql": "^2.18.1",
     "node-sass": "^4.13.1",
-    "nodemailer": "^6.4.3",
-    "npm": "^6.14.4",
     "react-beautiful-dnd": "^12.2.0",
     "react-parallax": "^3.0.3",
     "react-reveal": "^1.2.2",
@@ -59,6 +21,30 @@
     "react-textfit": "^1.1.0",
     "react-toastify": "^5.5.0",
     "shards-react": "^1.0.3",
-    "validator": "^12.2.0"
+    "validator": "^12.2.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-scripts": "^3.3.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
