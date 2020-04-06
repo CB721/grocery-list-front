@@ -55,7 +55,7 @@ export default {
         return axios.get(`${url}/api/users/verify/${token}/${ip}`, { withCredentials: true });
     },
     getIP: function () {
-        return axios.get(`https://api.ipify.org`, { withCredentials: true });
+        return axios.get("https://api.ipify.org");
     },
     getNotificationsByUser: function (id) {
         return axios.get(`${url}/api/notifications/` + id, { withCredentials: true });
