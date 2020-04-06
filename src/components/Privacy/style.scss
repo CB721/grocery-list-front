@@ -4,7 +4,7 @@
     @include page-defaults;
     .privacy-desc {
         border-radius: 8px;
-        @include shadow;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         height: 50vh;
         width: 75vw;
         margin: 0 auto;
