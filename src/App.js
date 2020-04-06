@@ -211,7 +211,8 @@ function App() {
     return new Promise(function (resolve, reject) {
       API.updateUser(user[0].id, data)
         .then(res => {
-          if (res.data.affectedRows === 1) {
+          if (res.data === "success") {
+            validateUser();
             resolve();
           }
         })
