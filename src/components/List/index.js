@@ -92,9 +92,9 @@ function List(props) {
             // calcuate how far the item has been dragged
             let deltaX = touchX - touchStartX + offset;
             // if it is dragged to the left and a delete option has been passed in
-            if (deltaX < -350 && props.deleteItem && moveVelocity < -120) {
+            if (deltaX < -280 && props.deleteItem && moveVelocity < -90) {
                 props.deleteItem(selectedItem.id);
-            } else if (deltaX > 350 && props.toggleClass && moveVelocity > 120) {
+            } else if (deltaX > 280 && props.toggleClass && moveVelocity > 90) {
                 props.toggleClass(event, selectedItem.id);
                 deltaX = 0;
             } else {

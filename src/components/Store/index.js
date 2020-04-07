@@ -160,19 +160,18 @@ function Store(props) {
                 // if no results were found in the cache, search the api
                 if (!res.length) {
                     API.searchPlaces(data, config)
-                        .then(res => {
-                            setResults(res.data);
+                        .then(response => {
+                            setResults(response.data);
                             // set a cache to avoid excessive calls to the api
-                            if (res.data.length) {
+                            if (response.data.length) {
                                 const cacheResult = {
-                                    results: res.data,
+                                    results: response.data,
                                     search
                                 }
                                 let newCache = [cacheResult];
                                 if (cache.length > 0) {
                                     newCache = [...cache, cacheResult];
                                 }
-                                console.log(newCache);
                                 // save to state
                                 setCache(newCache);
                                 // save to local storage
@@ -184,8 +183,6 @@ function Store(props) {
                             // save what the user attempted to search to local storage to prepopulate the search field with on refresh
                             localStorage.setItem("storeSearchErr", search);
                         });
-                } else {
-                    console.log("api not searched");
                 }
             });
     }

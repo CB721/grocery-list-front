@@ -34,7 +34,7 @@ function Home(props) {
     const desktop = [createListDesktop, addStoreDesktop, filterStoreDesktop, prevListDesktop, updateItemDesktop, recipeDesktop, requestDesktop, sendListDesktop];
     const mobile = [createListMobile, addStoreMobile, filterStoreMobile, prevListMobile, updateItemMobile, recipeMobile, requestMobile, sendListMobile];
     useEffect(() => {
-        document.title = document.title + " | Home";
+        document.title = "G-List | Home";
     }, []);
     useEffect(() => {
         if (window.screen.width < 500) {
