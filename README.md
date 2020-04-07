@@ -1,68 +1,69 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# G-List
+An application for users to create custom grocery lists based on the stores where they shop.  They can search for stores in their area or enter a custom store.  THe user can also share lists with friends and family that they connect with.
 
-## Available Scripts
+* [View Application](https://g-list-cb.herokuapp.com/)
+* [Front End Repository](https://github.com/CB721/grocery-list-front)
+* [Back End Repository](https://github.com/CB721/grocery-list-back)
 
-In the project directory, you can run:
+## Key Features
+#### Create lists and set priority levels for each item
+![Create-lists](src/assets/Images/walkthrough_gifs/create-list-mobile.gif)
+#### Add stores based on the user's location
+![Create-lists](src/assets/Images/walkthrough_gifs/add-store-mobile.gif)
+#### Filter their list by store
+![Create-lists](src/assets/Images/walkthrough_gifs/filter-by-store-mobile.gif)
+#### View previous lists and add items from it to their current list
+![Create-lists](src/assets/Images/walkthrough_gifs/previous-list-mobile.gif)
+#### Mark list items as complete
+![Create-lists](src/assets/Images/walkthrough_gifs/update-item-mobile.gif)
+#### Create custom lists for repeatedly purchased items (create recipes)
+![Create-lists](src/assets/Images/walkthrough_gifs/recipes-mobile.gif)
+#### Connect with other users
+![Create-lists](src/assets/Images/walkthrough_gifs/send-receive-request-mobile.gif)
+#### Share lists with connections
+![Create-lists](src/assets/Images/walkthrough_gifs/send-receive-list-mobile.gif)
 
-### `npm start`
+## User Stores
+1) "As a user, I want to create grocery lists and specify where I'll buy and how urgently I need each item."
+2) "As a user, I want to filter by store when I go shopping"
+3) "As a user, I want to connect with friends and family members to send and receive grocery lists"
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Future Improvements
+* Implement swipe feature for mobile
+    * Swipe right on a item to mark it complete, swipe left to delete it
+    * Swipe across tabs for viewing stores, viewing lists and creating lists
+* Create autocomplete feature for list items - query the db for similarly spelled items, create a list for foods to populate as well
+* Add parallax effect to home page
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### Technologies Used
+#### Front End
+    1) HTML/CSS
+    2) JavaScript/ES6
+    3) React
+    4) Node
+    5) Express
+    6) Moment
+    7) SASS
+    8) React Beautiful DND
+    9) React Reveal
+    10) React Textfit
+    11) Shards React
+    12) Validator
+    13) Axios
+#### Back End
+    1) Express
+    2) Axios
+    3) Bcrypt
+    4) CORS
+    5) Mongoose
+    6) MySQL
+    7) Nodemailer
+    8) Moment
+    9) Validator
+    10) Node
 
-### `npm test`
+## Author
+* Clint Brodar
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+### License
+Copyright © 2020 Clint Brodar All Rights Reserved
