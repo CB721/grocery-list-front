@@ -62,6 +62,11 @@ function CreateList(props) {
     function changePriority(event) {
         event.preventDefault();
         setShowStores(true);
+        // if the user only has one store, default store selection to that store
+        if (props.stores.length === 1) {
+            setStoreSelect(props.stores[0]);
+            setShowAdd(true);
+        }
         setPriority(event.target.value);
     }
     function handleListName(event) {
@@ -133,7 +138,7 @@ function CreateList(props) {
                     </option>
                 </select>
             ) : (<div />)}
-            {showStores && props.stores.length > 0 ? (
+            {showStores && props.stores.length > 1 ? (
                 <select
                     className="store-dropdown"
                     onChange={addStore}
@@ -158,6 +163,21 @@ function CreateList(props) {
                 <div className="create-add-store">
                     Add A Store To Continue
                 </div>
+            ) : showStores && props.stores.length === 1 ? (
+                <select
+                    className="store-dropdown"
+                    onChange={addStore}
+                    defaultValue="select"
+                    aria-label="store selection"
+                >
+                    <option
+                        value={JSON.stringify(props.stores[0])}
+                        className="store-select-item"
+                        aria-label={props.stores[0].name}
+                    >
+                        {props.stores[0].name}
+                    </option>
+                </select>
             ) : (<div />)}
             {showAdd ? (
                 <Button
