@@ -20,6 +20,7 @@ function ViewList(props) {
     const [modalList, setModalList] = useState([]);
     const [modalMessage, setModalMessage] = useState("");
     const [listMessage, setListMessage] = useState("");
+    const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
         setList(props.list);
@@ -41,6 +42,13 @@ function ViewList(props) {
             }, 5000);
         }
     }, [props.list]);
+    useEffect(() => {
+        if (window.screen.availWidth < 500) {
+            setIsMobile(true);
+        } else {
+            setIsMobile(false);
+        }
+    }, [window.screen]);
     useEffect(() => {
         setDisplayList(list);
     }, [list])
@@ -225,14 +233,25 @@ function ViewList(props) {
                                 ))}
                             </select>
                             <Flip bottom cascade>
-                                <List
-                                    viewList={true}
-                                    list={displayList}
-                                    toggleClass={toggleClass}
-                                    changePriority={changePriority}
-                                    updateItemPosition={props.updateItemPosition}
-                                    deleteItem={props.deleteItem}
-                                />
+                                {isMobile ? (
+                                    <StaticList
+                                        viewList={true}
+                                        list={displayList}
+                                        toggleClass={toggleClass}
+                                        changePriority={changePriority}
+                                        updateItemPosition={props.updateItemPosition}
+                                        deleteItem={props.deleteItem}
+                                    />
+                                ) : (
+                                        <List
+                                            viewList={true}
+                                            list={displayList}
+                                            toggleClass={toggleClass}
+                                            changePriority={changePriority}
+                                            updateItemPosition={props.updateItemPosition}
+                                            deleteItem={props.deleteItem}
+                                        />
+                                    )}
                             </Flip>
                             {showComplete && list.length > 0 ? (
                                 <Button
