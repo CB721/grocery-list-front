@@ -24,6 +24,7 @@ function Profile(props) {
     const [userList, setUserList] = useState([]);
     const [progress, setProgress] = useState(0);
     const [modal, setModal] = useState(false);
+    const [coords, setCoords] = useState("");
 
     const config = {
         onUploadProgress: progressEvent => {
@@ -37,6 +38,10 @@ function Profile(props) {
             getUserStores();
             getUserList();
         }
+        // get user location
+        navigator.geolocation.getCurrentPosition((pos) => {
+            setCoords(`${pos.coords.latitude},${pos.coords.longitude}`);
+        });
     }, [props.user]);
     function notification(message) {
         toast(message, {
@@ -89,6 +94,8 @@ function Profile(props) {
                 setView("header-col");
                 setStore("header-col selected");
                 break;
+            default:
+                return;
         }
     }, [currentView]);
 
@@ -111,6 +118,8 @@ function Profile(props) {
             case "store-list":
                 setSwipe("right");
                 break;
+            default:
+                return;
         }
         setCurrentView(id);
     }
@@ -257,70 +266,6 @@ function Profile(props) {
             })
             .catch(err => console.log(err));
     }
-    // function handleSwipe(event) {
-    //     const time = new Date();
-    //     if (swipe === 0) {
-    //         setSwipe(event.touches[0].clientX);
-    //         setSwipeTime(time.getTime());
-    //     }
-    //     // if it has been less than a second
-    //     if (time.getTime() - swipeTime < 1000) {
-    //         // determine swipe direction
-    //         if (swipe - event.touches[0].clientX > 45) {
-    //             console.log(swipe - event.touches[0].clientX);
-    //             nextOption("left");
-    //             console.log("swipe left");
-    //             setSwipeTime(time.getTime());
-    //         } else if (swipe - event.touches[0].clientX < -45) {
-    //             console.log(swipe - event.touches[0].clientX);
-    //             nextOption("right");
-    //             console.log("swipe right");
-    //             setSwipeTime(time.getTime());
-    //         }
-    //     } else {
-    //         console.log("too long");
-    //         setSwipeTime(time.getTime());
-    //     }
-    // }
-    // function nextOption(direction) {
-    //     if (direction === "left") {
-    //         if (create === "header-col selected") {
-    //             console.log("all the way to the left");
-    //             setCreate("header-col selected");
-    //             setView("header-col");
-    //             setStore("header-col");
-    //         }
-    //         if (view === "header-col selected") {
-    //             console.log("hi");
-    //             setCreate("header-col selected");
-    //             setView("header-col");
-    //             setStore("header-col");
-    //         }
-    //         if (store === "header-col selected") {
-    //             setCreate("header-col");
-    //             setView("header-col selected");
-    //             setStore("header-col");
-    //         }
-    //     }
-    //     if (direction === "right") {
-    //         if (create === "header-col selected") {
-    //             setCreate("header-col");
-    //             setView("header-col selected");
-    //             setStore("header-col");
-    //         }
-    //         if (view === "header-col selected") {
-    //             setCreate("header-col");
-    //             setView("header-col");
-    //             setStore("header-col selected");
-    //         }
-    //         if (store === "header-col selected") {
-    //             console.log("all the way to the right");
-    //             setCreate("header-col");
-    //             setView("header-col");
-    //             setStore("header-col selected");
-    //         }
-    //     }
-    // }
     return (
         <div className="profile">
             {modal ? (
@@ -386,6 +331,7 @@ function Profile(props) {
                                     refreshStores={getUserStores}
                                     notification={notification}
                                     userID={props.user[0].id}
+                                    coords={coords}
                                 />
                             ) : (
                                         <ViewList

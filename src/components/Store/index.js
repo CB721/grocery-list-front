@@ -24,7 +24,6 @@ function Store(props) {
     const [showProgress, setShowProgress] = useState("hide");
     const [modal, setModal] = useState(false);
     const [cache, setCache] = useState([]);
-    const [coords, setCoords] = useState();
 
     const config = {
         onUploadProgress: progressEvent => {
@@ -53,10 +52,6 @@ function Store(props) {
         if (props.stores.length < 1) {
             setCurrentView("add");
         }
-        // get user location
-        navigator.geolocation.getCurrentPosition((pos) => {
-            setCoords(`${pos.coords.latitude},${pos.coords.longitude}`);
-        });
     }, [props.stores]);
     function toggleOptions(event) {
         event.preventDefault();
@@ -155,8 +150,8 @@ function Store(props) {
         const data = {
             search,
         }
-        if (coords) {
-            data["coords"] = coords;
+        if (props.coords) {
+            data["coords"] = props.coords;
         }
         // check if there is a cache in state / local storage and the manually add a store option hasn't been triggered and nothing has been added to the results yet
         // search the cache for any items that include the current search value

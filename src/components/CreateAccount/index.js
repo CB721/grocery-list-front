@@ -11,7 +11,7 @@ import "./style.scss";
 
 function CreateAccount(props) {
     useEffect(() => {
-        document.title = document.title + " | Create Account";
+        document.title = "G-List | Create Account";
     }, []);
     useEffect(() => {
         if (props.user.length === 1) {
