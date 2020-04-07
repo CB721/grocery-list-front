@@ -7,21 +7,21 @@ An application for users to create custom grocery lists based on the stores wher
 
 ## Key Features
 #### Create lists and set priority levels for each item
-![Create-lists](src/assets/Images/walkthrough_gifs/create-list-mobile.gif)
+![Create Lists](https://github.com/CB721/grocery-list-front/blob/master/src/assets/images/walkthrough_gifs/create-list-mobile.gif?raw=true)
 #### Add stores based on the user's location
-![Create-lists](src/assets/Images/walkthrough_gifs/add-store-mobile.gif)
+![Add Stores](https://github.com/CB721/grocery-list-front/blob/master/src/assets/images/walkthrough_gifs/add-store-mobile.gif?raw=true)
 #### Filter their list by store
-![Create-lists](src/assets/Images/walkthrough_gifs/filter-by-store-mobile.gif)
+![Filter by store](https://github.com/CB721/grocery-list-front/blob/master/src/assets/images/walkthrough_gifs/filter-by-store-mobile.gif?raw=true)
 #### View previous lists and add items from it to their current list
-![Create-lists](src/assets/Images/walkthrough_gifs/previous-list-mobile.gif)
+![Previous lists](https://github.com/CB721/grocery-list-front/blob/master/src/assets/images/walkthrough_gifs/previous-list-mobile.gif?raw=true)
 #### Mark list items as complete
-![Create-lists](src/assets/Images/walkthrough_gifs/update-item-mobile.gif)
+![Update items](https://github.com/CB721/grocery-list-front/blob/master/src/assets/images/walkthrough_gifs/update-item-mobile.gif?raw=true)
 #### Create custom lists for repeatedly purchased items (create recipes)
-![Create-lists](src/assets/Images/walkthrough_gifs/recipes-mobile.gif)
+![Recipes](https://github.com/CB721/grocery-list-front/blob/master/src/assets/images/walkthrough_gifs/recipes-mobile.gif?raw=true)
 #### Connect with other users
-![Create-lists](src/assets/Images/walkthrough_gifs/send-receive-request-mobile.gif)
+![Connect](https://github.com/CB721/grocery-list-front/blob/master/src/assets/images/walkthrough_gifs/send-receive-request-mobile.gif?raw=true)
 #### Share lists with connections
-![Create-lists](src/assets/Images/walkthrough_gifs/send-receive-list-mobile.gif)
+![Share](https://github.com/CB721/grocery-list-front/blob/master/src/assets/images/walkthrough_gifs/send-receive-list-mobile.gif?raw=true)
 
 ## User Stores
 1) "As a user, I want to create grocery lists and specify where I'll buy and how urgently I need each item."
