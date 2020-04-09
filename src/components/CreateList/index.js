@@ -15,6 +15,7 @@ function CreateList(props) {
     const [inputErr, setInputErr] = useState("");
     const [listName, setListName] = useState("");
     const [savedListName, setSavedListName] = useState("");
+    const [updateListName, setUpdateListName] = useState(false);
 
     useEffect(() => {
         setList(props.list);
@@ -74,11 +75,17 @@ function CreateList(props) {
         event.preventDefault();
         setListName(event.target.value);
     }
+    function editListName(event) {
+        event.preventDefault();
+        props.addListName(list[0].list_id, listName);
+        setUpdateListName(false);
+    }
     return (
         <div className="create-list">
             <div
-                className="create-list-header"
+                className="create-list-header list-name"
                 aria-label={list.length > 0 ? list[0].list_name || "list" : "new list"}
+                onClick={() => setUpdateListName(!updateListName)}
             >
                 {list.length > 0 ? `Edit ${list[0].list_name || "list"}` : "New List"}
             </div>
@@ -106,6 +113,25 @@ function CreateList(props) {
                         class="white-button"
                         disabled={listName.length < 1 ? true : false}
                         action={() => props.addListName(list[0].list_id, listName)}
+                    />
+                </div>
+            ) : (<div />)}
+            {updateListName ? (
+                <div>
+                    <input
+                        type="text"
+                        className="form-input"
+                        value={listName}
+                        placeholder="New List Name"
+                        name={"list_name"}
+                        onChange={handleListName}
+                        aria-label={"list name"}
+                    />
+                    <Button
+                        text="Add List Name"
+                        class="white-button"
+                        disabled={listName.length < 1 ? true : false}
+                        action={(event) => editListName(event)}
                     />
                 </div>
             ) : (<div />)}

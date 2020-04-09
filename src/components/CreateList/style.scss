@@ -7,11 +7,23 @@
   height: auto;
   border-radius: 8px;
   .create-list-header {
+    height: 2rem;
     font-size: 1rem;
-    line-height: 1rem;
+    line-height: 2rem;
     text-align: center;
     color: $black;
     text-transform: uppercase;
+    width: 50%;
+    margin: 0 auto;
+    transition: 0.3s;
+    &.list-name {
+      &:hover {
+        cursor: pointer;
+        background: $main-blue;
+        color: $white;
+        border-radius: 8px;
+      }
+    }
   }
   .form-input {
     @include form-input;
