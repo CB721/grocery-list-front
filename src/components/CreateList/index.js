@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Button from "../Button";
 import List from "../List";
+import ListHeader from "../ListHeader";
 import Flip from 'react-reveal/Flip';
 import "./style.scss";
 
@@ -189,6 +190,12 @@ function CreateList(props) {
             ) : (<div />)}
             {list.length > 0 ? (
                 <div>
+                    <ListHeader
+                        firstCol="Item Name"
+                        secondCol="Store"
+                        thirdCol="Priority"
+                        fourthCol="Remove Item"
+                    />
                     <Flip bottom cascade>
                         <List
                             list={list}

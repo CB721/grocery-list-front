@@ -157,7 +157,7 @@ function List(props) {
                                                 <div className="list-item-col">
                                                     <div className="sub-col priority">
                                                         {props.viewList ? (
-                                                            <div>
+                                                            <div style={{ margin: "0 auto" }}>
                                                                 <select
                                                                     className="store-dropdown"
                                                                     defaultValue={item.priority}
@@ -176,17 +176,19 @@ function List(props) {
                                                                 </select>
                                                             </div>
                                                         ) : (
-                                                                <div>
+                                                                <div style={{ margin: "0 auto" }}>
                                                                     {item.priority}
                                                                 </div>
                                                             )}
                                                     </div>
                                                     <div className="sub-col">
-                                                        <Checkbox
-                                                            // if item has been purchased or not, change class
-                                                            class={item.purchased === 0 ? "to-get" : "done"}
-                                                            toggleClass={(event) => props.toggleClass(event, item.id)}
-                                                        />
+                                                        <div style={{ margin: "0 auto" }}>
+                                                            <Checkbox
+                                                                // if item has been purchased or not, change class
+                                                                class={item.purchased === 0 ? "to-get" : "done"}
+                                                                toggleClass={(event) => props.toggleClass(event, item.id)}
+                                                            />
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>

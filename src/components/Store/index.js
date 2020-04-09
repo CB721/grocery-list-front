@@ -8,6 +8,7 @@ import LoadingBar from "../LoadingBar";
 import Modal from "../Modal";
 import LoadingSpinner from "../LoadingSpinner";
 import "./style.scss";
+import ListHeader from "../ListHeader";
 
 function Store(props) {
     const [currentView, setCurrentView] = useState("view");
@@ -292,28 +293,34 @@ function Store(props) {
                 </div>
             </div>
             {currentView === "view" ? (
-                <div className="list" aria-label="saved stores list">
-                    {props.stores.length > 0 ? (
-                        <div>
-                            {props.stores.map((store, index) => (
-                                <div
-                                    className="list-item"
-                                    key={index}
-                                >
-                                    <div className="store-li-col left">
-                                        {store.name}
+                <div>
+                    <ListHeader
+                        firstCol="Store Name"
+                        fourthCol="Delete Store"
+                    />
+                    <div className="list" aria-label="saved stores list">
+                        {props.stores.length > 0 ? (
+                            <div>
+                                {props.stores.map((store, index) => (
+                                    <div
+                                        className="list-item"
+                                        key={index}
+                                    >
+                                        <div className="store-li-col left">
+                                            {store.name}
+                                        </div>
+                                        <div className="store-li-col right">
+                                            <Trash
+                                                className="edit-icon"
+                                                onClick={(event) => removeStore(event, store.id)}
+                                                aria-label="remove store from saved list"
+                                            />
+                                        </div>
                                     </div>
-                                    <div className="store-li-col right">
-                                        <Trash
-                                            className="edit-icon"
-                                            onClick={(event) => removeStore(event, store.id)}
-                                            aria-label="remove store from saved list"
-                                        />
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    ) : (<LoadingSpinner />)}
+                                ))}
+                            </div>
+                        ) : (<LoadingSpinner />)}
+                    </div>
                 </div>
             ) : (
                     <div className="store-search">

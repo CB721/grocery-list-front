@@ -5,6 +5,7 @@ import Flip from "react-reveal/Flip";
 import Button from "../Button";
 import Modal from "../Modal";
 import LoadingSpinner from "../LoadingSpinner";
+import ListHeader from "../ListHeader";
 import "./style.scss";
 
 function ViewList(props) {
@@ -39,7 +40,7 @@ function ViewList(props) {
         if (props.list.length < 1) {
             setTimeout(() => {
                 setListMessage("Create a list to get started!");
-            }, 5000);
+            }, 7500);
         }
     }, [props.list]);
     useEffect(() => {
@@ -232,6 +233,12 @@ function ViewList(props) {
                                     </option>
                                 ))}
                             </select>
+                            <ListHeader
+                                firstCol="Item Name"
+                                secondCol="Store"
+                                thirdCol="Priority"
+                                fourthCol="In Cart"
+                            />
                             <Flip bottom cascade>
                                 {isMobile ? (
                                     <StaticList
@@ -282,6 +289,10 @@ function ViewList(props) {
                                 <div style={{ textAlign: "center" }}>
                                     Click To View List
                                 </div>
+                                <ListHeader
+                                    secondCol="List Name / Date"
+                                    fourthCol="Delete List"
+                                />
                                 <StaticList
                                     viewList={false}
                                     list={previousLists}
