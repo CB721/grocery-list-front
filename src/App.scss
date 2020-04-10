@@ -31,7 +31,7 @@ $purple: rgb(107, 41, 214);
     transition: 0.5s;
     &:focus {
         outline: none;
-        border-color: $secondary-blue;
+        border-color: $main-blue;
     }
 }
 body {

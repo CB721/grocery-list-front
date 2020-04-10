@@ -58,6 +58,7 @@ function ViewList(props) {
     function viewByStore(event) {
         event.preventDefault();
         const storeFilter = event.target.value;
+        setSortListBy("");
         if (storeFilter === "All") {
             setDisplayList(list);
         } else {
@@ -279,6 +280,18 @@ function ViewList(props) {
                 <div>
                     {list.length > 0 ? (
                         <div aria-label="current list">
+                            <select
+                                className="store-filter"
+                                defaultValue="All"
+                                onChange={(event) => viewByStore(event)}
+                                aria-label="filter by store name"
+                            >
+                                {stores.map((store, index) => (
+                                    <option value={store} key={index}>
+                                        {store}
+                                    </option>
+                                ))}
+                            </select>
                             <ListHeader
                                 firstCol="Item Name"
                                 secondCol="Store"

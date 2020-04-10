@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { ReactComponent as Edit } from "../../assets/images/edit.svg";
 import Button from "../Button";
 import List from "../List";
 import ListHeader from "../ListHeader";
+import convertDate from "../../utilities/convertDate";
 import Flip from 'react-reveal/Flip';
 import "./style.scss";
 
@@ -16,6 +18,7 @@ function CreateList(props) {
     const [listName, setListName] = useState("");
     const [savedListName, setSavedListName] = useState("");
     const [updateListName, setUpdateListName] = useState(false);
+    const [editListItems, setEditListItems] = useState(false);
 
     useEffect(() => {
         setList(props.list);
@@ -80,6 +83,38 @@ function CreateList(props) {
         props.addListName(list[0].list_id, listName);
         setUpdateListName(false);
     }
+    function editItems() {
+        setEditListItems(!editListItems);
+        console.log("edit list items", editListItems);
+    }
+    const [singleItemName, setSingleItemName] = useState({});
+    function editSingleItem(event, itemID, col) {
+        event.preventDefault();
+        let value = ""
+        switch (col) {
+            case "name":
+                setSingleItemName({
+                    id: itemID,
+                    value: event.target.value
+                });
+                value = event.target.value;
+                break;
+            case "store":
+                const filteredStore = props.stores.filter(store => {
+                    if (store.name === event.target.value) {
+                        return true;
+                    }
+                });
+                value = filteredStore[0].store_id;
+                break;
+            case "priority":
+                value = event.target.value;
+                break;
+            default:
+                return;
+        }
+        props.updateItem(itemID, col, value);
+    }
     return (
         <div className="create-list">
             <div
@@ -88,6 +123,12 @@ function CreateList(props) {
                 onClick={() => setUpdateListName(!updateListName)}
             >
                 {list.length > 0 ? `Edit ${list[0].list_name || "list"}` : "New List"}
+            </div>
+            <div className="list-edit">
+                <Edit
+                    className="edit-icon"
+                    onClick={editItems}
+                />
             </div>
             <div
                 className="create-list-header error"
@@ -214,7 +255,7 @@ function CreateList(props) {
                     disabled={newItem.length < 1 ? true : false}
                 />
             ) : (<div />)}
-            {list.length > 0 ? (
+            {list.length > 0 && !editListItems ? (
                 <div>
                     <ListHeader
                         firstCol="Item Name"
@@ -229,6 +270,58 @@ function CreateList(props) {
                             deleteItem={props.deleteItem}
                         />
                     </Flip>
+                </div>
+            ) : list.length ? (
+                <div>
+                    <ListHeader
+                        firstCol="Item Name"
+                        secondCol="Store"
+                        thirdCol="Priority"
+                    />
+                    {list.map((item, index) => (
+                        <div
+                            className="list-item"
+                            key={index}
+                        >
+                            <input
+                                type="text"
+                                className="form-input-edit"
+                                value={singleItemName.id === item.id ? singleItemName.value : item.name}
+                                placeholder={item.name}
+                                name={item.name + "list-item"}
+                                onChange={(event) => editSingleItem(event, item.id, "name")}
+                                aria-label={"change item name"}
+                            />
+                            <select
+                                className="store-selection"
+                                defaultValue={item.store_name}
+                                onChange={(event) => editSingleItem(event, item.id, "store")}
+                                aria-label="change item store"
+                            >
+                                {props.stores.map(store => (
+                                    <option value={store.name} key={store.store_id}>
+                                        {store.name}
+                                    </option>
+                                ))}
+                            </select>
+                            <select
+                                className="store-selection"
+                                defaultValue={item.priority}
+                                onChange={(event) => editSingleItem(event, item.id, "priority")}
+                                aria-label="select a priority level"
+                            >
+                                <option className="store-select-item" value="Low" aria-label="low priority">
+                                    Low
+                                </option>
+                                <option className="store-select-item" value="Normal" aria-label="normal priority">
+                                    Normal
+                                </option>
+                                <option className="store-select-item" value="High" aria-label="high-priority">
+                                    High
+                                </option>
+                            </select>
+                        </div>
+                    ))}
                 </div>
             ) : (<div />)}
         </div>

@@ -154,6 +154,12 @@ function Profile(props) {
             case "purchased":
                 listItem.purchased = value;
                 break;
+            case "name":
+                listItem.name = value;
+                break;
+            case "store":
+                listItem.store_id = value;
+                break;
             default:
                 return;
         }
@@ -324,6 +330,7 @@ function Profile(props) {
                                     updateItemPosition={updateItemPosition}
                                     addListName={addListName}
                                     deleteItem={deleteItem}
+                                    updateItem={updateItem}
                                 />
                             ) : currentView === "store-list" ? (
                                 <Store

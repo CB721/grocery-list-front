@@ -39,7 +39,7 @@
 .store-filter {
     width: 100%;
     margin: 20px 0;
-    transition: 0.5s;
+    transition: 0.3s;
     background: $white;
     color: $main-blue;
     border-radius: 8px;
@@ -56,32 +56,3 @@
     line-height: 1rem;
     color: $black;
 }
-// .list-headers {
-//     width: 75%;
-//     background: $white;
-//     color: $main-blue;
-//     margin: 0 12.5%;
-//     display: inline-flex;
-//     .list-header-col {
-//         width: 33.33%;
-//         padding: 0 5px;
-//         overflow: scroll;
-//         text-transform: capitalize;
-//         font-size: 0.8rem;
-//         text-align: center;
-//         &:nth-child(2n) {
-//             text-align: center;
-//             width: 33.34%;
-//         }
-//         .sub-head {
-//             display: inline-flex;
-//             margin-top: 0;
-//             width: 50%;
-//             text-align: center;
-//         }
-//     }
-//     @media only screen and(max-width: 450px) {
-//         width:100%;
-//         margin: 0 auto;
-//     }
-// }
