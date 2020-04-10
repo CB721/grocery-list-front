@@ -7,21 +7,25 @@
     margin: 2% 12.5% 0 12.5%;
     display: inline-flex;
     .list-header-col {
-        width: 33.33%;
+        width: 16.67%;
         padding: 0 5px;
         overflow: scroll;
         text-transform: capitalize;
-        font-size: 0.8rem;
+        height: 2rem;
+        line-height: 2rem;
+        font-size: 1rem;
         text-align: center;
-        &:nth-child(2n) {
-            text-align: center;
-            width: 33.34%;
+        transition: 0.3s;
+        &:first-child {
+            width: 33.33%;
         }
-        .sub-head {
-            display: inline-flex;
-            margin-top: 0;
-            width: 50%;
-            text-align: center;
+        &:nth-child(2) {
+            width: 33.33%;
+        }
+        &:hover {
+            // cursor: pointer;
+            border: 1px solid $main-blue;
+            border-radius: 8px;
         }
     }
     @media only screen and(max-width: 450px) {

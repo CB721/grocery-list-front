@@ -22,6 +22,7 @@ function ViewList(props) {
     const [modalMessage, setModalMessage] = useState("");
     const [listMessage, setListMessage] = useState("");
     const [isMobile, setIsMobile] = useState(false);
+    const [sortListBy, setSortListBy] = useState("");
 
     useEffect(() => {
         setList(props.list);
@@ -178,6 +179,63 @@ function ViewList(props) {
         setModal(false);
         setCurrentView("current");
     }
+    function setColumnFilter(col) {
+        switch (col) {
+            case "Item Name":
+                setSortListBy("name");
+                break;
+            case "Store":
+                setSortListBy("store_name");
+                break;
+            case "Priority":
+                setSortListBy("priority");
+                break;
+            case "In Cart":
+                setSortListBy("purchased");
+                break;
+            default:
+                return;
+        }
+        for (let i = 0; i < props.list.length; i++) {
+            if (props.list[i] !== displayList[i]) {
+                setDisplayList(props.list);
+                return;
+            }
+        }
+        // setSortListBy("");
+    }
+    function filterByColumn() {
+        let sortList = [...list];
+        if (sortListBy && sortListBy !== "purchased") {
+            sortList.sort(function (a, b) {
+                var itemA = a[sortListBy].toUpperCase();
+                var itemB = b[sortListBy].toUpperCase();
+                if (itemA < itemB) {
+                    return -1;
+                }
+                if (itemA > itemB) {
+                    return 1;
+                }
+                return 0;
+            });
+        } else if (sortListBy) {
+            sortList.sort(function (a, b) {
+                var itemA = a[sortListBy];
+                var itemB = b[sortListBy];
+                if (itemA < itemB) {
+                    return -1;
+                }
+                if (itemA > itemB) {
+                    return 1;
+                }
+                return 0;
+            });
+        }
+        setDisplayList(sortList);
+    }
+    useEffect(() => {
+        filterByColumn();
+    }, [sortListBy]);
     return (
         <div className="view-list">
             <div className="list-view-options" aria-label="list options">
@@ -221,23 +279,12 @@ function ViewList(props) {
                 <div>
                     {list.length > 0 ? (
                         <div aria-label="current list">
-                            <select
-                                className="store-filter"
-                                defaultValue="All"
-                                onChange={(event) => viewByStore(event)}
-                                aria-label="filter by store name"
-                            >
-                                {stores.map((store, index) => (
-                                    <option value={store} key={index}>
-                                        {store}
-                                    </option>
-                                ))}
-                            </select>
                             <ListHeader
                                 firstCol="Item Name"
                                 secondCol="Store"
                                 thirdCol="Priority"
                                 fourthCol="In Cart"
+                                action={setColumnFilter}
                             />
                             <Flip bottom cascade>
                                 {isMobile ? (
