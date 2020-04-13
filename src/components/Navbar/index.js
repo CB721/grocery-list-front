@@ -75,11 +75,13 @@ function Navbar(props) {
             .catch(err => console.log(err));
     }
     function openModal(item) {
-        props.getListByID(item.list_id)
+        let id = item.other_user_id || props.user[0].id;
+        props.getListByID(item.list_id, id)
             .then(res => {
                 if (res.length > 0) {
                     setModalList(res);
                     setModal(true);
+                    setShowNotifications(false);
                     setModalMessage("Click An Item To Add To Current List");
                 } else {
                     setModal(false);

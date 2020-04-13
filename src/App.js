@@ -191,9 +191,10 @@ function App() {
       .then(() => getAllUserNotifications(user[0].id))
       .catch(err => console.log(err));
   }
-  function getListByID(id) {
+  function getListByID(listID, userID) {
+    let id = userID || user[0].id;
     return new Promise(function (resolve, reject) {
-      API.getListByID(id, user[0].id)
+      API.getListByID(listID, id)
         .then(res => {
           resolve(res.data);
         })
