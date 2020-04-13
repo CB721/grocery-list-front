@@ -30,6 +30,7 @@ function App() {
   const [error, setError] = useState("");
   const [currList, setCurrList] = useState([]);
   const [connections, setConnections] = useState([]);
+  const [settingsTab, setSettingsTab] = useState("");
 
   useEffect(() => {
     const storedIP = localStorage.getItem("IP") || " ";
@@ -294,7 +295,9 @@ function App() {
         });
     });
   }
-
+  function changeSettingsTab(tab) {
+    setSettingsTab(tab);
+  }
 
   return (
     <Router>
@@ -309,6 +312,7 @@ function App() {
           user={user}
           getListByID={getListByID}
           logout={logout}
+          changeSettingsTab={changeSettingsTab}
         />
         <Switch>
           <Route exact path="/" render={props => (
@@ -404,6 +408,7 @@ function App() {
                   cancelConnectionRequest={cancelConnectionRequest}
                   createConnection={createConnection}
                   updateConnection={updateConnection}
+                  tab={settingsTab}
                 />
               ) : (
                   <Redirect to="/login" />

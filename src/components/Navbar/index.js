@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from "react-router-dom";
 import { Row, Col, Fade } from "shards-react";
 import { ReactComponent as Bell } from "../../assets/images/bell.svg";
 import SideMenu from "../SideMenu";
@@ -17,7 +18,7 @@ function Navbar(props) {
     const [modal, setModal] = useState(false);
     const [modalList, setModalList] = useState([]);
     const [modalMessage, setModalMessage] = useState("");
-
+    let history = useHistory();
     useEffect(() => {
         // if there are any notifications
         if (props.notifications.length > 0) {
@@ -43,7 +44,7 @@ function Navbar(props) {
     }
     function goToHome(event) {
         event.preventDefault();
-        window.location.href = "/";
+        history.push("/");
     }
     function addEntirePreviousList() {
         const addList = {
@@ -88,6 +89,13 @@ function Navbar(props) {
                 }
             })
             .catch(err => console.log(err));
+    }
+    function goToPage(page) {
+        if (page === "settings") {
+            props.changeSettingsTab("connections");
+        }
+        history.push(page);
+        setShowNotifications(false);
     }
     return (
         <div>
@@ -138,6 +146,7 @@ function Navbar(props) {
                                     markNotificationAsRead={props.markNotificationAsRead}
                                     deleteNotification={props.deleteNotification}
                                     openModal={openModal}
+                                    goToPage={goToPage}
                                 />
                             ) : (<div />)}
                             <div className={menuExpand} onClick={(event) => expandMenu(event)} aria-label="open side menu">

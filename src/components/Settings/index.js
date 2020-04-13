@@ -47,6 +47,11 @@ function Settings(props) {
         }
     };
     useEffect(() => {
+        if (props.tab) {
+            setTab(props.tab);
+        }
+    }, [props.tab]);
+    useEffect(() => {
         if (window.screen.availWidth < 500) {
             setIsMobile(true);
         } else {

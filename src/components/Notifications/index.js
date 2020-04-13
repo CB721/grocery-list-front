@@ -9,6 +9,8 @@ function Notifications(props) {
         // if a list exists, pop up modal with option to add items from it to current list
         if (item.list_id) {
             props.openModal(item)
+        } else if (item.other_user_id) {
+            props.goToPage("settings");
         }
         // add option to view and accept user connections
     }
