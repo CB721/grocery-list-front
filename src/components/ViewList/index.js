@@ -195,6 +195,7 @@ function ViewList(props) {
                 setSortListBy("purchased");
                 break;
             default:
+                setSortListBy("");
                 return;
         }
         for (let i = 0; i < props.list.length; i++) {
@@ -231,6 +232,8 @@ function ViewList(props) {
                 }
                 return 0;
             });
+        } else {
+            return;
         }
         setDisplayList(sortList);
     }

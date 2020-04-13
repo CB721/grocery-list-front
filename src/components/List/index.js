@@ -173,6 +173,9 @@ function List(props) {
                                                                     <option className="store-select-item" value="High" aria-label="high-priority">
                                                                         High
                                                                     </option>
+                                                                    <option className="store-select-item" value="Any" aria-label="any-priority">
+                                                                        Any
+                                                                    </option>
                                                                 </select>
                                                             </div>
                                                         ) : (
