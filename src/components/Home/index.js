@@ -136,7 +136,7 @@ function Home(props) {
             {isMobile ? (
                 <div>
                     {Benefits.map((item, index) => (
-                        <div className="home-sections" key={index} style={{ background: item.background, borderRadius: "8px" }} id={item.cardName}>
+                        <div className="home-sections" key={index} style={{ background: item.background, borderRadius: "8px", marginBottom: "10%" }} id={item.cardName}>
                             <ExtendedCard
                                 headerColor={item.color}
                                 headerTextColor={item.color}

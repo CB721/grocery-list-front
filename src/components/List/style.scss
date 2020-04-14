@@ -43,14 +43,16 @@
       .sub-col {
         display: inline-flex;
         margin-top: 0;
-        // margin-left: 1%;
         width: 50%;
-        // &:nth-child(2n) {
-        //   margin-top: 0.3rem;
-        // }
-        // .to-get {
-        //     margin-top: 0.3rem;
-        // }
+        .cust-checkbox {
+          transition: 0.3s;
+          &.to-get {
+            margin-left: 35%;
+          }
+          &.done {
+            margin-left: 45%;
+          }
+        }
         .store-dropdown {
           transition: 0.5s;
           background: $white;

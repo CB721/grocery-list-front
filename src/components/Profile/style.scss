@@ -5,11 +5,13 @@
     border-radius: 8px;
     width: 75%;
     height: auto;
-    background: $white;
     color: $black;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    @media only screen and(max-width: 450px) {
-        width:100%;
+    background: $white;
+    // color: $black;
+    // background: $white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    @media only screen and(max-width: 500px) {
+        width: 100%;
     }
 }
 
@@ -23,6 +25,7 @@
         width: 33.33%;
         height: 4rem;
         line-height: 4rem;
+        background: $white;
         color: $black;
         font-size: 0.75rem;
         text-transform: uppercase;
@@ -44,9 +47,9 @@
             }
             background: $main-blue;
             color: $white;
-            -webkit-box-shadow: inset 0px 0px 6px 1px rgba(47,51,56,1);
-            -moz-box-shadow: inset 0px 0px 6px 1px rgba(47,51,56,1);
-            box-shadow: inset 0px 0px 6px 1px rgba(47,51,56,1);
+            -webkit-box-shadow: inset 0px 0px 6px 1px rgba(47, 51, 56, 1);
+            -moz-box-shadow: inset 0px 0px 6px 1px rgba(47, 51, 56, 1);
+            box-shadow: inset 0px 0px 6px 1px rgba(47, 51, 56, 1);
         }
         &:hover {
             cursor: pointer;

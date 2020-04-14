@@ -33,6 +33,19 @@ function App() {
   const [settingsTab, setSettingsTab] = useState("");
 
   useEffect(() => {
+    const black = "#2F3338";
+    const white = "#F9FCFF";
+    // check for dark mode setting in local storage
+    const darkMode = localStorage.getItem("dark-mode");
+    if (darkMode) {
+      document.documentElement.style.setProperty('--primary-color', white);
+      document.documentElement.style.setProperty('--secondary-color', black);
+    } else {
+      document.documentElement.style.setProperty('--primary-color', black);
+      document.documentElement.style.setProperty('--secondary-color', white);
+    }
+  }, []);
+  useEffect(() => {
     const storedIP = localStorage.getItem("IP") || " ";
     if (isIP(storedIP)) {
       setIP(storedIP);
@@ -298,7 +311,6 @@ function App() {
   function changeSettingsTab(tab) {
     setSettingsTab(tab);
   }
-
   return (
     <Router>
       <Container fluid={true}>

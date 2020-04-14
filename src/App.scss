@@ -1,10 +1,12 @@
-$black: #2F3338;
-$white: #F9FCFF;
+$black: var(--primary-color);
+$white: var(--secondary-color);
+// $black: #2F3338;
+// $white: #F9FCFF;
 $main-blue: #3C91E6;
 $secondary-blue: #5695D3;
 $green: rgb(17, 140, 17);
 $red: rgb(159, 20, 20);
-$yellow: rgb(159, 131, 20);
+$yellow: rgb(222, 187, 48);
 $pink: rgb(214, 41, 194);
 $orange: rgb(214, 107, 41);
 $purple: rgb(107, 41, 214);

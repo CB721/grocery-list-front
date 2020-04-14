@@ -3,13 +3,13 @@
 .list-view-options {
     width: 100%;
     border-radius: 8px;
-    height: 50px;
+    height: 4rem;
     background: $white;
+    color: $black;
     .option-header {
         width: 50%;
-        height: 50px;
-        line-height: 50px;
-        color: $black;
+        height: 4rem;
+        line-height: 4rem;
         font-size: 0.75rem;
         text-transform: uppercase;
         display: inline-block;
