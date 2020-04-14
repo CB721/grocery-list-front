@@ -40,6 +40,8 @@ function Settings(props) {
     const [progress, setProgress] = useState(0);
     const [showProgress, setShowProgress] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
+    const [toggle, setToggle] = useState(false);
+
     const config = {
         onUploadProgress: progressEvent => {
             const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
@@ -381,6 +383,17 @@ function Settings(props) {
             setUserError("");
         }, 5000);
     }
+    function toggleSwitch(event) {
+        event.preventDefault();
+        if (toggle) {
+            localStorage.removeItem("dark-mode");
+            setToggle(false);
+        } else {
+            localStorage.setItem("dark-mode", "yes");
+            setToggle(true);
+        }
+        props.toggleDarkMode();
+    }
     return (
         <div aria-label="settings page">
             {modal ? (
@@ -421,6 +434,13 @@ function Settings(props) {
                                 aria-label="view and edit your connections"
                             >
                                 Connect
+                            </div>
+                            <div
+                                className={tab === "options" ? "setting-tab selected" : "setting-tab"}
+                                onClick={() => setTab("options")}
+                                aria-label="edit view settings"
+                            >
+                                Options
                             </div>
                         </div>
                         <div className="setting-content">
@@ -522,7 +542,7 @@ function Settings(props) {
                                             </div>
                                         )}
                                 </div>
-                            ) : (<div className="settings-connections" aria-label="connection section">
+                            ) : tab === "connections" ? (<div className="settings-connections" aria-label="connection section">
                                 <div className="connect-header" aria-label="connection options">
                                     <div
                                         className={connectTab === "current" ? "connect-half selected" : "connect-half"}
@@ -702,6 +722,26 @@ function Settings(props) {
                                         </div>
                                     ) : (<div />)}
                                 </div>)}
+                            </div>) : (<div className="settings-info">
+                                <div className="settings-view-options">
+                                    <div className="view-options-header">
+                                        Dark Mode
+                                    </div>
+                                    <div className="view-options-header">
+                                        <div className="toggle-dark-mode">
+                                            <label
+                                                className="switch"
+                                                onClick={(event) => toggleSwitch(event)}
+                                            >
+                                                <input
+                                                    type="checkbox"
+                                                    checked={toggle}
+                                                />
+                                                <span className="slider round"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>)}
                         </div>
                     </div>

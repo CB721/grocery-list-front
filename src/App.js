@@ -33,6 +33,9 @@ function App() {
   const [settingsTab, setSettingsTab] = useState("");
 
   useEffect(() => {
+    toggleDarkMode();
+  }, []);
+  function toggleDarkMode() {
     const black = "#2F3338";
     const white = "#F9FCFF";
     // check for dark mode setting in local storage
@@ -44,7 +47,7 @@ function App() {
       document.documentElement.style.setProperty('--primary-color', black);
       document.documentElement.style.setProperty('--secondary-color', white);
     }
-  }, []);
+  }
   useEffect(() => {
     const storedIP = localStorage.getItem("IP") || " ";
     if (isIP(storedIP)) {
@@ -421,6 +424,7 @@ function App() {
                   createConnection={createConnection}
                   updateConnection={updateConnection}
                   tab={settingsTab}
+                  toggleDarkMode={toggleDarkMode}
                 />
               ) : (
                   <Redirect to="/login" />
