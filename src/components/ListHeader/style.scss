@@ -23,9 +23,11 @@
         &:nth-child(2) {
             width: 33.33%;
         }
-        &:hover {
-            border: 1px solid $main-blue;
-            border-radius: 8px;
+        &.hover {
+            &:hover {
+                border: 1px solid $main-blue;
+                border-radius: 8px;
+            }
         }
     }
     @media only screen and(max-width: 450px) {

@@ -25,7 +25,7 @@ function Store(props) {
     const [showProgress, setShowProgress] = useState("hide");
     const [modal, setModal] = useState(false);
     const [cache, setCache] = useState([]);
-    
+    const [stores, setStores] = useState([]);
 
     const config = {
         onUploadProgress: progressEvent => {
@@ -53,6 +53,10 @@ function Store(props) {
         // set view to add a store
         if (props.stores.length < 1) {
             setCurrentView("add");
+        } else {
+            // filter out "any" store that is assigned to each user on sign up
+            const allStores = props.stores.filter(store => store.name !== "Any Store");
+            setStores(allStores);
         }
     }, [props.stores]);
     function toggleOptions(event) {
@@ -300,9 +304,9 @@ function Store(props) {
                         fourthCol="Delete Store"
                     />
                     <div className="list" aria-label="saved stores list">
-                        {props.stores.length > 0 ? (
+                        {stores.length > 0 ? (
                             <div>
-                                {props.stores.map((store, index) => (
+                                {stores.map((store, index) => (
                                     <div
                                         className="list-item"
                                         key={index}
