@@ -8,6 +8,8 @@
   height: 100%;
   z-index: 975;
   .modal-content {
+    background: $white;
+    color: $black;
     position: fixed;
     z-index: 975;
     left: 15%;

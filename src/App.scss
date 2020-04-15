@@ -26,11 +26,12 @@ $purple: rgb(107, 41, 214);
     width: auto;
 }
 @mixin form-input {
-    border: none;
+    border: 3px solid $black;
     height: 25px;
-    border-bottom: 3px solid;
-    border-color: $black;
-    transition: 0.5s;
+    border-radius: 8px;
+    transition: 0.3s;
+    background: $white;
+    color: $black;
     &:focus {
         outline: none;
         border-color: $main-blue;

@@ -25,6 +25,7 @@ function Store(props) {
     const [showProgress, setShowProgress] = useState("hide");
     const [modal, setModal] = useState(false);
     const [cache, setCache] = useState([]);
+    
 
     const config = {
         onUploadProgress: progressEvent => {

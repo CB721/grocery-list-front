@@ -32,14 +32,14 @@
     }
 }
 .burger-menu {
-    position: fixed;
+    // position: fixed;
     right: 10px;
-    top: 2%;
+    // top: 20%;
     padding-right: 10px;
     display: inline-block;
     .bar1, .bar2, .bar3 {
-        width: 35px;
-        height: 5px;
+        width: 3.5rem;
+        height: 0.5rem;
         background-color: $white;
         margin: 6px 0;
         transition: 0.3s;
@@ -49,38 +49,38 @@
     }
 }
 .change .bar1 {
-    -webkit-transform: rotate(-45deg) translate(-9px, 6px);
-    transform: rotate(-45deg) translate(-9px, 6px);
+    -webkit-transform: rotate(-45deg) translate(-1rem, 0.5rem);
+    transform: rotate(-45deg) translate(-1rem, 0.5rem);
 }  
 .change .bar2 {
     opacity: 0;
 }  
 .change .bar3 {
-    -webkit-transform: rotate(45deg) translate(-8px, -8px);
-    transform: rotate(45deg) translate(-8px, -8px);
+    -webkit-transform: rotate(45deg) translate(-.7rem, -0.2rem);
+    transform: rotate(45deg) translate(-.7rem, -0.2rem);
 }
 .notification-section {
     position: fixed;
     overflow: auto;
     display: inline-block;
-    right: 60px;
-    top: 3%;
+    right: 4.7rem;
+    top: 2.7%;
     &:hover {
         cursor: pointer;
     }
     .notification-bell {
-        height: 30px;
-        width: 30px;
+        height: 2.2rem;
+        width: 2.2rem;
         fill: $white;
     }
     .notification {
         position: fixed;
-        right: 60px;
+        right: 4.4rem;
         top: 2%;
-        height: 16px;
-        width: 16px;
-        line-height: 16px;
-        font-size: 8px;
+        height: 1rem;
+        width: 1rem;
+        line-height: 1rem;
+        font-size: 0.5rem;
         border-radius: 50%;
         border: 1px solid $white;
         text-align: center;
@@ -102,5 +102,5 @@
                 color: $white;
             }
         }
-        }
+    }
 }

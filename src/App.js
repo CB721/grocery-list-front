@@ -31,6 +31,7 @@ function App() {
   const [currList, setCurrList] = useState([]);
   const [connections, setConnections] = useState([]);
   const [settingsTab, setSettingsTab] = useState("");
+  const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
     toggleDarkMode();
@@ -43,9 +44,11 @@ function App() {
     if (darkMode) {
       document.documentElement.style.setProperty('--primary-color', white);
       document.documentElement.style.setProperty('--secondary-color', black);
+      setIsDark(true);
     } else {
       document.documentElement.style.setProperty('--primary-color', black);
       document.documentElement.style.setProperty('--secondary-color', white);
+      setIsDark(false);
     }
   }
   useEffect(() => {
@@ -425,6 +428,7 @@ function App() {
                   updateConnection={updateConnection}
                   tab={settingsTab}
                   toggleDarkMode={toggleDarkMode}
+                  isDark={isDark}
                 />
               ) : (
                   <Redirect to="/login" />

@@ -54,6 +54,13 @@ function Settings(props) {
         }
     }, [props.tab]);
     useEffect(() => {
+        if (props.isDark) {
+            setToggle(true);
+        } else {
+            setToggle(false);
+        }
+    }, [props.isDark]);
+    useEffect(() => {
         if (window.screen.availWidth < 500) {
             setIsMobile(true);
         } else {
