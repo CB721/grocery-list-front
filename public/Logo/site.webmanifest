@@ -1,0 +1,21 @@
+{
+    "name": "G-List",
+    "short_name": "G-List",
+    "icons": [
+        {
+            "src": "/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "start_url": "index.html",
+    "background_color": "#F9FCFF",
+    "theme_color": "#3C91E6",
+    "description": "An application for users to create custom grocery lists based on the stores where they shop. They can search for stores based on their location or enter a custom store, create lists and add items to it, and mark items as purchased. The user can also share lists with friends and family that they connect with.",
+    "display": "standalone"
+}
