@@ -10,6 +10,7 @@ import Button from "../Button";
 import API from "../../utilities/api";
 import toastNote from "../../utilities/notification";
 import Logo from "../../assets/images/logo.png";
+import moment from "moment";
 import "./style.scss";
 
 function Navbar(props) {
@@ -105,7 +106,16 @@ function Navbar(props) {
     }
     function closePWAModal() {
         setPWAModal(false);
-        // mark db and localstorage with the current date
+        // update localstorage with current date
+        const today = moment().toDate();
+        localStorage.setItem("saveToHome", today);
+        const data = {
+            // the backend will update the column with the current date
+            last_pwa_prompt: null
+        }
+        props.updateUser(data)
+            .then()
+            .catch(err => console.log(err));
     }
     function goToPage(page) {
         if (page === "settings") {

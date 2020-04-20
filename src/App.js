@@ -331,6 +331,7 @@ function App() {
           getListByID={getListByID}
           logout={logout}
           changeSettingsTab={changeSettingsTab}
+          updateUser={updateUser}
         />
         <Switch>
           <Route exact path="/" render={props => (
