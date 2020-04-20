@@ -57,3 +57,16 @@
         transform: scale(0.98);
     }
 }
+.red-button {
+    color: $white;
+    background: $red;
+    border: 3px solid $white;
+    transform: scale(0.93);
+    transition: 0.3s;
+    &:active {
+        background: $white;
+        color: $red;
+        border: 3px solid $red;
+        transform: scale(0.90);
+    }
+}

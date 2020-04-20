@@ -9,6 +9,7 @@ import List from "../List";
 import Button from "../Button";
 import API from "../../utilities/api";
 import toastNote from "../../utilities/notification";
+import Logo from "../../assets/images/logo.png";
 import "./style.scss";
 
 function Navbar(props) {
@@ -18,6 +19,8 @@ function Navbar(props) {
     const [modal, setModal] = useState(false);
     const [modalList, setModalList] = useState([]);
     const [modalMessage, setModalMessage] = useState("");
+    const [pwaModal, setPWAModal] = useState(false);
+    const [addToHomeInstructions, setAddToHomeInstructions] = useState("");
     let history = useHistory();
     useEffect(() => {
         // if there are any notifications
@@ -90,6 +93,20 @@ function Navbar(props) {
             })
             .catch(err => console.log(err));
     }
+    function openPWAModal() {
+        setPWAModal(true);
+        setShowNotifications(false);
+        const userAgent = navigator.userAgent.toLowerCase();
+        if (userAgent.indexOf("chrome") >= 0 || userAgent.indexOf("android") >= 0) {
+            setAddToHomeInstructions("Tap the menu above.  Scroll and click the 'Add to Home screen' option.");
+        } else if (userAgent.indexOf("safari") >= 0) {
+            setAddToHomeInstructions("Tap the share button below.  Scroll and click the 'Add to Home Screen' option");
+        }
+    }
+    function closePWAModal() {
+        setPWAModal(false);
+        // mark db and localstorage with the current date
+    }
     function goToPage(page) {
         if (page === "settings") {
             props.changeSettingsTab("connections");
@@ -117,6 +134,25 @@ function Navbar(props) {
                         action={addEntirePreviousList}
                     />}
                 />
+            ) : (<div />)}
+            {pwaModal ? (
+                <div className="pwa-modal">
+                    <div className="logo-section">
+                        <img src={Logo} alt="g-list logo" className="logo" />
+                    </div>
+                    <div className="modal-content">
+                        <p className="message">
+                            {addToHomeInstructions}
+                        </p>
+                        <div className="button-section">
+                            <Button
+                                text="Close"
+                                class="red-button"
+                                action={closePWAModal}
+                            />
+                        </div>
+                    </div>
+                </div>
             ) : (<div />)}
             <Row>
                 <Col>
@@ -147,6 +183,7 @@ function Navbar(props) {
                                     deleteNotification={props.deleteNotification}
                                     openModal={openModal}
                                     goToPage={goToPage}
+                                    openPWAModal={openPWAModal}
                                 />
                             ) : (<div />)}
                             <div className={menuExpand} onClick={(event) => expandMenu(event)} aria-label="open side menu">
@@ -156,10 +193,10 @@ function Navbar(props) {
                             </div>
                             {menuExpand === "burger-menu change" ? (
                                 <Fade>
-                                    <SideMenu 
-                                    options={props.options} 
-                                    expandMenu={expandMenu} 
-                                    logout={props.logout}
+                                    <SideMenu
+                                        options={props.options}
+                                        expandMenu={expandMenu}
+                                        logout={props.logout}
                                     />
                                 </Fade>
                             ) : (<div />)}

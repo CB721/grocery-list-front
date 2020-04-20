@@ -10,7 +10,12 @@ function Notifications(props) {
         if (item.list_id) {
             props.openModal(item)
         } else if (item.other_user_id) {
+            // if another user id is attached, the notification is about a connection request or 
             props.goToPage("settings");
+        } else if (item.content === "Save G-List to your home page for better performance!") {
+            // console.log(item);
+            // if the notification is for downloading the pwa, than open the custom modal
+            props.openPWAModal();
         }
         // add option to view and accept user connections
     }

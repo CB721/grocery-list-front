@@ -151,7 +151,7 @@ function Profile(props) {
                 setModal(false);
                 setProgress(0);
                 // setTimeout(() => {
-                    getUserList();
+                getUserList();
                 // }, 2000);
             })
             .catch(err => console.log(err));

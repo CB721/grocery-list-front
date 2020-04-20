@@ -23,7 +23,7 @@
     width: 33.33vw;
     margin-right: auto;
     text-align: center;
-    font-family: 'Parisienne', cursive, sans-serif;
+    font-family: "Parisienne", cursive, sans-serif;
     height: 10vh;
     line-height: 10vh;
     font-size: 6vh;
@@ -37,7 +37,9 @@
     // top: 20%;
     padding-right: 10px;
     display: inline-block;
-    .bar1, .bar2, .bar3 {
+    .bar1,
+    .bar2,
+    .bar3 {
         width: 3.5rem;
         height: 0.5rem;
         background-color: $white;
@@ -51,13 +53,13 @@
 .change .bar1 {
     -webkit-transform: rotate(-45deg) translate(-1rem, 0.5rem);
     transform: rotate(-45deg) translate(-1rem, 0.5rem);
-}  
+}
 .change .bar2 {
     opacity: 0;
-}  
+}
 .change .bar3 {
-    -webkit-transform: rotate(45deg) translate(-.7rem, -0.2rem);
-    transform: rotate(45deg) translate(-.7rem, -0.2rem);
+    -webkit-transform: rotate(45deg) translate(-0.7rem, -0.2rem);
+    transform: rotate(45deg) translate(-0.7rem, -0.2rem);
 }
 .notification-section {
     position: fixed;
@@ -100,6 +102,75 @@
                 transform: scale(1);
                 background: $main-blue;
                 color: $white;
+            }
+        }
+    }
+}
+.pwa-modal {
+    position: fixed;
+    left: 0%;
+    top: 0%;
+    width: 100%;
+    height: 100%;
+    z-index: 975;
+    .modal-content {
+        background: $white;
+        position: fixed;
+        z-index: 975;
+        left: 15%;
+        top: 25%;
+        width: 70%;
+        // height: 500px;
+        max-height: 70%;
+        // border: 3px solid pink;
+        .message {
+            margin-top: 15%;
+            text-align: center;
+            color: $black;
+        }
+        .button-section {
+            width: 100%;
+            height: auto;
+            margin-bottom: 5%;
+        }
+    }
+    .logo-section {
+        position: fixed;
+        width: 100vw;
+        top: 15%;
+        z-index: 976;
+        .logo {
+            width: 10%;
+            border-radius: 8px;
+            left: 50%;
+            transform: translate(450%, 25%);
+            @include shadow;
+        }
+    }
+}
+@media only screen and (max-width: 750px) {
+    .pwa-modal {
+        .logo-section {
+            .logo {
+                transform: translate(450%, 45%);
+            }
+        }
+    }
+}
+@media only screen and (max-width: 500px) {
+    .pwa-modal {
+        .modal-content {
+            left: 0%;
+            top: 15%;
+            width: 100%;
+            .message {
+                margin-top: 25%;
+            }
+        }
+        .logo-section {
+            .logo {
+                width: 25%;
+                transform: translate(150%, -20%);
             }
         }
     }
