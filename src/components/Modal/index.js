@@ -37,7 +37,7 @@ function Modal(props) {
                                 ) : (<div />)}
                                 <Row>
                                     <Col>
-                                        <div>
+                                        <div style={{ textAlign: "center" }}>
                                             {props.content}
                                         </div>
                                     </Col>

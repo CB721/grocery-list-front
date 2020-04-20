@@ -11,6 +11,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { css } from 'glamor';
 import Modal from "../Modal";
 import LoadingBar from "../LoadingBar";
+import { isSavedToHome } from "../../utilities/promptSave";
+import moment from "moment";
 import "./style.scss";
 
 function Profile(props) {
@@ -32,6 +34,15 @@ function Profile(props) {
             setProgress(percentCompleted);
         }
     };
+    useEffect(() => {
+        // check if the user has been prompted to save the pwa to their home page
+        const promptUser = isSavedToHome();
+        // check if the user has already saved
+        if (promptUser) {
+            localStorage.setItem("saveToHome", moment().toDate());
+            notification("Install this application on your homescreen for the best experience.");
+        }
+    }, []);
     useEffect(() => {
         document.title = "G-List | Profile";
         if (props.user.length > 0) {
