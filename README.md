@@ -1,5 +1,5 @@
 # G-List
-An application for users to create custom grocery lists based on the stores where they shop.  They can search for stores in their area or enter a custom store.  THe user can also share lists with friends and family that they connect with.
+An application for users to create custom grocery lists based on the stores where they shop.  They can search for stores in their area or enter a custom store.  The user can also share lists with friends and family that they connect with.
 
 * [View Application](https://g-list-cb.herokuapp.com/)
 * [Front End Repository](https://github.com/CB721/grocery-list-front)

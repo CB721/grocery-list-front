@@ -8,7 +8,6 @@
   <meta name="" content="" />
   <title>G-List</title>
   <link href="https://fonts.googleapis.com/css?family=Parisienne&display=swap" rel="stylesheet">
-  <!-- <link rel="manifest" href="%PUBLIC_URL%/manifest.json" /> -->
   <link rel="apple-touch-icon" sizes="180x180" href="Logo/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="Logo/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="Logo/favicon-16x16.png">
@@ -20,6 +19,21 @@
 <body>
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <div id="root"></div>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('worker.js').then(function (registration) {
+          console.log('Worker registration successful', registration.scope);
+        }, function (err) {
+          console.log('Worker registration failed', err);
+        }).catch(function (err) {
+          console.log(err);
+        });
+      });
+    } else {
+      console.log('Service Worker is not supported by browser.');
+    }
+  </script>
 </body>
 
 </html>
