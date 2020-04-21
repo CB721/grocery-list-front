@@ -22,6 +22,7 @@ function Navbar(props) {
     const [modalMessage, setModalMessage] = useState("");
     const [pwaModal, setPWAModal] = useState(false);
     const [addToHomeInstructions, setAddToHomeInstructions] = useState("");
+    const [showPhoneOption, setShowPhoneOption] = useState(false);
     let history = useHistory();
     useEffect(() => {
         // if there are any notifications
@@ -98,10 +99,18 @@ function Navbar(props) {
         setPWAModal(true);
         setShowNotifications(false);
         const userAgent = navigator.userAgent.toLowerCase();
+        const ua = window.navigator.userAgent;
+        const webkit = !!ua.match(/WebKit/i);
+        const isIPad = !!ua.match(/iPad/i);
+        const isIPhone = !!ua.match(/iPhone/i)
+        const isIOS = isIPad || isIPhone;
+        const isSafari = isIOS && webkit && !ua.match(/CriOS/i);
         if (userAgent.indexOf("chrome") >= 0 || userAgent.indexOf("android") >= 0) {
             setAddToHomeInstructions("Tap the menu above.  Scroll and click the 'Add to Home screen' option.");
-        } else if (userAgent.indexOf("safari") >= 0) {
+        } else if (isSafari) {
             setAddToHomeInstructions("Tap the share button below.  Scroll and click the 'Add to Home Screen' option");
+        } else {
+            setAddToHomeInstructions("Would you like to send")
         }
     }
     function closePWAModal() {
@@ -123,6 +132,16 @@ function Navbar(props) {
         }
         history.push(page);
         setShowNotifications(false);
+    }
+    function sendLinkToPhone() {
+        // check if the user has a phone on file
+        if (props.user[0].phone) {
+            // call api to text route
+            // close the modal
+            closePWAModal();
+        }
+
+        console.log("send link to phone");
     }
     return (
         <div>
@@ -155,6 +174,13 @@ function Navbar(props) {
                             {addToHomeInstructions}
                         </p>
                         <div className="button-section">
+                            {showPhoneOption ? (
+                                <Button
+                                    text="Send link to your mobile device"
+                                    class="blue-button"
+                                    action={sendLinkToPhone}
+                                />
+                            ) : (<div />)}
                             <Button
                                 text="Close"
                                 class="red-button"

@@ -14,6 +14,7 @@ import Privacy from "./components/Privacy";
 import { ToastContainer } from 'react-toastify';
 import "shards-ui/dist/css/shards.min.css";
 import API from "./utilities/api";
+import moment from "moment";
 import './App.scss';
 
 function App() {
@@ -68,7 +69,8 @@ function App() {
           const userData = {
             email,
             password,
-            ip: response
+            ip: response,
+            time: moment().toDate()
           }
           // reset error message
           setError("");
