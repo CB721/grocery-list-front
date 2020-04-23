@@ -40,15 +40,19 @@ function App() {
   function toggleDarkMode() {
     const black = "#2F3338";
     const white = "#F9FCFF";
+    const mainBlue = "#3C91E6";
+    const mainBlueDark = "rgb(4, 104, 205)";
     // check for dark mode setting in local storage
     const darkMode = localStorage.getItem("dark-mode");
     if (darkMode) {
       document.documentElement.style.setProperty('--primary-color', white);
       document.documentElement.style.setProperty('--secondary-color', black);
+      document.documentElement.style.setProperty('--main-blue', mainBlueDark);
       setIsDark(true);
     } else {
       document.documentElement.style.setProperty('--primary-color', black);
       document.documentElement.style.setProperty('--secondary-color', white);
+      document.documentElement.style.setProperty('--main-blue', mainBlue);
       setIsDark(false);
     }
   }

@@ -70,3 +70,15 @@
         transform: scale(0.90);
     }
 }
+.green-button {
+    color: $white;
+    background: $green;
+    border: 3px solid $white;
+    transition: 0.3s;
+    &:active {
+        background: $white;
+        color: $green;
+        border: 3px solid $green;
+        transform: scale(0.98);
+    }
+}

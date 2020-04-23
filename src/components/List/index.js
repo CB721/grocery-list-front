@@ -14,21 +14,39 @@ function List(props) {
     const [touchStartX, setTouchStartX] = useState(0);
     const [prevTouchX, setPrevTouchX] = useState(0);
     const [left, setLeft] = useState(0);
+    const [isDark, setIsDark] = useState(false);
 
     useEffect(() => {
         setList(props.list);
+        const darkMode = localStorage.getItem("dark-mode");
+        if (darkMode) {
+            setIsDark(true);
+        }
     }, [props.list]);
-
     function getListItemStyle(isDragging, draggableStyle) {
-        const style = {
-            userSelect: "none",
-            background: isDragging ? "#F9FCFF" : "#3C91E6",
-            color: isDragging ? "#3C91E6" : "#F9FCFF",
-            cursor: isDragging ? "pointer" : "default",
-            "WebkitBoxShadow": isDragging ? "0px 3px 2px -2px rgba(47,51,56,0.64)" : "",
-            "MozBoxShadow": isDragging ? "0px 3px 2px -2px rgba(47,51,56,0.64)" : "",
-            "boxShadow": isDragging ? "0px 3px 2px -2px rgba(47,51,56,0.64)" : "",
-            ...draggableStyle
+        let style = {};
+        if (isDark) {
+            style = {
+                userSelect: "none",
+                background: isDragging ? "#2F3338" : "rgb(4, 104, 205)",
+                color: isDragging ? "rgb(4, 104, 205)" : "#2F3338",
+                cursor: isDragging ? "pointer" : "default",
+                "WebkitBoxShadow": isDragging ? "0px 3px 2px -2px rgba(47,51,56,0.64)" : "",
+                "MozBoxShadow": isDragging ? "0px 3px 2px -2px rgba(47,51,56,0.64)" : "",
+                "boxShadow": isDragging ? "0px 3px 2px -2px rgba(47,51,56,0.64)" : "",
+                ...draggableStyle
+            }
+        } else {
+            style = {
+                userSelect: "none",
+                background: isDragging ? "#F9FCFF" : "#3C91E6",
+                color: isDragging ? "#3C91E6" : "#F9FCFF",
+                cursor: isDragging ? "pointer" : "default",
+                "WebkitBoxShadow": isDragging ? "0px 3px 2px -2px rgba(47,51,56,0.64)" : "",
+                "MozBoxShadow": isDragging ? "0px 3px 2px -2px rgba(47,51,56,0.64)" : "",
+                "boxShadow": isDragging ? "0px 3px 2px -2px rgba(47,51,56,0.64)" : "",
+                ...draggableStyle
+            }
         }
         return style;
     }

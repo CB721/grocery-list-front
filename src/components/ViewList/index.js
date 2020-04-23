@@ -302,7 +302,7 @@ function ViewList(props) {
                                 fourthCol="In Cart"
                                 action={setColumnFilter}
                             />
-                            <Flip bottom cascade>
+                            <div>
                                 {isMobile ? (
                                     <StaticList
                                         viewList={true}
@@ -322,7 +322,7 @@ function ViewList(props) {
                                             deleteItem={props.deleteItem}
                                         />
                                     )}
-                            </Flip>
+                            </div>
                             {showComplete && list.length > 0 ? (
                                 <Button
                                     text="Mark Complete"
