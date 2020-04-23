@@ -27,8 +27,8 @@ $purple: rgb(107, 41, 214);
     width: auto;
 }
 @mixin form-input {
-    border: 3px solid $black;
-    height: 25px;
+    border: 1px solid $black;
+    height: 2rem;
     border-radius: 8px;
     transition: 0.3s;
     background: $white;

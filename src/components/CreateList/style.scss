@@ -92,15 +92,14 @@
   }
 }
 .list-item {
-  height: 35px;
-  line-height: 35px;
+  height: 3rem;
+  line-height: 2rem;
   width: 75%;
   margin: 0 12.5%;
   display: inline-flex;
-  background: $main-blue;
   color: $white;
   transition: 0.3s;
-  border-bottom: 1px solid $white;
+  border-bottom: 3px solid $white;
   &:first-child {
     border-top-right-radius: 8px;
     border-top-left-radius: 8px;
@@ -117,6 +116,7 @@
     overflow: scroll;
     text-transform: capitalize;
     cursor: pointer;
+    line-height: 2rem;
     &:nth-child(2n) {
       padding: none;
       text-align: center;
@@ -149,7 +149,6 @@
   }
   .form-input-edit {
     @include form-input;
-    border-bottom: none;
     border-radius: 8px;
     margin: 5px 0;
     width: 33%;
