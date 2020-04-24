@@ -12,6 +12,7 @@ import "./style.scss";
 
 function PassReset(props) {
     const [email, setEmail] = useState("");
+    const [number, setNumber] = useState();
     const [tempPass, setTempPass] = useState("");
     const [newPass, setNewPass] = useState("");
     const [confirmPass, setConfirmPass] = useState("");

@@ -141,35 +141,51 @@ function Login(props) {
             .then(res => {
                 setShowProgress(false);
                 setProgress(0);
+                // if a success response is received
+                if (res.data === "Password reset sent to your email") {
+                    alert(res.data);
+                    closeModal();
+                    // send to reset page
+                    history.push("/reset");
+                }
                 console.log(res.data);
             })
             .catch(err => {
                 console.log(err);
+                setError(err.response.data);
+                setForgotEmail("");
             });
     }
     function submitTextPass(event) {
         event.preventDefault();
+        // only if both the number and carrier have been selected and validated
         if (forgotText && carrier) {
+            // create data for post
             const data = {
                 number: forgotText,
                 carrier
             };
+            // show loading bar
             setShowProgress(true);
             setProgress(0);
             API.textReset(data, config)
                 .then(res => {
+                    // hide loading bar
                     setShowProgress(false);
                     setProgress(0);
+                    // if a success response is received
                     if (res.data === "Password reset sent to your mobile device") {
                         alert(res.data);
                         closeModal();
+                        // send to reset page
+                        history.push("/reset");
                     }
                 })
                 .catch(err => {
                     setShowProgress(false);
                     setProgress(0);
-                    console.log(err);
-                    setError(err);
+                    setError(err.response.data);
+                    setForgotText("");
                 })
         } else {
             setError("Complete all fields to continue");
