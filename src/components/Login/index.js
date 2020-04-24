@@ -27,9 +27,12 @@ function Login(props) {
     const [forgotEmail, setForgotEmail] = useState("");
     const forgotPassInput = [{ email: forgotEmail }];
     const [forgotText, setForgotText] = useState("");
-    const forgotPassText = [{ tel: forgotText }];
+    const forgotPassText = [{ number: forgotText }];
     const [forgotPassDisable, setForgotPassDisable] = useState(true);
     const [modalContent, setModalContent] = useState("");
+    const [forgotOption, setForgotOption] = useState("");
+    const [carrier, setCarrier] = useState("");
+
     const config = {
         onUploadProgress: progressEvent => {
             const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
@@ -84,23 +87,28 @@ function Login(props) {
                     setError("");
                 }
                 break;
-            case "tel":
-                if (!isMobilePhone(value)) {
+            case "number":
+                if (!isMobilePhone(value) || value.toString().length < 10) {
                     setError("Invalid phone number");
                 } else {
                     setError("");
+                    if (carrier) {
+                        setForgotPassDisable(false);
+                    } else {
+                        setForgotPassDisable(true);
+                    }
                 }
                 break;
             default:
                 return;
         }
         // check that all fields are completed with no errors before activating submit button
-        if (email && password && error.length < 1) {
+        if (email && password && !error.length) {
             setDisabled(false);
         } else {
             setDisabled(true);
         }
-        if (forgotEmail && error.length < 1) {
+        if ((forgotEmail && !error.length) || (forgotText && carrier && !error.length)) {
             setForgotPassDisable(false);
         } else {
             setForgotPassDisable(true);
@@ -137,10 +145,15 @@ function Login(props) {
     }
     function submitTextPass(event) {
         event.preventDefault();
-        const data = {
-            number: forgotText
-        };
-        console.log(data);
+        if (forgotText && carrier) {
+            const data = {
+                number: forgotText,
+                carrier
+            };
+            console.log(data);
+        } else {
+            setError("Complete all fields to continue");
+        }
     }
     function handleInputForgotPassword(event) {
         let value = event.target.value.trim();
@@ -148,7 +161,6 @@ function Login(props) {
     }
     function handleInputText(event) {
         let value = event.target.value.trim();
-        console.log(value);
         setForgotText(value);
     }
     function forgotPassModal() {
@@ -162,44 +174,30 @@ function Login(props) {
             <Button
                 text="Send to mobile"
                 class="blue-button"
-                action={(event) => selectOption(event, "mobile")}
+                action={() => setForgotOption("mobile")}
             />
             <Button
                 text="Send to email"
                 class="green-button"
-                action={(event) => selectOption(event, "email")}
+                action={() => setForgotOption("email")}
             />
         </div>)
         setModalContent(optionsDiv);
     }
-    function selectOption(event, option) {
-        event.preventDefault();
-        // depending on which option they select, populate the modal with the according form
-        if (option === "email") {
-            setModalContent(<Form
-                inputs={forgotPassInput}
-                type="Reset Your Password"
-                handleInputChange={handleInputForgotPassword}
-                disableButton={forgotPassDisable}
-                error={error}
-                validateField={validateField}
-                action={(event) => submitForgotPassword(event)}
-            />)
-        } else if (option === "mobile") {
-            setModalContent(<Form
-                inputs={forgotPassText}
-                type="Reset Your Password"
-                handleInputChange={handleInputText}
-                disableButton={false}
-                error={error}
-                validateField={validateField}
-                action={(event) => submitTextPass(event)}
-            />)
-        }
-    }
     function closeModal() {
         setModal(false);
-        setModalContent("");
+        setModalContent();
+        setForgotOption("");
+        setError("");
+    }
+    function selectCarrier(event) {
+        event.preventDefault();
+        setCarrier(event.target.value);
+        if (forgotText && !error) {
+            setForgotPassDisable(false);
+        } else {
+            setForgotPassDisable(true);
+        }
     }
     return (
         <div className="login">
@@ -209,11 +207,41 @@ function Login(props) {
                     show={"show"}
                 />
             ) : (<div />)}
-            {modal ? (
+            {modal && !forgotOption ? (
                 <Modal
                     open={modal}
                     close={closeModal}
                     content={modalContent}
+                />
+                // depending on which option they select, populate the modal with the according form
+            ) : modal && forgotOption === "mobile" ? (
+                <Modal
+                    open={modal}
+                    close={closeModal}
+                    content={<Form
+                        inputs={forgotPassText}
+                        type="Send to mobile"
+                        handleInputChange={handleInputText}
+                        disableButton={forgotPassDisable}
+                        error={error}
+                        validateField={validateField}
+                        action={(event) => submitTextPass(event)}
+                        selectCarrier={selectCarrier}
+                    />}
+                />
+            ) : modal && forgotOption === "email" ? (
+                <Modal
+                    open={modal}
+                    close={closeModal}
+                    content={<Form
+                        inputs={forgotPassInput}
+                        type="Send to email"
+                        handleInputChange={handleInputForgotPassword}
+                        disableButton={forgotPassDisable}
+                        error={error}
+                        validateField={validateField}
+                        action={(event) => submitForgotPassword(event)}
+                    />}
                 />
             ) : (<div />)}
             <Space />

@@ -104,6 +104,19 @@
         }
       }
     }
+    .carrier-select {
+      transition: 0.3s;
+      background: $white;
+      color: $main-blue;
+      margin: 5px auto;
+      height: 25px;
+      border-radius: 8px;
+      width: 100%;
+      &:focus {
+        outline: none;
+        border-color: $secondary-blue;
+      }
+    }
   }
 }
 
