@@ -5,7 +5,7 @@ import "./style.scss";
 
 function Form(props) {
     function setAutoComplete(input) {
-        if (input === "temp password" || input === "new password" || input === "confirm password") {
+        if (input === "temp password" || input === "new password" || input === "confirm password" || input === "code") {
             return "new-password"
         } else if (input === "password") {
             return "current-password"
@@ -41,7 +41,8 @@ function Form(props) {
                         type={
                             Object.keys(input)[0] === "temp password" ||
                                 Object.keys(input)[0] === "new password" ||
-                                Object.keys(input)[0] === "confirm password" ?
+                                Object.keys(input)[0] === "confirm password" || 
+                                Object.keys(input)[0] === "code" ?
                                 "password" : Object.keys(input)
                         }
                         autoComplete={setAutoComplete(Object.keys(input)[0])}

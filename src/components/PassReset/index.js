@@ -3,8 +3,9 @@ import API from "../../utilities/api";
 import { useHistory } from "react-router-dom";
 import LoadingBar from "../LoadingBar";
 import { Row, Col } from "shards-react";
-import { isEmail, isByteLength } from 'validator';
+import { isEmail, isByteLength, isMobilePhone } from 'validator';
 import Form from "../Form";
+import Button from "../Button";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { css } from 'glamor';
@@ -21,9 +22,20 @@ function PassReset(props) {
     const [error, setError] = useState("");
     const [progress, setProgress] = useState(0);
     const [showProgress, setShowProgress] = useState(false);
-    const inputs = [
+    const [resetOption, setResetOption] = useState("");
+
+    const emailInputs = [
         { email: email },
         { "temp password": tempPass },
+        { "new password": newPass },
+        {
+            "confirm password": confirmPass,
+            error: confirmErr
+        }
+    ];
+    const textInputs = [
+        { number: number },
+        { "code": tempPass },
         { "new password": newPass },
         {
             "confirm password": confirmPass,
@@ -90,6 +102,22 @@ function PassReset(props) {
             case "confirm password,error":
                 if (!isByteLength(value, { min: 8, max: 16 })) {
                     setError("Password must be between 8 and 16 characters");
+                } else if (value !== newPass) {
+                    setError("Passwords must match");
+                } else {
+                    setError("");
+                }
+                break;
+            case "number":
+                if (!isMobilePhone(value) || value.toString().length < 10) {
+                    setError("Invalid phone number");
+                } else {
+                    setError("");
+                }
+                break;
+            case "code":
+                if (value.length !== 6) {
+                    setError("Invalid code");
                 } else {
                     setError("");
                 }
@@ -98,7 +126,7 @@ function PassReset(props) {
                 return;
         }
         // check that all fields are completed with no errors before activating submit button
-        if (email && tempPass && newPass && confirmPass && error.length < 1) {
+        if ((email || number) && tempPass && newPass && confirmPass && (newPass === confirmPass) && error.length < 1) {
             setDisabled(false);
         } else {
             setDisabled(true);
@@ -115,10 +143,14 @@ function PassReset(props) {
             setNewPass(value);
         } else if (name === "confirm password,error") {
             setConfirmPass(value);
+        } else if (name === "number") {
+            setNumber(value);
+        } else if (name === "code") {
+            setTempPass(value);
         }
     }
     function handleFormSubmit() {
-        if (newPass === confirmPass) {
+        if (newPass === confirmPass && resetOption === "email") {
             const data = {
                 email,
                 temp: tempPass,
@@ -139,8 +171,31 @@ function PassReset(props) {
                     // }
                 })
                 .catch(err => {
-                    setError(err.response);
+                    setError(err.response.data);
                 });
+        } else if (newPass === confirmPass && resetOption === "mobile") {
+            const data = {
+                number,
+                code: tempPass,
+                update: newPass
+            }
+            setShowProgress(true);
+            setProgress(0);
+            // API.updatePasswordReset(data, config)
+            //     .then(res => {
+            //         setShowProgress(false);
+            //         setProgress(0);
+            //         console.log(res.data);
+            //         // if (res.data === "User password updated") {
+            //         //     notification("Password succesfully updated!");
+            //         //     setTimeout(() => {
+            //         //         history.push("/login");
+            //         //     }, 3000);
+            //         // }
+            //     })
+            //     .catch(err => {
+            //         setError(err.response.data);
+            //     });
         } else {
             setConfirmErr("input-error");
             setError("New passwords do not match");
@@ -156,15 +211,44 @@ function PassReset(props) {
             ) : (<div />)}
             <Row>
                 <Col>
-                    <Form
-                        inputs={inputs}
-                        type="Password Reset"
-                        disableButton={disable}
-                        error={error}
-                        validateField={validateField}
-                        handleInputChange={handleInputChange}
-                        action={handleFormSubmit}
-                    />
+                    {!resetOption ? (
+                        <div className="reset-options">
+                            <p className="options">
+                                Select a reset option
+                            </p>
+                            {/* place a button for each option */}
+                            <Button
+                                text="Mobile"
+                                class="blue-button"
+                                action={() => setResetOption("mobile")}
+                            />
+                            <Button
+                                text="Email"
+                                class="green-button"
+                                action={() => setResetOption("email")}
+                            />
+                        </div>
+                    ) : resetOption === "mobile" ? (
+                        <Form
+                            inputs={textInputs}
+                            type="Password Reset"
+                            disableButton={disable}
+                            error={error}
+                            validateField={validateField}
+                            handleInputChange={handleInputChange}
+                            action={handleFormSubmit}
+                        />
+                    ) : resetOption === "email" ? (
+                        <Form
+                            inputs={emailInputs}
+                            type="Password Reset"
+                            disableButton={disable}
+                            error={error}
+                            validateField={validateField}
+                            handleInputChange={handleInputChange}
+                            action={handleFormSubmit}
+                        />
+                    ) : (<div />)}
                 </Col>
             </Row>
         </div>

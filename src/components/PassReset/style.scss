@@ -2,4 +2,23 @@
 
 .pass-reset {
     @include page-defaults;
+    margin-top: 15%;
+    .reset-options {
+        margin: 0 auto;
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        width: 50vw;
+        border-radius: 8px;
+        padding: 3rem;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        .options {
+            width: 100%;
+            text-align: center;
+            margin: 0 auto;
+            text-transform: uppercase;
+            font-size: 1rem;
+            color: $black;
+        }
+    }
 }
