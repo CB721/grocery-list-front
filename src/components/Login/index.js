@@ -135,8 +135,12 @@ function Login(props) {
         const data = {
             email: forgotEmail
         };
-        API.passwordReset(data)
+        setShowProgress(true);
+        setProgress(0);
+        API.passwordReset(data, config)
             .then(res => {
+                setShowProgress(false);
+                setProgress(0);
                 console.log(res.data);
             })
             .catch(err => {
@@ -150,7 +154,23 @@ function Login(props) {
                 number: forgotText,
                 carrier
             };
-            console.log(data);
+            setShowProgress(true);
+            setProgress(0);
+            API.textReset(data, config)
+                .then(res => {
+                    setShowProgress(false);
+                    setProgress(0);
+                    if (res.data === "Password reset sent to your mobile device") {
+                        alert(res.data);
+                        closeModal();
+                    }
+                })
+                .catch(err => {
+                    setShowProgress(false);
+                    setProgress(0);
+                    console.log(err);
+                    setError(err);
+                })
         } else {
             setError("Complete all fields to continue");
         }
