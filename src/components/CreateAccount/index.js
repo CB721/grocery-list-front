@@ -6,6 +6,9 @@ import Form from "../Form";
 import Space from "../DivSpace";
 import Modal from "../Modal";
 import LoadingBar from "../LoadingBar";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { css } from 'glamor';
 import API from '../../utilities/api';
 import "./style.scss";
 
@@ -104,6 +107,24 @@ function CreateAccount(props) {
         }
     }
     let history = useHistory();
+    function notification(message) {
+        toast(message, {
+            className: css({
+                background: '#3C91E6',
+                boxShadow: '0px 13px 12px -12px rgba(47,51,56,0.64)',
+                borderRadius: '8px',
+                border: "3px solid #F9FCFF",
+                textTransform: "capitalize"
+            }),
+            bodyClassName: css({
+                fontSize: '20px',
+                color: '#F9FCFF'
+            }),
+            progressClassName: css({
+                background: "linear-gradient(90deg, rgb(86,149,211) 0%, rgb(249,252,255) 80%)"
+            })
+        });
+    }
     function handleFormSubmit(event) {
         event.preventDefault();
         const user = {
@@ -117,9 +138,28 @@ function CreateAccount(props) {
         API.createUser(user, config)
             .then(res => {
                 if (res.data.affectedRows > 0) {
+                    // close modal
                     setModal(false);
-                    history.push("/login");
                     setProgress(0);
+                    // show notification that they are being logged in
+                    notification("Logging in...");
+                    // hit api route for login
+                    props.userLogin(email, password, true, config)
+                        .then(() => {
+                            // wait until logging in notification is done before displaying welcome message
+                            setTimeout(() => {
+                                notification("Welcome to G-List!");
+                            }, 5000);
+                            // re-route to profile page
+                            history.push("/profile");
+                        })
+                        .catch(err => {
+                            console.log(err);
+                            // set notification that there was an error loggin in
+                            // retroute to login page
+                            history.push("/login");
+                            setProgress(0);
+                        });
                 }
             })
             .catch(err => console.log(err))
