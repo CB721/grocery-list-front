@@ -1,5 +1,6 @@
 import React from "react";
 import Slide from 'react-reveal/Slide';
+import { ReactComponent as Trash } from "../../assets/images/trash.svg";
 import { convertTimeDiff } from '../../utilities/convertTimeDifference';
 import "./style.scss";
 
@@ -43,13 +44,19 @@ function Notifications(props) {
                                 {convertTimeDiff(item.time_difference)}
                             </div>
                         </div>
-                        <div
-                            className="delete-notification"
-                            onClick={() => props.deleteNotification(item.id)}
-                            aria-label="remove notification"
-                        >
-                            X
-                        </div>
+                        {item.acknowledged ? (
+                            <Trash
+                                className="icon-read"
+                                onClick={() => props.deleteNotification(item.id)}
+                                aria-label="remove notification"
+                            />
+                        ) : (
+                                <Trash
+                                    className="icon"
+                                    onClick={() => props.deleteNotification(item.id)}
+                                    aria-label="remove notification"
+                                />
+                            )}
                     </div>
                 ))}
             </div>

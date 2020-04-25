@@ -7,7 +7,7 @@
     overflow: auto;
     height: auto;
     width: 35%;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
     text-transform: capitalize;
@@ -55,15 +55,23 @@
                 cursor: pointer;
             }
         }
-        .delete-notification {
-            width: 15%;
-            float: right;
-            text-align: center;
-            font-size: 0.9rem;
-            margin: 2.5%;
-            color: $main-blue;
+        .icon {
+            display: inline-block;
+            padding-top: 10px;
+            height: 20px;
+            width: 20px;
+            fill: $white;
             &:hover {
-                color: red;
+                cursor: pointer;
+            }
+        }
+        .icon-read {
+            display: inline-block;
+            padding-top: 10px;
+            height: 20px;
+            width: 20px;
+            fill: $black;
+            &:hover {
                 cursor: pointer;
             }
         }
