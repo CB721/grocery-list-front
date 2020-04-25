@@ -4,8 +4,9 @@
     position: fixed;
     right: 0;
     top: 10%;
-    overflow: auto;
+    overflow: scroll;
     height: auto;
+    max-height: 70vh;
     width: 35%;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     border-bottom-left-radius: 8px;
@@ -16,7 +17,8 @@
     .notification {
         position: relative;
         width: 100%;
-        min-height: 100px;
+        min-height: 14.5vh;
+        padding-top: 3vh;
         border-bottom: 1px solid $secondary-blue;
         .notification-image {
             width: 12%;
