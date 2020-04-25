@@ -193,7 +193,8 @@ function PassReset(props) {
                 .catch(err => {
                     setShowProgress(false);
                     setProgress(0);
-                    setError(err.response.data);
+                    console.log(err);
+                    setError(err.response.data || err);
                 });
         } else {
             setConfirmErr("input-error");

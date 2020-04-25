@@ -200,6 +200,7 @@ function Login(props) {
         setForgotText(value);
     }
     function forgotPassModal() {
+        setError("");
         setModal(true);
         // prompt user for either their phone number or email
         const optionsDiv = (<div className="reset-options">

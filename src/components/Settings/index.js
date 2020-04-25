@@ -4,7 +4,7 @@ import { ReactComponent as Send } from "../../assets/images/send.svg";
 import { ReactComponent as Trash } from "../../assets/images/trash.svg";
 import { ReactComponent as Accept } from "../../assets/images/accept.svg";
 import { convertTimeDiff } from '../../utilities/convertTimeDifference';
-import { isEmail, isEmpty } from 'validator';
+import { isEmail, isEmpty, isByteLength } from 'validator';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { css } from 'glamor';
@@ -26,9 +26,11 @@ function Settings(props) {
     const [editFirst, setEditFirst] = useState(false);
     const [editLast, setEditLast] = useState(false);
     const [editEmail, setEditEmail] = useState(false);
+    const [editPass, setEditPass] = useState(false);
     const [first, setFirst] = useState("");
     const [last, setLast] = useState("");
     const [email, setEmail] = useState("");
+    const [newPass, setNewPass] = useState("");
     const [userError, setUserError] = useState("");
     const [editMessage, setEditMessage] = useState("");
     const [modal, setModal] = useState(false);
@@ -82,6 +84,9 @@ function Settings(props) {
             case "email":
                 setEmail(value);
                 break;
+            case "password":
+                setNewPass(value);
+                break;
             default:
                 return;
         }
@@ -92,16 +97,25 @@ function Settings(props) {
                 setEditFirst(true);
                 setEditLast(false);
                 setEditEmail(false);
+                setEditPass(false);
                 break;
             case "last":
                 setEditFirst(false);
                 setEditLast(true);
                 setEditEmail(false);
+                setEditPass(false);
                 break;
             case "email":
                 setEditFirst(false);
                 setEditLast(false);
                 setEditEmail(true);
+                setEditPass(false);
+                break;
+            case "password":
+                setEditFirst(false);
+                setEditLast(false);
+                setEditEmail(false);
+                setEditPass(true);
                 break;
             default:
                 return;
@@ -143,6 +157,7 @@ function Settings(props) {
         setEditFirst(false);
         setEditLast(false);
         setEditEmail(false);
+        setEditPass(false);
     }
     function validateField(event) {
         const type = event.target.name;
@@ -177,6 +192,13 @@ function Settings(props) {
                     setUserError("");
                 }
                 break;
+            case "passowrd":
+                if (!isByteLength(value, { min: 8, max: 16 })) {
+                    setUserError("Password must be between 8 and 16 characters");
+                } else {
+                    setUserError("");
+                }
+                break;
             default:
                 return;
         }
@@ -192,6 +214,9 @@ function Settings(props) {
                 break;
             case "email":
                 update["email"] = email;
+                break;
+            case "password":
+                update["user_password"] = newPass;
                 break;
             default:
                 return;
@@ -215,6 +240,7 @@ function Settings(props) {
                     setEditFirst(false);
                     setEditLast(false);
                     setEditEmail(false);
+                    setEditPass(false);
                     toastNotification("Update Successful");
                 })
                 .catch(err => {
@@ -503,6 +529,7 @@ function Settings(props) {
                                                 name="last"
                                                 className="form-input"
                                                 onChange={(event) => handleInputChange(event)}
+                                                onBlur={(event) => validateField(event)}
                                                 aria-label="new last name"
                                             />
                                             <Button
@@ -530,6 +557,7 @@ function Settings(props) {
                                                 name="email"
                                                 className="form-input"
                                                 onChange={(event) => handleInputChange(event)}
+                                                onBlur={(event) => validateField(event)}
                                                 aria-label="new email address"
                                             />
                                             <Button
@@ -546,6 +574,34 @@ function Settings(props) {
                                                 aria-label="click to edit email address"
                                             >
                                                 Email: {props.user[0].email}
+                                            </div>
+                                        )}
+                                    {editPass ? (
+                                        <div aria-label="edit your password">
+                                            <input
+                                                type="password"
+                                                value={newPass}
+                                                placeholder={"Your new address"}
+                                                name="password"
+                                                className="form-input"
+                                                onChange={(event) => handleInputChange(event)}
+                                                onBlur={(event) => validateField(event)}
+                                                aria-label="new password"
+                                            />
+                                            <Button
+                                                text="Submit"
+                                                class="blue-button"
+                                                disabled={!isByteLength(newPass, { min: 8, max: 16 }) ? true : false}
+                                                action={() => editUser("password")}
+                                            />
+                                        </div>
+                                    ) : (
+                                            <div
+                                                className="info-name"
+                                                onClick={() => editInfo("password")}
+                                                aria-label="click to change your password"
+                                            >
+                                                Password
                                             </div>
                                         )}
                                 </div>
