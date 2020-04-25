@@ -8,7 +8,6 @@ import Modal from "../Modal";
 import List from "../List";
 import Button from "../Button";
 import API from "../../utilities/api";
-import toastNote from "../../utilities/notification";
 import Logo from "../../assets/images/logo.png";
 import moment from "moment";
 import "./style.scss";
@@ -58,7 +57,7 @@ function Navbar(props) {
         }
         API.addPreviousListToCurrent(addList)
             .then(() => {
-                toastNote.notification("Previous list added to your current list");
+                props.notification("Previous list added to your current list");
             })
             .catch(err => console.log(err));
     }
@@ -76,7 +75,7 @@ function Navbar(props) {
         }, 3000);
         API.addItem(listItem)
             .then(() => {
-                toastNote.notification(`${item.name} added to list`);
+                props.notification(`${item.name} added to list`);
             })
             .catch(err => console.log(err));
     }

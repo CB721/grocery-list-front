@@ -15,6 +15,9 @@ import { ToastContainer } from 'react-toastify';
 import "shards-ui/dist/css/shards.min.css";
 import API from "./utilities/api";
 import moment from "moment";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { css } from 'glamor';
 import './App.scss';
 
 function App() {
@@ -323,6 +326,43 @@ function App() {
   function changeSettingsTab(tab) {
     setSettingsTab(tab);
   }
+  function notification(message) {
+    if (isDark) {
+      toast(message, {
+        className: css({
+          background: 'rgb(4, 104, 205)',
+          boxShadow: '0px 13px 12px -12px rgba(47,51,56,0.64)',
+          borderRadius: '8px',
+          border: "3px solid #2F3338",
+          textTransform: "capitalize"
+        }),
+        bodyClassName: css({
+          fontSize: '20px',
+          color: '#F9FCFF'
+        }),
+        progressClassName: css({
+          background: "linear-gradient(90deg, rgb(4, 104, 205) 0%, #2F3338 80%)"
+        })
+      });
+    } else {
+      toast(message, {
+        className: css({
+          background: '#3C91E6',
+          boxShadow: '0px 13px 12px -12px rgba(47,51,56,0.64)',
+          borderRadius: '8px',
+          border: "3px solid #F9FCFF",
+          textTransform: "capitalize"
+        }),
+        bodyClassName: css({
+          fontSize: '20px',
+          color: '#F9FCFF'
+        }),
+        progressClassName: css({
+          background: "linear-gradient(90deg, rgb(86,149,211) 0%, rgb(249,252,255) 80%)"
+        })
+      });
+    }
+  }
   return (
     <Router>
       <Container fluid={true}>
@@ -338,6 +378,7 @@ function App() {
           logout={logout}
           changeSettingsTab={changeSettingsTab}
           updateUser={updateUser}
+          notification={notification}
         />
         <Switch>
           <Route exact path="/" render={props => (
@@ -374,6 +415,7 @@ function App() {
                   user={user}
                   setCurrList={setCurrList}
                   getListByID={getListByID}
+                  notification={notification}
                 />
               ) : (
                   <Login
@@ -385,6 +427,7 @@ function App() {
                 ))
             )}
           />
+          {/* <Redirect to="/login" /> */}
           <Route
             exact path="/join"
             render={props => (
@@ -394,17 +437,28 @@ function App() {
                   user={user}
                   setCurrList={setCurrList}
                   getListByID={getListByID}
+                  notification={notification}
                 />
               ) : (
                   <CreateAccount
                     {...props}
                     user={user}
                     userLogin={userLogin}
+                    notification={notification}
                   />
                 ))
             )}
           />
-          <Route exact path="/reset" component={PassReset} />
+          <Route
+            exact path="/reset"
+            component={PassReset}
+            render={props => (
+              <PassReset
+                {...props}
+                notification={notification}
+              />
+            )}
+          />
           <Route
             exact path="/profile"
             render={props => (
@@ -414,6 +468,7 @@ function App() {
                   user={user}
                   setCurrList={setCurrList}
                   getListByID={getListByID}
+                  notification={notification}
                 />
               ) : (
                   <Redirect to="/login" />
@@ -437,6 +492,7 @@ function App() {
                   tab={settingsTab}
                   toggleDarkMode={toggleDarkMode}
                   isDark={isDark}
+                  notification={notification}
                 />
               ) : (
                   <Redirect to="/login" />

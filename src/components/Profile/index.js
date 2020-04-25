@@ -40,7 +40,7 @@ function Profile(props) {
         // check if the user has already saved
         if (promptUser) {
             localStorage.setItem("saveToHome", moment().toDate());
-            notification("Install this application on your homescreen for the best experience.");
+            props.notification("Install this application on your homescreen for the best experience.");
         }
     }, []);
     useEffect(() => {
@@ -54,24 +54,6 @@ function Profile(props) {
             setCoords(`${pos.coords.latitude},${pos.coords.longitude}`);
         });
     }, [props.user]);
-    function notification(message) {
-        toast(message, {
-            className: css({
-                background: '#3C91E6',
-                boxShadow: '0px 13px 12px -12px rgba(47,51,56,0.64)',
-                borderRadius: '8px',
-                border: "3px solid #F9FCFF",
-                textTransform: "capitalize"
-            }),
-            bodyClassName: css({
-                fontSize: '20px',
-                color: '#F9FCFF'
-            }),
-            progressClassName: css({
-                background: "linear-gradient(90deg, rgb(86,149,211) 0%, rgb(249,252,255) 80%)"
-            })
-        });
-    }
     function getUserStores() {
         API.getUserStores(props.user[0].id)
             .then(res => {
@@ -147,7 +129,7 @@ function Profile(props) {
         setModal(true);
         API.addItem(listItem, config)
             .then(() => {
-                notification(`${listItem.name} added to list`);
+                props.notification(`${listItem.name} added to list`);
                 setModal(false);
                 setProgress(0);
                 // setTimeout(() => {
@@ -177,7 +159,7 @@ function Profile(props) {
         API.updateItem(id, listItem)
             .then(() => {
                 getUserList();
-                notification("Item updated!");
+                props.notification("Item updated!");
             })
             .catch(err => console.log(err));
     }
@@ -235,7 +217,7 @@ function Profile(props) {
         API.updateList(listInfo)
             .then(() => {
                 getUserList();
-                notification("List marked as complete");
+                props.notification("List marked as complete");
             })
             .catch(err => console.log(err));
     }
@@ -246,7 +228,7 @@ function Profile(props) {
             .then(res => {
                 if (res.data.affectedRows > 0) {
                     getUserList();
-                    notification("Item removed from list");
+                    props.notification("Item removed from list");
                     setModal(false);
                     setProgress(0);
                 }
@@ -259,7 +241,7 @@ function Profile(props) {
             setModal(true);
             API.deleteList(id, props.user[0].id, config)
                 .then(res => {
-                    notification("List deleted");
+                    props.notification("List deleted");
                     resolve(res.data);
                     setModal(false);
                     setProgress(0);
@@ -277,7 +259,7 @@ function Profile(props) {
         API.addPreviousListToCurrent(addList, config)
             .then(() => {
                 getUserList();
-                notification("Previous list added to your current list");
+                props.notification("Previous list added to your current list");
                 setModal(false);
                 setProgress(0);
             })
@@ -347,7 +329,7 @@ function Profile(props) {
                                 <Store
                                     stores={userStores}
                                     refreshStores={getUserStores}
-                                    notification={notification}
+                                    notification={props.notification}
                                     userID={props.user[0].id}
                                     coords={coords}
                                 />

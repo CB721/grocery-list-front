@@ -38,9 +38,9 @@
       &.selected {
         background: $main-blue;
         color: $white;
-        -webkit-box-shadow: inset 0px 0px 5px 2px #4577a9;
-        -moz-box-shadow: inset 0px 0px 5px 2px #4577a9;
-        box-shadow: inset 0px 0px 5px 2px #4577a9;
+        -webkit-box-shadow: inset 0px 0px 5px 2px $white;
+        -moz-box-shadow: inset 0px 0px 5px 2px $white;
+        box-shadow: inset 0px 0px 5px 2px $white;
       }
     }
   }
@@ -142,9 +142,9 @@
           &.selected {
             background: $main-blue;
             color: $white;
-            -webkit-box-shadow: inset 0px 0px 5px 2px #4577a9;
-            -moz-box-shadow: inset 0px 0px 5px 2px #4577a9;
-            box-shadow: inset 0px 0px 5px 2px #4577a9;
+            -webkit-box-shadow: inset 0px 0px 5px 2px $white;
+            -moz-box-shadow: inset 0px 0px 5px 2px $white;
+            box-shadow: inset 0px 0px 5px 2px $white;
           }
         }
       }

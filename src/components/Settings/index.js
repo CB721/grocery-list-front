@@ -241,30 +241,12 @@ function Settings(props) {
                     setEditLast(false);
                     setEditEmail(false);
                     setEditPass(false);
-                    toastNotification("Update Successful");
+                    props.notification("Update Successful");
                 })
                 .catch(err => {
                     displayError(err);
                 });
         }
-    }
-    function toastNotification(message) {
-        toast(message, {
-            className: css({
-                background: '#3C91E6',
-                boxShadow: '0px 13px 12px -12px rgba(47,51,56,0.64)',
-                borderRadius: '8px',
-                border: "3px solid #F9FCFF",
-                textTransform: "capitalize"
-            }),
-            bodyClassName: css({
-                fontSize: '20px',
-                color: '#F9FCFF'
-            }),
-            progressClassName: css({
-                background: "linear-gradient(90deg, rgb(86,149,211) 0%, rgb(249,252,255) 80%)"
-            })
-        });
     }
     function getPreviousLists(direction, connection) {
         const listInfo = {
@@ -306,7 +288,7 @@ function Settings(props) {
                 .then(() => {
                     setModal(false);
                     setViewList(true);
-                    toastNotification("List sent!");
+                    props.notification("List sent!");
                 })
                 .catch(err => console.log(err.response.data));
         }
@@ -337,21 +319,21 @@ function Settings(props) {
         }
         API.addItem(completeItem)
             .then(() => {
-                toastNotification(`${item.name} has been added to your list!`);
+                props.notification(`${item.name} has been added to your list!`);
             })
             .catch(err => console.log(err.response.data));
     }
     function removeConnection(connection) {
         props.removeConnection(connection.id)
             .then(res => {
-                toastNotification("Connection removed");
+                props.notification("Connection removed");
             })
             .catch(err => console.log(err));
     }
     function cancelConnectionRequest(connection) {
         props.cancelConnectionRequest(connection.id)
             .then(res => {
-                toastNotification(res);
+                props.notification(res);
             })
             .catch(err => console.log(err));
     }
@@ -361,7 +343,7 @@ function Settings(props) {
         props.createConnection(connectEmail, config)
             .then(res => {
                 setShowProgress(false);
-                toastNotification(res);
+                props.notification(res);
                 setProgress(0);
             })
             .catch(err => {
@@ -391,7 +373,7 @@ function Settings(props) {
         props.updateConnection(connection)
             .then(res => {
                 if (res) {
-                    toastNotification(`You are now connected with ${newConnectName}!`)
+                    props.notification(`You are now connected with ${newConnectName}!`)
                 }
             })
             .catch(err => {
@@ -403,7 +385,7 @@ function Settings(props) {
         props.updateConnection(connection)
             .then(res => {
                 if (res) {
-                    toastNotification(`Connection ignored`);
+                    props.notification(`Connection ignored`);
                 }
             })
             .catch(err => {
