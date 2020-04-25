@@ -100,6 +100,9 @@ export default {
         return axios.post(`${url}/api/resets/new/update`, data, config, { withCredentials: true });
     },
     textReset: function (data, config) {
-        return axios.post(`${url}/api/texts/request`, data, config, {withCredentials: true});
+        return axios.post(`${url}/api/texts/request`, data, config, { withCredentials: true });
+    },
+    updatePasswordTextReset: function (data, config) {
+        return axios.post(`${url}/api/texts/validate`, data, config, { withCredentials: true })
     }
 }

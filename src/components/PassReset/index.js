@@ -149,7 +149,8 @@ function PassReset(props) {
             setTempPass(value);
         }
     }
-    function handleFormSubmit() {
+    function handleFormSubmit(event) {
+        event.preventDefault();
         if (newPass === confirmPass && resetOption === "email") {
             const data = {
                 email,
@@ -162,15 +163,14 @@ function PassReset(props) {
                 .then(res => {
                     setShowProgress(false);
                     setProgress(0);
-                    console.log(res.data);
-                    // if (res.data === "User password updated") {
-                    //     notification("Password succesfully updated!");
-                    //     setTimeout(() => {
-                    //         history.push("/login");
-                    //     }, 3000);
-                    // }
+                    if (res.data === "User password updated") {
+                        notification("Password succesfully updated!");
+                        history.push("/login");
+                    }
                 })
                 .catch(err => {
+                    setShowProgress(false);
+                    setProgress(0);
                     setError(err.response.data);
                 });
         } else if (newPass === confirmPass && resetOption === "mobile") {
@@ -181,21 +181,20 @@ function PassReset(props) {
             }
             setShowProgress(true);
             setProgress(0);
-            // API.updatePasswordReset(data, config)
-            //     .then(res => {
-            //         setShowProgress(false);
-            //         setProgress(0);
-            //         console.log(res.data);
-            //         // if (res.data === "User password updated") {
-            //         //     notification("Password succesfully updated!");
-            //         //     setTimeout(() => {
-            //         //         history.push("/login");
-            //         //     }, 3000);
-            //         // }
-            //     })
-            //     .catch(err => {
-            //         setError(err.response.data);
-            //     });
+            API.updatePasswordTextReset(data, config)
+                .then(res => {
+                    setShowProgress(false);
+                    setProgress(0);
+                    if (res.data === "success") {
+                        notification("Password succesfully updated!");
+                        history.push("/login");
+                    }
+                })
+                .catch(err => {
+                    setShowProgress(false);
+                    setProgress(0);
+                    setError(err.response.data);
+                });
         } else {
             setConfirmErr("input-error");
             setError("New passwords do not match");
