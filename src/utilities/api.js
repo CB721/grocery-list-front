@@ -104,5 +104,8 @@ export default {
     },
     updatePasswordTextReset: function (data, config) {
         return axios.post(`${url}/api/texts/validate`, data, config, { withCredentials: true })
+    },
+    logout: function() {
+        return axios.get(`${url}/api/users/logout`);
     }
 }

@@ -297,11 +297,15 @@ function App() {
   }
   function logout() {
     return new Promise(function (resolve, reject) {
-      localStorage.clear();
-      sessionStorage.clear();
-      setNavOptions([create, signIn]);
-      setUser([]);
-      resolve();
+      API.logout()
+        .then(res => {
+          localStorage.clear();
+          sessionStorage.clear();
+          setNavOptions([create, signIn]);
+          setUser([]);
+          resolve();
+        })
+        .catch(err => reject(err));
     });
   }
   function createConnection(connectEmail, config) {
