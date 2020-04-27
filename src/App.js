@@ -427,7 +427,6 @@ function App() {
                 ))
             )}
           />
-          {/* <Redirect to="/login" /> */}
           <Route
             exact path="/join"
             render={props => (
