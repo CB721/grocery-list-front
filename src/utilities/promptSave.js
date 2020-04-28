@@ -3,7 +3,7 @@ const moment = require("moment");
 module.exports = {
     isSavedToHome: () => {
         // if the user has already installed the pwa
-        if (navigator.standalone) {
+        if (navigator.standalone || (window.matchMedia('(display-mode: standalone)').matches) || document.referrer.includes('android-app://')) {
             return false;
         }
         // check for safari

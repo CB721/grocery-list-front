@@ -6,9 +6,6 @@ import ViewList from "../ViewList";
 import Slide from 'react-reveal/Slide';
 import { Row, Col } from "shards-react";
 import API from "../../utilities/api";
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { css } from 'glamor';
 import Modal from "../Modal";
 import LoadingBar from "../LoadingBar";
 import { isSavedToHome } from "../../utilities/promptSave";
@@ -20,8 +17,6 @@ function Profile(props) {
     const [view, setView] = useState("header-col selected");
     const [store, setStore] = useState("header-col");
     const [currentView, setCurrentView] = useState("view-lists");
-    const [swipe, setSwipe] = useState("left");
-    const [swipeTime, setSwipeTime] = useState(0);
     const [userStores, setUserStores] = useState([]);
     const [userList, setUserList] = useState([]);
     const [progress, setProgress] = useState(0);
@@ -41,11 +36,21 @@ function Profile(props) {
         if (promptUser) {
             localStorage.setItem("saveToHome", moment().toDate());
             props.notification("Install this application on your homescreen for the best experience.");
+            // update last PWA prompt
+            props.updateUser({ last_pwa_prompt: true })
+                .then()
+                .catch(err => console.log(err));
+            // if user is using a PWA, but the db has not been updated to reflect that
+        } else if (!promptUser && !props.user[0].using_PWA) {
+            // update user to indicate they are using a PWA
+            props.updateUser({ using_PWA: 1 })
+                .then()
+                .catch(err => console.log(err));
         }
     }, []);
     useEffect(() => {
         document.title = "G-List | Profile";
-        if (props.user.length > 0) {
+        if (props.user.length > 0 && props.user[0].id) {
             getUserStores();
             getUserList();
         }
@@ -96,24 +101,6 @@ function Profile(props) {
         event.preventDefault();
 
         const id = event.currentTarget.id;
-        // determine direction of slide effect
-        switch (currentView) {
-            case "view-lists":
-                setSwipe("left");
-                break;
-            case "create-list":
-                if (id === "store-list") {
-                    setSwipe("right");
-                } else {
-                    setSwipe("left");
-                }
-                break;
-            case "store-list":
-                setSwipe("right");
-                break;
-            default:
-                return;
-        }
         setCurrentView(id);
     }
     function addItem(item, position = userList.length + 1) {

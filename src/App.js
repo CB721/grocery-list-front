@@ -420,6 +420,7 @@ function App() {
                   setCurrList={setCurrList}
                   getListByID={getListByID}
                   notification={notification}
+                  updateUser={updateUser}
                 />
               ) : (
                   <Login

@@ -1,6 +1,6 @@
 import axios from "axios";
-const url = "https://g-list-api.herokuapp.com";
-// const url = "http://localhost:3001";
+// const url = "https://g-list-api.herokuapp.com";
+const url = "http://localhost:3001";
 
 export default {
     searchPlaces: function (data, config) {
