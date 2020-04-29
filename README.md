@@ -35,12 +35,14 @@ An application for users to create custom grocery lists based on the stores wher
 * Create autocomplete feature for list items - query the db for similarly spelled items, create a list for foods to populate as well
 * Add parallax effect to home page
 * Purchase domain with email address for communicating with users
+* Add scan barcode option for a user to add to their list
 
 ## Versions
 * 1.1.0
     * Dark mode option
     * Forgot password options
     * Cookie storage for faster user authenication
+    * PWA option for better performance on mobile
 * 1.0.0
     * Users can sign up and create lists
     * Users can share lists with other users that have signed up
