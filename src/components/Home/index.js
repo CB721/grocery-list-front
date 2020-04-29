@@ -49,7 +49,7 @@ function Home(props) {
             <div className="home-sections" style={{ height: "80vh" }}>
                 <div className="banner">
                     <Zoom right cascade>
-                        Create and share custom grocery lists!
+                        Create and share grocery lists!
                     </Zoom>
                 </div>
             </div>
