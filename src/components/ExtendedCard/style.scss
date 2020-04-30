@@ -18,15 +18,13 @@
         margin: 0 auto;
         display: block;
         img {
-            width: 80vw;
-            margin: 10vh 10vw;
-        }
-    }
-}
-@media only screen and (max-width: 500px) {
-    .extended-card {
-        .ext-card-image {
-            img {
+            width: 60vw;
+            margin: 10vh 20vw;
+            @media only screen and (max-width: 850px) {
+                width: 70vw;
+                margin: 5vh 15vw;
+            }
+            @media only screen and (max-width: 500px) {
                 width: 100vw;
                 margin: 5vh 0vw;
             }

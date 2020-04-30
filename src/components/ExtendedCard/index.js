@@ -24,6 +24,7 @@ class ExtendedCard extends Component {
                         <img
                             src={this.props.image}
                             alt={this.props.headerText}
+                            loading="lazy"
                         />
                     </Slide>
                 </div>
