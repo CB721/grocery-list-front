@@ -414,14 +414,7 @@ function App() {
             exact path="/login"
             render={props => (
               (validateUser() ? (
-                <Profile
-                  {...props}
-                  user={user}
-                  setCurrList={setCurrList}
-                  getListByID={getListByID}
-                  notification={notification}
-                  updateUser={updateUser}
-                />
+                <Redirect to="/profile" />
               ) : (
                   <Login
                     {...props}
@@ -436,13 +429,7 @@ function App() {
             exact path="/join"
             render={props => (
               (validateUser() ? (
-                <Profile
-                  {...props}
-                  user={user}
-                  setCurrList={setCurrList}
-                  getListByID={getListByID}
-                  notification={notification}
-                />
+                <Redirect to="/profile" />
               ) : (
                   <CreateAccount
                     {...props}
@@ -473,6 +460,7 @@ function App() {
                   setCurrList={setCurrList}
                   getListByID={getListByID}
                   notification={notification}
+                  updateUser={updateUser}
                 />
               ) : (
                   <Redirect to="/login" />

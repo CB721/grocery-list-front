@@ -36,7 +36,7 @@ function Profile(props) {
         if (promptUser) {
             localStorage.setItem("saveToHome", moment().toDate());
             props.notification("Install this application on your homescreen for the best experience.");
-            // update last PWA prompt
+            // update last PWA prompt, value here doesn't matter because the backend will set the date
             props.updateUser({ last_pwa_prompt: true })
                 .then()
                 .catch(err => console.log(err));
