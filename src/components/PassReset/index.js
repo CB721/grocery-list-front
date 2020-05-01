@@ -6,9 +6,6 @@ import { Row, Col } from "shards-react";
 import { isEmail, isByteLength, isMobilePhone } from 'validator';
 import Form from "../Form";
 import Button from "../Button";
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { css } from 'glamor';
 import "./style.scss";
 
 function PassReset(props) {

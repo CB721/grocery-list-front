@@ -6,9 +6,6 @@ import Form from "../Form";
 import Space from "../DivSpace";
 import Modal from "../Modal";
 import LoadingBar from "../LoadingBar";
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { css } from 'glamor';
 import API from '../../utilities/api';
 import "./style.scss";
 

@@ -4,7 +4,6 @@ import Button from "../Button";
 import List from "../List";
 import ListHeader from "../ListHeader";
 import Dropdown from "../Dropdown";
-import convertDate from "../../utilities/convertDate";
 import Flip from 'react-reveal/Flip';
 import "./style.scss";
 
@@ -35,7 +34,6 @@ function CreateList(props) {
         setNewItem(value);
         // if the value length is greater than 3, call api for item suggestions
         if (value.length > 3) {
-            console.log("time to search the api");
             props.itemSuggestion({ search: value })
                 .then(res => {
                     setItemSuggestions(res);
@@ -200,7 +198,7 @@ function CreateList(props) {
                 name={"item"}
                 aria-label="new item"
             />
-            <div style={{ margin: "0 12.5%"}}>
+            <div className="dropdown-section">
                 <Dropdown
                     items={itemSuggestions}
                     action={setNewItemToSuggestion}

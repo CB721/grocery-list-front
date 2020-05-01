@@ -38,9 +38,9 @@
       &.selected {
         background: $main-blue;
         color: $white;
-        -webkit-box-shadow: inset 0px 0px 5px 2px $white;
-        -moz-box-shadow: inset 0px 0px 5px 2px $white;
-        box-shadow: inset 0px 0px 5px 2px $white;
+        -webkit-box-shadow: inset 0px 0px 6px 1px rgba(47, 51, 56, 1);
+        -moz-box-shadow: inset 0px 0px 6px 1px rgba(47, 51, 56, 1);
+        box-shadow: inset 0px 0px 6px 1px rgba(47, 51, 56, 1);
       }
     }
   }
@@ -85,16 +85,15 @@
     .settings-connections,
     .settings-views {
       height: auto;
-      // min-height: 50vh;
-      // overflow: scroll;
       .info-name {
-        border-bottom: 3px solid $main-blue;
+        border-bottom: 1px solid $main-blue;
         text-align: left;
         padding: 5%;
         width: 90%;
         height: 62.5px;
-        line-height: 16px;
-        overflow: visible;
+        line-height: 31.25px;
+        font-size: 1rem;
+        overflow: scroll;
         text-overflow: ellipsis;
         &:first-child {
           border-top-left-radius: inherit;
@@ -142,9 +141,9 @@
           &.selected {
             background: $main-blue;
             color: $white;
-            -webkit-box-shadow: inset 0px 0px 5px 2px $white;
-            -moz-box-shadow: inset 0px 0px 5px 2px $white;
-            box-shadow: inset 0px 0px 5px 2px $white;
+            -webkit-box-shadow: inset 0px 0px 6px 1px rgba(47, 51, 56, 1);
+            -moz-box-shadow: inset 0px 0px 6px 1px rgba(47, 51, 56, 1);
+            box-shadow: inset 0px 0px 6px 1px rgba(47, 51, 56, 1);
           }
         }
       }

@@ -4,7 +4,7 @@ import { ReactComponent as Send } from "../../assets/images/send.svg";
 import { ReactComponent as Trash } from "../../assets/images/trash.svg";
 import { ReactComponent as Accept } from "../../assets/images/accept.svg";
 import { convertTimeDiff } from '../../utilities/convertTimeDifference';
-import { isEmail, isEmpty, isByteLength } from 'validator';
+import { isEmail, isEmpty, isByteLength, isNumeric, isMobilePhone } from 'validator';
 import API from "../../utilities/api";
 import Space from "../DivSpace";
 import Button from "../Button";
@@ -23,10 +23,12 @@ function Settings(props) {
     const [editFirst, setEditFirst] = useState(false);
     const [editLast, setEditLast] = useState(false);
     const [editEmail, setEditEmail] = useState(false);
+    const [editPhone, setEditPhone] = useState(false);
     const [editPass, setEditPass] = useState(false);
     const [first, setFirst] = useState("");
     const [last, setLast] = useState("");
     const [email, setEmail] = useState("");
+    const [phone, setPhone] = useState("");
     const [newPass, setNewPass] = useState("");
     const [userError, setUserError] = useState("");
     const [editMessage, setEditMessage] = useState("");
@@ -84,6 +86,9 @@ function Settings(props) {
             case "password":
                 setNewPass(value);
                 break;
+            case "phone":
+                setPhone(value);
+                break;
             default:
                 return;
         }
@@ -95,24 +100,35 @@ function Settings(props) {
                 setEditLast(false);
                 setEditEmail(false);
                 setEditPass(false);
+                setEditPhone(false);
                 break;
             case "last":
                 setEditFirst(false);
                 setEditLast(true);
                 setEditEmail(false);
                 setEditPass(false);
+                setEditPhone(false);
                 break;
             case "email":
                 setEditFirst(false);
                 setEditLast(false);
                 setEditEmail(true);
                 setEditPass(false);
+                setEditPhone(false);
                 break;
             case "password":
                 setEditFirst(false);
                 setEditLast(false);
                 setEditEmail(false);
                 setEditPass(true);
+                setEditPhone(false);
+                break;
+            case "phone":
+                setEditFirst(false);
+                setEditLast(false);
+                setEditEmail(false);
+                setEditPass(false);
+                setEditPhone(true);
                 break;
             default:
                 return;
@@ -155,6 +171,7 @@ function Settings(props) {
         setEditLast(false);
         setEditEmail(false);
         setEditPass(false);
+        setEditPhone(false);
     }
     function validateField(event) {
         const type = event.target.name;
@@ -191,7 +208,14 @@ function Settings(props) {
                 break;
             case "passowrd":
                 if (!isByteLength(value, { min: 8, max: 16 })) {
-                    setUserError("Password must be between 8 and 16 characters");
+                    displayError("Password must be between 8 and 16 characters");
+                } else {
+                    setUserError("");
+                }
+                break;
+            case "phone":
+                if (!isByteLength(value, {min: 10, max: 11}) || !isNumeric(value, true) || !isMobilePhone(value)) {
+                    displayError("Invalid phone number")
                 } else {
                     setUserError("");
                 }
@@ -214,6 +238,9 @@ function Settings(props) {
                 break;
             case "password":
                 update["user_password"] = newPass;
+                break;
+            case "phone":
+                update["phone"] = phone;
                 break;
             default:
                 return;
@@ -241,6 +268,7 @@ function Settings(props) {
                     props.notification("Update Successful");
                 })
                 .catch(err => {
+                    exitEdit();
                     displayError(err);
                 });
         }
@@ -553,6 +581,34 @@ function Settings(props) {
                                                 aria-label="click to edit email address"
                                             >
                                                 Email: {props.user[0].email}
+                                            </div>
+                                        )}
+                                    {editPhone ? (
+                                        <div aria-label="edit your phone number">
+                                            <input
+                                                type="email"
+                                                value={phone}
+                                                placeholder={props.user[0].phone || "Your phone number"}
+                                                name="phone"
+                                                className="form-input"
+                                                onChange={(event) => handleInputChange(event)}
+                                                onBlur={(event) => validateField(event)}
+                                                aria-label="new phone number"
+                                            />
+                                            <Button
+                                                text="Submit"
+                                                class="blue-button"
+                                                disabled={phone.length <= 9 ? true : false}
+                                                action={() => editUser("phone")}
+                                            />
+                                        </div>
+                                    ) : (
+                                            <div
+                                                className="info-name"
+                                                onClick={() => editInfo("phone")}
+                                                aria-label="click to edit phone number"
+                                            >
+                                                Phone: {props.user[0].phone || "Add today!"}
                                             </div>
                                         )}
                                     {editPass ? (

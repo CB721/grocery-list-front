@@ -31,6 +31,12 @@
     margin: 20px 12.5% 2px 12.5%;
     width: 75%;
   }
+  .dropdown-section {
+    margin: 0 12.5%;
+    @media only screen and (max-width: 500px) {
+      margin: 0;
+    }
+  }
   .store-dropdown {
     margin: 20px 12.5%;
     width: 75%;
