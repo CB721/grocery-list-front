@@ -1,0 +1,36 @@
+@import "../../App.scss";
+
+.cust-dropdown {
+    width: 33%;
+    .dropdown-item {
+        background: $white;
+        border-top: 1px solid $black;
+        border-left: 1px solid $black;
+        border-right: 1px solid $black;
+        color: $black;
+        font-size: 1rem;
+        text-align: left;
+        padding: 2%;
+        transition: 0.3s;
+        text-transform: capitalize;
+        width: 100%;
+        &:first-child {
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+        &:last-child {
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+            border-bottom: 1px solid $black;
+        }
+        &:hover {
+            transform: scale(1.05);
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.146);
+            border-color: $main-blue;
+        }
+    }
+    @media only screen and (max-width: 500px) {
+        width: 100%;
+    }
+}

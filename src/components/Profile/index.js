@@ -252,6 +252,13 @@ function Profile(props) {
             })
             .catch(err => console.log(err));
     }
+    function itemSuggestion(searchObj) {
+        return new Promise((resolve, reject) => {
+            API.itemSuggestion(searchObj)
+                .then(res => resolve(res.data))
+                .catch(err => reject(err));
+        })
+    }
     return (
         <div className="profile">
             {modal ? (
@@ -311,6 +318,7 @@ function Profile(props) {
                                     addListName={addListName}
                                     deleteItem={deleteItem}
                                     updateItem={updateItem}
+                                    itemSuggestion={itemSuggestion}
                                 />
                             ) : currentView === "store-list" ? (
                                 <Store

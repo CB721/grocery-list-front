@@ -3,6 +3,7 @@ import { ReactComponent as Edit } from "../../assets/images/edit.svg";
 import Button from "../Button";
 import List from "../List";
 import ListHeader from "../ListHeader";
+import Dropdown from "../Dropdown";
 import convertDate from "../../utilities/convertDate";
 import Flip from 'react-reveal/Flip';
 import "./style.scss";
@@ -19,6 +20,7 @@ function CreateList(props) {
     const [savedListName, setSavedListName] = useState("");
     const [updateListName, setUpdateListName] = useState(false);
     const [editListItems, setEditListItems] = useState(false);
+    const [itemSuggestions, setItemSuggestions] = useState([]);
 
     useEffect(() => {
         setList(props.list);
@@ -31,6 +33,19 @@ function CreateList(props) {
         setInputErr("");
         let value = event.target.value;
         setNewItem(value);
+        // if the value length is greater than 3, call api for item suggestions
+        if (value.length > 3) {
+            console.log("time to search the api");
+            props.itemSuggestion({ search: value })
+                .then(res => {
+                    setItemSuggestions(res);
+                })
+                .catch(err => console.log(err));
+        }
+    }
+    function setNewItemToSuggestion(word) {
+        setNewItem(word);
+        setItemSuggestions([]);
     }
     useEffect(() => {
         if (newItem.length > 1) {
@@ -185,6 +200,12 @@ function CreateList(props) {
                 name={"item"}
                 aria-label="new item"
             />
+            <div style={{ margin: "0 12.5%"}}>
+                <Dropdown
+                    items={itemSuggestions}
+                    action={setNewItemToSuggestion}
+                />
+            </div>
             {newItem.length > 1 ? (
                 <select
                     className="store-dropdown"

@@ -28,7 +28,7 @@
   }
   .form-input {
     @include form-input;
-    margin: 20px 12.5%;
+    margin: 20px 12.5% 2px 12.5%;
     width: 75%;
   }
   .store-dropdown {
@@ -167,11 +167,11 @@
     }
   }
 }
-@media only screen and(max-width: 450px) {
+@media only screen and(max-width: 500px) {
   .create-list {
     .store-dropdown,
     .form-input {
-      margin: 20px 0;
+      margin: 20px 0 2px 0;
       width: 100%;
     }
   }

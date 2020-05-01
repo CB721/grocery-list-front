@@ -103,9 +103,12 @@ export default {
         return axios.post(`${url}/api/texts/request`, data, config, { withCredentials: true });
     },
     updatePasswordTextReset: function (data, config) {
-        return axios.post(`${url}/api/texts/validate`, data, config, { withCredentials: true })
+        return axios.post(`${url}/api/texts/validate`, data, config, { withCredentials: true });
     },
-    logout: function() {
+    logout: function () {
         return axios.get(`${url}/api/users/logout`);
+    },
+    itemSuggestion: function (data) {
+        return axios.post(`${url}/api/lists/suggest`, data, { withCredentials: true });
     }
 }
