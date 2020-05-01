@@ -9,6 +9,7 @@ import API from "../../utilities/api";
 import Modal from "../Modal";
 import LoadingBar from "../LoadingBar";
 import { isSavedToHome } from "../../utilities/promptSave";
+import { isOnline } from '../../utilities/offlineActions';
 import moment from "moment";
 import "./style.scss";
 
@@ -114,16 +115,27 @@ function Profile(props) {
         }
         setProgress(0);
         setModal(true);
-        API.addItem(listItem, config)
-            .then(() => {
-                props.notification(`${listItem.name} added to list`);
-                setModal(false);
-                setProgress(0);
-                // setTimeout(() => {
-                getUserList();
-                // }, 2000);
-            })
-            .catch(err => console.log(err));
+        if (isOnline()) {
+            API.addItem(listItem, config)
+                .then(() => {
+                    props.notification(`${listItem.name} added to list`);
+                    setModal(false);
+                    setProgress(0);
+                    getUserList();
+                })
+                .catch(err => console.log(err));
+        } else {
+            // set date added property for list, it is expecting a string with a "T" to split on
+            listItem["date_added"] = "NowT";
+            setModal(false);
+            setProgress(0);
+            // add new item to the list to mock
+            const newList = [...userList, listItem];
+            props.setCurrList(newList);
+            setUserList(newList);
+            // save item to indexeddb
+            console.log("application is offline");
+        }
     }
     function updateItem(id, column, value) {
         let listItem = {};
