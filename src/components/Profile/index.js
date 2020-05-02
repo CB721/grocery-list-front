@@ -9,7 +9,7 @@ import API from "../../utilities/api";
 import Modal from "../Modal";
 import LoadingBar from "../LoadingBar";
 import { isSavedToHome } from "../../utilities/promptSave";
-import { isOnline, saveToIndexedDB } from '../../utilities/offlineActions';
+import { isOnline, saveToIndexedDB, bulkSend } from '../../utilities/offlineActions';
 import moment from "moment";
 import "./style.scss";
 
@@ -49,6 +49,7 @@ function Profile(props) {
                 .catch(err => console.log(err));
         }
     }, []);
+    // check for when the user is updated
     useEffect(() => {
         document.title = "G-List | Profile";
         if (props.user.length > 0 && props.user[0].id) {
@@ -60,6 +61,19 @@ function Profile(props) {
             setCoords(`${pos.coords.latitude},${pos.coords.longitude}`);
         });
     }, [props.user]);
+    // check for when the device is online
+    // if it is send all data saved in indexeddb to the back end
+    window.addEventListener("online", () => {
+        if (isOnline()) {
+            bulkSend()
+                .then(res => {
+                    console.log(res);
+                    // get user list
+                })
+                .catch(err => console.log(err))
+        }
+    });
+
     function getUserStores() {
         API.getUserStores(props.user[0].id)
             .then(res => {
@@ -132,13 +146,13 @@ function Profile(props) {
             // add new item to the list to mock
             const newList = [...userList, listItem];
             // save item to indexeddb
-            saveToIndexedDB(newList, "list items", "name")
-            .then(() => {
-                // show success message
-                props.notification(`${listItem.name} added to list`);
-                // set list to new list
-                props.setCurrList(newList);
-                setUserList(newList);
+            saveToIndexedDB(listItem, "list_items", "name")
+                .then(() => {
+                    // show success message
+                    props.notification(`${listItem.name} added to list`);
+                    // set list to new list
+                    props.setCurrList(newList);
+                    setUserList(newList);
                 })
                 .catch(err => {
                     console.log(err);

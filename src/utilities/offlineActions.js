@@ -5,10 +5,6 @@ module.exports = {
     },
     saveToIndexedDB: (data, dbStore, kPath) => {
         return new Promise((resolve, reject) => {
-            console.log("attempting save to indexeddb");
-            console.log(data, dbStore);
-            console.log("----------------------");
-            console.log("----------------------");
             window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDb;
             // if indexedDB isn't support, reject so the front end can tell the user that the feature is unavailable
             if (!window.indexedDB) {
@@ -20,6 +16,11 @@ module.exports = {
                 tx,
                 store,
                 index;
+            request.onblocked = function (event) {
+                // If some other tab is loaded with the database, then it needs to be closed
+                // before we can proceed.
+                reject("Please close all other tabs with this site open!");
+            };
             // assign the structure of the data
             request.onupgradeneeded = function (event) {
                 // assign the database
@@ -47,22 +48,78 @@ module.exports = {
                 index = store.index(`${dbStore}_index`);
 
                 // if an error is caused
-                db.onerror = function(event) {
+                db.onerror = function (event) {
                     // reject error code if available, false if not
                     reject(event.target.errorCode || false);
                 }
                 // put data in the db
-                store.put(data);
+                store.add(data);
                 // close the transaction
-                tx.oncomplete = function() {
+                tx.oncomplete = function () {
                     // close the db
                     db.close();
+                    // // get any currently saved stores from local storage
+                    // let currentStores = localStorage.getItem("currentStores");
+                    // // if there are any stores saved and the current store isn't already saved, parse out stores to array
+                    // if (currentStores && currentStores.indexOf(dbStore) === -1) {
+                    //     currentStores = JSON.parse(currentStores);
+                    //     // push new store into current stores
+                    //     currentStores.push(`${dbStore}_store`);
+                    //     // save new stores to local storage
+                    //     localStorage.setItem("currentStores", currentStores);
+                    // } else {
+                    //     // create new stores list
+                    //     localStorage.setItem("currentStores", JSON.stringify([`${dbStore}_store`]));
+                    // }
                     resolve();
                 }
             }
         })
     },
     bulkSend: () => {
-
+        return new Promise((resolve, reject) => {
+            window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDb;
+            // if indexedDB isn't support, reject so the front end can tell the user that the feature is unavailable
+            if (!window.indexedDB) {
+                reject(false);
+            }
+            // open database
+            let request = window.indexedDB.open("g-list_db", 1),
+                db,
+                tx,
+                store
+            request.onerror = function (event) {
+                // reject error code if available, false if not
+                reject(event.target.errorCode || false);
+            }
+            request.onsuccess = function (event) {
+                db = request.result;
+                // define the transaction
+                tx = db.transaction("list_items_store", "readwrite");
+                // if an error is caused
+                db.onerror = function (event) {
+                    // reject error code if available, false if not
+                    reject(event.target.errorCode || false);
+                }
+                let allData = [];
+                store = tx.objectStore("list_items_store");
+                // retrieve the data
+                let getAll = store.getAll();
+                getAll.onerror = function (event) {
+                    reject(event.target.errorCode);
+                    return;
+                }
+                getAll.onsuccess = function () {
+                    // add data to all data array
+                    allData = [...getAll.result];
+                }
+                tx.oncomplete = function () {
+                    // close the db
+                    db.close();
+                    resolve(allData);
+                    // send to bulk list items route
+                }
+            }
+        })
     }
 }
