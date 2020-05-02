@@ -9,7 +9,7 @@ import API from "../../utilities/api";
 import Modal from "../Modal";
 import LoadingBar from "../LoadingBar";
 import { isSavedToHome } from "../../utilities/promptSave";
-import { isOnline } from '../../utilities/offlineActions';
+import { isOnline, saveToIndexedDB } from '../../utilities/offlineActions';
 import moment from "moment";
 import "./style.scss";
 
@@ -131,10 +131,19 @@ function Profile(props) {
             setProgress(0);
             // add new item to the list to mock
             const newList = [...userList, listItem];
-            props.setCurrList(newList);
-            setUserList(newList);
             // save item to indexeddb
-            console.log("application is offline");
+            saveToIndexedDB(newList, "list items", "name")
+            .then(() => {
+                // show success message
+                props.notification(`${listItem.name} added to list`);
+                // set list to new list
+                props.setCurrList(newList);
+                setUserList(newList);
+                })
+                .catch(err => {
+                    console.log(err);
+                    props.notification("Unable to save while offline");
+                });
         }
     }
     function updateItem(id, column, value) {
