@@ -1,3 +1,5 @@
+const API = require("./api");
+
 module.exports = {
     // return if the application is online or not
     isOnline: () => {
@@ -58,19 +60,6 @@ module.exports = {
                 tx.oncomplete = function () {
                     // close the db
                     db.close();
-                    // // get any currently saved stores from local storage
-                    // let currentStores = localStorage.getItem("currentStores");
-                    // // if there are any stores saved and the current store isn't already saved, parse out stores to array
-                    // if (currentStores && currentStores.indexOf(dbStore) === -1) {
-                    //     currentStores = JSON.parse(currentStores);
-                    //     // push new store into current stores
-                    //     currentStores.push(`${dbStore}_store`);
-                    //     // save new stores to local storage
-                    //     localStorage.setItem("currentStores", currentStores);
-                    // } else {
-                    //     // create new stores list
-                    //     localStorage.setItem("currentStores", JSON.stringify([`${dbStore}_store`]));
-                    // }
                     resolve();
                 }
             }
@@ -114,11 +103,56 @@ module.exports = {
                     allData = [...getAll.result];
                 }
                 tx.oncomplete = function () {
-                    // close the db
-                    db.close();
-                    resolve(allData);
-                    // send to bulk list items route
+                    // if there are any items in the store
+                    if (allData.length) {
+                        // send to bulk list items route
+                        API.default.bulkItems({ items: allData })
+                            .then(res => {
+                                if (res.data.affectedRows > 0) {
+                                    // close the db
+                                    db.close();
+                                    resolve("Data saved to db");
+                                } else {
+                                    reject("No items added to db");
+                                }
+                            })
+                            .catch(err => reject(err));
+                    } else {
+                        reject("No items in indexeddb");
+                    }
                 }
+            }
+        })
+    },
+    clearStore: (dbStore) => {
+        return new Promise((resolve, reject) => {
+            window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDb;
+            // if indexedDB isn't support, reject so the front end can tell the user that the feature is unavailable
+            if (!window.indexedDB) {
+                reject(false);
+            }
+            // open database
+            let request = window.indexedDB.open("g-list_db", 1),
+                db,
+                tx,
+                store
+            request.onerror = function (event) {
+                // reject error code if available, false if not
+                reject(event.target.errorCode || false);
+            }
+            request.onsuccess = function (event) {
+                db = request.result;
+                // define the transaction
+                tx = db.transaction(`${dbStore}`, "readwrite");
+                // if an error is caused
+                db.onerror = function (event) {
+                    // reject error code if available, false if not
+                    reject(event.target.errorCode || false);
+                }
+                store = tx.objectStore(`${dbStore}`);
+                // clear all data from the store
+                store.clear();
+                resolve();
             }
         })
     }

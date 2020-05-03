@@ -110,5 +110,8 @@ export default {
     },
     itemSuggestion: function (data) {
         return axios.post(`${url}/api/lists/suggest`, data, { withCredentials: true });
+    },
+    bulkItems: function (data) {
+        return axios.post(`${url}/api/lists/bulk`, data, { withCredentials: true });
     }
 }

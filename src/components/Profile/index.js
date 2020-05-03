@@ -9,7 +9,7 @@ import API from "../../utilities/api";
 import Modal from "../Modal";
 import LoadingBar from "../LoadingBar";
 import { isSavedToHome } from "../../utilities/promptSave";
-import { isOnline, saveToIndexedDB, bulkSend } from '../../utilities/offlineActions';
+import { isOnline, saveToIndexedDB, bulkSend, clearStore } from '../../utilities/offlineActions';
 import moment from "moment";
 import "./style.scss";
 
@@ -23,6 +23,8 @@ function Profile(props) {
     const [progress, setProgress] = useState(0);
     const [modal, setModal] = useState(false);
     const [coords, setCoords] = useState("");
+    // boolean value to ensure the bulk send is only triggered once
+    const [updateOffline, setUpdateOffline] = useState(false);
 
     const config = {
         onUploadProgress: progressEvent => {
@@ -36,7 +38,6 @@ function Profile(props) {
         // check if the user has already saved
         if (promptUser) {
             localStorage.setItem("saveToHome", moment().toDate());
-            props.notification("Install this application on your homescreen for the best experience.");
             // update last PWA prompt, value here doesn't matter because the backend will set the date
             props.updateUser({ last_pwa_prompt: true })
                 .then()
@@ -63,17 +64,30 @@ function Profile(props) {
     }, [props.user]);
     // check for when the device is online
     // if it is send all data saved in indexeddb to the back end
-    window.addEventListener("online", () => {
-        if (isOnline()) {
+    window.addEventListener("online", async (event) => {
+        try {
+            if (event.type === "online") {
+                setUpdateOffline(true);
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    }, { once: true });
+    useEffect(() => {
+        if (updateOffline && isOnline()) {
             bulkSend()
-                .then(res => {
-                    console.log(res);
+                .then(() => {
+                    setUpdateOffline(false);
                     // get user list
+                    getUserList();
+                    // clear the store
+                    clearStore("list_items_store");
+                    // notify the user their offline data has been saved
+                    props.notification("Offline data saved!");
                 })
                 .catch(err => console.log(err))
         }
-    });
-
+    }, [updateOffline]);
     function getUserStores() {
         API.getUserStores(props.user[0].id)
             .then(res => {
