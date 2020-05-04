@@ -42,7 +42,8 @@ function Settings(props) {
     const [progress, setProgress] = useState(0);
     const [showProgress, setShowProgress] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
-    const [toggle, setToggle] = useState(false);
+    const [darkToggle, setDarkToggle] = useState(false);
+    const [anyStoreToggle, setAnyStoreToggle] = useState(true);
 
     const config = {
         onUploadProgress: progressEvent => {
@@ -57,9 +58,9 @@ function Settings(props) {
     }, [props.tab]);
     useEffect(() => {
         if (props.isDark) {
-            setToggle(true);
+            setDarkToggle(true);
         } else {
-            setToggle(false);
+            setDarkToggle(false);
         }
     }, [props.isDark]);
     useEffect(() => {
@@ -158,6 +159,17 @@ function Settings(props) {
     }, [props.connections]);
     useEffect(() => {
         document.title = "G-List | Settings";
+        // check local storage for any store option
+        const anyStore = localStorage.getItem("any-store-option");
+        // if it doesn't exist, add it to localstorage and set to true
+        if (!anyStore) {
+            localStorage.setItem("any-store-option", true);
+            // if it does exist, update state accordingly
+        } else if (anyStore === "true"){
+            setAnyStoreToggle(true);
+        } else if (anyStore === "false") {
+            setAnyStoreToggle(false);
+        }
     }, []);
     useEffect(() => {
         if (editFirst || editLast || editEmail) {
@@ -424,16 +436,26 @@ function Settings(props) {
             setUserError("");
         }, 5000);
     }
-    function toggleSwitch(event) {
+    function toggleDarkMode(event) {
         event.preventDefault();
-        if (toggle) {
+        if (darkToggle) {
             localStorage.removeItem("dark-mode");
-            setToggle(false);
+            setDarkToggle(false);
         } else {
             localStorage.setItem("dark-mode", "yes");
-            setToggle(true);
+            setDarkToggle(true);
         }
         props.toggleDarkMode();
+    }
+    function toggleAnyStore(event) {
+        event.preventDefault();
+        if (anyStoreToggle) {
+            localStorage.setItem("any-store-option", false);
+            setAnyStoreToggle(false);
+        } else {
+            localStorage.setItem("any-store-option", true);
+            setAnyStoreToggle(true);
+        }
     }
     return (
         <div aria-label="settings page">
@@ -842,13 +864,30 @@ function Settings(props) {
                                         <div className="toggle-dark-mode">
                                             <label
                                                 className="switch"
-                                                onClick={(event) => toggleSwitch(event)}
+                                                onClick={(event) => toggleDarkMode(event)}
                                             >
                                                 <input
                                                     type="checkbox"
-                                                    checked={toggle}
+                                                    checked={darkToggle}
                                                 />
-                                                <span className="slider round"></span>
+                                                <span className="slider round dark"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div className="view-options-header">
+                                        Any Store
+                                    </div>
+                                    <div className="view-options-header">
+                                        <div className="toggle-dark-mode">
+                                            <label
+                                                className="switch"
+                                                onClick={(event) => toggleAnyStore(event)}
+                                            >
+                                                <input
+                                                    type="checkbox"
+                                                    checked={anyStoreToggle}
+                                                />
+                                                <span className="slider round any-store"></span>
                                             </label>
                                         </div>
                                     </div>

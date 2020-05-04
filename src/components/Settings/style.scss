@@ -292,9 +292,14 @@
               left: 0;
               right: 0;
               bottom: 0;
-              background-color: $yellow;
               -webkit-transition: 0.3s;
               transition: 0.3s;
+              &.dark {
+                background-color: $yellow;
+              }
+              &.any-store {
+                background-color: $red;
+              }
             }
             .slider:before {
               position: absolute;
@@ -308,7 +313,12 @@
               transition: 0.3s;
             }
             input:checked + .slider {
-              background-color: $main-blue;
+              &.dark {
+                background-color: $main-blue;
+              }
+              &.any-store {
+                background-color: $purple;
+              }
             }
             input:focus + .slider {
               @include shadow;
