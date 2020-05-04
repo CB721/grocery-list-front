@@ -34,7 +34,7 @@ function CreateList(props) {
         let value = event.target.value;
         setNewItem(value);
         // if the value length is greater than 3, call api for item suggestions
-        if (value.length > 3) {
+        if (value.length > 3 && isOnline()) {
             props.itemSuggestion({ search: value })
                 .then(res => {
                     setItemSuggestions(res);

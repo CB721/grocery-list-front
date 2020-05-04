@@ -93,7 +93,18 @@ function Profile(props) {
     function getUserStores() {
         API.getUserStores(props.user[0].id)
             .then(res => {
-                setUserStores(res.data);
+                // if user has selected not have the any store option, filter out that store
+                const anyStore = localStorage.getItem("any-store-option");
+                // if the item doesn't exist, add to local storage
+                if (!anyStore) {
+                    localStorage.setItem("any-store-option", "true");
+                    setUserStores(res.data);
+                } else if (anyStore === "false") {
+                    const filteredStores = res.data.filter(singleStore => singleStore.address !== "Everywhere, USA");
+                    setUserStores(filteredStores);
+                } else {
+                    setUserStores(res.data);
+                }
             })
             .catch(err => console.log(err));
     }
