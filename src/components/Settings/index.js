@@ -12,6 +12,7 @@ import Modal from "../Modal";
 import StaticList from "../StaticList";
 import LoadingSpinner from "../LoadingSpinner";
 import LoadingBar from "../LoadingBar";
+import { isOnline } from "../../utilities/offlineActions";
 import "./style.scss";
 
 function Settings(props) {
@@ -214,7 +215,7 @@ function Settings(props) {
                 }
                 break;
             case "phone":
-                if (!isByteLength(value, {min: 10, max: 11}) || !isNumeric(value, true) || !isMobilePhone(value)) {
+                if (!isByteLength(value, { min: 10, max: 11 }) || !isNumeric(value, true) || !isMobilePhone(value)) {
                     displayError("Invalid phone number")
                 } else {
                     setUserError("");
@@ -484,7 +485,7 @@ function Settings(props) {
                             </div>
                         </div>
                         <div className="setting-content">
-                            {editMessage ? (
+                            {editMessage && isOnline() ? (
                                 <div className="edit-header" onClick={exitEdit} aria-label={editMessage}>
                                     {editMessage}
                                 </div>
@@ -499,7 +500,7 @@ function Settings(props) {
 
                             {tab === "info" ? (
                                 <div className="settings-info">
-                                    {editFirst ? (
+                                    {editFirst && isOnline() ? (
                                         <div aria-label="edit your first name">
                                             <input
                                                 type="text"
@@ -527,7 +528,7 @@ function Settings(props) {
                                                 First Name: {props.user[0].first_name}
                                             </div>
                                         )}
-                                    {editLast ? (
+                                    {editLast && isOnline() ? (
                                         <div aria-label="edit your last name">
                                             <input
                                                 type="text"
@@ -555,7 +556,7 @@ function Settings(props) {
                                                 Last Name: {props.user[0].last_name}
                                             </div>
                                         )}
-                                    {editEmail ? (
+                                    {editEmail && isOnline() ? (
                                         <div aria-label="edit your email address">
                                             <input
                                                 type="email"
@@ -583,7 +584,7 @@ function Settings(props) {
                                                 Email: {props.user[0].email}
                                             </div>
                                         )}
-                                    {editPhone ? (
+                                    {editPhone && isOnline() ? (
                                         <div aria-label="edit your phone number">
                                             <input
                                                 type="email"
@@ -611,7 +612,7 @@ function Settings(props) {
                                                 Phone: {props.user[0].phone || "Add today!"}
                                             </div>
                                         )}
-                                    {editPass ? (
+                                    {editPass && isOnline() ? (
                                         <div aria-label="edit your password">
                                             <input
                                                 type="password"
@@ -649,13 +650,15 @@ function Settings(props) {
                                     >
                                         Current
                                     </div>
-                                    <div
-                                        className={connectTab === "pending" ? "connect-half selected" : "connect-half"}
-                                        onClick={() => setConnectTab("pending")}
-                                        aria-label="view pending connection requests"
-                                    >
-                                        Pending
-                                    </div>
+                                    {isOnline() ? (
+                                        <div
+                                            className={connectTab === "pending" ? "connect-half selected" : "connect-half"}
+                                            onClick={() => setConnectTab("pending")}
+                                            aria-label="view pending connection requests"
+                                        >
+                                            Pending
+                                        </div>
+                                    ) : (<div />)}
                                 </div>
                                 {connectTab === "current" ? (
                                     <div className="connect-users-section">
@@ -669,80 +672,90 @@ function Settings(props) {
                                                         <div className="connect-user-name" aria-label="connection name">
                                                             {`${connection.requestor_first_name || connection.requested_first_name} ${connection.requestor_last_name || connection.requested_last_name}`}
                                                         </div>
-                                                        <div className="connect-user-options">
-                                                            <div className="option-button">
-                                                                <div className="send-list">
-                                                                    <Send
-                                                                        className="icon"
-                                                                        onClick={() => getPreviousLists("DESC", connection)}
-                                                                        aria-label="send connection a list"
-                                                                    />
+                                                        {isOnline() ? (
+                                                            <div className="connect-user-options">
+                                                                <div className="option-button">
+                                                                    <div className="send-list">
+                                                                        <Send
+                                                                            className="icon"
+                                                                            onClick={() => getPreviousLists("DESC", connection)}
+                                                                            aria-label="send connection a list"
+                                                                        />
+                                                                    </div>
+                                                                    <div className="option-tooltip">
+                                                                        Send {connection.requestor_first_name || connection.requested_first_name} A List
                                                                 </div>
-                                                                <div className="option-tooltip">
-                                                                    Send {connection.requestor_first_name || connection.requested_first_name} A List
+                                                                </div>
+                                                                <div className="option-button">
+                                                                    <div className="view-list">
+                                                                        <View
+                                                                            className="icon"
+                                                                            onClick={() => viewSentLists(connection)}
+                                                                            aria-label="view lists from this connection"
+                                                                        />
+                                                                    </div>
+                                                                    <div className="option-tooltip">
+                                                                        View All Lists From {connection.requestor_first_name || connection.requested_first_name}
+                                                                    </div>
+                                                                </div>
+                                                                <div className="option-button">
+                                                                    <div className="delete-user">
+                                                                        <Trash
+                                                                            className="icon"
+                                                                            onClick={() => removeConnection(connection)}
+                                                                            aria-label="remove this connection"
+                                                                        />
+                                                                    </div>
+                                                                    <div className="option-tooltip">
+                                                                        Remove User
+                                                                </div>
                                                                 </div>
                                                             </div>
-                                                            <div className="option-button">
-                                                                <div className="view-list">
-                                                                    <View
-                                                                        className="icon"
-                                                                        onClick={() => viewSentLists(connection)}
-                                                                        aria-label="view lists from this connection"
-                                                                    />
-                                                                </div>
-                                                                <div className="option-tooltip">
-                                                                    View All Lists From {connection.requestor_first_name || connection.requested_first_name}
-                                                                </div>
-                                                            </div>
-                                                            <div className="option-button">
-                                                                <div className="delete-user">
-                                                                    <Trash
-                                                                        className="icon"
-                                                                        onClick={() => removeConnection(connection)}
-                                                                        aria-label="remove this connection"
-                                                                    />
-                                                                </div>
-                                                                <div className="option-tooltip">
-                                                                    Remove User
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                        ) : (<div />)}
                                                     </div>
                                                 ))}
                                             </div>
                                         ) : (<div className="connet-users-row">
-                                            <input
-                                                type="email"
-                                                value={connectEmail}
-                                                placeholder="Type email here"
-                                                name="connection-request"
-                                                className="form-input"
-                                                onChange={(event) => handleInputChange(event)}
-                                                aria-label="email address of new connection request"
-                                            />
-                                            <Button
-                                                text="Send Connection Request"
-                                                class="blue-button"
-                                                action={createConnection}
-                                            />
+                                            {isOnline() ? (
+                                                <div>
+                                                    <input
+                                                        type="email"
+                                                        value={connectEmail}
+                                                        placeholder="Type email here"
+                                                        name="connection-request"
+                                                        className="form-input"
+                                                        onChange={(event) => handleInputChange(event)}
+                                                        aria-label="email address of new connection request"
+                                                    />
+                                                    <Button
+                                                        text="Send Connection Request"
+                                                        class="blue-button"
+                                                        action={createConnection}
+                                                    />
+                                                </div>
+                                            ) : (<div />)}
                                         </div>)}
                                     </div>
                                 ) : (<div className="connect-users-section">
                                     <div className="connet-users-row">
-                                        <input
-                                            type="email"
-                                            value={connectEmail}
-                                            placeholder="Type email here"
-                                            name="connection-request"
-                                            className="form-input"
-                                            onChange={(event) => handleInputChange(event)}
-                                            aria-label="email address of new connection request"
-                                        />
-                                        <Button
-                                            text="Send Connection Request"
-                                            class="blue-button"
-                                            action={createConnection}
-                                        />
+                                        {isOnline() ? (
+                                            <div>
+                                                <input
+                                                    type="email"
+                                                    value={connectEmail}
+                                                    placeholder="Type email here"
+                                                    name="connection-request"
+                                                    className="form-input"
+                                                    onChange={(event) => handleInputChange(event)}
+                                                    aria-label="email address of new connection request"
+                                                />
+                                                <Button
+                                                    text="Send Connection Request"
+                                                    class="blue-button"
+                                                    action={createConnection}
+                                                />
+                                            </div>
+                                        ) : (<div />)}
                                     </div>
                                     {pendingConnections.length > 0 ? (
                                         <div aria-label="pending connections">

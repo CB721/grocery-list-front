@@ -68,6 +68,8 @@ function Profile(props) {
         try {
             if (event.type === "online") {
                 setUpdateOffline(true);
+            } else {
+                props.notification("While your device is offline, you can still add items to your list!");
             }
         } catch (err) {
             console.log(err);

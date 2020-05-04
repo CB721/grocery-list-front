@@ -4,6 +4,7 @@ import Button from "../Button";
 import List from "../List";
 import ListHeader from "../ListHeader";
 import Dropdown from "../Dropdown";
+import { isOnline } from "../../utilities/offlineActions";
 import Flip from 'react-reveal/Flip';
 import "./style.scss";
 
@@ -137,12 +138,14 @@ function CreateList(props) {
             >
                 {list.length > 0 ? `Edit ${list[0].list_name || "list"}` : "New List"}
             </div>
-            <div className="list-edit">
-                <Edit
-                    className="edit-icon"
-                    onClick={editItems}
-                />
-            </div>
+            {isOnline() ? (
+                <div className="list-edit">
+                    <Edit
+                        className="edit-icon"
+                        onClick={editItems}
+                    />
+                </div>
+            ) : (<div />)}
             <div
                 className="create-list-header error"
                 aria-label={"error message " + inputErr}
@@ -151,7 +154,7 @@ function CreateList(props) {
             </div>
             {savedListName.length > 0 && list.length > 0 ? (
                 <div />
-            ) : list.length > 0 && savedListName.length < 1 ? (
+            ) : list.length > 0 && savedListName.length < 1 && isOnline() ? (
                 <div>
                     <input
                         type="text"

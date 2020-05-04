@@ -7,6 +7,7 @@ import API from "../../utilities/api";
 import LoadingBar from "../LoadingBar";
 import Modal from "../Modal";
 import LoadingSpinner from "../LoadingSpinner";
+import { isOnline } from "../../utilities/offlineActions";
 import "./style.scss";
 import ListHeader from "../ListHeader";
 
@@ -288,14 +289,16 @@ function Store(props) {
                 >
                     View Stores
                 </div>
-                <div
-                    className={add}
-                    id="add"
-                    onClick={(event) => toggleOptions(event)}
-                    aria-label="save a new store"
-                >
-                    Add a Store
-                </div>
+                {isOnline() ? (
+                    <div
+                        className={add}
+                        id="add"
+                        onClick={(event) => toggleOptions(event)}
+                        aria-label="save a new store"
+                    >
+                        Add a Store
+                    </div>
+                ) : (<div />)}
             </div>
             {currentView === "view" ? (
                 <div>
