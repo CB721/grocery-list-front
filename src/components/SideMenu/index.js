@@ -38,8 +38,8 @@ function SideMenu(props) {
                                 <div onClick={(event) => goToSelectedPage(event, option.link)}>
                                     <Textfit
                                         mode="single"
-                                        min={6}
-                                        max={16}
+                                        min={16}
+                                        max={24}
                                     >
                                         {option.name}
                                     </Textfit>

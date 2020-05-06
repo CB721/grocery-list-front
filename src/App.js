@@ -506,7 +506,10 @@ function App() {
           draggable
           pauseOnHover
         />
-        <Footer />
+        <Footer 
+          navOptions={navOptions}
+          notifications={notifications}
+        />
       </Container>
     </Router>
   );
