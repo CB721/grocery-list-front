@@ -9,7 +9,7 @@ function Footer(props) {
     const [footerOptions, setFooterOptions] = useState([]);
     const date = new Date();
     const currentYear = date.getFullYear();
-    const isMobile = true;
+    const isMobile = window.screen.availWidth < 500 ? true : false;
     let history = useHistory();
     useEffect(() => {
         // if there are any notifications
@@ -36,23 +36,10 @@ function Footer(props) {
     }, [props.navOptions])
     function goToSelectedPage(event, path) {
         event.preventDefault();
-        if (path === "/signout") {
-            props.logout()
-                .then(() => {
-                    history.push(path);
-                    props.expandMenu(event);
-                })
-                .catch(err => {
-                    console.log(err);
-                    history.push(path);
-                    props.expandMenu(event);
-                });
-        } else {
-            // redirect to selected page
-            history.push(path);
-            // close side menu
-            props.expandMenu(event);
-        }
+        // redirect to selected page
+        history.push(path);
+        // close bottom menu
+        // props.expandMenu(event);
     }
     return (
         <div className="footer">
@@ -62,23 +49,27 @@ function Footer(props) {
                         <div
                             className="mobile-nav-link"
                             key={index}
-
+                            onClick={(event) => goToSelectedPage(event, option.link)}
                         >
                             {option.name}
                         </div>
                     ))}
-                    <div className="mobile-nav-link">
-                        <Bell
-                            className="footer-bell"
-                            onClick={() => setShowNotifications(!showNotifications)}
-                            aria-label={showNotifications ? "close notification panel" : "open notification panel"}
-                        />
-                        {unreadNotificationTotal > 0 ? (
-                            <p className="footer-notification" aria-label={unreadNotificationTotal + " unread notifications"}>
-                                {unreadNotificationTotal}
-                            </p>
-                        ) : (<div />)}
-                    </div>
+                    {props.navOptions.some(option => option.name === "Join") ? (
+                        <div />
+                    ) : (
+                            <div className="mobile-nav-link">
+                                <Bell
+                                    className="footer-bell"
+                                    onClick={() => setShowNotifications(!showNotifications)}
+                                    aria-label={showNotifications ? "close notification panel" : "open notification panel"}
+                                />
+                                {unreadNotificationTotal > 0 ? (
+                                    <p className="footer-notification" aria-label={unreadNotificationTotal + " unread notifications"}>
+                                        {unreadNotificationTotal}
+                                    </p>
+                                ) : (<div />)}
+                            </div>
+                        )}
                 </div>
             ) : (
                     <span aria-label={"copyright " + currentYear + " Clint Brodar"}>Copyright &copy; {currentYear} G-List</span>

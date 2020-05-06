@@ -22,7 +22,9 @@ function Navbar(props) {
     const [pwaModal, setPWAModal] = useState(false);
     const [addToHomeInstructions, setAddToHomeInstructions] = useState("");
     const [showPhoneOption, setShowPhoneOption] = useState(false);
+    const isMobile = window.screen.availWidth < 500 ? true : false;
     let history = useHistory();
+
     useEffect(() => {
         // if there are any notifications
         if (props.notifications.length > 0) {
@@ -197,7 +199,7 @@ function Navbar(props) {
                             G-List
                         </div>
                         <div className="nav-items">
-                            {props.isLogged > 0 ? (
+                            {props.isLogged > 0 && !isMobile ? (
                                 <div className="notification-section" aria-label="notifications">
                                     <Bell
                                         className="notification-bell"
@@ -211,7 +213,7 @@ function Navbar(props) {
                                     ) : (<div />)}
                                 </div>
                             ) : (<div />)}
-                            {showNotifications ? (
+                            {showNotifications && !isMobile ? (
                                 <Notifcations
                                     items={props.notifications}
                                     markNotificationAsRead={props.markNotificationAsRead}
@@ -221,12 +223,14 @@ function Navbar(props) {
                                     openPWAModal={openPWAModal}
                                 />
                             ) : (<div />)}
-                            <div className={menuExpand} onClick={(event) => expandMenu(event)} aria-label="open side menu">
-                                <div className="bar1" />
-                                <div className="bar2" />
-                                <div className="bar3" />
-                            </div>
-                            {menuExpand === "burger-menu change" ? (
+                            {!isMobile ? (
+                                <div className={menuExpand} onClick={(event) => expandMenu(event)} aria-label="open side menu">
+                                    <div className="bar1" />
+                                    <div className="bar2" />
+                                    <div className="bar3" />
+                                </div>
+                            ) : (<div />)}
+                            {menuExpand === "burger-menu change" && !isMobile ? (
                                 <Fade>
                                     <SideMenu
                                         options={props.options}
