@@ -269,9 +269,27 @@
           height: 4rem;
           line-height: 4rem;
           font-size: 1rem;
-          margin: 0 auto;
+          margin: 0.5rem auto;
           text-align: center;
           float: left;
+          button {
+            color: $white;
+            background: $red;
+            border-color: $white;
+            font-size: 16px;
+            border-radius: 8px;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 1rem;
+            width: 7rem;
+            height: 2rem;
+            &:focus {
+              outline: none;
+            }
+            &:hover {
+              cursor: pointer;
+            }
+          }
           .toggle-dark-mode {
             margin-top: 1rem;
             .switch {

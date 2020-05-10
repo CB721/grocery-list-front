@@ -485,6 +485,7 @@ function App() {
                   toggleDarkMode={toggleDarkMode}
                   isDark={isDark}
                   notification={notification}
+                  logout={logout}
                 />
               ) : (
                   <Redirect to="/login" />

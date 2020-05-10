@@ -44,7 +44,6 @@ function Settings(props) {
     const [isMobile, setIsMobile] = useState(false);
     const [darkToggle, setDarkToggle] = useState(false);
     const [anyStoreToggle, setAnyStoreToggle] = useState(true);
-
     const config = {
         onUploadProgress: progressEvent => {
             const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
@@ -69,7 +68,7 @@ function Settings(props) {
         } else {
             setIsMobile(false);
         }
-    }, [window.screen]);
+    }, [window.screen.availWidth]);
     function handleInputChange(event) {
         const { name, value } = event.target;
         switch (name) {
@@ -165,7 +164,7 @@ function Settings(props) {
         if (!anyStore) {
             localStorage.setItem("any-store-option", true);
             // if it does exist, update state accordingly
-        } else if (anyStore === "true"){
+        } else if (anyStore === "true") {
             setAnyStoreToggle(true);
         } else if (anyStore === "false") {
             setAnyStoreToggle(false);
@@ -890,6 +889,12 @@ function Settings(props) {
                                                 <span className="slider round any-store"></span>
                                             </label>
                                         </div>
+                                    </div>
+                                    <div className="view-options-header">
+                                        Logout
+                                    </div>
+                                    <div className="view-options-header">
+                                        <button onClick={props.logout}>Logout</button>
                                     </div>
                                 </div>
                             </div>)}

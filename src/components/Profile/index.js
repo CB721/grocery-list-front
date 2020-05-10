@@ -49,6 +49,9 @@ function Profile(props) {
                 .then()
                 .catch(err => console.log(err));
         }
+        if (!isOnline) {
+            props.notification("While your device is offline, you can still add items to your list!");
+        }
     }, []);
     // check for when the user is updated
     useEffect(() => {
