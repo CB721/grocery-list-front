@@ -141,8 +141,6 @@ function Navbar(props) {
             // close the modal
             closePWAModal();
         }
-
-        console.log("send link to phone");
     }
     return (
         <div>

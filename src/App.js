@@ -509,6 +509,11 @@ function App() {
         <Footer 
           navOptions={navOptions}
           notifications={notifications}
+          changeSettingsTab={changeSettingsTab}
+          getListByID={getListByID}
+          notification={notification}
+          updateUser={updateUser}
+          markNotificationAsRead={markNotificationAsRead}
         />
       </Container>
     </Router>

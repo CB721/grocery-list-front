@@ -21,46 +21,91 @@ function Notifications(props) {
         // add option to view and accept user connections
     }
     return (
-        <Slide right>
-            <div className="notification-list" aria-label="notification list">
-                {props.items.map((item) => (
-                    <div
-                        className={item.acknowledged > 0 ? "notification read" : "notification unread"}
-                        aria-label={item.acknowledged > 0 ? "notification read" : "notification unread"}
-                        key={item.id}
-                    >
-                        <div className="notification-image" aria-label="notification image">
-                            {item.other_user_id ? item.other_user_first_name.charAt(0) + item.other_user_last_name.charAt(0) : "GL"}
-                        </div>
-                        <div
-                            className="notification-content"
-                            onClick={() => addressNotification(item)}
-                            aria-label="mark notification as read"
-                        >
-                            <div className="note-content-section" aria-label="notification content">
-                                {item.content}
+        <div>
+            {props.slide === "bottom" ? (
+                <Slide bottom>
+                    <div className="notification-list" aria-label="notification list">
+                        {props.items.map((item) => (
+                            <div
+                                className={item.acknowledged > 0 ? "notification read" : "notification unread"}
+                                aria-label={item.acknowledged > 0 ? "notification read" : "notification unread"}
+                                key={item.id}
+                            >
+                                <div className="notification-image" aria-label="notification image">
+                                    {item.other_user_id ? item.other_user_first_name.charAt(0) + item.other_user_last_name.charAt(0) : "GL"}
+                                </div>
+                                <div
+                                    className="notification-content"
+                                    onClick={() => addressNotification(item)}
+                                    aria-label="mark notification as read"
+                                >
+                                    <div className="note-content-section" aria-label="notification content">
+                                        {item.content}
+                                    </div>
+                                    <div className="note-content-section gray-text" aria-label="time since notification was created">
+                                        {convertTimeDiff(item.time_difference)}
+                                    </div>
+                                </div>
+                                {item.acknowledged ? (
+                                    <Trash
+                                        className="icon-read"
+                                        onClick={() => props.deleteNotification(item.id)}
+                                        aria-label="remove notification"
+                                    />
+                                ) : (
+                                        <Trash
+                                            className="icon"
+                                            onClick={() => props.deleteNotification(item.id)}
+                                            aria-label="remove notification"
+                                        />
+                                    )}
                             </div>
-                            <div className="note-content-section gray-text" aria-label="time since notification was created">
-                                {convertTimeDiff(item.time_difference)}
-                            </div>
-                        </div>
-                        {item.acknowledged ? (
-                            <Trash
-                                className="icon-read"
-                                onClick={() => props.deleteNotification(item.id)}
-                                aria-label="remove notification"
-                            />
-                        ) : (
-                                <Trash
-                                    className="icon"
-                                    onClick={() => props.deleteNotification(item.id)}
-                                    aria-label="remove notification"
-                                />
-                            )}
+                        ))}
                     </div>
-                ))}
-            </div>
-        </Slide>
+                </Slide>
+            ) : (
+                    <Slide right>
+                        <div className="notification-list" aria-label="notification list">
+                            {props.items.map((item) => (
+                                <div
+                                    className={item.acknowledged > 0 ? "notification read" : "notification unread"}
+                                    aria-label={item.acknowledged > 0 ? "notification read" : "notification unread"}
+                                    key={item.id}
+                                >
+                                    <div className="notification-image" aria-label="notification image">
+                                        {item.other_user_id ? item.other_user_first_name.charAt(0) + item.other_user_last_name.charAt(0) : "GL"}
+                                    </div>
+                                    <div
+                                        className="notification-content"
+                                        onClick={() => addressNotification(item)}
+                                        aria-label="mark notification as read"
+                                    >
+                                        <div className="note-content-section" aria-label="notification content">
+                                            {item.content}
+                                        </div>
+                                        <div className="note-content-section gray-text" aria-label="time since notification was created">
+                                            {convertTimeDiff(item.time_difference)}
+                                        </div>
+                                    </div>
+                                    {item.acknowledged ? (
+                                        <Trash
+                                            className="icon-read"
+                                            onClick={() => props.deleteNotification(item.id)}
+                                            aria-label="remove notification"
+                                        />
+                                    ) : (
+                                            <Trash
+                                                className="icon"
+                                                onClick={() => props.deleteNotification(item.id)}
+                                                aria-label="remove notification"
+                                            />
+                                        )}
+                                </div>
+                            ))}
+                        </div>
+                    </Slide>
+                )}
+        </div>
     )
 }
 

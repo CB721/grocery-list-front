@@ -33,6 +33,7 @@ $purple: rgb(107, 41, 214);
     transition: 0.3s;
     background: $white;
     color: $black;
+    padding: 0 2.5%;
     &:focus {
         outline: none;
         border-color: $main-blue;
