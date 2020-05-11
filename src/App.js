@@ -83,6 +83,10 @@ function App() {
           setError("");
           API.userLogin(userData, config)
             .then(res => {
+              if (res.data[0].dark_mode) {
+                localStorage.setItem("dark-mode", "yes");
+                toggleDarkMode();
+              }
               setUser(res.data);
               setIsValid(true);
               // change side menu options
@@ -298,7 +302,7 @@ function App() {
   function logout() {
     return new Promise(function (resolve, reject) {
       API.logout()
-        .then(res => {
+        .then(() => {
           localStorage.clear();
           sessionStorage.clear();
           setNavOptions([create, signIn]);
@@ -496,18 +500,32 @@ function App() {
             <Redirect to="/" />
           </Route>
         </Switch>
-        <ToastContainer
-          position="bottom-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnVisibilityChange
-          draggable
-          pauseOnHover
-        />
-        <Footer 
+        {window.screen.width > 500 ? (
+          <ToastContainer
+            position="bottom-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnVisibilityChange
+            draggable
+            pauseOnHover
+          />
+        ) : (
+            <ToastContainer
+              position="top-center"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnVisibilityChange
+              draggable
+              pauseOnHover
+            />
+          )}
+        <Footer
           navOptions={navOptions}
           notifications={notifications}
           changeSettingsTab={changeSettingsTab}

@@ -437,14 +437,22 @@ function Settings(props) {
     }
     function toggleDarkMode(event) {
         event.preventDefault();
+        let update = {};
         if (darkToggle) {
             localStorage.removeItem("dark-mode");
+            update["dark_mode"] = 0;
             setDarkToggle(false);
         } else {
             localStorage.setItem("dark-mode", "yes");
+            update["dark_mode"] = 1;
             setDarkToggle(true);
         }
+        // update UI to reflect change
         props.toggleDarkMode();
+        // update db with newest change
+        props.updateUser(update)
+            .then()
+            .catch(err => console.log(err));
     }
     function toggleAnyStore(event) {
         event.preventDefault();
