@@ -5,6 +5,22 @@ An application for users to create custom grocery lists based on the stores wher
 * [Front End Repository](https://github.com/CB721/grocery-list-front)
 * [Back End Repository](https://github.com/CB721/grocery-list-back)
 
+## Versions
+* 1.2.0
+    * Dark mode option saved in database
+    * Navbar options placed on footer for mobile
+    * User can add items to their list while their device is offline
+    * Phone field added to user settings
+    * Autocomplete feature for list items
+* 1.1.0
+    * Dark mode option
+    * Forgot password options
+    * Cookie storage for faster user authenication
+    * PWA option for better performance on mobile
+* 1.0.0
+    * Users can sign up and create lists
+    * Users can share lists with other users that have signed up
+
 ## Key Features
 #### Create lists and set priority levels for each item
 ![Create Lists](https://github.com/CB721/grocery-list-front/blob/master/src/assets/images/walkthrough_gifs/create-list-mobile.gif?raw=true)
@@ -32,20 +48,9 @@ An application for users to create custom grocery lists based on the stores wher
 * Implement swipe feature for mobile
     * Swipe right on a item to mark it complete, swipe left to delete it
     * Swipe across tabs for viewing stores, viewing lists and creating lists
-* Create autocomplete feature for list items - query the db for similarly spelled items, create a list for foods to populate as well
 * Add parallax effect to home page
 * Purchase domain with email address for communicating with users
 * Add scan barcode option for a user to add to their list
-
-## Versions
-* 1.1.0
-    * Dark mode option
-    * Forgot password options
-    * Cookie storage for faster user authenication
-    * PWA option for better performance on mobile
-* 1.0.0
-    * Users can sign up and create lists
-    * Users can share lists with other users that have signed up
 
 ### Technologies Used
 #### Front End
