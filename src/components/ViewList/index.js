@@ -5,7 +5,7 @@ import Button from "../Button";
 import Modal from "../Modal";
 import LoadingSpinner from "../LoadingSpinner";
 import ListHeader from "../ListHeader";
-import { isOnline } from "../../utilities/offlineActions";
+import OfflineActions from "../../utilities/offlineActions";
 import "./style.scss";
 
 function ViewList(props) {
@@ -251,7 +251,7 @@ function ViewList(props) {
                 >
                     Current List
                 </div>
-                {isOnline() ? (
+                {OfflineActions.isOnline() ? (
                     <div
                         className={prev}
                         id="prev"

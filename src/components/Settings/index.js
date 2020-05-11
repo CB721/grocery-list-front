@@ -12,7 +12,7 @@ import Modal from "../Modal";
 import StaticList from "../StaticList";
 import LoadingSpinner from "../LoadingSpinner";
 import LoadingBar from "../LoadingBar";
-import { isOnline } from "../../utilities/offlineActions";
+import OfflineActions from "../../utilities/offlineActions";
 import "./style.scss";
 
 function Settings(props) {
@@ -514,7 +514,7 @@ function Settings(props) {
                             </div>
                         </div>
                         <div className="setting-content">
-                            {editMessage && isOnline() ? (
+                            {editMessage && OfflineActions.isOnline() ? (
                                 <div className="edit-header" onClick={exitEdit} aria-label={editMessage}>
                                     {editMessage}
                                 </div>
@@ -529,7 +529,7 @@ function Settings(props) {
 
                             {tab === "info" ? (
                                 <div className="settings-info">
-                                    {editFirst && isOnline() ? (
+                                    {editFirst && OfflineActions.isOnline() ? (
                                         <div aria-label="edit your first name">
                                             <input
                                                 type="text"
@@ -557,7 +557,7 @@ function Settings(props) {
                                                 First Name: {props.user[0].first_name}
                                             </div>
                                         )}
-                                    {editLast && isOnline() ? (
+                                    {editLast && OfflineActions.isOnline() ? (
                                         <div aria-label="edit your last name">
                                             <input
                                                 type="text"
@@ -585,7 +585,7 @@ function Settings(props) {
                                                 Last Name: {props.user[0].last_name}
                                             </div>
                                         )}
-                                    {editEmail && isOnline() ? (
+                                    {editEmail && OfflineActions.isOnline() ? (
                                         <div aria-label="edit your email address">
                                             <input
                                                 type="email"
@@ -613,7 +613,7 @@ function Settings(props) {
                                                 Email: {props.user[0].email}
                                             </div>
                                         )}
-                                    {editPhone && isOnline() ? (
+                                    {editPhone && OfflineActions.isOnline() ? (
                                         <div aria-label="edit your phone number">
                                             <input
                                                 type="email"
@@ -641,7 +641,7 @@ function Settings(props) {
                                                 Phone: {props.user[0].phone || "Add today!"}
                                             </div>
                                         )}
-                                    {editPass && isOnline() ? (
+                                    {editPass && OfflineActions.isOnline() ? (
                                         <div aria-label="edit your password">
                                             <input
                                                 type="password"
@@ -679,7 +679,7 @@ function Settings(props) {
                                     >
                                         Current
                                     </div>
-                                    {isOnline() ? (
+                                    {OfflineActions.isOnline() ? (
                                         <div
                                             className={connectTab === "pending" ? "connect-half selected" : "connect-half"}
                                             onClick={() => setConnectTab("pending")}
@@ -701,7 +701,7 @@ function Settings(props) {
                                                         <div className="connect-user-name" aria-label="connection name">
                                                             {`${connection.requestor_first_name || connection.requested_first_name} ${connection.requestor_last_name || connection.requested_last_name}`}
                                                         </div>
-                                                        {isOnline() ? (
+                                                        {OfflineActions.isOnline() ? (
                                                             <div className="connect-user-options">
                                                                 <div className="option-button">
                                                                     <div className="send-list">
@@ -745,7 +745,7 @@ function Settings(props) {
                                                 ))}
                                             </div>
                                         ) : (<div className="connet-users-row">
-                                            {isOnline() ? (
+                                            {OfflineActions.isOnline() ? (
                                                 <div>
                                                     <input
                                                         type="email"
@@ -767,7 +767,7 @@ function Settings(props) {
                                     </div>
                                 ) : (<div className="connect-users-section">
                                     <div className="connet-users-row">
-                                        {isOnline() ? (
+                                        {OfflineActions.isOnline() ? (
                                             <div>
                                                 <input
                                                     type="email"

@@ -1,20 +1,20 @@
-const API = require("./api");
-// import API from "./api";
+// const API = require("./api");
+import API from "./api";
 
-module.exports = {
+export default {
     // return if the application is online or not
-    isOnline: () => {
+    isOnline: function() {
         return navigator.onLine;
     },
     saveToIndexedDB: (data, dbStore, kPath) => {
         return new Promise((resolve, reject) => {
-            window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDb;
+            let indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDb;
             // if indexedDB isn't support, reject so the front end can tell the user that the feature is unavailable
-            if (!window.indexedDB) {
+            if (!indexedDB) {
                 reject(false);
             }
             // open database
-            let request = window.indexedDB.open("g-list_db", 1),
+            let request = indexedDB.open("g-list_db", 1),
                 db,
                 tx,
                 store,
@@ -68,13 +68,13 @@ module.exports = {
     },
     bulkSend: () => {
         return new Promise((resolve, reject) => {
-            window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDb;
+            let indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDb;
             // if indexedDB isn't support, reject so the front end can tell the user that the feature is unavailable
-            if (!window.indexedDB) {
+            if (!indexedDB) {
                 reject(false);
             }
             // open database
-            let request = window.indexedDB.open("g-list_db", 1),
+            let request = indexedDB.open("g-list_db", 1),
                 db,
                 tx,
                 store
@@ -107,7 +107,7 @@ module.exports = {
                     // if there are any items in the store
                     if (allData.length) {
                         // send to bulk list items route
-                        API.default.bulkItems({ items: allData })
+                        API.bulkItems({ items: allData })
                             .then(res => {
                                 if (res.data.affectedRows > 0) {
                                     // close the db
@@ -127,13 +127,13 @@ module.exports = {
     },
     clearStore: (dbStore) => {
         return new Promise((resolve, reject) => {
-            window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDb;
+            let indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDb;
             // if indexedDB isn't support, reject so the front end can tell the user that the feature is unavailable
-            if (!window.indexedDB) {
+            if (!indexedDB) {
                 reject(false);
             }
             // open database
-            let request = window.indexedDB.open("g-list_db", 1),
+            let request = indexedDB.open("g-list_db", 1),
                 db,
                 tx,
                 store

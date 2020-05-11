@@ -10,7 +10,6 @@ import Modal from "../Modal";
 import LoadingBar from "../LoadingBar";
 import { isSavedToHome } from "../../utilities/promptSave";
 import OfflineActions from '../../utilities/offlineActions';
-// import { isOnline, saveToIndexedDB, bulkSend, clearStore } from '../../utilities/offlineActions';
 import moment from "moment";
 import "./style.scss";
 

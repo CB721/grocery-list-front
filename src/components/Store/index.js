@@ -7,7 +7,7 @@ import API from "../../utilities/api";
 import LoadingBar from "../LoadingBar";
 import Modal from "../Modal";
 import LoadingSpinner from "../LoadingSpinner";
-import { isOnline } from "../../utilities/offlineActions";
+import OfflineActions from "../../utilities/offlineActions";
 import "./style.scss";
 import ListHeader from "../ListHeader";
 
@@ -289,7 +289,7 @@ function Store(props) {
                 >
                     View Stores
                 </div>
-                {isOnline() ? (
+                {OfflineActions.isOnline() ? (
                     <div
                         className={add}
                         id="add"

@@ -4,7 +4,7 @@ import Button from "../Button";
 import List from "../List";
 import ListHeader from "../ListHeader";
 import Dropdown from "../Dropdown";
-import { isOnline } from "../../utilities/offlineActions";
+import OfflineActions from "../../utilities/offlineActions";
 import Flip from 'react-reveal/Flip';
 import "./style.scss";
 
@@ -34,7 +34,7 @@ function CreateList(props) {
         let value = event.target.value;
         setNewItem(value);
         // if the value length is greater than 3, call api for item suggestions
-        if (value.length > 3 && isOnline) {
+        if (value.length > 3 && OfflineActions.isOnline) {
             props.itemSuggestion({ search: value })
                 .then(res => {
                     setItemSuggestions(res);
@@ -138,7 +138,7 @@ function CreateList(props) {
             >
                 {list.length > 0 ? `Edit ${list[0].list_name || "list"}` : "New List"}
             </div>
-            {isOnline() ? (
+            {OfflineActions.isOnline() ? (
                 <div className="list-edit">
                     <Edit
                         className="edit-icon"
@@ -154,7 +154,7 @@ function CreateList(props) {
             </div>
             {savedListName.length > 0 && list.length > 0 ? (
                 <div />
-            ) : list.length > 0 && savedListName.length < 1 && isOnline() ? (
+            ) : list.length > 0 && savedListName.length < 1 && OfflineActions.isOnline() ? (
                 <div>
                     <input
                         type="text"
