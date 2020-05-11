@@ -1,4 +1,5 @@
 const API = require("./api");
+// import API from "./api";
 
 module.exports = {
     // return if the application is online or not
@@ -122,7 +123,7 @@ module.exports = {
                     }
                 }
             }
-        })
+        });
     },
     clearStore: (dbStore) => {
         return new Promise((resolve, reject) => {
@@ -154,6 +155,6 @@ module.exports = {
                 store.clear();
                 resolve();
             }
-        })
+        });
     }
 }

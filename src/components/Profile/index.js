@@ -9,7 +9,8 @@ import API from "../../utilities/api";
 import Modal from "../Modal";
 import LoadingBar from "../LoadingBar";
 import { isSavedToHome } from "../../utilities/promptSave";
-import { isOnline, saveToIndexedDB, bulkSend, clearStore } from '../../utilities/offlineActions';
+import OfflineActions from '../../utilities/offlineActions';
+// import { isOnline, saveToIndexedDB, bulkSend, clearStore } from '../../utilities/offlineActions';
 import moment from "moment";
 import "./style.scss";
 
@@ -49,7 +50,7 @@ function Profile(props) {
                 .then()
                 .catch(err => console.log(err));
         }
-        if (!isOnline) {
+        if (!OfflineActions.isOnline) {
             props.notification("While your device is offline, you can still add items to your list!");
         }
     }, []);
@@ -79,14 +80,14 @@ function Profile(props) {
         }
     }, { once: true });
     useEffect(() => {
-        if (updateOffline && isOnline()) {
-            bulkSend()
+        if (updateOffline && OfflineActions.isOnline()) {
+            OfflineActions.bulkSend()
                 .then(() => {
                     setUpdateOffline(false);
                     // get user list
                     getUserList();
                     // clear the store
-                    clearStore("list_items_store");
+                    OfflineActions.clearStore("list_items_store");
                     // notify the user their offline data has been saved
                     props.notification("Offline data saved!");
                 })
@@ -159,7 +160,7 @@ function Profile(props) {
         }
         setProgress(0);
         setModal(true);
-        if (isOnline()) {
+        if (OfflineActions.isOnline()) {
             API.addItem(listItem, config)
                 .then(() => {
                     props.notification(`${listItem.name} added to list`);
@@ -176,7 +177,7 @@ function Profile(props) {
             // add new item to the list to mock
             const newList = [...userList, listItem];
             // save item to indexeddb
-            saveToIndexedDB(listItem, "list_items", "name")
+            OfflineActions.saveToIndexedDB(listItem, "list_items", "name")
                 .then(() => {
                     // show success message
                     props.notification(`${listItem.name} added to list`);
