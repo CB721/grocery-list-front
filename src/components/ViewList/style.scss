@@ -56,3 +56,15 @@
     line-height: 1rem;
     color: $black;
 }
+.prev-list-search {
+    width: 100%;
+    margin-bottom: 5%;
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    .form-input {
+        width: 60%;
+        margin: 3.7% 2.5% 0 2.5%;
+        @include form-input;
+    }
+}

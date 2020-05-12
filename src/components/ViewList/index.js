@@ -23,6 +23,7 @@ function ViewList(props) {
     const [listMessage, setListMessage] = useState("");
     const [isMobile, setIsMobile] = useState(false);
     const [sortListBy, setSortListBy] = useState("");
+    const [searchPrevLists, setSearchPrevLists] = useState("");
 
     useEffect(() => {
         setList(props.list);
@@ -240,6 +241,31 @@ function ViewList(props) {
     useEffect(() => {
         filterByColumn();
     }, [sortListBy]);
+    function submitPrevListSearch() {
+        if (searchPrevLists) {
+            // if there is an error, just filter what is currently being displayed
+            OfflineActions.detectInternetSpeed()
+                .then(() => {
+                    // call api
+                    props.searchPreviousLists(searchPrevLists)
+                        .then(res => {
+                            setPreviousLists(res.data);
+                        })
+                })
+                .catch(() => {
+                    const filteredLists = previousLists.filter(list => {
+                        if (list.list_name && list.list_name.toLowerCase().indexOf(searchPrevLists.toLowerCase()) >= 0) {
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    });
+                    setPreviousLists(filteredLists);
+                });
+        } else {
+            getPreviousLists("DESC");
+        }
+    }
     return (
         <div className="view-list">
             <div className="list-view-options" aria-label="list options">
@@ -342,15 +368,44 @@ function ViewList(props) {
                     <div>
                         {previousLists.length > 0 ? (
                             <div aria-label="previous lists">
-                                <select
-                                    className="store-filter"
-                                    default="DESC"
-                                    onChange={(event) => viewListByDate(event)}
-                                    aria-label="view by date"
-                                >
-                                    <option value="DESC" aria-label="most recent">Newest First</option>
-                                    <option value="ASC" aria-label="oldest">Oldest First</option>
-                                </select>
+                                <div className="prev-list-search">
+                                    <input
+                                        type="text"
+                                        name="preveious list search"
+                                        value={searchPrevLists}
+                                        className="form-input"
+                                        onChange={event => setSearchPrevLists(event.target.value)}
+                                        placeholder="Search all of your past lists"
+                                    />
+                                    <div style={{ width: "32.5%", margin: "none" }}>
+                                        {searchPrevLists ? (
+                                            <Button
+                                                text="Search"
+                                                action={submitPrevListSearch}
+                                                class="white-button"
+                                            />
+                                        ) : (
+                                                <Button
+                                                    text="Reset"
+                                                    action={submitPrevListSearch}
+                                                    class="white-button"
+                                                />
+                                            )}
+                                    </div>
+                                </div>
+                                {searchPrevLists ? (
+                                    <div />
+                                ) : (
+                                        <select
+                                            className="store-filter"
+                                            default="DESC"
+                                            onChange={(event) => viewListByDate(event)}
+                                            aria-label="view by date"
+                                        >
+                                            <option value="DESC" aria-label="most recent">Newest First</option>
+                                            <option value="ASC" aria-label="oldest">Oldest First</option>
+                                        </select>
+                                    )}
                                 <div style={{ textAlign: "center" }}>
                                     Click To View List
                                 </div>

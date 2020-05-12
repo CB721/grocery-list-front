@@ -406,6 +406,7 @@ function Profile(props) {
                                             addEntirePreviousList={addEntirePreviousList}
                                             deleteItem={deleteItem}
                                             deleteList={deleteList}
+                                            searchPreviousLists={API.search_list_names}
                                         />
                                     )}
                         </div>

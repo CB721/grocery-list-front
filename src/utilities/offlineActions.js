@@ -6,6 +6,24 @@ export default {
     isOnline: function() {
         return navigator.onLine;
     },
+    detectInternetSpeed: function() {
+        return new Promise((resolve, reject) => {
+            // get the speed from the browser
+            const speed = navigator.connection.downlink;
+            // if it is undefined, than the browser doesn't support this, i.e and firefox
+            // or if the device is offline
+            if (!speed || !navigator.onLine) {
+                return reject("no downlink support");
+            }
+            // 4G at max is 10mbs, 3G is 3mbs, average to 6.2 and round down
+            if (speed < 6) {
+                return reject("Slow internet");
+            } else {
+                // if it is greater than 6, then the db can be searched
+                return resolve();
+            }
+        });
+    },
     saveToIndexedDB: (data, dbStore, kPath) => {
         return new Promise((resolve, reject) => {
             let indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDb;

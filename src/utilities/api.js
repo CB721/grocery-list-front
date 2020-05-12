@@ -113,5 +113,8 @@ export default {
     },
     bulkItems: function (data) {
         return axios.post(`${url}/api/lists/bulk`, data, { withCredentials: true });
+    },
+    search_list_names: function(search) {
+        return axios.get(`${url}/api/lists/user/full/all?search=%${search}%`, { withCredentials: true });
     }
 }
