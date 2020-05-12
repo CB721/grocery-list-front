@@ -28,9 +28,6 @@ function Home(props) {
         document.title = "G-List | Home";
     }, []);
     let history = useHistory();
-    function handleClick(name) {
-        window.location.href = `#${name.split(" ")[0]}`;
-    }
     function goToJoin(event) {
         event.preventDefault();
         if (props.user && props.user.length > 0) {
@@ -45,79 +42,7 @@ function Home(props) {
     }
     return (
         <div className="home">
-            <div className="divider" />
-            <div className="home-sections" style={{ height: "80vh" }}>
-                <div className="banner">
-                    <Zoom right cascade>
-                        Create and share grocery lists!
-                    </Zoom>
-                </div>
-            </div>
-            <div className="divider">Why G-List?</div>
-            <div className="home-sections">
-                <div style={{ marginLeft: "15%", marginRight: "15%" }}>
-                    {Benefits.map((item, index) => (
-                        <Slide left key={index}>
-                            <Card
-                                cardName={item.cardName}
-                                text={item.text}
-                                background={item.background}
-                                color={item.color}
-                                index={index}
-                                action={handleClick}
-                            />
-                        </Slide>
-                    ))}
-                </div>
-            </div>
-            <div
-                className="divider"
-                style={{ margin: "5vh 0", cursor: "pointer" }}
-                onClick={(event) => goToJoin(event)}
-            >
-                Join Today!
-            </div>
-            <div className="home-sections blue-bg">
-                <div className="about" id="about">
-                    About G-List
-                </div>
-                <div className="about-details">
-                    <p>
-                        So you've gone ahead and have planned out what you want from the store before you leave.  But week after week you have to re-create the same list. What about the pasta sauce you can only get at one store?  Or the fresh produce you get at your local farmer's market?
-                    </p>
-                    <p>
-                        How can you keep track of where you get everything you need and how urgently you need it? Often, you get the same items at the same stores.  Why would you continue to write a new list each time?
-                    </p>
-                    <p>
-                        Introducing G-List, the grocery list app to help you shop more effeciently allowing you to spend more time to focus on the important stuff.
-                    </p>
-                </div>
-            </div>
-            <div
-                className="divider"
-                style={{ margin: "5vh 0", cursor: "pointer" }}
-                onClick={(event) => goToJoin(event)}
-            >
-                Join Today!
-            </div>
-            {Benefits.map((item, index) => (
-                <div className="home-sections" key={index} style={{ borderRadius: "8px", marginBottom: "5vh" }} id={item.cardName.split(" ")[0]}>
-                    <ExtendedCard
-                        headerColor={item.color}
-                        headerTextColor={item.color}
-                        headerText={item.cardName}
-                        image={walkthroughs[index]}
-                        background={item.background}
-                    />
-                </div>
-            ))}
-            <div
-                className="divider"
-                style={{ margin: "5vh 0", cursor: "pointer" }}
-                onClick={(event) => goToPrivacy(event)}
-            >
-                View Our Privacy Statement
-            </div>
+            
         </div>
     )
 }
