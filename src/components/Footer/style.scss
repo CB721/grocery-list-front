@@ -4,7 +4,10 @@
     position: absolute;
     height: 10vh;
     min-height: 3.125rem;
-    background-color: $main-blue;
+    background: $white;
+    background: -moz-linear-gradient(0deg, $main-blue 0%, rgba(231,242,252,1) 100%);
+    background: -webkit-linear-gradient(0deg, $main-blue 0%, rgba(231,242,252,1) 100%);
+    background: linear-gradient(0deg, $white 0%, $main-blue 100%);
     bottom: 0;
     left: 0;
     right: 0;
@@ -14,6 +17,9 @@
     font-size: 1rem;
     z-index: 1000;
     color: $white;
+    &.not-home {
+        background: $main-blue;
+    }
     .footer-mobile-nav {
         display: flex;
         justify-content: flex-end;

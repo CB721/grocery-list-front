@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { ReactComponent as Bell } from "../../assets/images/bell.svg";
 import Notifcations from "../Notifications";
 import Modal from "../Modal";
@@ -23,7 +23,9 @@ function Footer(props) {
     const date = new Date();
     const currentYear = date.getFullYear();
     const isMobile = window.screen.availWidth < 500 ? true : false;
+    const [footerClass, setFooterClass] = useState("footer");
     let history = useHistory();
+    let location = useLocation();
     useEffect(() => {
         // if there are any notifications
         if (props.notifications.length > 0) {
@@ -46,7 +48,14 @@ function Footer(props) {
             filteredOptions.push(profileOption);
         }
         setFooterOptions(filteredOptions);
-    }, [props.navOptions])
+    }, [props.navOptions]);
+    useEffect(() => {
+        if (location.pathname === "/") {
+            setFooterClass("footer");
+        } else {
+            setFooterClass("footer not-home");
+        }
+    }, [location]);
     function goToPage(event, path) {
         event.preventDefault();
         // redirect to selected page
@@ -141,7 +150,7 @@ function Footer(props) {
             .catch(err => console.log(err));
     }
     return (
-        <div className="footer">
+        <div className={footerClass}>
             {isMobile ? (
                 <div className="footer-mobile-nav">
                     {modal ? (

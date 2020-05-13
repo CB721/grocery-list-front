@@ -1,0 +1,53 @@
+@import "../../App.scss";
+
+@mixin highlight-background($bgcolor) {
+    background: $bgcolor;
+    background: -moz-linear-gradient(0deg, darken($bgcolor, 10%) 0%, $bgcolor 100%);
+    background: -webkit-linear-gradient(0deg, darken($bgcolor, 10%) 0%, $bgcolor 100%);
+    background: linear-gradient(0deg, darken($bgcolor, 10%) 0%, $bgcolor 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=$bgcolor,endColorstr=$bgcolor,GradientType=1);
+}
+
+.highlight {
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    &.red {
+        @include highlight-background($red);
+    }
+    &.orange {
+        @include highlight-background($orange);
+    }
+    &.yellow {
+        @include highlight-background($yellow);
+    }
+    &.green {
+        @include highlight-background($green);
+    }
+    &.teal {
+        @include highlight-background(#0cbba1);
+    }
+    &.purple {
+        @include highlight-background($purple);
+    }
+    &.pink {
+        @include highlight-background($pink);
+    }
+    &.black {
+        @include highlight-background(#2f3338);
+    }
+    .display {
+        width: 100%;
+        height: 90%;
+    }
+    .description {
+        width: 100%;
+        min-height: 10%;
+        height: auto;
+        line-height: 2rem;
+        font-size: 1rem;
+        background-color: $main-blue;
+        color: $white;
+        text-align: center;
+    }
+}
