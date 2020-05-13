@@ -36,6 +36,7 @@ function App() {
   const [connections, setConnections] = useState([]);
   const [settingsTab, setSettingsTab] = useState("");
   const [isDark, setIsDark] = useState(false);
+  const [homeNewUserEmail, setHomeNewUserEmail] = useState("");
 
   useEffect(() => {
     toggleDarkMode();
@@ -394,11 +395,13 @@ function App() {
               <Home
                 {...props}
                 user={user}
+                setHomeNewUserEmail={setHomeNewUserEmail}
               />
             ) : (
                 <Home
                   {...props}
                   user={user}
+                  setHomeNewUserEmail={setHomeNewUserEmail}
                 />
               ))
           )} />
@@ -440,6 +443,7 @@ function App() {
                     user={user}
                     userLogin={userLogin}
                     notification={notification}
+                    homeNewUserEmail={homeNewUserEmail}
                   />
                 ))
             )}

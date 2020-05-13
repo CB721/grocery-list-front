@@ -39,30 +39,26 @@
   display: flex;
   justify-content: center;
   flex-basis: auto;
-  -webkit-box-shadow: 0px 7px 9px -1px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 0px 7px 9px -1px rgba(0, 0, 0, 0.75);
-  box-shadow: 0px 7px 9px -1px rgba(0, 0, 0, 0.75);
   .home-section {
-    width: 40%;
     height: 60vh;
     background: $main-blue;
     border-radius: 8px;
     color: $white;
     &:first-child {
-      margin-right: 10%;
+      width: 50%;
+      margin-right: 5%;
     }
     &:last-child {
-      margin-left: 10%;
+      width: 40%;
+      margin-left: 5%;
     }
-    -webkit-box-shadow: 0 5rem 5rem rgba(#2f3338, 0.4);
-    -moz-box-shadow: 0 5rem 5rem rgba(#2f3338, 0.4);
-    box-shadow: 0 5rem 5rem rgba(#2f3338, 0.4);
     -webkit-animation: bounce-in-top 2s both;
     animation: bounce-in-top 2s both;
     @-webkit-keyframes bounce-in-top {
       0% {
         -webkit-transform: translateY(-500px);
         transform: translateY(-500px);
+        -webkit-box-shadow: 0 2.5rem 5rem 2.5rem rgba(#2f3338, 0);
         -webkit-animation-timing-function: ease-in;
         animation-timing-function: ease-in;
         opacity: 0;
@@ -107,6 +103,7 @@
       100% {
         -webkit-transform: translateY(0);
         transform: translateY(0);
+        -webkit-box-shadow: 0 2.5rem 5rem 2.5rem rgba(#2f3338, 0.4);
         -webkit-animation-timing-function: ease-out;
         animation-timing-function: ease-out;
       }
@@ -115,6 +112,8 @@
       0% {
         -webkit-transform: translateY(-500px);
         transform: translateY(-500px);
+        -moz-box-shadow: 0 2.5rem 5rem 2.5rem rgba(#2f3338, 0);
+        box-shadow: 0 2.5rem 5rem 2.5rem rgba(#2f3338, 0);
         -webkit-animation-timing-function: ease-in;
         animation-timing-function: ease-in;
         opacity: 0;
@@ -159,6 +158,8 @@
       100% {
         -webkit-transform: translateY(0);
         transform: translateY(0);
+        -moz-box-shadow: 0 2.5rem 5rem 2.5rem rgba(#2f3338, 0.2);
+        box-shadow: 0 2.5rem 5rem 2.5rem rgba(#2f3338, 0.2);
         -webkit-animation-timing-function: ease-out;
         animation-timing-function: ease-out;
       }
@@ -210,6 +211,7 @@
         }
       }
       #existing-user {
+        margin-top: 5vh;
         p {
           text-align: center;
           height: 2.2rem;
@@ -221,7 +223,7 @@
         }
       }
       #privacy-section {
-        margin-top: 10vh;
+        margin-top: 5vh;
         p {
           text-align: center;
           height: 2.2rem;
@@ -248,16 +250,36 @@
           border-radius: 8px;
           border-width: 0;
           color: $white;
-          background-color: $purple;
           transition: 0.3s;
           -webkit-box-shadow: 0px 0px 8px -1px rgba($black, 0.75);
           -moz-box-shadow: 0px 0px 8px -1px rgba($black, 0.75);
           box-shadow: 0px 0px 8px -1px rgba(0, 0, 0, 0.75);
+          &.red {
+            background-color: $red;
+          }
           &.orange {
             background-color: $orange;
           }
+          &.yellow {
+            background-color: $yellow;
+          }
+          &.green {
+            background-color: $green;
+          }
+          &.teal {
+            background-color: #0cbba1;
+          }
+          &.purple {
+            background-color: $purple;
+          }
+          &.pink {
+            background-color: $pink;
+          }
           &.grey {
             background-color: grey;
+          }
+          &.black {
+            background-color: #2F3338;
           }
           &:hover {
             cursor: pointer;

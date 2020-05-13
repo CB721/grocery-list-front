@@ -8,23 +8,33 @@ import "./style.scss";
 function Home(props) {
     const [currBenefitIndex, setCurrBenefitIndex] = useState(0);
     const [backButtonClass, setBackButtonClass] = useState("direction-button grey");
-    const [nextButtonClass, setNextButtonClass] = useState("direction-button orange");
+    const [nextButtonClass, setNextButtonClass] = useState(`direction-button ${Benefits[1].color}`);
+    const [newUserEmail, setNewUserEmail] = useState("");
     useEffect(() => {
         document.title = "G-List | Home";
     }, []);
-    // let history = useHistory();
-    // function goToJoin(event) {
-    //     event.preventDefault();
-    //     if (props.user && props.user.length > 0) {
-    //         history.push("/profile");
-    //     } else {
-    //         history.push("/join");
-    //     }
-    // }
-    // function goToPrivacy(event) {
-    //     event.preventDefault();
-    //     history.push("/privacy");
-    // }
+    let history = useHistory();
+    function goToJoin(event) {
+        event.preventDefault();
+        if (props.user && props.user.length > 0) {
+            history.push("/profile");
+        } else {
+            props.setHomeNewUserEmail(newUserEmail);
+            history.push("/join");
+        }
+    }
+    useEffect(() => {
+        if (currBenefitIndex === 0) {
+            setBackButtonClass("direction-button grey");
+            setNextButtonClass(`direction-button ${Benefits[1].color}`);
+        } else if (currBenefitIndex > 0 && currBenefitIndex < 7) {
+            setBackButtonClass(`direction-button ${Benefits[currBenefitIndex - 1].color}`);
+            setNextButtonClass(`direction-button ${Benefits[currBenefitIndex + 1].color}`);
+        } else {
+            setBackButtonClass(`direction-button ${Benefits[currBenefitIndex - 1].color}`);
+            setNextButtonClass("direction-button grey");
+        }
+    }, [currBenefitIndex]);
     function nextBenefit(event, direction) {
         event.preventDefault();
         // if the user can can go backwards
@@ -86,9 +96,12 @@ function Home(props) {
                             type="email"
                             placeholder="Your email address"
                             id="form-input"
+                            value={newUserEmail}
+                            onChange={(event) => setNewUserEmail(event.target.value)}
                         />
                         <button 
                             id="submit-new-user"
+                            onClick={(event) => goToJoin(event)}
                         >
                             Join!
                         </button>
@@ -97,6 +110,7 @@ function Home(props) {
                         <p>Already have an account?</p>
                         <button
                             id="login-exisiting-user"
+                            onClick={() => history.push("/login")}
                         >
                             Login
                         </button>
@@ -105,6 +119,7 @@ function Home(props) {
                         <p>We are all about privacy!  Check out what we think</p>
                         <button
                             id="view-privacy"
+                            onClick={() => history.push("/privacy")}
                         >
                             View
                         </button>
