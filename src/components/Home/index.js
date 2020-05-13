@@ -116,7 +116,7 @@ function Home(props) {
                         </button>
                     </div>
                     <div id="privacy-section">
-                        <p>We are all about privacy!  Check out what we think</p>
+                        <p>We are all about privacy!</p>
                         <button
                             id="view-privacy"
                             onClick={() => history.push("/privacy")}

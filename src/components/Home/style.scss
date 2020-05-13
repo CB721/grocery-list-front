@@ -1,9 +1,9 @@
 @import "../../App.scss";
 
-@mixin home-button($bgcolor) {
+@mixin home-button($bgcolor, $size) {
   width: 25%;
-  height: 2.2rem;
-  line-height: 2.2rem;
+  height: $size;
+  line-height: $size;
   font-size: 1.5rem;
   border-radius: 8px;
   border-width: 0;
@@ -39,6 +39,10 @@
   display: flex;
   justify-content: center;
   flex-basis: auto;
+  @media only screen and (max-width: 500px) {
+    padding: 5%;
+    display: block;
+  }
   .home-section {
     height: 60vh;
     background: $main-blue;
@@ -51,6 +55,13 @@
     &:last-child {
       width: 40%;
       margin-left: 5%;
+    }
+    @media only screen and (max-width: 500px) {
+      &:first-child, &:last-child {
+        height: auto;
+        width: 98%;
+        margin: 10% 1%;
+      }
     }
     -webkit-animation: bounce-in-top 2s both;
     animation: bounce-in-top 2s both;
@@ -205,21 +216,25 @@
         #form-input {
           width: 50%;
           @include form-input;
+          height: 3rem;
         }
         #submit-new-user {
-          @include home-button($pink);
+          @include home-button($pink, 3.2rem);
         }
       }
       #existing-user {
         margin-top: 5vh;
         p {
           text-align: center;
-          height: 2.2rem;
-          line-height: 2.2rem;
+          height: 3rem;
+          line-height: 3rem;
           font-size: 1.5rem;
+          @media only screen and (max-width: 500px) {
+            font-size: 1rem;
+          }
         }
         #login-exisiting-user {
-          @include home-button(rgb(4, 104, 205));
+          @include home-button(rgb(4, 104, 205), 3rem);
         }
       }
       #privacy-section {
@@ -231,7 +246,7 @@
           font-size: 1rem;
         }
         #view-privacy {
-          @include home-button($purple);
+          @include home-button($purple, 2rem);
         }
       }
       #highlight-section {
