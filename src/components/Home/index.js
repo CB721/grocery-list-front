@@ -3,6 +3,9 @@ import { useHistory } from "react-router-dom";
 import Highlight from "../Highlight";
 import Benefits from "../../assets/data/benefits.json";
 import Button from "../Button";
+import { ReactComponent as ListIcon } from "../../assets/images/List.svg";
+import { ReactComponent as StoreIcon } from "../../assets/images/store.svg";
+import { ReactComponent as RecipeBook } from "../../assets/images/recipebook.svg";
 import "./style.scss";
 
 function Home(props) {
@@ -61,9 +64,15 @@ function Home(props) {
                 <div className="content">
                     <header>Why G-List?</header>
                     <div id="highlight-section">
-                        <Highlight
-                            currBenefit={Benefits[currBenefitIndex]}
+                        <RecipeBook
+
                         />
+                        {/* <StoreIcon
+
+                        /> */}
+                        {/* <Highlight
+                            currBenefit={Benefits[currBenefitIndex]}
+                        /> */}
                     </div>
                     <div className="direction-section">
                         <button
@@ -99,7 +108,7 @@ function Home(props) {
                             value={newUserEmail}
                             onChange={(event) => setNewUserEmail(event.target.value)}
                         />
-                        <button 
+                        <button
                             id="submit-new-user"
                             onClick={(event) => goToJoin(event)}
                         >
