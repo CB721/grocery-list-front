@@ -6,6 +6,13 @@ import Button from "../Button";
 import { ReactComponent as ListIcon } from "../../assets/images/List.svg";
 import { ReactComponent as StoreIcon } from "../../assets/images/store.svg";
 import { ReactComponent as RecipeBook } from "../../assets/images/recipebook.svg";
+import { ReactComponent as BlueCar } from "../../assets/images/bluecar.svg";
+import { ReactComponent as ChefHat } from "../../assets/images/chefhat.svg";
+import { ReactComponent as HandWithPhone } from "../../assets/images/handwithphone.svg";
+import { ReactComponent as ManIcon } from "../../assets/images/man.svg";
+import { ReactComponent as RedCar } from "../../assets/images/redcar.svg";
+import { ReactComponent as Trees } from "../../assets/images/trees.svg";
+import { ReactComponent as Woman } from "../../assets/images/woman.svg";
 import "./style.scss";
 
 function Home(props) {
@@ -64,10 +71,13 @@ function Home(props) {
                 <div className="content">
                     <header>Why G-List?</header>
                     <div id="highlight-section">
-                        <RecipeBook
+                        {/* <RecipeBook
 
-                        />
-                        {/* <StoreIcon
+                        /> */}
+                        {/* <ListIcon
+
+                        /> */}
+                        {/* <RedCar
 
                         /> */}
                         {/* <Highlight
@@ -75,7 +85,7 @@ function Home(props) {
                         /> */}
                     </div>
                     <div className="direction-section">
-                        <button
+                        {/* <button
                             className={backButtonClass}
                             onClick={event => nextBenefit(event, "back")}
                         >
@@ -86,7 +96,7 @@ function Home(props) {
                             onClick={event => nextBenefit(event, "next")}
                         >
                             Next
-                        </button>
+                        </button> */}
                     </div>
                 </div>
             </section>
