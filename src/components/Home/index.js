@@ -13,6 +13,7 @@ import { ReactComponent as ManIcon } from "../../assets/images/man.svg";
 import { ReactComponent as RedCar } from "../../assets/images/redcar.svg";
 import { ReactComponent as Trees } from "../../assets/images/trees.svg";
 import { ReactComponent as Woman } from "../../assets/images/woman.svg";
+import { ReactComponent as Road } from "../../assets/images/road.svg";
 import "./style.scss";
 
 function Home(props) {
@@ -71,15 +72,7 @@ function Home(props) {
                 <div className="content">
                     <header>Why G-List?</header>
                     <div id="highlight-section">
-                        {/* <RecipeBook
-
-                        /> */}
-                        {/* <ListIcon
-
-                        /> */}
-                        {/* <RedCar
-
-                        /> */}
+                        <Road />
                         {/* <Highlight
                             currBenefit={Benefits[currBenefitIndex]}
                         /> */}

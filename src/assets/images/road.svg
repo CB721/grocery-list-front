@@ -1,0 +1,12 @@
+<svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
+	<path id="Rectangle" d="M0 500 L500 500 500 300 0 300 Z" fill="#3a3a3c" fill-opacity="1" stroke="none" />
+	<path id="Rectangle-1" d="M0 405 L40 405 40 395 0 395 Z" fill="#ffffff" fill-opacity="1" stroke="none" />
+	<path id="Rectangle-2" d="M60 405 L100 405 100 395 60 395 Z" fill="#ffffff" fill-opacity="1" stroke="none" />
+	<path id="Rectangle-3" d="M120 405 L160 405 160 395 120 395 Z" fill="#ffffff" fill-opacity="1" stroke="none" />
+	<path id="Rectangle-4" d="M180 405 L220 405 220 395 180 395 Z" fill="#ffffff" fill-opacity="1" stroke="none" />
+	<path id="Rectangle-5" d="M240 405 L280 405 280 395 240 395 Z" fill="#ffffff" fill-opacity="1" stroke="none" />
+	<path id="Rectangle-6" d="M300 405 L340 405 340 395 300 395 Z" fill="#ffffff" fill-opacity="1" stroke="none" />
+	<path id="Rectangle-7" d="M360 405 L400 405 400 395 360 395 Z" fill="#ffffff" fill-opacity="1" stroke="none" />
+	<path id="Rectangle-8" d="M420 405 L460 405 460 395 420 395 Z" fill="#ffffff" fill-opacity="1" stroke="none" />
+	<path id="Rectangle-9" d="M480 405 L500 405 500 395 480 395 Z" fill="#ffffff" fill-opacity="1" stroke="none" />
+</svg>
