@@ -72,13 +72,13 @@ function Home(props) {
                 <div className="content">
                     <header>Why G-List?</header>
                     <div id="highlight-section">
-                        <Road />
-                        {/* <Highlight
+                        {/* <Road /> */}
+                        <Highlight
                             currBenefit={Benefits[currBenefitIndex]}
-                        /> */}
+                        />
                     </div>
                     <div className="direction-section">
-                        {/* <button
+                        <button
                             className={backButtonClass}
                             onClick={event => nextBenefit(event, "back")}
                         >
@@ -89,7 +89,7 @@ function Home(props) {
                             onClick={event => nextBenefit(event, "next")}
                         >
                             Next
-                        </button> */}
+                        </button>
                     </div>
                 </div>
             </section>
