@@ -28,6 +28,7 @@ import { ReactComponent as Apple } from "../../assets/images/apple.svg";
 import { ReactComponent as SendIcon } from "../../assets/images/send.svg";
 import { ReactComponent as Cereal } from "../../assets/images/cerealbox.svg";
 import { ReactComponent as Phone } from "../../assets/images/phone.svg";
+import { ReactComponent as Bag } from "../../assets/images/grocerybag.svg";
 import "./style.scss";
 
 function Home(props) {
@@ -36,13 +37,14 @@ function Home(props) {
     const [nextButtonClass, setNextButtonClass] = useState(`direction-button ${Benefits[1].color}`);
     const [newUserEmail, setNewUserEmail] = useState("");
     const [currSVGs, setCurrSVGs] = useState(<div className="image-area">
-        <Apple />
-        <Burger />
-        <Orange />
-        <IceCream />
-        <Rice />
-        <Taco />
-        <Grapes />
+        <Apple className="food-icons apple-icon" />
+        {/* <Burger className="food-icons burger-icon" />
+        <Orange className="food-icons orange-icon" />
+        <IceCream className="food-icons icecream-icon" />
+        <Rice className="food-icons rice-icon" />
+        <Taco className="food-icons taco-icon" />
+        <Grapes className="food-icons grapes-icon" /> */}
+        <Bag className="bag-icon" />
     </div>);
     useEffect(() => {
         document.title = "G-List | Home";
@@ -73,48 +75,49 @@ function Home(props) {
         switch (currBenefitIndex) {
             case 0:
                 setCurrSVGs(<div className="image-area">
-                    <Apple />
-                    <Burger />
-                    <Orange />
-                    <IceCream />
-                    <Rice />
-                    <Taco />
-                    <Grapes />
+                    <Bag className="bag-icon" />
+                    <Apple className="food-icons apple-icon" />
+                    <Burger className="food-icons burger-icon" />
+                    <Orange className="food-icons orange-icon" />
+                    <IceCream className="food-icons icecream-icon" />
+                    <Rice className="food-icons rice-icon" />
+                    <Taco className="food-icons taco-icon" />
+                    <Grapes className="food-icons grapes-icon" />
                 </div>);
                 break;
             case 1:
                 setCurrSVGs(<div className="image-area">
-                    <HandWithPhone />
-                    <ListIcon />
+                    {/* <HandWithPhone className="handphone-icon" />
+                    <ListIcon className="list-icon" /> */}
                 </div>);
                 break;
             case 2:
                 setCurrSVGs(<div className="image-area">
-                    <StoreIcon />
-                    <BlueCar />
-                    <RedCar />
-                    <Road />
-                    <Cart />
-                    <Trees />
+                    <StoreIcon className="store-icon" />
+                    <BlueCar className="car-icon" />
+                    <RedCar className="car-icon" />
+                    <Road className="road-icon" />
+                    <Cart className="cart-icon" />
+                    <Trees className="trees-icon" />
                 </div>);
                 break;
             case 3:
                 setCurrSVGs(<div className="image-area">
-                    <SendIcon />
-                    <Woman />
-                    <ManIcon />
-                    <Phone />
-                    <Cereal />
+                    <SendIcon className="send-icon" />
+                    <Woman className="woman-icon" />
+                    <ManIcon className="man-icon" />
+                    <Phone className="phone-icon" />
+                    <Cereal className="food-icons cereal-icon" />
                 </div>);
                 break;
             case 4:
                 setCurrSVGs(<div className="image-area">
-                    <RecipeBook />
-                    <ChefHat />
-                    <Bread />
-                    <Wine />
-                    <Tomato />
-                    <Potato />
+                    <RecipeBook className="recipes-icon" />
+                    <ChefHat className="chef-icon" />
+                    <Bread className="food-icons bread-icon" />
+                    <Wine className="food-icons wine-icon" />
+                    <Tomato className="food-icons tomato-icon" />
+                    <Potato className="food-icons potato-icon" />
                 </div>);
                 break;
             default:
