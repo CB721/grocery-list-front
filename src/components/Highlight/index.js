@@ -1,11 +1,12 @@
 import React from 'react';
 import "./style.scss";
 
-function Hightlight({ currBenefit, svgs }) {
+function Hightlight({ currBenefit, svgs, svg }) {
+    // console.log(svg, svgs);
     return (
         <div className={`highlight ${currBenefit.color}`}>
             <div className="display">
-                {svgs}
+                    {svg}
                 <div className="description">
                     {currBenefit.text}
                 </div>

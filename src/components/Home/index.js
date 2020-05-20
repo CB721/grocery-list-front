@@ -29,6 +29,9 @@ import { ReactComponent as SendIcon } from "../../assets/images/send.svg";
 import { ReactComponent as Cereal } from "../../assets/images/cerealbox.svg";
 import { ReactComponent as Phone } from "../../assets/images/phone.svg";
 import { ReactComponent as Bag } from "../../assets/images/grocerybag.svg";
+import { ReactComponent as BagStart } from "../../assets/images/grocerybag-start.svg";
+import { ReactComponent as BagMiddle } from "../../assets/images/grocerybag-middle.svg";
+import { ReactComponent as BagEnd } from "../../assets/images/grocerybag-end.svg";
 import "./style.scss";
 
 function Home(props) {
@@ -59,6 +62,46 @@ function Home(props) {
             history.push("/join");
         }
     }
+    // amount of svgs for each benefit in the order that the benefit appears
+    const [svgList, setSvgList] = useState([3]);
+    const [currSvg, setCurrSvg] = useState();
+    useEffect(() => {
+
+        let currSvgIndex = 0;
+        if (currBenefitIndex === 0) {
+            setCurrSvg(
+                <div className="image-area">
+                    <BagStart className="bag" />
+                </div>);
+        }
+        // counter for iterating between svgs
+        setInterval(function () {
+            // if the counter hasn't reached the end of the svg list
+            if (currBenefitIndex === 0) {
+                if (currSvgIndex < 3) {
+                    if (currSvgIndex === 0) {
+                        setCurrSvg(
+                            <div className="image-area">
+                                <BagStart className="bag" />
+                            </div>);
+                    } else if (currSvgIndex === 1) {
+                        setCurrSvg(
+                            <div className="image-area">
+                                <BagMiddle className="bag" />
+                            </div>);
+                    } else if (currSvgIndex === 2) {
+                        setCurrSvg(
+                            <div className="image-area">
+                                <BagEnd className="bag" />
+                            </div>);
+                    }
+                    currSvgIndex++;
+                } else {
+                    currSvgIndex = 0;
+                }
+            }
+        }, 3000);
+    }, [svgList]);
     useEffect(() => {
         // set the button colors
         if (currBenefitIndex === 0) {
@@ -75,15 +118,31 @@ function Home(props) {
         switch (currBenefitIndex) {
             case 0:
                 setCurrSVGs(<div className="image-area">
-                    <Bag className="bag-icon" />
+                    <BagStart className="bag-start" />
+                    <BagMiddle className="bag-middle" />
+                    <BagEnd className="bag-end" />
+                    {/* <Bag className="bag-icon" />
                     <Apple className="food-icons apple-icon" />
                     <Burger className="food-icons burger-icon" />
                     <Orange className="food-icons orange-icon" />
                     <IceCream className="food-icons icecream-icon" />
                     <Rice className="food-icons rice-icon" />
                     <Taco className="food-icons taco-icon" />
-                    <Grapes className="food-icons grapes-icon" />
+                    <Grapes className="food-icons grapes-icon" /> */}
                 </div>);
+                // setCurrSVGs(<div className="image-area">
+                //     <BagStart className="bag-start" />
+                //     <BagMiddle className="bag-middle" />
+                //     <BagEnd className="bag-end" />
+                //     {/* <Bag className="bag-icon" />
+                //     <Apple className="food-icons apple-icon" />
+                //     <Burger className="food-icons burger-icon" />
+                //     <Orange className="food-icons orange-icon" />
+                //     <IceCream className="food-icons icecream-icon" />
+                //     <Rice className="food-icons rice-icon" />
+                //     <Taco className="food-icons taco-icon" />
+                //     <Grapes className="food-icons grapes-icon" /> */}
+                // </div>);
                 break;
             case 1:
                 setCurrSVGs(<div className="image-area">
@@ -142,6 +201,7 @@ function Home(props) {
                         <Highlight
                             currBenefit={Benefits[currBenefitIndex]}
                             svgs={currSVGs}
+                            svg={currSvg}
                         />
                     </div>
                     <div className="direction-section">

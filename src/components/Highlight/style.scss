@@ -44,144 +44,215 @@
             width: 100%;
             height: 85%;
             position: relative;
-            .food-icons {
-                height: 2rem;
-                width: 2rem;
-                z-index: 99;
+            .bag {
                 position: absolute;
-            }
-            @mixin drop-food($name, $start, $end, $top, $delay, $rotate) {
-                -webkit-animation: $name 1s linear $delay both;
-                animation: $name 1s linear $delay both;
-                @-webkit-keyframes #{$name} {
-                    0% {
-                        opacity: 0;
-                        transform: rotate(0);
-                        top: -20%;
-                        left: $start;
-                    }
-                    34% {
-                        opacity: 0;
-                    }
-                    35% {
-                        top: 0;
-                        left: 0;
-                        opacity: 1;
-                    }
-                    58% {
-                        top: 25%;
-                    }
-                    100% {
-                        top: $top;
-                        transform: $rotate;
-                        left: $end;
-                    }
-                }
-                @keyframes #{$name} {
-                    0% {
-                        opacity: 0;
-                        transform: rotate(0);
-                        top: -20%;
-                        left: $start;
-                    }
-                    34% {
-                        opacity: 0;
-                    }
-                    35% {
-                        top: 0;
-                        left: 0;
-                        opacity: 1;
-                    }
-                    58% {
-                        top: 25%;
-                    }
-                    100% {
-                        top: $top;
-                        transform: $rotate;
-                        left: $end;
-                    }
-                }
-            }
-            .apple-icon {
-                z-index: 90;
-                @include drop-food(apple, 0, 55%, 41%, 2.5s, rotate(-25deg));
-                @media only screen and (max-width: 500px) {
-                    @include drop-food(apple, 0, 62%, 29%, 2.5s, rotate(-25deg));
-                }
-            }
-            .burger-icon {
-                z-index: 85;
-                @include drop-food(burger, 0, 45%, 40%, 4s, rotate(-22deg));
-                @media only screen and (max-width: 500px) {
-                    @include drop-food(burger, 0, 45%, 28%, 4s, rotate(-22deg));
-                }
-            }
-            .orange-icon {
-                z-index: 86;
-                @include drop-food(orangefruit, 98%, 52%, 40%, 3.2s, rotate(25deg));
-                @media only screen and (max-width: 500px) {
-                    @include drop-food(orangefruit, 98%, 58%, 28%, 3.2s, rotate(25deg));
-                }
-            }
-            .icecream-icon {
-                z-index: 83;
-                @include drop-food(icecream, 98%, 39%, 40%, 4.7s, rotate(15deg));
-                @media only screen and (max-width: 500px) {
-                    @include drop-food(icecream, 98%, 30%, 28%, 4.7s, rotate(15deg));
-                }
-            }
-            .rice-icon {
-                z-index: 91;
-                @include drop-food(rice, 98%, 42%, 40%, 6.2s, rotate(-5deg));
-                @media only screen and (max-width: 500px) {
-                    @include drop-food(rice, 98%, 35%, 28%, 6.2s, rotate(-5deg));
-                }
-            }
-            .taco-icon {
-                z-index: 82;
-                @include drop-food(taco, 0, 50%, 37%, 5.5s, rotate(41deg));
-                @media only screen and (max-width: 500px) {
-                    @include drop-food(taco, 0, 50%, 25%, 5.5s, rotate(41deg));
-                }
-            }
-            .grapes-icon {
-                z-index: 89;
-                @include drop-food(grapes, 0, 38.5%, 40%, 7s, rotate(1deg));
-                @media only screen and (max-width: 500px) {
-                    @include drop-food(grapes, 0, 25.5%, 28%, 7s, rotate(1deg));
-                }
-            }
-            .bag-icon {
-                z-index: 100;
-                position: absolute;
+                left: 0;
                 width: 100%;
-                -webkit-animation: slide-up 0.5s linear 2s both;
-                animation: slide-up 0.5s linear 2s both;
-                @-webkit-keyframes slide-up {
-                    0% {
-                        bottom: 25%;
-                        // transform: rotate(-22deg);
-                        opacity: 0;
-                    }
-                    100% {
-                        bottom: -2%;
-                        transform: rotate(0);
-                        opacity: 1;
-                    }
-                }
-                @keyframes slide-up {
-                    0% {
-                        bottom: 25%;
-                        // transform: rotate(-22deg);
-                        opacity: 0;
-                    }
-                    100% {
-                        bottom: -2%;
-                        transform: rotate(0);
-                        opacity: 1;
-                    }
-                }
+                transition: 0.3s;
             }
+            // .food-icons {
+            //     height: 2rem;
+            //     width: 2rem;
+            //     z-index: 99;
+            //     position: absolute;
+            // }
+            // @mixin drop-food($name, $start, $end, $top, $delay, $rotate) {
+            //     -webkit-animation: $name 1s linear $delay both;
+            //     animation: $name 1s linear $delay both;
+            //     @-webkit-keyframes #{$name} {
+            //         0% {
+            //             opacity: 0;
+            //             transform: rotate(0);
+            //             top: -20%;
+            //             left: $start;
+            //         }
+            //         34% {
+            //             opacity: 0;
+            //         }
+            //         35% {
+            //             top: 0;
+            //             left: 0;
+            //             opacity: 1;
+            //         }
+            //         58% {
+            //             top: 25%;
+            //         }
+            //         100% {
+            //             top: $top;
+            //             transform: $rotate;
+            //             left: $end;
+            //         }
+            //     }
+            //     @keyframes #{$name} {
+            //         0% {
+            //             opacity: 0;
+            //             transform: rotate(0);
+            //             top: -20%;
+            //             left: $start;
+            //         }
+            //         34% {
+            //             opacity: 0;
+            //         }
+            //         35% {
+            //             top: 0;
+            //             left: 0;
+            //             opacity: 1;
+            //         }
+            //         58% {
+            //             top: 25%;
+            //         }
+            //         100% {
+            //             top: $top;
+            //             transform: $rotate;
+            //             left: $end;
+            //         }
+            //     }
+            // }
+            // .apple-icon {
+            //     z-index: 90;
+            //     @include drop-food(apple, 0, 20vw, 15vh, 2.5s, rotate(-25deg));
+            //     // $name, $start, $end, $top, $delay, $rotate
+            //     @media only screen and (max-width: 770px) {
+            //         @include drop-food(apple, 0, 60%, 53.5%, 2.5s, rotate(-25deg));
+            //     }
+            //     @media only screen and (max-width: 500px) and (max-height: 740px) {
+            //         @include drop-food(apple, 0, 60%, 35%, 2.5s, rotate(-25deg));
+            //     }
+            //     @media only screen and (max-width: 500px) and (max-height: 670px) {
+            //         @include drop-food(apple, 0, 62%, 29%, 2.5s, rotate(-25deg));
+            //     }
+            //     @media only screen and (max-width: 500px) and (max-height: 575px) {
+            //         @include drop-food(apple, 0, 62%, 15%, 2.5s, rotate(-25deg));
+            //     }
+            // }
+            // .burger-icon {
+            //     z-index: 85;
+            //     @include drop-food(burger, 0, 45%, 40%, 4s, rotate(-22deg));
+            //     // $name, $start, $end, $top, $delay, $rotate
+            //     @media only screen and (max-width: 770px) {
+            //         @include drop-food(burger, 0, 43%, 52.5%, 2.5s, rotate(-22deg));
+            //     }
+            //     @media only screen and (max-width: 500px) and (max-height: 740px) {
+            //         @include drop-food(burger, 0, 43%, 34%, 2.5s, rotate(-22deg));
+            //     }
+            //     @media only screen and (max-width: 500px) and (max-height: 670px) {
+            //         @include drop-food(burger, 0, 45%, 28%, 4s, rotate(-22deg));
+            //     }
+            //     @media only screen and (max-width: 500px) and (max-height: 575px) {
+            //         @include drop-food(burger, 0, 45%, 14%, 4s, rotate(-22deg));
+            //     }
+            // }
+            // .orange-icon {
+            //     z-index: 86;
+            //     @include drop-food(orangefruit, 98%, 52%, 40%, 3.2s, rotate(25deg));
+            //     @media only screen and (max-width: 770px) {
+            //         @include drop-food(orangefruit, 0, 56%, 52.5%, 2.5s, rotate(-25deg));
+            //     }
+            //     @media only screen and (max-width: 500px) and (max-height: 740px) {
+            //         @include drop-food(orangefruit, 0, 56%, 34%, 2.5s, rotate(-25deg));
+            //     }
+            //     @media only screen and (max-width: 500px) and (max-height: 670px) {
+            //         @include drop-food(orangefruit, 98%, 58%, 28%, 3.2s, rotate(25deg));
+            //     }
+            //     @media only screen and (max-width: 500px) and (max-height: 575px) {
+            //         @include drop-food(orangefruit, 98%, 58%, 14%, 3.2s, rotate(25deg));
+            //     }
+            // }
+            // .icecream-icon {
+            //     z-index: 83;
+            //     @include drop-food(icecream, 98%, 39%, 40%, 4.7s, rotate(15deg));
+            //     @media only screen and (max-width: 770px) {
+            //         @include drop-food(icecream, 0, 28%, 52.5%, 2.5s, rotate(-25deg));
+            //     }
+            //     @media only screen and (max-width: 500px) and (max-height: 740px) {
+            //         @include drop-food(icecream, 0, 28%, 34%, 2.5s, rotate(-25deg));
+            //     }
+            //     @media only screen and (max-width: 500px) and (max-height: 670px) {
+            //         @include drop-food(icecream, 98%, 30%, 28%, 4.7s, rotate(15deg));
+            //     }
+            //     @media only screen and (max-width: 500px) and (max-height: 575px) {
+            //         @include drop-food(icecream, 98%, 30%, 14%, 4.7s, rotate(15deg));
+            //     }
+            // }
+            // .rice-icon {
+            //     z-index: 91;
+            //     @include drop-food(rice, 98%, 42%, 40%, 6.2s, rotate(-5deg));
+            //     @media only screen and (max-width: 770px) {
+            //         @include drop-food(rice, 0, 33%, 52.5%, 2.5s, rotate(-25deg));
+            //     }
+            //     @media only screen and (max-width: 500px) and (max-height: 740px) {
+            //         @include drop-food(rice, 0, 33%, 34%, 2.5s, rotate(-25deg));
+            //     }
+            //     @media only screen and (max-width: 500px) and (max-height: 670px) {
+            //         @include drop-food(rice, 98%, 35%, 28%, 6.2s, rotate(-5deg));
+            //     }
+            //     @media only screen and (max-width: 500px) and (max-height: 575px) {
+            //         @include drop-food(rice, 98%, 35%, 14%, 6.2s, rotate(-5deg));
+            //     }
+            // }
+            // .taco-icon {
+            //     z-index: 82;
+            //     @include drop-food(taco, 0, 50%, 37%, 5.5s, rotate(41deg));
+            //     @media only screen and (max-width: 770px) {
+            //         @include drop-food(taco, 0, 48%, 49.5%, 2.5s, rotate(-25deg));
+            //     }
+            //     @media only screen and (max-width: 500px) and (max-height: 740px) {
+            //         @include drop-food(taco, 0, 48%, 31%, 2.5s, rotate(-25deg));
+            //     }
+            //     @media only screen and (max-width: 500px) and (max-height: 670px) {
+            //         @include drop-food(taco, 0, 50%, 25%, 5.5s, rotate(41deg));
+            //     }
+            //     @media only screen and (max-width: 500px) and (max-height: 575px) {
+            //         @include drop-food(taco, 0, 50%, 11%, 5.5s, rotate(41deg));
+            //     }
+            // }
+            // .grapes-icon {
+            //     z-index: 89;
+            //     @include drop-food(grapes, 0, 38.5%, 40%, 7s, rotate(1deg));
+            //     @media only screen and (max-width: 770px) {
+            //         @include drop-food(grapes, 0, 23.5%, 52.5%, 2.5s, rotate(-25deg));
+            //     }
+            //     @media only screen and (max-width: 500px) and (max-height: 740px) {
+            //         @include drop-food(grapes, 0, 23.5%, 34%, 2.5s, rotate(-25deg));
+            //     }
+            //     @media only screen and (max-width: 500px) and (max-height: 670px) {
+            //         @include drop-food(grapes, 0, 25.5%, 28%, 7s, rotate(1deg));
+            //     }
+            //     @media only screen and (max-width: 500px) and (max-height: 575px) {
+            //         @include drop-food(grapes, 0, 25.5%, 14%, 7s, rotate(1deg));
+            //     }
+            // }
+            // .bag-icon {
+            //     z-index: 100;
+            //     position: absolute;
+            //     width: 100%;
+            //     -webkit-animation: slide-up 0.5s linear 2s both;
+            //     animation: slide-up 0.5s linear 2s both;
+            //     @-webkit-keyframes slide-up {
+            //         0% {
+            //             bottom: 25%;
+            //             // transform: rotate(-22deg);
+            //             opacity: 0;
+            //         }
+            //         100% {
+            //             bottom: -2%;
+            //             transform: rotate(0);
+            //             opacity: 1;
+            //         }
+            //     }
+            //     @keyframes slide-up {
+            //         0% {
+            //             bottom: 25%;
+            //             // transform: rotate(-22deg);
+            //             opacity: 0;
+            //         }
+            //         100% {
+            //             bottom: -2%;
+            //             transform: rotate(0);
+            //             opacity: 1;
+            //         }
+            //     }
+            // }
         }
         .description {
             width: 100%;
