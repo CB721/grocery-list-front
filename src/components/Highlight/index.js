@@ -1,7 +1,7 @@
 import React from 'react';
 import "./style.scss";
 
-function Hightlight({ currBenefit, svgs, svg }) {
+function Hightlight({ currBenefit, svg }) {
     // console.log(svg, svgs);
     return (
         <div className={`highlight ${currBenefit.color}`}>
