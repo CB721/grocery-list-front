@@ -32,6 +32,17 @@ import { ReactComponent as Bag } from "../../assets/images/grocerybag.svg";
 import { ReactComponent as BagStart } from "../../assets/images/grocerybag-start.svg";
 import { ReactComponent as BagMiddle } from "../../assets/images/grocerybag-middle.svg";
 import { ReactComponent as BagEnd } from "../../assets/images/grocerybag-end.svg";
+import { ReactComponent as FloorTiles } from "../../assets/images/floortiles.svg";
+import { ReactComponent as UpdateOne } from "../../assets/images/update-1.svg";
+import { ReactComponent as UpdateTwo } from "../../assets/images/update-2.svg";
+import { ReactComponent as UpdateThree } from "../../assets/images/update-3.svg";
+import { ReactComponent as UpdateFour } from "../../assets/images/update-4.svg";
+import { ReactComponent as UpdateFive } from "../../assets/images/update-5.svg";
+import { ReactComponent as UpdateSix } from "../../assets/images/update-6.svg";
+import { ReactComponent as UpdateSeven } from "../../assets/images/update-7.svg";
+import { ReactComponent as UpdateEight } from "../../assets/images/update-8.svg";
+import { ReactComponent as UpdateNine } from "../../assets/images/update-9.svg";
+import { ReactComponent as UpdateTen } from "../../assets/images/update-10.svg";
 import "./style.scss";
 
 function Home(props) {
