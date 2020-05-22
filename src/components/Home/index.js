@@ -43,6 +43,7 @@ import { ReactComponent as UpdateSeven } from "../../assets/images/update-7.svg"
 import { ReactComponent as UpdateEight } from "../../assets/images/update-8.svg";
 import { ReactComponent as UpdateNine } from "../../assets/images/update-9.svg";
 import { ReactComponent as UpdateTen } from "../../assets/images/update-10.svg";
+import useInterval from "../../utilities/useInterval";
 import "./style.scss";
 
 function Home(props) {
@@ -64,23 +65,76 @@ function Home(props) {
         }
     }
     // amount of svgs for each benefit in the order that the benefit appears
-    const [svgList, setSvgList] = useState([3]);
+    const [svgList, setSvgList] = useState([3, 10]);
     const [currSvg, setCurrSvg] = useState();
     useEffect(() => {
-        let currSvgIndex = 0;
         if (currBenefitIndex === 0) {
             setCurrSvg(
                 <div className="benefit-area">
-                    <BagStart className="benefit-layer" />
-                    <BagMiddle className="benefit-layer show" />
+                    <BagStart className="benefit-layer show" />
+                    <BagMiddle className="benefit-layer" />
                     <BagEnd className="benefit-layer" />
                     <Bag className="benefit-bg" />
                 </div>);
+        } else if (currBenefitIndex === 1) {
+            setCurrSvg(
+                <div className="benefit-area">
+                    <FloorTiles className="benefit-bg vertical" />
+                </div>
+            )
         }
+
+    }, [currBenefitIndex]);
+
+    const [currSvgIndex, setCurrSvgIndex] = useState(0);
+    useInterval(() => {
+        if (currBenefitIndex === 0) {
+            // console.log("current benefit index: " + currBenefitIndex);
+            if (currSvgIndex < 7) {
+                if (currSvgIndex === 0) {
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <BagStart className="benefit-layer show" />
+                            <BagMiddle className="benefit-layer" />
+                            <BagEnd className="benefit-layer" />
+                            <Bag className="benefit-bg" />
+                        </div>);
+                } else if (currSvgIndex === 1) {
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <BagStart className="benefit-layer" />
+                            <BagMiddle className="benefit-layer show" />
+                            <BagEnd className="benefit-layer" />
+                            <Bag className="benefit-bg" />
+                        </div>);
+                } else if (currSvgIndex === 2) {
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <BagStart className="benefit-layer" />
+                            <BagMiddle className="benefit-layer" />
+                            <BagEnd className="benefit-layer show" />
+                            <Bag className="benefit-bg" />
+                        </div>);
+                }
+                setCurrSvgIndex(currSvgIndex + 1);
+            } else {
+                setCurrSvgIndex(0);
+            }
+        } else if (currBenefitIndex === 1) {
+            setCurrSvg(
+                <div className="benefit-area">
+                    <FloorTiles className="benefit-bg vertical" />
+                </div>
+            )
+        }
+    }, 200);
+    function iterateSvgs() {
+        let currSvgIndex = 0;
         // counter for iterating between svgs
         setInterval(() => {
             // if the counter hasn't reached the end of the svg list
             if (currBenefitIndex === 0) {
+                console.log("hi");
                 if (currSvgIndex < 7) {
                     if (currSvgIndex === 0) {
                         setCurrSvg(
@@ -111,9 +165,15 @@ function Home(props) {
                 } else {
                     currSvgIndex = 0;
                 }
+            } else if (currBenefitIndex === 1) {
+                setCurrSvg(
+                    <div className="benefit-area">
+                        <FloorTiles className="benefit-bg vertical" />
+                    </div>
+                )
             }
         }, 200);
-    }, [svgList]);
+    }
     useEffect(() => {
         // set the button colors
         if (currBenefitIndex === 0) {
