@@ -42,7 +42,6 @@ import { ReactComponent as UpdateSix } from "../../assets/images/update-6.svg";
 import { ReactComponent as UpdateSeven } from "../../assets/images/update-7.svg";
 import { ReactComponent as UpdateEight } from "../../assets/images/update-8.svg";
 import { ReactComponent as UpdateNine } from "../../assets/images/update-9.svg";
-import { ReactComponent as UpdateTen } from "../../assets/images/update-10.svg";
 import useInterval from "../../utilities/useInterval";
 import "./style.scss";
 
@@ -80,15 +79,6 @@ function Home(props) {
             setCurrSvg(
                 <div className="benefit-area">
                     <UpdateOne className="benefit-layer show" />
-                    {/* <UpdateTwo className="benefit-layer" />
-                    <UpdateThree className="benefit-layer" />
-                    <UpdateFive className="benefit-layer" />
-                    <UpdateSix className="benefit-layer" />
-                    <UpdateSeven className="benefit-layer" />
-                    <UpdateEight className="benefit-layer" />
-                    <UpdateNine className="benefit-layer" />
-                    <UpdateTen className="benefit-layer" /> */}
-                    <FloorTiles className="benefit-bg vertical" />
                 </div>
             )
         }
@@ -130,262 +120,355 @@ function Home(props) {
                 setCurrSvgIndex(0);
             }
         } else if (currBenefitIndex === 1) {
-            // switch (currBenefitIndex) {
-            //     case 0:
-            //         setCurrSvg(
-            //             <div className="benefit-area">
-            //                 <UpdateOne className="benefit-layer show" />
-            //                 <UpdateTwo className="benefit-layer" />
-            //                 <UpdateThree className="benefit-layer" />
-            //                 <UpdateFive className="benefit-layer" />
-            //                 <UpdateSix className="benefit-layer" />
-            //                 <UpdateSeven className="benefit-layer" />
-            //                 <UpdateEight className="benefit-layer" />
-            //                 <UpdateNine className="benefit-layer" />
-            //                 <UpdateTen className="benefit-layer" />
-            //                 <FloorTiles className="benefit-bg vertical" />
-            //             </div>
-            //         );
-            //         break;
-            //     case 1:
-            //         setCurrSvg(
-            //             <div className="benefit-area">
-            //                 <UpdateOne className="benefit-layer show" />
-            //                 <UpdateTwo className="benefit-layer" />
-            //                 <UpdateThree className="benefit-layer" />
-            //                 <UpdateFive className="benefit-layer" />
-            //                 <UpdateSix className="benefit-layer" />
-            //                 <UpdateSeven className="benefit-layer" />
-            //                 <UpdateEight className="benefit-layer" />
-            //                 <UpdateNine className="benefit-layer" />
-            //                 <UpdateTen className="benefit-layer" />
-            //                 <FloorTiles className="benefit-bg vertical" />
-            //             </div>
-            //         );
-            //         break;
-            //     case 2:
-            //         setCurrSvg(
-            //             <div className="benefit-area">
-            //                 <UpdateOne className="benefit-layer show" />
-            //                 <UpdateTwo className="benefit-layer" />
-            //                 <UpdateThree className="benefit-layer" />
-            //                 <UpdateFive className="benefit-layer" />
-            //                 <UpdateSix className="benefit-layer" />
-            //                 <UpdateSeven className="benefit-layer" />
-            //                 <UpdateEight className="benefit-layer" />
-            //                 <UpdateNine className="benefit-layer" />
-            //                 <UpdateTen className="benefit-layer" />
-            //                 <FloorTiles className="benefit-bg vertical" />
-            //             </div>
-            //         );
-            //         break;
-            //     case 3:
-            //         setCurrSvg(
-            //             <div className="benefit-area">
-            //                 <UpdateOne className="benefit-layer show" />
-            //                 <UpdateTwo className="benefit-layer" />
-            //                 <UpdateThree className="benefit-layer" />
-            //                 <UpdateFive className="benefit-layer" />
-            //                 <UpdateSix className="benefit-layer" />
-            //                 <UpdateSeven className="benefit-layer" />
-            //                 <UpdateEight className="benefit-layer" />
-            //                 <UpdateNine className="benefit-layer" />
-            //                 <UpdateTen className="benefit-layer" />
-            //                 <FloorTiles className="benefit-bg vertical" />
-            //             </div>
-            //         );
-            //         break;
-            //     case 4:
-            //         setCurrSvg(
-            //             <div className="benefit-area">
-            //                 <UpdateOne className="benefit-layer show" />
-            //                 <UpdateTwo className="benefit-layer" />
-            //                 <UpdateThree className="benefit-layer" />
-            //                 <UpdateFive className="benefit-layer" />
-            //                 <UpdateSix className="benefit-layer" />
-            //                 <UpdateSeven className="benefit-layer" />
-            //                 <UpdateEight className="benefit-layer" />
-            //                 <UpdateNine className="benefit-layer" />
-            //                 <UpdateTen className="benefit-layer" />
-            //                 <FloorTiles className="benefit-bg vertical" />
-            //             </div>
-            //         );
-            //         break;
-            //     case 5:
-            //         setCurrSvg(
-            //             <div className="benefit-area">
-            //                 <UpdateOne className="benefit-layer show" />
-            //                 <UpdateTwo className="benefit-layer" />
-            //                 <UpdateThree className="benefit-layer" />
-            //                 <UpdateFive className="benefit-layer" />
-            //                 <UpdateSix className="benefit-layer" />
-            //                 <UpdateSeven className="benefit-layer" />
-            //                 <UpdateEight className="benefit-layer" />
-            //                 <UpdateNine className="benefit-layer" />
-            //                 <UpdateTen className="benefit-layer" />
-            //                 <FloorTiles className="benefit-bg vertical" />
-            //             </div>
-            //         );
-            //         break;
-            //     case 6:
-            //         setCurrSvg(
-            //             <div className="benefit-area">
-            //                 <UpdateOne className="benefit-layer show" />
-            //                 <UpdateTwo className="benefit-layer" />
-            //                 <UpdateThree className="benefit-layer" />
-            //                 <UpdateFive className="benefit-layer" />
-            //                 <UpdateSix className="benefit-layer" />
-            //                 <UpdateSeven className="benefit-layer" />
-            //                 <UpdateEight className="benefit-layer" />
-            //                 <UpdateNine className="benefit-layer" />
-            //                 <UpdateTen className="benefit-layer" />
-            //                 <FloorTiles className="benefit-bg vertical" />
-            //             </div>
-            //         );
-            //         break;
-            //     case 7:
-            //         setCurrSvg(
-            //             <div className="benefit-area">
-            //                 <UpdateOne className="benefit-layer show" />
-            //                 <UpdateTwo className="benefit-layer" />
-            //                 <UpdateThree className="benefit-layer" />
-            //                 <UpdateFive className="benefit-layer" />
-            //                 <UpdateSix className="benefit-layer" />
-            //                 <UpdateSeven className="benefit-layer" />
-            //                 <UpdateEight className="benefit-layer" />
-            //                 <UpdateNine className="benefit-layer" />
-            //                 <UpdateTen className="benefit-layer" />
-            //                 <FloorTiles className="benefit-bg vertical" />
-            //             </div>
-            //         );
-            //         break;
-            //     case 8:
-            //         setCurrSvg(
-            //             <div className="benefit-area">
-            //                 <UpdateOne className="benefit-layer show" />
-            //                 <UpdateTwo className="benefit-layer" />
-            //                 <UpdateThree className="benefit-layer" />
-            //                 <UpdateFive className="benefit-layer" />
-            //                 <UpdateSix className="benefit-layer" />
-            //                 <UpdateSeven className="benefit-layer" />
-            //                 <UpdateEight className="benefit-layer" />
-            //                 <UpdateNine className="benefit-layer" />
-            //                 <UpdateTen className="benefit-layer" />
-            //                 <FloorTiles className="benefit-bg vertical" />
-            //             </div>
-            //         );
-            //         break;
-            //     case 9:
-            //         setCurrSvg(
-            //             <div className="benefit-area">
-            //                 <UpdateOne className="benefit-layer show" />
-            //                 <UpdateTwo className="benefit-layer" />
-            //                 <UpdateThree className="benefit-layer" />
-            //                 <UpdateFive className="benefit-layer" />
-            //                 <UpdateSix className="benefit-layer" />
-            //                 <UpdateSeven className="benefit-layer" />
-            //                 <UpdateEight className="benefit-layer" />
-            //                 <UpdateNine className="benefit-layer" />
-            //                 <UpdateTen className="benefit-layer" />
-            //                 <FloorTiles className="benefit-bg vertical" />
-            //             </div>
-            //         );
-            //         break;
-            //     case 10:
-            //         setCurrSvg(
-            //             <div className="benefit-area">
-            //                 <UpdateOne className="benefit-layer show" />
-            //                 <UpdateTwo className="benefit-layer" />
-            //                 <UpdateThree className="benefit-layer" />
-            //                 <UpdateFive className="benefit-layer" />
-            //                 <UpdateSix className="benefit-layer" />
-            //                 <UpdateSeven className="benefit-layer" />
-            //                 <UpdateEight className="benefit-layer" />
-            //                 <UpdateNine className="benefit-layer" />
-            //                 <UpdateTen className="benefit-layer" />
-            //                 <FloorTiles className="benefit-bg vertical" />
-            //             </div>
-            //         );
-            //         break;
-            //     default:
-            //         setCurrSvg(
-            //             <div className="benefit-area">
-            //                 <UpdateOne className="benefit-layer show" />
-            //                 <UpdateTwo className="benefit-layer" />
-            //                 <UpdateThree className="benefit-layer" />
-            //                 <UpdateFive className="benefit-layer" />
-            //                 <UpdateSix className="benefit-layer" />
-            //                 <UpdateSeven className="benefit-layer" />
-            //                 <UpdateEight className="benefit-layer" />
-            //                 <UpdateNine className="benefit-layer" />
-            //                 <UpdateTen className="benefit-layer" />
-            //                 <FloorTiles className="benefit-bg vertical" />
-            //             </div>
-            //         );
-            //         return;
-            // }
-            setCurrSvg(
-                <div className="benefit-area">
-                    <UpdateOne className="benefit-layer show" />
-                    {/* <UpdateTwo className="benefit-layer" />
-                    <UpdateThree className="benefit-layer" />
-                    <UpdateFive className="benefit-layer" />
-                    <UpdateSix className="benefit-layer" />
-                    <UpdateSeven className="benefit-layer" />
-                    <UpdateEight className="benefit-layer" />
-                    <UpdateNine className="benefit-layer" />
-                    <UpdateTen className="benefit-layer" /> */}
-                    <FloorTiles className="benefit-bg vertical" />
-                </div>
-            )
-        }
-    }, 200);
-    function iterateSvgs() {
-        let currSvgIndex = 0;
-        // counter for iterating between svgs
-        setInterval(() => {
-            // if the counter hasn't reached the end of the svg list
-            if (currBenefitIndex === 0) {
-                console.log("hi");
-                if (currSvgIndex < 7) {
-                    if (currSvgIndex === 0) {
-                        setCurrSvg(
-                            <div className="benefit-area">
-                                <BagStart className="benefit-layer show" />
-                                <BagMiddle className="benefit-layer" />
-                                <BagEnd className="benefit-layer" />
-                                <Bag className="benefit-bg" />
-                            </div>);
-                    } else if (currSvgIndex === 1) {
-                        setCurrSvg(
-                            <div className="benefit-area">
-                                <BagStart className="benefit-layer" />
-                                <BagMiddle className="benefit-layer show" />
-                                <BagEnd className="benefit-layer" />
-                                <Bag className="benefit-bg" />
-                            </div>);
-                    } else if (currSvgIndex === 2) {
-                        setCurrSvg(
-                            <div className="benefit-area">
-                                <BagStart className="benefit-layer" />
-                                <BagMiddle className="benefit-layer" />
-                                <BagEnd className="benefit-layer show" />
-                                <Bag className="benefit-bg" />
-                            </div>);
-                    }
-                    currSvgIndex++;
-                } else {
-                    currSvgIndex = 0;
-                }
-            } else if (currBenefitIndex === 1) {
-                setCurrSvg(
-                    <div className="benefit-area">
-                        <FloorTiles className="benefit-bg vertical" />
-                    </div>
-                )
+            switch (currSvgIndex) {
+                case 0:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <UpdateOne className="benefit-layer show" />
+                            <UpdateTwo className="benefit-layer" />
+                            <UpdateThree className="benefit-layer" />
+                            <UpdateFour className="benefit-layer" />
+                            <UpdateFive className="benefit-layer" />
+                            <UpdateSix className="benefit-layer" />
+                            <UpdateSeven className="benefit-layer" />
+                            <UpdateEight className="benefit-layer" />
+                            <UpdateNine className="benefit-layer" />
+                            
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 1:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <UpdateOne className="benefit-layer show" />
+                            <UpdateTwo className="benefit-layer" />
+                            <UpdateThree className="benefit-layer" />
+                            <UpdateFour className="benefit-layer" />
+                            <UpdateFive className="benefit-layer" />
+                            <UpdateSix className="benefit-layer" />
+                            <UpdateSeven className="benefit-layer" />
+                            <UpdateEight className="benefit-layer" />
+                            <UpdateNine className="benefit-layer" />
+                            
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 2:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <UpdateOne className="benefit-layer" />
+                            <UpdateTwo className="benefit-layer show" />
+                            <UpdateThree className="benefit-layer" />
+                            <UpdateFour className="benefit-layer" />
+                            <UpdateFive className="benefit-layer" />
+                            <UpdateSix className="benefit-layer" />
+                            <UpdateSeven className="benefit-layer" />
+                            <UpdateEight className="benefit-layer" />
+                            <UpdateNine className="benefit-layer" />
+                            
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 3:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <UpdateOne className="benefit-layer" />
+                            <UpdateTwo className="benefit-layer show" />
+                            <UpdateThree className="benefit-layer" />
+                            <UpdateFour className="benefit-layer" />
+                            <UpdateFive className="benefit-layer" />
+                            <UpdateSix className="benefit-layer" />
+                            <UpdateSeven className="benefit-layer" />
+                            <UpdateEight className="benefit-layer" />
+                            <UpdateNine className="benefit-layer" />
+                            
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 4:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <UpdateOne className="benefit-layer" />
+                            <UpdateTwo className="benefit-layer" />
+                            <UpdateThree className="benefit-layer show" />
+                            <UpdateFour className="benefit-layer" />
+                            <UpdateFive className="benefit-layer" />
+                            <UpdateSix className="benefit-layer" />
+                            <UpdateSeven className="benefit-layer" />
+                            <UpdateEight className="benefit-layer" />
+                            <UpdateNine className="benefit-layer" />
+                            
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 5:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <UpdateOne className="benefit-layer" />
+                            <UpdateTwo className="benefit-layer" />
+                            <UpdateThree className="benefit-layer" />
+                            <UpdateFour className="benefit-layer show" />
+                            <UpdateFive className="benefit-layer" />
+                            <UpdateSix className="benefit-layer" />
+                            <UpdateSeven className="benefit-layer" />
+                            <UpdateEight className="benefit-layer" />
+                            <UpdateNine className="benefit-layer" />
+                            
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 6:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <UpdateOne className="benefit-layer" />
+                            <UpdateTwo className="benefit-layer" />
+                            <UpdateThree className="benefit-layer" />
+                            <UpdateFour className="benefit-layer show" />
+                            <UpdateFive className="benefit-layer" />
+                            <UpdateSix className="benefit-layer" />
+                            <UpdateSeven className="benefit-layer" />
+                            <UpdateEight className="benefit-layer" />
+                            <UpdateNine className="benefit-layer" />
+                            
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 7:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <UpdateOne className="benefit-layer" />
+                            <UpdateTwo className="benefit-layer" />
+                            <UpdateThree className="benefit-layer" />
+                            <UpdateFive className="benefit-layer show" />
+                            <UpdateSix className="benefit-layer" />
+                            <UpdateSeven className="benefit-layer" />
+                            <UpdateEight className="benefit-layer" />
+                            <UpdateNine className="benefit-layer" />
+                            
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 8:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <UpdateOne className="benefit-layer" />
+                            <UpdateTwo className="benefit-layer" />
+                            <UpdateThree className="benefit-layer" />
+                            <UpdateFive className="benefit-layer show" />
+                            <UpdateSix className="benefit-layer" />
+                            <UpdateSeven className="benefit-layer" />
+                            <UpdateEight className="benefit-layer" />
+                            <UpdateNine className="benefit-layer" />
+                            
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 9:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <UpdateOne className="benefit-layer" />
+                            <UpdateTwo className="benefit-layer" />
+                            <UpdateThree className="benefit-layer" />
+                            <UpdateFive className="benefit-layer" />
+                            <UpdateSix className="benefit-layer show" />
+                            <UpdateSeven className="benefit-layer" />
+                            <UpdateEight className="benefit-layer" />
+                            <UpdateNine className="benefit-layer" />
+                            
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 10:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <UpdateOne className="benefit-layer" />
+                            <UpdateTwo className="benefit-layer" />
+                            <UpdateThree className="benefit-layer" />
+                            <UpdateFive className="benefit-layer" />
+                            <UpdateSix className="benefit-layer show" />
+                            <UpdateSeven className="benefit-layer" />
+                            <UpdateEight className="benefit-layer" />
+                            <UpdateNine className="benefit-layer" />
+                            
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 11:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <UpdateOne className="benefit-layer" />
+                            <UpdateTwo className="benefit-layer" />
+                            <UpdateThree className="benefit-layer" />
+                            <UpdateFive className="benefit-layer" />
+                            <UpdateSix className="benefit-layer" />
+                            <UpdateSeven className="benefit-layer show" />
+                            <UpdateEight className="benefit-layer" />
+                            <UpdateNine className="benefit-layer" />
+                            
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 12:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <UpdateOne className="benefit-layer" />
+                            <UpdateTwo className="benefit-layer" />
+                            <UpdateThree className="benefit-layer" />
+                            <UpdateFive className="benefit-layer" />
+                            <UpdateSix className="benefit-layer" />
+                            <UpdateSeven className="benefit-layer show" />
+                            <UpdateEight className="benefit-layer" />
+                            <UpdateNine className="benefit-layer" />
+                            
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 13:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <UpdateOne className="benefit-layer" />
+                            <UpdateTwo className="benefit-layer" />
+                            <UpdateThree className="benefit-layer" />
+                            <UpdateFive className="benefit-layer" />
+                            <UpdateSix className="benefit-layer" />
+                            <UpdateSeven className="benefit-layer" />
+                            <UpdateEight className="benefit-layer show" />
+                            <UpdateNine className="benefit-layer" />
+                            
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 14:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <UpdateOne className="benefit-layer" />
+                            <UpdateTwo className="benefit-layer" />
+                            <UpdateThree className="benefit-layer" />
+                            <UpdateFive className="benefit-layer" />
+                            <UpdateSix className="benefit-layer" />
+                            <UpdateSeven className="benefit-layer" />
+                            <UpdateEight className="benefit-layer show" />
+                            <UpdateNine className="benefit-layer" />
+                            
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 15:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <UpdateOne className="benefit-layer" />
+                            <UpdateTwo className="benefit-layer" />
+                            <UpdateThree className="benefit-layer" />
+                            <UpdateFive className="benefit-layer" />
+                            <UpdateSix className="benefit-layer" />
+                            <UpdateSeven className="benefit-layer" />
+                            <UpdateEight className="benefit-layer" />
+                            <UpdateNine className="benefit-layer show" />
+                            
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 16:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <UpdateOne className="benefit-layer" />
+                            <UpdateTwo className="benefit-layer" />
+                            <UpdateThree className="benefit-layer" />
+                            <UpdateFive className="benefit-layer" />
+                            <UpdateSix className="benefit-layer" />
+                            <UpdateSeven className="benefit-layer" />
+                            <UpdateEight className="benefit-layer" />
+                            <UpdateNine className="benefit-layer show" />
+                            
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 17:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <UpdateOne className="benefit-layer show" />
+                            <UpdateTwo className="benefit-layer" />
+                            <UpdateThree className="benefit-layer" />
+                            <UpdateFive className="benefit-layer" />
+                            <UpdateSix className="benefit-layer" />
+                            <UpdateSeven className="benefit-layer" />
+                            <UpdateEight className="benefit-layer" />
+                            <UpdateNine className="benefit-layer" />
+                            
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 18:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <UpdateOne className="benefit-layer" />
+                            <UpdateTwo className="benefit-layer" />
+                            <UpdateThree className="benefit-layer" />
+                            <UpdateFive className="benefit-layer" />
+                            <UpdateSix className="benefit-layer" />
+                            <UpdateSeven className="benefit-layer" />
+                            <UpdateEight className="benefit-layer" />
+                            <UpdateNine className="benefit-layer show" />
+                            
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 19:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <UpdateOne className="benefit-layer" />
+                            <UpdateTwo className="benefit-layer" />
+                            <UpdateThree className="benefit-layer" />
+                            <UpdateFive className="benefit-layer" />
+                            <UpdateSix className="benefit-layer" />
+                            <UpdateSeven className="benefit-layer" />
+                            <UpdateEight className="benefit-layer" />
+                            <UpdateNine className="benefit-layer show" />
+                            
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 20:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <UpdateOne className="benefit-layer" />
+                            <UpdateTwo className="benefit-layer" />
+                            <UpdateThree className="benefit-layer" />
+                            <UpdateFive className="benefit-layer" />
+                            <UpdateSix className="benefit-layer" />
+                            <UpdateSeven className="benefit-layer" />
+                            <UpdateEight className="benefit-layer" />
+                            <UpdateNine className="benefit-layer show" />
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                default:
+                    setCurrSvgIndex(0);
+                    return;
             }
-        }, 200);
-    }
+        }
+    }, 240);
     useEffect(() => {
         // set the button colors
         if (currBenefitIndex === 0) {
