@@ -27,6 +27,17 @@ import { ReactComponent as FilterNine } from "../../assets/images/filter-9.svg";
 import { ReactComponent as FilterTen } from "../../assets/images/filter-10.svg";
 import { ReactComponent as FilterEleven } from "../../assets/images/filter-11.svg";
 import { ReactComponent as FilterTwelve } from "../../assets/images/filter-12.svg";
+import { ReactComponent as ConnectOne } from "../../assets/images/connect-1.svg";
+import { ReactComponent as ConnectTwo } from "../../assets/images/connect-2.svg";
+import { ReactComponent as ConnectThree } from "../../assets/images/connect-3.svg";
+import { ReactComponent as ConnectFour } from "../../assets/images/connect-4.svg";
+import { ReactComponent as ConnectFive } from "../../assets/images/connect-5.svg";
+import { ReactComponent as ConnectSix } from "../../assets/images/connect-6.svg";
+import { ReactComponent as ConnectSeven } from "../../assets/images/connect-7.svg";
+import { ReactComponent as ConnectEight } from "../../assets/images/connect-8.svg";
+import { ReactComponent as ConnectNine } from "../../assets/images/connect-9.svg";
+import { ReactComponent as ConnectTen } from "../../assets/images/connect-10.svg";
+import { ReactComponent as ConnectEleven } from "../../assets/images/connect-11.svg";
 import useInterval from "../../utilities/useInterval";
 import "./style.scss";
 
@@ -82,7 +93,8 @@ function Home(props) {
             case 3:
                 setCurrSvg(
                     <div className="benefit-area">
-
+                        <ConnectOne className="benefit-layer show" />
+                        <ConnectTwo className="benefit-layer" />
                     </div>
                 );
                 setCurrSvgIndex(0);
@@ -378,11 +390,141 @@ function Home(props) {
                     return;
             }
         } else if (currBenefitIndex === 3) {
-            setCurrSvg(
-                <div className="benefit-area">
-
-                </div>
-            );
+            switch(currSvgIndex) {
+                case 0:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <ConnectOne className="benefit-layer show" />
+                            <ConnectTwo className="benefit-layer" />
+                            <ConnectEleven className="benefit-layer" />
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 1:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <ConnectOne className="benefit-layer" />
+                            <ConnectTwo className="benefit-layer show" />
+                            <ConnectThree className="benefit-layer" />
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 2:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <ConnectTwo className="benefit-layer" />
+                            <ConnectThree className="benefit-layer show" />
+                            <ConnectFour className="benefit-layer" />
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 3:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <ConnectThree className="benefit-layer" />
+                            <ConnectFour className="benefit-layer show" />
+                            <ConnectFive className="benefit-layer" />
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 4:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <ConnectFour className="benefit-layer" />
+                            <ConnectFive className="benefit-layer show" />
+                            <ConnectSix className="benefit-layer" />
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 5:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <ConnectFive className="benefit-layer" />
+                            <ConnectSix className="benefit-layer show" />
+                            <ConnectSeven className="benefit-layer" />
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 6:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <ConnectFive className="benefit-layer" />
+                            <ConnectSix className="benefit-layer show" />
+                            <ConnectSeven className="benefit-layer" />
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 7:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <ConnectFive className="benefit-layer" />
+                            <ConnectSix className="benefit-layer show" />
+                            <ConnectSeven className="benefit-layer" />
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 8:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <ConnectSix className="benefit-layer" />
+                            <ConnectSeven className="benefit-layer show" />
+                            <ConnectEight className="benefit-layer" />
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 9:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <ConnectSeven className="benefit-layer" />
+                            <ConnectEight className="benefit-layer show" />
+                            <ConnectNine className="benefit-layer" />
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 10:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <ConnectEight className="benefit-layer" />
+                            <ConnectNine className="benefit-layer show" />
+                            <ConnectTen className="benefit-layer" />
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 11:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <ConnectNine className="benefit-layer" />
+                            <ConnectTen className="benefit-layer show" />
+                            <ConnectEleven className="benefit-layer" />
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 12:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <ConnectOne className="benefit-layer" />
+                            <ConnectTen className="benefit-layer" />
+                            <ConnectEleven className="benefit-layer show" />
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                default:
+                    setCurrSvgIndex(0);
+                    return;
+            }
         }
     }, Benefits[currBenefitIndex].delay);
     useEffect(() => {

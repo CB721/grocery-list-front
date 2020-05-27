@@ -8,122 +8,122 @@
 			<path id="Ellipse-1" d="M299.706 194.53 C299.706 194.283 299.506 194.083 299.26 194.083 299.013 194.083 298.813 194.283 298.813 194.53 298.813 194.776 299.013 194.976 299.26 194.976 299.506 194.976 299.706 194.776 299.706 194.53 Z" fill="#3c91e7" fill-opacity="1" stroke="none" />
 		</g>
 		<defs>
-			<text id="string" transform="matrix(1.0 0.0 0.0 1.0 278.85163648308 193.49999999980002)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="0.952" y="1.0">
+			<text id="string7" transform="matrix(1.0 0.0 0.0 1.0 278.85163648308 193.49999999980002)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="0.952" y="1.0">
 				Apples
 			</text>
 		</defs>
-		<use id="Apples" xlink:href="#string" fill="#ffffff" fill-opacity="1" stroke="none" />
+		<use id="Apples" xlink:href="#string7" fill="#ffffff" fill-opacity="1" stroke="none" />
 		<defs>
-			<text id="string-1" transform="matrix(1.0 0.0 0.0 1.0 290.52899880422 193.49999999980002)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="0.952" y="1.0">
+			<text id="string7-1" transform="matrix(1.0 0.0 0.0 1.0 290.52899880422 193.49999999980002)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="0.952" y="1.0">
 				Normal
 			</text>
 		</defs>
-		<use id="Normal" xlink:href="#string-1" fill="#ffffff" fill-opacity="1" stroke="none" />
+		<use id="Normal" xlink:href="#string7-1" fill="#ffffff" fill-opacity="1" stroke="none" />
 		<path id="Ellipse-2" d="M299.706 194.53 C299.706 194.283 299.506 194.083 299.26 194.083 299.013 194.083 298.813 194.283 298.813 194.53 298.813 194.776 299.013 194.976 299.26 194.976 299.506 194.976 299.706 194.776 299.706 194.53 Z" fill="#3c91e7" fill-opacity="1" stroke="none" />
 		<defs>
-			<text id="string-2" transform="matrix(1.0 0.0 0.0 1.0 284.68869005436 193.49999999980002)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="0.952" y="1.0">
+			<text id="string7-2" transform="matrix(1.0 0.0 0.0 1.0 284.68869005436 193.49999999980002)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="0.952" y="1.0">
 				Costco
 			</text>
 		</defs>
-		<use id="Costco" xlink:href="#string-2" fill="#ffffff" fill-opacity="1" stroke="none" />
+		<use id="Costco" xlink:href="#string7-2" fill="#ffffff" fill-opacity="1" stroke="none" />
 		<defs>
-			<text id="string-3" transform="matrix(1.0 0.0 0.0 1.0 279.35837939974 198.49999999966002)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="0.952" y="1.0">
+			<text id="string7-3" transform="matrix(1.0 0.0 0.0 1.0 279.35837939974 198.49999999966002)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="0.952" y="1.0">
 				Bread
 			</text>
 		</defs>
-		<use id="Bread" xlink:href="#string-3" fill="#ffffff" fill-opacity="1" stroke="none" />
+		<use id="Bread" xlink:href="#string7-3" fill="#ffffff" fill-opacity="1" stroke="none" />
 		<defs>
-			<text id="string-4" transform="matrix(1.0 0.0 0.0 1.0 291.03527672088 198.49999999966002)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="0.952" y="1.0">
+			<text id="string7-4" transform="matrix(1.0 0.0 0.0 1.0 291.03527672088 198.49999999966002)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="0.952" y="1.0">
 				Low
 			</text>
 		</defs>
-		<use id="Low" xlink:href="#string-4" fill="#ffffff" fill-opacity="1" stroke="none" />
+		<use id="Low" xlink:href="#string7-4" fill="#ffffff" fill-opacity="1" stroke="none" />
 		<defs>
-			<text id="string-5" transform="matrix(1.0 0.0 0.0 1.0 284.6984556496 198.49999999966002)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="0.952" y="1.0">
+			<text id="string7-5" transform="matrix(1.0 0.0 0.0 1.0 284.6984556496 198.49999999966002)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="0.952" y="1.0">
 				Target
 			</text>
 		</defs>
-		<use id="Target" xlink:href="#string-5" fill="#ffffff" fill-opacity="1" stroke="none" />
+		<use id="Target" xlink:href="#string7-5" fill="#ffffff" fill-opacity="1" stroke="none" />
 		<defs>
-			<text id="string-6" transform="matrix(1.0 0.0 0.0 1.0 278.87465541164 203.49999999954002)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="0.952" y="1.0">
+			<text id="string7-6" transform="matrix(1.0 0.0 0.0 1.0 278.87465541164 203.49999999954002)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="0.952" y="1.0">
 				Cheese
 			</text>
 		</defs>
-		<use id="Cheese" xlink:href="#string-6" fill="#ffffff" fill-opacity="1" stroke="none" />
+		<use id="Cheese" xlink:href="#string7-6" fill="#ffffff" fill-opacity="1" stroke="none" />
 		<defs>
-			<text id="string-7" transform="matrix(1.0 0.0 0.0 1.0 290.52899880422 203.49999999954002)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="0.952" y="1.0">
+			<text id="string7-7" transform="matrix(1.0 0.0 0.0 1.0 290.52899880422 203.49999999954002)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="0.952" y="1.0">
 				Normal
 			</text>
 		</defs>
-		<use id="Normal-1" xlink:href="#string-7" fill="#ffffff" fill-opacity="1" stroke="none" />
+		<use id="Normal-1" xlink:href="#string7-7" fill="#ffffff" fill-opacity="1" stroke="none" />
 		<defs>
-			<text id="string-8" transform="matrix(1.0 0.0 0.0 1.0 285.18938755436 203.49999999954002)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="0.952" y="1.0">
+			<text id="string7-8" transform="matrix(1.0 0.0 0.0 1.0 285.18938755436 203.49999999954002)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="0.952" y="1.0">
 				QFC
 			</text>
 		</defs>
-		<use id="QFC" xlink:href="#string-8" fill="#ffffff" fill-opacity="1" stroke="none" />
+		<use id="QFC" xlink:href="#string7-8" fill="#ffffff" fill-opacity="1" stroke="none" />
 		<defs>
-			<text id="string-9" transform="matrix(1.0 0.0 0.0 1.0 279.36558737594 208.49999999942003)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="0.952" y="1.0">
+			<text id="string7-9" transform="matrix(1.0 0.0 0.0 1.0 279.36558737594 208.49999999942003)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="0.952" y="1.0">
 				Wine
 			</text>
 		</defs>
-		<use id="Wine" xlink:href="#string-9" fill="#ffffff" fill-opacity="1" stroke="none" />
+		<use id="Wine" xlink:href="#string7-9" fill="#ffffff" fill-opacity="1" stroke="none" />
 		<defs>
-			<text id="string-10" transform="matrix(1.0 0.0 0.0 1.0 291.01876814946 208.49999999942003)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="0.952" y="1.0">
+			<text id="string7-10" transform="matrix(1.0 0.0 0.0 1.0 291.01876814946 208.49999999942003)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="0.952" y="1.0">
 				High
 			</text>
 		</defs>
-		<use id="High" xlink:href="#string-10" fill="#ffffff" fill-opacity="1" stroke="none" />
+		<use id="High" xlink:href="#string7-10" fill="#ffffff" fill-opacity="1" stroke="none" />
 		<g id="group-1">
 			<path id="Ellipse-5" d="M300.004 209.53 C300.004 209.119 299.671 208.786 299.26 208.786 298.849 208.786 298.516 209.119 298.516 209.53 298.516 209.941 298.849 210.274 299.26 210.274 299.671 210.274 300.004 209.941 300.004 209.53 Z" fill="#fafcff" fill-opacity="1" stroke="none" />
 			<path id="Ellipse-6" d="M299.706 209.53 C299.706 209.283 299.506 209.083 299.26 209.083 299.013 209.083 298.813 209.283 298.813 209.53 298.813 209.776 299.013 209.976 299.26 209.976 299.506 209.976 299.706 209.776 299.706 209.53 Z" fill="#3c91e7" fill-opacity="1" stroke="none" />
 		</g>
 		<defs>
-			<text id="string-11" transform="matrix(1.0 0.0 0.0 1.0 283.70450106626 208.49999999942003)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="0.952" y="1.0">
+			<text id="string7-11" transform="matrix(1.0 0.0 0.0 1.0 283.70450106626 208.49999999942003)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="0.952" y="1.0">
 				Whole Foods
 			</text>
 		</defs>
-		<use id="Whole-Foods" xlink:href="#string-11" fill="#ffffff" fill-opacity="1" stroke="none" />
+		<use id="Whole-Foods" xlink:href="#string7-11" fill="#ffffff" fill-opacity="1" stroke="none" />
 		<defs>
-			<text id="string-12" transform="matrix(1.0 0.0 0.0 1.0 278.87512047118 213.49999999929997)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="0.952" y="1.0">
+			<text id="string7-12" transform="matrix(1.0 0.0 0.0 1.0 278.87512047118 213.49999999929997)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="0.952" y="1.0">
 				Cereal
 			</text>
 		</defs>
-		<use id="Cereal" xlink:href="#string-12" fill="#ffffff" fill-opacity="1" stroke="none" />
+		<use id="Cereal" xlink:href="#string7-12" fill="#ffffff" fill-opacity="1" stroke="none" />
 		<defs>
-			<text id="string-13" transform="matrix(1.0 0.0 0.0 1.0 291.03527672088 213.49999999929997)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="0.952" y="1.0">
+			<text id="string7-13" transform="matrix(1.0 0.0 0.0 1.0 291.03527672088 213.49999999929997)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="0.952" y="1.0">
 				Low
 			</text>
 		</defs>
-		<use id="Low-1" xlink:href="#string-13" fill="#ffffff" fill-opacity="1" stroke="none" />
+		<use id="Low-1" xlink:href="#string7-13" fill="#ffffff" fill-opacity="1" stroke="none" />
 		<defs>
-			<text id="string-14" transform="matrix(1.0 0.0 0.0 1.0 284.2021758877 213.49999999929997)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="0.952" y="1.0">
+			<text id="string7-14" transform="matrix(1.0 0.0 0.0 1.0 284.2021758877 213.49999999929997)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="0.952" y="1.0">
 				Winn-Dixie
 			</text>
 		</defs>
-		<use id="Winn-Dixie" xlink:href="#string-14" fill="#ffffff" fill-opacity="1" stroke="none" />
+		<use id="Winn-Dixie" xlink:href="#string7-14" fill="#ffffff" fill-opacity="1" stroke="none" />
 		<g id="group-2">
 			<path id="Ellipse-9" d="M300.004 219.53 C300.004 219.119 299.671 218.786 299.26 218.786 298.849 218.786 298.516 219.119 298.516 219.53 298.516 219.941 298.849 220.274 299.26 220.274 299.671 220.274 300.004 219.941 300.004 219.53 Z" fill="#fafcff" fill-opacity="1" stroke="none" />
 			<path id="Ellipse-10" d="M299.706 219.53 C299.706 219.283 299.506 219.083 299.26 219.083 299.013 219.083 298.813 219.283 298.813 219.53 298.813 219.776 299.013 219.976 299.26 219.976 299.506 219.976 299.706 219.776 299.706 219.53 Z" fill="#3c91e7" fill-opacity="1" stroke="none" />
 		</g>
 		<defs>
-			<text id="string-15" transform="matrix(1.0 0.0 0.0 1.0 277.85744934022 218.49999999916002)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="0.952" y="1.0">
+			<text id="string7-15" transform="matrix(1.0 0.0 0.0 1.0 277.85744934022 218.49999999916002)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="0.952" y="1.0">
 				Pasta Sauce
 			</text>
 		</defs>
-		<use id="Pasta-Sauce" xlink:href="#string-15" fill="#ffffff" fill-opacity="1" stroke="none" />
+		<use id="Pasta-Sauce" xlink:href="#string7-15" fill="#ffffff" fill-opacity="1" stroke="none" />
 		<defs>
-			<text id="string-16" transform="matrix(1.0 0.0 0.0 1.0 290.52899880422 218.49999999916002)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="0.952" y="1.0">
+			<text id="string7-16" transform="matrix(1.0 0.0 0.0 1.0 290.52899880422 218.49999999916002)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="0.952" y="1.0">
 				Normal
 			</text>
 		</defs>
-		<use id="Normal-2" xlink:href="#string-16" fill="#ffffff" fill-opacity="1" stroke="none" />
+		<use id="Normal-2" xlink:href="#string7-16" fill="#ffffff" fill-opacity="1" stroke="none" />
 		<defs>
-			<text id="string-17" transform="matrix(1.0 0.0 0.0 1.0 284.68985261388 218.49999999916002)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="0.952" y="1.0">
+			<text id="string7-17" transform="matrix(1.0 0.0 0.0 1.0 284.68985261388 218.49999999916002)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="0.952" y="1.0">
 				Heinen's
 			</text>
 		</defs>
-		<use id="Heinens" xlink:href="#string-17" fill="#ffffff" fill-opacity="1" stroke="none" />
+		<use id="Heinens" xlink:href="#string7-17" fill="#ffffff" fill-opacity="1" stroke="none" />
 		<path id="Line" d="M278.933 197.119 L302.206 197.179" fill="none" stroke="#fafcff" stroke-width="0.238" stroke-opacity="1" stroke-linejoin="round" />
 		<path id="Line-1" d="M278.933 202 L302.206 202.06" fill="none" stroke="#fafcff" stroke-width="0.238" stroke-opacity="1" stroke-linejoin="round" />
 		<path id="Line-2" d="M278.933 207 L302.206 207.06" fill="none" stroke="#fafcff" stroke-width="0.238" stroke-opacity="1" stroke-linejoin="round" />

@@ -3,24 +3,25 @@
         "cardName": "Create Lists",
         "text": "Create lists for all of your grocery needs.",
         "color": "red",
-        "delay": 200
+        "delay": 175
     },
     {
         "cardName": "Update Lists",
         "text": "Mark your list items as purchased and set the priority on when you need them.",
         "color": "teal",
-        "delay": 175
+        "delay": 250
     },
     {
         "cardName": "Filter By Store",
         "text": "Specify the store where you buy each item on your list for a more efficient shopping experience.",
         "color": "yellow",
-        "delay": 500
+        "delay": 350
     },
     {
         "cardName": "Connections",
         "text": "Connect with friends and family members and share lists.",
-        "color": "orange"
+        "color": "orange",
+        "delay": 200
     },
     {
         "cardName": "Recipes",
