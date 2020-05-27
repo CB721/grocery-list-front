@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg preserveAspectRatio="none" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
+	<g id="List">
+		<path id="Path" d="M137.385 60.538 C120.183 60.538 106.238 74.484 106.238 91.686 L106.238 421.852 C106.238 439.054 120.183 453 137.385 453 L379.559 453 C396.761 453 410.707 439.054 410.707 421.852 L410.707 91.686 C410.707 74.484 396.761 60.538 379.559 60.538 Z" fill="#3c91e7" fill-opacity="1" stroke="none" />
+		<g id="group">
+			<path id="Ellipse" d="M381.895 93.633 C381.895 88.257 377.537 83.899 372.162 83.899 366.786 83.899 362.428 88.257 362.428 93.633 362.428 99.009 366.786 103.367 372.162 103.367 377.537 103.367 381.895 99.009 381.895 93.633 Z" fill="#fafcff" fill-opacity="1" stroke="none" />
+			<path id="Ellipse-1" d="M378.002 93.633 C378.002 90.407 375.387 87.793 372.162 87.793 368.936 87.793 366.322 90.407 366.322 93.633 366.322 96.858 368.936 99.473 372.162 99.473 375.387 99.473 378.002 96.858 378.002 93.633 Z" fill="#3c91e7" fill-opacity="1" stroke="none" />
+		</g>
+		<defs>
+			<text id="string" transform="matrix(1.0 0.0 0.0 1.0 104.42426580861999 86.24347577200001)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="12.459" y="10.0">
+				Apples
+			</text>
+		</defs>
+		<use id="Apples" xlink:href="#string" fill="#ffffff" fill-opacity="1" stroke="none" />
+		<defs>
+			<text id="string-1" transform="matrix(1.0 0.0 0.0 1.0 257.18816693622 86.24347577200001)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="12.459" y="10.0">
+				Normal
+			</text>
+		</defs>
+		<use id="Normal" xlink:href="#string-1" fill="#ffffff" fill-opacity="1" stroke="none" />
+		<path id="Ellipse-2" d="M378.002 93.633 C378.002 90.407 375.387 87.793 372.162 87.793 368.936 87.793 366.322 90.407 366.322 93.633 366.322 96.858 368.936 99.473 372.162 99.473 375.387 99.473 378.002 96.858 378.002 93.633 Z" fill="#3c91e7" fill-opacity="1" stroke="none" />
+		<defs>
+			<text id="string-2" transform="matrix(1.0 0.0 0.0 1.0 180.78492415912 86.24347577200001)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="12.459" y="10.0">
+				Costco
+			</text>
+		</defs>
+		<use id="Costco" xlink:href="#string-2" fill="#ffffff" fill-opacity="1" stroke="none" />
+		<defs>
+			<text id="string-3" transform="matrix(1.0 0.0 0.0 1.0 111.51247701812 151.65375290572)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="12.459" y="10.0">
+				Bread
+			</text>
+		</defs>
+		<use id="Bread" xlink:href="#string-3" fill="#ffffff" fill-opacity="1" stroke="none" />
+		<defs>
+			<text id="string-4" transform="matrix(1.0 0.0 0.0 1.0 264.27029498992 151.65375290572)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="12.459" y="10.0">
+				Low
+			</text>
+		</defs>
+		<use id="Low" xlink:href="#string-4" fill="#ffffff" fill-opacity="1" stroke="none" />
+		<defs>
+			<text id="string-5" transform="matrix(1.0 0.0 0.0 1.0 180.91267821732 151.65375290572)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="12.459" y="10.0">
+				Target
+			</text>
+		</defs>
+		<use id="Target" xlink:href="#string-5" fill="#ffffff" fill-opacity="1" stroke="none" />
+		<defs>
+			<text id="string-6" transform="matrix(1.0 0.0 0.0 1.0 104.72540070794 217.06403003970001)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="12.459" y="10.0">
+				Cheese
+			</text>
+		</defs>
+		<use id="Cheese" xlink:href="#string-6" fill="#ffffff" fill-opacity="1" stroke="none" />
+		<defs>
+			<text id="string-7" transform="matrix(1.0 0.0 0.0 1.0 257.18816693622 217.06403003970001)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="12.459" y="10.0">
+				Normal
+			</text>
+		</defs>
+		<use id="Normal-1" xlink:href="#string-7" fill="#ffffff" fill-opacity="1" stroke="none" />
+		<defs>
+			<text id="string-8" transform="matrix(1.0 0.0 0.0 1.0 187.79404889278 217.06403003970001)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="12.459" y="10.0">
+				QFC
+			</text>
+		</defs>
+		<use id="QFC" xlink:href="#string-8" fill="#ffffff" fill-opacity="1" stroke="none" />
+		<defs>
+			<text id="string-9" transform="matrix(1.0 0.0 0.0 1.0 111.60677216229999 282.47430717366)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="12.459" y="10.0">
+				Wine
+			</text>
+		</defs>
+		<use id="Wine" xlink:href="#string-9" fill="#ffffff" fill-opacity="1" stroke="none" />
+		<defs>
+			<text id="string-10" transform="matrix(1.0 0.0 0.0 1.0 264.0543289436 282.47430717366)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="12.459" y="10.0">
+				High
+			</text>
+		</defs>
+		<use id="High" xlink:href="#string-10" fill="#ffffff" fill-opacity="1" stroke="none" />
+		<g id="group-1">
+			<path id="Ellipse-5" d="M381.895 289.864 C381.895 284.488 377.537 280.13 372.162 280.13 366.786 280.13 362.428 284.488 362.428 289.864 362.428 295.24 366.786 299.597 372.162 299.597 377.537 299.597 381.895 295.24 381.895 289.864 Z" fill="#fafcff" fill-opacity="1" stroke="none" />
+			<path id="Ellipse-6" d="M378.002 289.864 C378.002 286.638 375.387 284.024 372.162 284.024 368.936 284.024 366.322 286.638 366.322 289.864 366.322 293.089 368.936 295.704 372.162 295.704 375.387 295.704 378.002 293.089 378.002 289.864 Z" fill="#3c91e7" fill-opacity="1" stroke="none" />
+		</g>
+		<defs>
+			<text id="string-11" transform="matrix(1.0 0.0 0.0 1.0 167.99176469316 282.47430717366)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="12.459" y="10.0">
+				Whole Foods
+			</text>
+		</defs>
+		<use id="Whole-Foods" xlink:href="#string-11" fill="#ffffff" fill-opacity="1" stroke="none" />
+		<defs>
+			<text id="string-12" transform="matrix(1.0 0.0 0.0 1.0 104.73148464260001 347.88458430764)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="12.459" y="10.0">
+				Cereal
+			</text>
+		</defs>
+		<use id="Cereal" xlink:href="#string-12" fill="#ffffff" fill-opacity="1" stroke="none" />
+		<defs>
+			<text id="string-13" transform="matrix(1.0 0.0 0.0 1.0 264.27029498992 347.88458430764)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="12.459" y="10.0">
+				Low
+			</text>
+		</defs>
+		<use id="Low-1" xlink:href="#string-13" fill="#ffffff" fill-opacity="1" stroke="none" />
+		<defs>
+			<text id="string-14" transform="matrix(1.0 0.0 0.0 1.0 174.46134657834 347.88458430764)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="12.459" y="10.0">
+				Winn-Dixie
+			</text>
+		</defs>
+		<use id="Winn-Dixie" xlink:href="#string-14" fill="#ffffff" fill-opacity="1" stroke="none" />
+		<g id="group-2">
+			<path id="Ellipse-9" d="M381.895 420.684 C381.895 415.309 377.537 410.951 372.162 410.951 366.786 410.951 362.428 415.309 362.428 420.684 362.428 426.06 366.786 430.418 372.162 430.418 377.537 430.418 381.895 426.06 381.895 420.684 Z" fill="#fafcff" fill-opacity="1" stroke="none" />
+			<path id="Ellipse-10" d="M378.002 420.684 C378.002 417.459 375.387 414.844 372.162 414.844 368.936 414.844 366.322 417.459 366.322 420.684 366.322 423.91 368.936 426.524 372.162 426.524 375.387 426.524 378.002 423.91 378.002 420.684 Z" fill="#3c91e7" fill-opacity="1" stroke="none" />
+		</g>
+		<defs>
+			<text id="string-15" transform="matrix(1.0 0.0 0.0 1.0 104.50030992794001 411.29486144136)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="12.459" y="10.0">
+				Pasta Sauce
+			</text>
+		</defs>
+		<use id="Pasta-Sauce" xlink:href="#string-15" fill="#ffffff" fill-opacity="1" stroke="none" />
+		<defs>
+			<text id="string-16" transform="matrix(1.0 0.0 0.0 1.0 257.18816693622 413.29486144136)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="12.459" y="10.0">
+				Normal
+			</text>
+		</defs>
+		<use id="Normal-2" xlink:href="#string-16" fill="#ffffff" fill-opacity="1" stroke="none" />
+		<defs>
+			<text id="string-17" transform="matrix(1.0 0.0 0.0 1.0 180.8001328272 413.29486144136)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="12.459" y="10.0">
+				Heinen's
+			</text>
+		</defs>
+		<use id="Heinens" xlink:href="#string-17" fill="#ffffff" fill-opacity="1" stroke="none" />
+		<path id="Line" d="M106.238 127.506 L410.707 128.286" fill="none" stroke="#fafcff" stroke-width="3.115" stroke-opacity="1" stroke-linejoin="round" />
+		<path id="Line-1" d="M106.238 191.359 L410.707 192.138" fill="none" stroke="#fafcff" stroke-width="3.115" stroke-opacity="1" stroke-linejoin="round" />
+		<path id="Line-2" d="M106.238 256.769 L410.707 257.549" fill="none" stroke="#fafcff" stroke-width="3.115" stroke-opacity="1" stroke-linejoin="round" />
+		<path id="Line-3" d="M106.238 322.18 L410.707 322.959" fill="none" stroke="#fafcff" stroke-width="3.115" stroke-opacity="1" stroke-linejoin="round" />
+		<path id="Line-4" d="M106.238 387.59 L410.707 388.369" fill="none" stroke="#fafcff" stroke-width="3.115" stroke-opacity="1" stroke-linejoin="round" />
+		<path id="Line-5" d="M106.238 127.506 L410.707 128.286" fill="none" stroke="#fafcff" stroke-width="3.115" stroke-opacity="1" stroke-linejoin="round" />
+		<g id="group-3">
+			<path id="Line-6" d="M363.207 353.327 L370.994 359.557" fill="none" stroke="#f8faff" stroke-width="3.893" stroke-opacity="1" stroke-linejoin="round" />
+			<path id="Line-7" d="M369.697 358.937 L378.52 343.825" fill="none" stroke="#f8faff" stroke-width="3.893" stroke-opacity="1" stroke-linejoin="round" />
+		</g>
+		<g id="group-4">
+			<path id="Line-8" d="M363.207 219.392 L370.994 225.621" fill="none" stroke="#f8faff" stroke-width="3.893" stroke-opacity="1" stroke-linejoin="round" />
+			<path id="Line-9" d="M369.697 225.002 L378.52 209.89" fill="none" stroke="#f8faff" stroke-width="3.893" stroke-opacity="1" stroke-linejoin="round" />
+		</g>
+		<g id="group-5">
+			<path id="Line-10" d="M362.428 153.982 L370.215 160.211" fill="none" stroke="#f8faff" stroke-width="3.893" stroke-opacity="1" stroke-linejoin="round" />
+			<path id="Line-11" d="M368.918 159.591 L377.741 144.479" fill="none" stroke="#f8faff" stroke-width="3.893" stroke-opacity="1" stroke-linejoin="round" />
+		</g>
+	</g>
+</svg>
