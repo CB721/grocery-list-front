@@ -3,9 +3,9 @@
 	<g id="New-Group">
 		<g id="filter-1">
 			<defs>
-				<image id="image" width="10px" height="5px" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAFCAYAAAB8ZH1oAAAAAXNSR0IArs4c6QAAAH5JREFUCB1tyjEKAkEQRNGq7l5FNFAUzEUQL+MtTL2TYCTewQusVzDdwNidwJ1pO3b8UEnxeG/blQ7N0YEl6jzqPnm4mfj44CinMNN/DuDLRIshYx9gHWMNCZJCyM5KLmeIL1Q5/4XF4QJ0ULvw6q6bx3OWRu/46pp+klPa9l/IKyt3h41fNQAAAABJRU5ErkJggg==" />
+				<image id="image6" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAFCAYAAAB8ZH1oAAAAAXNSR0IArs4c6QAAAH5JREFUCB1tyjEKAkEQRNGq7l5FNFAUzEUQL+MtTL2TYCTewQusVzDdwNidwJ1pO3b8UEnxeG/blQ7N0YEl6jzqPnm4mfj44CinMNN/DuDLRIshYx9gHWMNCZJCyM5KLmeIL1Q5/4XF4QJ0ULvw6q6bx3OWRu/46pp+klPa9l/IKyt3h41fNQAAAABJRU5ErkJggg==" />
 			</defs>
-			<use id="image-5" xlink:href="#image" x="121px" y="86px" width="10px" height="5px" />
+			<use id="image-5" xlink:href="#image6" x="121px" y="86px" />
 			<g id="Tree-Group">
 				<g id="trees-Copy">
 					<g id="group">

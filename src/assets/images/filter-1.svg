@@ -93,11 +93,11 @@
 			<path id="Rectangle-4" d="M81.949 196.572 L98.962 196.572 98.962 182.394 81.949 182.394 Z" fill="#fafcff" fill-opacity="1" stroke="none" />
 			<path id="Ellipse-2-1" d="M84.785 190.192 C84.785 186.669 82.881 183.812 80.531 183.812 78.182 183.812 76.278 186.669 76.278 190.192 76.278 193.715 78.182 196.572 80.531 196.572 82.881 196.572 84.785 193.715 84.785 190.192 Z" fill="#fafcff" fill-opacity="1" stroke="none" />
 			<defs>
-				<text id="string-9" transform="matrix(1.0 0.0 0.0 1.0 76.87356947188 182.90080104566)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="14.792" y="11.0">
+				<text id="string1-9" transform="matrix(1.0 0.0 0.0 1.0 76.87356947188 182.90080104566)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="14.792" y="11.0">
 					All
 				</text>
 			</defs>
-			<use id="All" xlink:href="#string-9" fill="#3c91e7" fill-opacity="1" stroke="none" />
+			<use id="All" xlink:href="#string1-9" fill="#3c91e7" fill-opacity="1" stroke="none" />
 		</g>
 		<defs>
 			<linearGradient id="linear-gradient" gradientUnits="userSpaceOnUse" x1="6801.499" y1="33967.177" x2="7141.679" y2="33967.177">

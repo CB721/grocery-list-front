@@ -15,6 +15,18 @@ import { ReactComponent as UpdateSix } from "../../assets/images/update-6.svg";
 import { ReactComponent as UpdateSeven } from "../../assets/images/update-7.svg";
 import { ReactComponent as UpdateEight } from "../../assets/images/update-8.svg";
 import { ReactComponent as UpdateNine } from "../../assets/images/update-9.svg";
+import { ReactComponent as FilterOne } from "../../assets/images/filter-1.svg";
+import { ReactComponent as FilterTwo } from "../../assets/images/filter-2.svg";
+import { ReactComponent as FilterThree } from "../../assets/images/filter-3.svg";
+import { ReactComponent as FilterFour } from "../../assets/images/filter-4.svg";
+import { ReactComponent as FilterFive } from "../../assets/images/filter-5.svg";
+import { ReactComponent as FilterSix } from "../../assets/images/filter-6.svg";
+import { ReactComponent as FilterSeven } from "../../assets/images/filter-7.svg";
+import { ReactComponent as FilterEight } from "../../assets/images/filter-8.svg";
+import { ReactComponent as FilterNine } from "../../assets/images/filter-9.svg";
+import { ReactComponent as FilterTen } from "../../assets/images/filter-10.svg";
+import { ReactComponent as FilterEleven } from "../../assets/images/filter-11.svg";
+import { ReactComponent as FilterTwelve } from "../../assets/images/filter-12.svg";
 import useInterval from "../../utilities/useInterval";
 import "./style.scss";
 
@@ -60,7 +72,8 @@ function Home(props) {
             case 2:
                 setCurrSvg(
                     <div className="benefit-area">
-
+                        <FilterOne className="benefit-layer show" />
+                        <FilterTwo className="benefit-layer " />
                     </div>
                 )
                 setCurrSvgIndex(0);
@@ -321,11 +334,261 @@ function Home(props) {
                     return;
             }
         } else if (currBenefitIndex === 2) {
-            setCurrSvg(
-                <div className="benefit-area">
-
-                </div>
-            )
+            switch (currSvgIndex) {
+                case 0:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <FilterOne className="benefit-layer show" />
+                            <FilterTwo className="benefit-layer" />
+                            <FilterTwelve className="benefit-layer" />
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 1:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <FilterOne className="benefit-layer show" />
+                            <FilterTwo className="benefit-layer" />
+                            <FilterTwelve className="benefit-layer" />
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 2:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <FilterOne className="benefit-layer" />
+                            <FilterTwo className="benefit-layer show" />
+                            <FilterThree className="benefit-layer" />
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 3:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <FilterOne className="benefit-layer" />
+                            <FilterTwo className="benefit-layer show" />
+                            <FilterThree className="benefit-layer" />
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 4:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <FilterTwo className="benefit-layer" />
+                            <FilterThree className="benefit-layer show" />
+                            <FilterFour className="benefit-layer" />
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 5:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <FilterTwo className="benefit-layer" />
+                            <FilterThree className="benefit-layer show" />
+                            <FilterFour className="benefit-layer" />
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 6:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <FilterThree className="benefit-layer" />
+                            <FilterFour className="benefit-layer show" />
+                            <FilterFive className="benefit-layer" />
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 7:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <FilterThree className="benefit-layer" />
+                            <FilterFour className="benefit-layer show" />
+                            <FilterFive className="benefit-layer" />
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 8:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <FilterFour className="benefit-layer" />
+                            <FilterFive className="benefit-layer show" />
+                            <FilterSix className="benefit-layer" />
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 9:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <FilterFour className="benefit-layer" />
+                            <FilterFive className="benefit-layer show" />
+                            <FilterSix className="benefit-layer" />
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 10:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <FilterFive className="benefit-layer" />
+                            <FilterSix className="benefit-layer show" />
+                            <FilterSeven className="benefit-layer" />
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 11:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <FilterFive className="benefit-layer" />
+                            <FilterSix className="benefit-layer show" />
+                            <FilterSeven className="benefit-layer" />
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 12:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <FilterSix className="benefit-layer" />
+                            <FilterSeven className="benefit-layer show" />
+                            <FilterEight className="benefit-layer" />
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 13:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <FilterSix className="benefit-layer" />
+                            <FilterSeven className="benefit-layer show" />
+                            <FilterEight className="benefit-layer" />
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 14:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <FilterSeven className="benefit-layer" />
+                            <FilterEight className="benefit-layer show" />
+                            <FilterNine className="benefit-layer" />
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 15:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <FilterSeven className="benefit-layer" />
+                            <FilterEight className="benefit-layer show" />
+                            <FilterNine className="benefit-layer" />
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 16:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <FilterEight className="benefit-layer" />
+                            <FilterNine className="benefit-layer show" />
+                            <FilterTen className="benefit-layer" />
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 17:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <FilterEight className="benefit-layer" />
+                            <FilterNine className="benefit-layer show" />
+                            <FilterTen className="benefit-layer" />
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 18:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <FilterNine className="benefit-layer" />
+                            <FilterTen className="benefit-layer show" />
+                            <FilterEleven className="benefit-layer" />
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 19:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <FilterNine className="benefit-layer" />
+                            <FilterTen className="benefit-layer show" />
+                            <FilterEleven className="benefit-layer" />
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 20:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <FilterTen className="benefit-layer" />
+                            <FilterEleven className="benefit-layer show" />
+                            <FilterTwelve className="benefit-layer" />
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 21:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <FilterTen className="benefit-layer" />
+                            <FilterEleven className="benefit-layer show" />
+                            <FilterTwelve className="benefit-layer" />
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 22:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <FilterOne className="benefit-layer" />
+                            <FilterEleven className="benefit-layer" />
+                            <FilterTwelve className="benefit-layer show" />
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 23:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <FilterOne className="benefit-layer" />
+                            <FilterEleven className="benefit-layer" />
+                            <FilterTwelve className="benefit-layer show" />
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 24:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <FilterOne className="benefit-layer" />
+                            <FilterEleven className="benefit-layer" />
+                            <FilterTwelve className="benefit-layer show" />
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                default:
+                    setCurrSvgIndex(0);
+                    return;
+            }
         }
     }, 240);
     useEffect(() => {
