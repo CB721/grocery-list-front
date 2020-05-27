@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { Row, Col, Fade } from "shards-react";
 import { ReactComponent as Bell } from "../../assets/images/bell.svg";
 import SideMenu from "../SideMenu";
@@ -23,7 +23,9 @@ function Navbar(props) {
     const [addToHomeInstructions, setAddToHomeInstructions] = useState("");
     const [showPhoneOption, setShowPhoneOption] = useState(false);
     const isMobile = window.screen.availWidth < 500 ? true : false;
+    const [navClass, setNavClass] = useState("nav");
     let history = useHistory();
+    let location = useLocation();
 
     useEffect(() => {
         // if there are any notifications
@@ -38,6 +40,13 @@ function Navbar(props) {
             setUnreadNotificationTotal(total);
         }
     }, [props.notifications]);
+    useEffect(() => {
+        if (location.pathname === "/") {
+            setNavClass("nav");
+        } else {
+            setNavClass("nav not-home");
+        }
+    }, [location]);
 
     function expandMenu(event) {
         event.preventDefault();
@@ -191,7 +200,7 @@ function Navbar(props) {
             ) : (<div />)}
             <Row>
                 <Col>
-                    <div className="nav">
+                    <div className={navClass}>
                         <div className="nav-items" />
                         <div className="app-text" onClick={(event) => goToHome(event)} aria-label="go to home page">
                             G-List

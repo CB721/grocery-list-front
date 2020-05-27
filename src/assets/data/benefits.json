@@ -1,50 +1,32 @@
 [
     {
         "cardName": "Create Lists",
-        "text": "Create a list and set priority levels for each item.",
-        "color": "#F9FCFF",
-        "background": "#2F3338"
+        "text": "Create lists for all of your grocery needs.",
+        "color": "red",
+        "delay": 175
     },
     {
-        "cardName": "Add Stores",
-        "text": "Add the stores where you shop!",
-        "color": "#F9FCFF",
-        "background": "rgb(107, 41, 214)"
+        "cardName": "Update Lists",
+        "text": "Mark your list items as purchased and set the priority on when you need them.",
+        "color": "green",
+        "delay": 250
     },
     {
         "cardName": "Filter By Store",
-        "text": "At the store right now? Select the store to only view items from that store.",
-        "color": "#F9FCFF",
-        "background": "rgb(159, 131, 20)"
-    },
-    {
-        "cardName": "Past Lists",
-        "text": "View previous lists and add some or all of the items to your current one!",
-        "color": "#F9FCFF",
-        "background": "#3C91E6"
-    },
-    {
-        "cardName": "Update List",
-        "text": "Already added an item to your cart?  Mark it as complete to track your progress.",
-        "color": "#F9FCFF",
-        "background": "rgb(159, 20, 20)"
-    },
-    {
-        "cardName": "Recipes",
-        "text": "Got a recipe you love?  Save a G-List with all of the ingredients to quickly add to your current list!",
-        "color": "#F9FCFF",
-        "background": "rgb(214, 41, 194)"
+        "text": "Specify the store where you buy each item on your list for a more efficient shopping experience.",
+        "color": "yellow",
+        "delay": 350
     },
     {
         "cardName": "Connections",
-        "text": "Connect with friends and family members!",
-        "color": "#F9FCFF",
-        "background": "rgb(17, 140, 17)"
+        "text": "Connect with friends and family members and share lists.",
+        "color": "orange",
+        "delay": 200
     },
     {
-        "cardName": "Share",
-        "text": "Send and receive lists from your fellow shoppers.",
-        "color": "#F9FCFF",
-        "background": "rgb(214, 107, 41)"
+        "cardName": "Recipes",
+        "text": "Got a recipe you love?  Save a G-List with all of the ingredients!",
+        "color": "purple",
+        "delay": 215
     }
 ]

@@ -1,0 +1,152 @@
+<svg viewBox="345 236 400 500" xmlns="http://www.w3.org/2000/svg" id="list-icon">
+	<path id="Path" d="M386 236 C363.909 236 346 253.909 346 276 L346 700 C346 722.091 363.909 740 386 740 L697 740 C719.091 740 737 722.091 737 700 L737 276 C737 253.909 719.091 236 697 236 Z" fill="#3c91e7" fill-opacity="1" stroke="none" />
+	<defs>
+		<text id="string-1" transform="matrix(1.0 0.0 0.0 1.0 564.0 270.0)" x="1.21875" font-size="16" font-family="Helvetica, Helvetica" text-decoration="none" y="12.0" fill="#ffffff">
+			Normal
+		</text>
+	</defs>
+	<g class="undone-mark">
+		<path id="Ellipse" d="M700 278.5 C700 271.597 694.403 266 687.5 266 680.596 266 675 271.597 675 278.5 675 285.404 680.596 291 687.5 291 694.403 291 700 285.404 700 278.5 Z" fill="#fafcff" fill-opacity="1" stroke="none" />
+		<path id="Ellipse-1" d="M695 278.5 C695 274.358 691.642 271 687.5 271 683.358 271 680 274.358 680 278.5 680 282.642 683.358 286 687.5 286 691.642 286 695 282.642 695 278.5 Z" fill="#3c91e7" fill-opacity="1" stroke="none" />
+	</g>
+	<defs>
+		<text id="string-2" transform="matrix(1.0 0.0 0.0 1.0 467.0 270.0)" x="1.1015625" font-size="16" font-family="Helvetica, Helvetica" text-decoration="none" y="12.0" fill="#ffffff">
+			Costco
+		</text>
+	</defs>
+	<defs>
+		<text id="string-3" transform="matrix(1.0 0.0 0.0 1.0 369.0 270.0)" x="1.5390625" font-size="16" font-family="Helvetica, Helvetica" text-decoration="none" y="12.0" fill="#ffffff">
+			Apples
+		</text>
+	</defs>
+	<use id="Apples-1" xlink:href="#string-3" />
+	<defs>
+		<text id="string-4" transform="matrix(1.0 0.0 0.0 1.0 564.0 270.0)" x="1.21875" font-size="16" font-family="Helvetica, Helvetica" text-decoration="none" y="12.0" fill="#ffffff">
+			Normal
+		</text>
+	</defs>
+	<use id="Normal-1" xlink:href="#string-4" />
+	<path id="Ellipse-2" d="M695 278.5 C695 274.358 691.642 271 687.5 271 683.358 271 680 274.358 680 278.5 680 282.642 683.358 286 687.5 286 691.642 286 695 282.642 695 278.5 Z" fill="#3c91e7" fill-opacity="1" stroke="none" />
+	<defs>
+		<text id="string-5" transform="matrix(1.0 0.0 0.0 1.0 467.0 270.0)" x="1.1015625" font-size="16" font-family="Helvetica, Helvetica" text-decoration="none" y="12.0" fill="#ffffff">
+			Costco
+		</text>
+	</defs>
+	<use id="Costco-1" xlink:href="#string-5" />
+	<defs>
+		<text id="string-6" transform="matrix(1.0 0.0 0.0 1.0 372.0 354.0)" x="1.65234375" font-size="16" font-family="Helvetica, Helvetica" text-decoration="none" y="12.0" fill="#ffffff">
+			Bread
+		</text>
+	</defs>
+	<use id="Bread" xlink:href="#string-6" />
+	<defs>
+		<text id="string-7" transform="matrix(1.0 0.0 0.0 1.0 575.0 354.0)" x="1.32421875" font-size="16" font-family="Helvetica, Helvetica" text-decoration="none" y="12.0" fill="#ffffff">
+			Low
+		</text>
+	</defs>
+	<use id="Low" xlink:href="#string-7" />
+	<defs>
+		<text id="string-8" transform="matrix(1.0 0.0 0.0 1.0 469.0 354.0)" x="1.765625" font-size="16" font-family="Helvetica, Helvetica" text-decoration="none" y="12.0" fill="#ffffff">
+			Target
+		</text>
+	</defs>
+	<use id="Target" xlink:href="#string-8" />
+	<defs>
+		<text id="string-9" transform="matrix(1.0 0.0 0.0 1.0 366.0 438.0)" x="1.42578125" font-size="16" font-family="Helvetica, Helvetica" text-decoration="none" y="12.0" fill="#ffffff">
+			Cheese
+		</text>
+	</defs>
+	<use id="Cheese" xlink:href="#string-9" />
+	<defs>
+		<text id="string-10" transform="matrix(1.0 0.0 0.0 1.0 564.0 438.0)" x="1.21875" font-size="16" font-family="Helvetica, Helvetica" text-decoration="none" y="12.0" fill="#ffffff">
+			Normal
+		</text>
+	</defs>
+	<use id="Normal-2" xlink:href="#string-10" />
+	<defs>
+		<text id="string-11" transform="matrix(1.0 0.0 0.0 1.0 475.0 438.0)" x="1.11328125" font-size="16" font-family="Helvetica, Helvetica" text-decoration="none" y="12.0" fill="#ffffff">
+			QFC
+		</text>
+	</defs>
+	<use id="QFC" xlink:href="#string-11" />
+	<defs>
+		<text id="string-12" transform="matrix(1.0 0.0 0.0 1.0 375.0 522.0)" x="1.7734375" font-size="16" font-family="Helvetica, Helvetica" text-decoration="none" y="12.0" fill="#ffffff">
+			Wine
+		</text>
+	</defs>
+	<use id="Wine" xlink:href="#string-12" />
+	<defs>
+		<text id="string-13" transform="matrix(1.0 0.0 0.0 1.0 573.0 522.0)" x="1.546875" font-size="16" font-family="Helvetica, Helvetica" text-decoration="none" y="12.0" fill="#ffffff">
+			High
+		</text>
+	</defs>
+	<use id="High" xlink:href="#string-13" />
+	<g class="done-mark">
+		<path id="Ellipse-5" d="M700 530.5 C700 523.597 694.403 518 687.5 518 680.596 518 675 523.597 675 530.5 675 537.404 680.596 543 687.5 543 694.403 543 700 537.404 700 530.5 Z" fill="#fafcff" fill-opacity="1" stroke="none" />
+		<path id="Ellipse-6" d="M695 530.5 C695 526.358 691.642 523 687.5 523 683.358 523 680 526.358 680 530.5 680 534.642 683.358 538 687.5 538 691.642 538 695 534.642 695 530.5 Z" fill="#3c91e7" fill-opacity="1" stroke="none" />
+	</g>
+	<defs>
+		<text id="string-14" transform="matrix(1.0 0.0 0.0 1.0 444.0 522.0)" x="1.8671875" font-size="16" font-family="Helvetica, Helvetica" text-decoration="none" y="12.0" fill="#ffffff">
+			Whole Foods
+		</text>
+	</defs>
+	<use id="Whole-Foods" xlink:href="#string-14" />
+	<defs>
+		<text id="string-15" transform="matrix(1.0 0.0 0.0 1.0 370.0 606.0)" x="1.43359375" font-size="16" font-family="Helvetica, Helvetica" text-decoration="none" y="12.0" fill="#ffffff">
+			Cereal
+		</text>
+	</defs>
+	<use id="Cereal" xlink:href="#string-15" />
+	<defs>
+		<text id="string-16" transform="matrix(1.0 0.0 0.0 1.0 575.0 606.0)" x="1.32421875" font-size="16" font-family="Helvetica, Helvetica" text-decoration="none" y="12.0" fill="#ffffff">
+			Low
+		</text>
+	</defs>
+	<use id="Low-1" xlink:href="#string-16" />
+	<defs>
+		<text id="string-17" transform="matrix(1.0 0.0 0.0 1.0 453.0 606.0)" x="1.328125" font-size="16" font-family="Helvetica, Helvetica" text-decoration="none" y="12.0" fill="#ffffff">
+			Winn-Dixie
+		</text>
+	</defs>
+	<use id="Winn-Dixie" xlink:href="#string-17" />
+	<g class="undone-mark">
+		<path id="Ellipse-9" d="M700 698.5 C700 691.597 694.403 686 687.5 686 680.596 686 675 691.597 675 698.5 675 705.404 680.596 711 687.5 711 694.403 711 700 705.404 700 698.5 Z" fill="#fafcff" fill-opacity="1" stroke="none" />
+		<path id="Ellipse-10" d="M695 698.5 C695 694.358 691.642 691 687.5 691 683.358 691 680 694.358 680 698.5 680 702.642 683.358 706 687.5 706 691.642 706 695 702.642 695 698.5 Z" fill="#3c91e7" fill-opacity="1" stroke="none" />
+	</g>
+	<defs>
+		<text id="string-18" transform="matrix(1.0 0.0 0.0 1.0 348.0 690.0)" x="1.63671875" font-size="16" font-family="Helvetica, Helvetica" text-decoration="none" y="12.0" fill="#ffffff">
+			Pasta Sauce
+		</text>
+	</defs>
+	<use id="Pasta-Sauce" xlink:href="#string-18" />
+	<defs>
+		<text id="string-19" transform="matrix(1.0 0.0 0.0 1.0 564.0 690.0)" x="1.21875" font-size="16" font-family="Helvetica, Helvetica" text-decoration="none" y="12.0" fill="#ffffff">
+			Normal
+		</text>
+	</defs>
+	<use id="Normal-3" xlink:href="#string-19" />
+	<defs>
+		<text id="string-20" transform="matrix(1.0 0.0 0.0 1.0 461.0 690.0)" x="1.12109375" font-size="16" font-family="Helvetica, Helvetica" text-decoration="none" y="12.0" fill="#ffffff">
+			Heinen's
+		</text>
+	</defs>
+	<use id="Heinens" xlink:href="#string-20" />
+	<path id="Line" d="M346 322 L737 323.001" fill="none" stroke="#fafcff" stroke-width="4" stroke-opacity="1" stroke-linejoin="round" />
+	<path id="Line-1" d="M346 404 L737 405.001" fill="none" stroke="#fafcff" stroke-width="4" stroke-opacity="1" stroke-linejoin="round" />
+	<path id="Line-2" d="M346 488 L737 489.001" fill="none" stroke="#fafcff" stroke-width="4" stroke-opacity="1" stroke-linejoin="round" />
+	<path id="Line-3" d="M346 572 L737 573.001" fill="none" stroke="#fafcff" stroke-width="4" stroke-opacity="1" stroke-linejoin="round" />
+	<path id="Line-4" d="M346 656 L737 657.001" fill="none" stroke="#fafcff" stroke-width="4" stroke-opacity="1" stroke-linejoin="round" />
+	<path id="Line-5" d="M346 322 L737 323.001" fill="none" stroke="#fafcff" stroke-width="4" stroke-opacity="1" stroke-linejoin="round" />
+	<g class="done-mark">
+		<path id="Line-6" d="M676 612 L686 620" fill="none" stroke="#f8faff" stroke-width="5" stroke-opacity="1" stroke-linejoin="round" />
+		<path id="Line-7" d="M684.335 619.204 L695.665 599.797" fill="none" stroke="#f8faff" stroke-width="5" stroke-opacity="1" stroke-linejoin="round" />
+	</g>
+	<g class="done-mark">
+		<path id="Line-8" d="M676 440 L686 448" fill="none" stroke="#f8faff" stroke-width="5" stroke-opacity="1" stroke-linejoin="round" />
+		<path id="Line-9" d="M684.335 447.204 L695.665 427.797" fill="none" stroke="#f8faff" stroke-width="5" stroke-opacity="1" stroke-linejoin="round" />
+	</g>
+	<g class="done-mark">
+		<path id="Line-10" d="M675 356 L685 364" fill="none" stroke="#f8faff" stroke-width="5" stroke-opacity="1" stroke-linejoin="round" />
+		<path id="Line-11" d="M683.335 363.204 L694.665 343.797" fill="none" stroke="#f8faff" stroke-width="5" stroke-opacity="1" stroke-linejoin="round" />
+	</g>
+</svg>

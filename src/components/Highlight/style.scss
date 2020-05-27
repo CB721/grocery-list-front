@@ -1,0 +1,87 @@
+@import "../../App.scss";
+
+@mixin highlight-background($bgcolor) {
+    background: $bgcolor;
+    background: -moz-linear-gradient(0deg, darken($bgcolor, 25%) 0%, $bgcolor 100%);
+    background: -webkit-linear-gradient(0deg, darken($bgcolor, 25%) 0%, $bgcolor 100%);
+    background: linear-gradient(0deg, darken($bgcolor, 25%) 0%, $bgcolor 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=$bgcolor,endColorstr=$bgcolor,GradientType=1);
+}
+
+.highlight {
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    &.red {
+        @include highlight-background($red);
+    }
+    &.orange {
+        @include highlight-background($orange);
+    }
+    &.yellow {
+        @include highlight-background($yellow);
+    }
+    &.green {
+        @include highlight-background($green);
+    }
+    &.purple {
+        @include highlight-background($purple);
+    }
+    &.pink {
+        @include highlight-background($pink);
+    }
+    &.black {
+        @include highlight-background(#2f3338);
+    }
+    .display {
+        width: 100%;
+        height: 90%;
+        display: block;
+        .benefit-area {
+            width: 100%;
+            height: 85%;
+            position: relative;
+            .benefit-layer, .benefit-bg {
+                position: absolute;
+                left: 0;
+                top: 0;
+                height: 100%;
+                width: 100%;
+            }
+            .benefit-layer {
+                transition: 0.2s;
+                opacity: 0;
+                visibility: hidden;
+                z-index: 499;
+                &.show {
+                    opacity: 1;
+                    visibility: visible;
+                }
+            }
+            .benefit-bg {
+                z-index: 500;
+            }
+            .benefit-bg-behind {
+                z-index: 498;
+            }
+        }
+        .description {
+            width: 100%;
+            height: 15%;
+            font-size: 1rem;
+            line-height: 1rem;
+            color: #f9fcff;
+            text-align: center;
+        }
+    }
+    .benefit-name {
+        width: 100%;
+        min-height: 10%;
+        height: auto;
+        line-height: 2rem;
+        font-size: 1rem;
+        background-color: $main-blue;
+        color: $white;
+        text-align: center;
+    }
+}

@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg preserveAspectRatio="none" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
+	<path id="send" d="M153.192 283.005 L135.713 305.748 144.223 305.335 151.026 289.874 147.365 305.183 147.373 305.182 147.363 305.183 150.065 311.517 152.135 304.951 158.181 304.658 Z" fill="#f8fcff" fill-opacity="1" stroke="none" />
+	<g id="Man">
+		<defs>
+			<linearGradient id="linear-gradient2" gradientUnits="userSpaceOnUse" x1="6029.176" y1="449.722" x2="6046.004" y2="449.722">
+				<stop offset="0.01" stop-color="#bbbfd9" stop-opacity="1" />
+				<stop offset="1" stop-color="#d6dbf8" stop-opacity="1" />
+			</linearGradient>
+		</defs>
+		<path id="Path" d="M94.307 487.12 C95.529 487.121 96.692 486.59 97.493 485.667 98.294 484.743 98.655 483.517 98.481 482.307 L89.922 412.325 81.685 413.26 90.132 483.505 C90.442 485.586 94.307 487.12 94.307 487.12 Z" fill-opacity="1" fill="url(#linear-gradient2)" stroke="none" />
+		<defs>
+			<linearGradient id="linear-gradient2-1" gradientUnits="userSpaceOnUse" x1="6095.319" y1="447.701" x2="6113.853" y2="447.701">
+				<stop offset="0.01" stop-color="#bbbfd9" stop-opacity="1" />
+				<stop offset="1" stop-color="#d6dbf8" stop-opacity="1" />
+			</linearGradient>
+		</defs>
+		<path id="Path-1" d="M22.171 485.46 L32.377 410.323 25.457 407.564 13.908 484.019 C13.434 486.738 15.521 487.231 17.589 487.607 19.656 487.982 21.691 488.219 22.171 485.46 Z" fill-opacity="1" fill="url(#linear-gradient2-1)" stroke="none" />
+		<defs>
+			<linearGradient id="linear-gradient2-2" gradientUnits="userSpaceOnUse" x1="6070.161" y1="452.869" x2="6087.366" y2="452.869">
+				<stop offset="0.01" stop-color="#bbbfd9" stop-opacity="1" />
+				<stop offset="1" stop-color="#d6dbf8" stop-opacity="1" />
+			</linearGradient>
+		</defs>
+		<path id="Path-2" d="M48.817 494.461 L57.521 408.809 49.021 408.809 40.343 493.855 C40.153 496.489 42.167 496.397 44.156 496.693 46.368 497.022 48.6 497.437 48.817 494.461 Z" fill-opacity="1" fill="url(#linear-gradient2-2)" stroke="none" />
+		<defs>
+			<linearGradient id="linear-gradient2-3" gradientUnits="userSpaceOnUse" x1="6071.142" y1="413.655" x2="6071.142" y2="299.776">
+				<stop offset="0" stop-color="#a3b3cc" stop-opacity="1" />
+				<stop offset="0.99" stop-color="#f5f7f8" stop-opacity="1" />
+			</linearGradient>
+		</defs>
+		<path id="Path-3" d="M17.22 398.834 C19.024 412.14 38.599 414.043 61.399 414.754 62.058 415.103 87.248 414.945 98.968 411.001 L98.56 320.865 C98.56 313.254 95.307 300.692 84.2 300.507 65.554 300.198 30.961 297.36 17.418 301.541 14.323 312.661 12.065 324.947 17.227 357.071 20.163 375.46 16.344 392.447 17.22 398.834 Z" fill-opacity="1" fill="url(#linear-gradient2-3)" stroke="none" />
+		<defs>
+			<linearGradient id="linear-gradient2-4" gradientUnits="userSpaceOnUse" x1="19.426" y1="359.25" x2="49.594" y2="356.347">
+				<stop offset="0" stop-color="#a3b3cc" stop-opacity="1" />
+				<stop offset="0.99" stop-color="#f5f7f8" stop-opacity="1" />
+			</linearGradient>
+		</defs>
+		<path id="Path-4" d="M22.349 307.157 C18.234 319.555 18.734 326.751 24.245 346.813 33.43 380.24 18.359 397.359 50.22 414.247 30.902 413.141 18.754 410.165 17.22 398.834 16.351 392.447 20.17 375.46 17.22 357.071 13.421 333.408 6.324 314.071 15.759 302.647 18.366 299.487 23.745 302.937 22.349 307.157 Z" fill-opacity="1" fill="url(#linear-gradient2-4)" stroke="none" />
+		<defs>
+			<linearGradient id="linear-gradient2-5" gradientUnits="userSpaceOnUse" x1="4900.811" y1="476.789" x2="4891.178" y2="459.862">
+				<stop offset="0" stop-color="#753200" stop-opacity="1" />
+				<stop offset="1" stop-color="#a04400" stop-opacity="1" />
+			</linearGradient>
+		</defs>
+		<path id="Path-5" d="M98.915 465.84 L95.327 472.345 85.563 477.401 82.212 476.947 77.701 466.847 80.315 462.824 89.375 458.169 Z" fill-opacity="1" fill="url(#linear-gradient2-5)" stroke="none" />
+		<defs>
+			<linearGradient id="linear-gradient2-6" gradientUnits="userSpaceOnUse" x1="4849.191" y1="645.414" x2="4859.686" y2="625.853">
+				<stop offset="0" stop-color="#753200" stop-opacity="1" />
+				<stop offset="1" stop-color="#a04400" stop-opacity="1" />
+			</linearGradient>
+		</defs>
+		<path id="Path-6" d="M136.629 476.256 C142.001 474.656 149.283 470.989 149.283 470.989 149.283 470.989 155.808 481.523 156.71 482.452 153.418 483.525 156.052 492.466 153.26 493.743 150.469 495.021 143.825 488.193 140.369 488.752 140.263 485.77 137.445 477.942 136.629 476.256 Z" fill-opacity="1" fill="url(#linear-gradient2-6)" stroke="none" />
+		<path id="Path-7" d="M97.526 468.539 C97.526 468.539 89.625 467.565 88.118 472.747 87.262 475.723 81.533 466.334 82.343 461.211 78.801 459.552 71.19 466.288 71.052 469.323 70.999 470.488 76.016 479.805 76.016 479.805 L79.505 479.647 C79.505 479.647 80.954 484.19 81.639 485.572 83.739 489.753 82.989 498.273 86.208 501.46 89.428 504.646 98.369 511.415 103.327 509.512 107.705 507.827 103.267 492.611 101.648 490.3 100.028 487.989 99.712 480.068 99.62 476.809 99.528 473.55 100.061 469.501 97.526 468.539 Z" fill="#191337" fill-opacity="1" stroke="none" />
+		<path id="Path-8" d="M191.244 486.988 C188.86 485.954 180.9 487.08 178.688 487.087 165.026 487.166 158.876 479.936 158.876 479.936 158.876 479.936 157.04 478.62 155.532 479.127 154.024 479.634 154.709 483.465 154.709 483.472 153.268 484.588 151.628 485.419 149.876 485.921 142.574 487.824 142.337 485.039 140.145 486.027 137.077 489.832 139.888 505.232 139.888 505.232 L152.714 503.593 152.714 501.335 C152.714 501.335 156.098 502.888 157.237 502.651 162.702 501.644 172.525 499.445 179.241 497.43 192.113 493.579 194.398 488.351 191.244 486.988 Z" fill="#191337" fill-opacity="1" stroke="none" />
+		<path id="Path-9" d="M87.867 372.721 C94.774 373.893 114.566 383.651 119.721 390.097 123.672 395.068 126.601 409.632 133.587 426.731 135.608 421.654 138.196 412.443 139.453 407.637 141.238 400.914 142.877 385.909 127.642 382.051 117.568 379.464 95.478 372.228 87.867 372.721 Z" fill="#222152" fill-opacity="1" stroke="none" />
+		<path id="Path-10" d="M84.865 456.892 L98.961 468.032 C100.759 466.63 120.419 438.944 120.419 438.944 L100.476 408.657 C100.476 408.657 82.541 455.957 84.865 456.892 Z" fill="#222152" fill-opacity="1" stroke="none" />
+		<path id="Path-11" d="M69.089 285.608 L51.523 284.383 C51.523 284.383 50.47 284.271 48.771 284.231 48.771 284.231 55.23 344.219 73.995 339.143 92.759 334.066 72.586 286.18 72.586 286.18 71.466 285.976 70.314 285.779 69.089 285.608 Z" fill="#ffffff" fill-opacity="1" stroke="none" />
+		<path id="Path-12" d="M33.101 372.339 C33.101 372.339 26.128 397.359 49.462 405.523 64.553 410.79 92.917 409.73 92.917 409.73 92.917 409.73 134.766 483.334 136.53 482.616 L153.293 474.775 C154.794 474.162 129.755 396.852 124.712 390.498 111.425 373.828 91.133 370.95 91.133 370.95 Z" fill="#31336a" fill-opacity="1" stroke="none" />
+		<path id="Path-13" d="M73.982 290.763 C73.982 290.763 73.007 297.005 62.308 296.399 51.609 295.793 48.363 287.458 48.363 287.458" fill="none" stroke="#ffffff" stroke-width="0.691" stroke-opacity="1" stroke-linejoin="round" />
+		<defs>
+			<linearGradient id="linear-gradient2-7" gradientUnits="userSpaceOnUse" x1="32.377" y1="498.991" x2="32.377" y2="360.896">
+				<stop offset="0.01" stop-color="#bbbfd9" stop-opacity="1" />
+				<stop offset="1" stop-color="#d6dbf8" stop-opacity="1" />
+			</linearGradient>
+		</defs>
+		<path id="Path-14" d="M32.377 365.979 L32.377 493.908" fill="none" stroke-width="12.531" stroke-opacity="1" stroke="url(#linear-gradient2-7)" />
+		<defs>
+			<linearGradient id="linear-gradient2-8" gradientUnits="userSpaceOnUse" x1="204.254" y1="502.217" x2="204.254" y2="360.896">
+				<stop offset="0.01" stop-color="#bbbfd9" stop-opacity="1" />
+				<stop offset="1" stop-color="#d6dbf8" stop-opacity="1" />
+			</linearGradient>
+		</defs>
+		<path id="Path-15" d="M204.254 365.979 L204.254 497.141" fill="none" stroke-width="12.531" stroke-opacity="1" stroke="url(#linear-gradient2-8)" />
+		<defs>
+			<linearGradient id="linear-gradient2-9" gradientUnits="userSpaceOnUse" x1="63.98" y1="368.093" x2="66.838" y2="273.796">
+				<stop offset="0" stop-color="#464b8b" stop-opacity="1" />
+				<stop offset="0.28" stop-color="#393c76" stop-opacity="1" />
+				<stop offset="0.74" stop-color="#27275a" stop-opacity="1" />
+				<stop offset="1" stop-color="#201f4f" stop-opacity="1" />
+			</linearGradient>
+		</defs>
+		<path id="Path-16" d="M94.879 299.105 C90.145 291.862 83.686 288.202 72.592 286.18 L72.592 336.502 48.771 284.238 C43.504 284.12 29.276 289.795 23.179 296.445 15.113 305.248 17.767 348.248 20.302 353.983 22.527 359.013 26.227 359.52 32.219 359.389 L31.224 370.977 75.285 371.418 93.009 370.924 93.944 349.513 C93.944 349.513 112.083 354.549 111.906 355.57 111.899 355.563 106.5 316.823 94.879 299.105 Z" fill-opacity="1" fill="url(#linear-gradient2-9)" stroke="none" />
+		<defs>
+			<linearGradient id="linear-gradient2-10" gradientUnits="userSpaceOnUse" x1="98.185" y1="358.217" x2="98.553" y2="346.135">
+				<stop offset="0" stop-color="#a04400" stop-opacity="1" />
+				<stop offset="1" stop-color="#753200" stop-opacity="1" />
+			</linearGradient>
+		</defs>
+		<path id="Path-17" d="M113.782 357.427 C113.94 354.872 103.248 348.913 100.542 348.057 97.836 347.202 95.044 347.359 91.094 348.215 87.505 348.992 83.542 349.954 82.85 350.125 L82.85 357.901 C84.286 357.947 95.893 358.651 95.893 358.651 95.893 358.651 106.77 358.164 113.782 357.427 Z" fill-opacity="1" fill="url(#linear-gradient2-10)" stroke="none" />
+		<defs>
+			<linearGradient id="linear-gradient2-11" gradientUnits="userSpaceOnUse" x1="4810.359" y1="332.796" x2="4904.55" y2="332.796">
+				<stop offset="0.01" stop-color="#bbbfd9" stop-opacity="1" />
+				<stop offset="0.29" stop-color="#cacde2" stop-opacity="1" />
+				<stop offset="0.84" stop-color="#f2f3f8" stop-opacity="1" />
+				<stop offset="1" stop-color="#ffffff" stop-opacity="1" />
+			</linearGradient>
+		</defs>
+		<path id="Path-18" d="M114.632 359.099 L175.205 358.875 186.306 311.391 C186.581 310.204 186.299 308.957 185.542 308.003 184.784 307.049 183.633 306.493 182.415 306.492 L125.792 306.492 Z" fill-opacity="1" fill="url(#linear-gradient2-11)" stroke="none" />
+		<defs>
+			<linearGradient id="linear-gradient2-12" gradientUnits="userSpaceOnUse" x1="4891.823" y1="351.303" x2="4914.393" y2="321.787">
+				<stop offset="0" stop-color="#ffffff" stop-opacity="1" />
+				<stop offset="0.16" stop-color="#f2f3f8" stop-opacity="1" />
+				<stop offset="0.71" stop-color="#cacde2" stop-opacity="1" />
+				<stop offset="0.99" stop-color="#bbbfd9" stop-opacity="1" />
+			</linearGradient>
+		</defs>
+		<path id="Path-19" d="M89.02 356.123 L89.678 358.961 114.658 358.737 127.74 308.974 C127.901 308.378 127.774 307.742 127.396 307.253 127.019 306.765 126.435 306.481 125.818 306.486 124.901 306.482 124.103 307.109 123.889 308 L115.988 340.538 112.986 352.884 112.986 352.917 C112.988 352.956 112.988 352.995 112.986 353.035 112.987 353.048 112.987 353.061 112.986 353.074 L91.475 353.074 C90.715 353.075 89.996 353.42 89.519 354.012 89.042 354.604 88.858 355.38 89.02 356.123 Z" fill-opacity="1" fill="url(#linear-gradient2-12)" stroke="none" />
+		<path id="Path-20" d="M158.205 334.066 C158.205 336.874 155.929 339.149 153.122 339.149 150.315 339.149 148.039 336.874 148.039 334.066 148.039 331.259 150.315 328.983 153.122 328.983 155.929 328.983 158.205 331.259 158.205 334.066 Z" fill="#ffffff" fill-opacity="1" stroke="none" />
+		<defs>
+			<linearGradient id="linear-gradient2-13" gradientUnits="userSpaceOnUse" x1="3788.649" y1="-345.614" x2="3842.902" y2="-370.726">
+				<stop offset="0" stop-color="#753200" stop-opacity="1" />
+				<stop offset="1" stop-color="#a04400" stop-opacity="1" />
+			</linearGradient>
+		</defs>
+		<path id="Path-21" d="M54.848 291.085 C54.848 291.085 51.332 284.547 50.555 280.136 50.016 277.081 49.449 273.914 49.021 271.472 48.982 271.261 48.942 271.057 48.909 270.859 48.689 269.524 48.384 268.205 47.994 266.909 L47.783 266.705 C41.719 261.069 40.929 256.328 43.122 253.951 43.411 253.639 43.744 253.371 44.109 253.155 44.109 253.155 40.251 244.714 41.588 236.497 43.352 225.62 56.823 221.222 65.83 221.005 74.837 220.787 85.201 228.418 85.28 238.459 85.28 242.449 84.667 246.294 85.28 249.744 85.892 253.194 89.026 258.303 88.19 264.479 86.998 273.374 79.295 278.095 74.172 279.695 73.524 279.899 72.865 280.064 72.197 280.189 L72.408 281.651 72.586 282.842 72.777 284.159 C73.205 287.049 73.06 287.78 73.06 287.78 L67.792 301.449 Z" fill-opacity="1" fill="url(#linear-gradient2-13)" stroke="none" />
+		<defs>
+			<linearGradient id="linear-gradient2-14" gradientUnits="userSpaceOnUse" x1="3843.968" y1="-358.269" x2="3824.782" y2="-339.438">
+				<stop offset="0" stop-color="#a04400" stop-opacity="1" />
+				<stop offset="1" stop-color="#753200" stop-opacity="1" />
+			</linearGradient>
+		</defs>
+		<path id="Path-22" d="M49.021 271.478 C56.85 280.637 65.936 282.599 72.599 282.842 L72.421 281.651 72.21 280.189 C65.626 278.872 57.561 275.185 47.777 266.744 L47.988 266.948 C48.377 268.244 48.683 269.564 48.903 270.899 48.962 271.063 48.962 271.261 49.021 271.478 Z" fill-opacity="1" fill="url(#linear-gradient2-14)" stroke="none" />
+		<defs>
+			<linearGradient id="linear-gradient2-15" gradientUnits="userSpaceOnUse" x1="3843.922" y1="-371.661" x2="3841.447" y2="-369.231">
+				<stop offset="0" stop-color="#753200" stop-opacity="1" />
+				<stop offset="1" stop-color="#a04400" stop-opacity="1" />
+			</linearGradient>
+		</defs>
+		<path id="Path-23" d="M48.04 256.802 C48.04 256.802 45.742 254.551 44.748 256.73 43.754 258.909 46.388 261.892 46.388 261.892 Z" fill-opacity="1" fill="url(#linear-gradient2-15)" stroke="none" />
+		<defs>
+			<linearGradient id="linear-gradient2-16" gradientUnits="userSpaceOnUse" x1="61.59" y1="308.158" x2="51.438" y2="311.964">
+				<stop offset="0" stop-color="#201f4f" stop-opacity="1" />
+				<stop offset="0.26" stop-color="#27275a" stop-opacity="1" />
+				<stop offset="0.72" stop-color="#393c76" stop-opacity="1" />
+				<stop offset="1" stop-color="#464b8b" stop-opacity="1" />
+			</linearGradient>
+		</defs>
+		<path id="Path-24" d="M72.592 336.502 C58.259 327.285 54.289 306.492 54.289 306.492 L40.324 296.985 39.935 287.583 C40.181 286.558 40.82 285.672 41.713 285.114 L49.535 280.215 Z" fill-opacity="1" fill="url(#linear-gradient2-16)" stroke="none" />
+		<defs>
+			<linearGradient id="linear-gradient2-17" gradientUnits="userSpaceOnUse" x1="43.971" y1="336.18" x2="77.932" y2="336.18">
+				<stop offset="0" stop-color="#464b8b" stop-opacity="1" />
+				<stop offset="0.28" stop-color="#393c76" stop-opacity="1" />
+				<stop offset="0.74" stop-color="#27275a" stop-opacity="1" />
+				<stop offset="1" stop-color="#201f4f" stop-opacity="1" />
+			</linearGradient>
+		</defs>
+		<path id="Path-25" d="M43.971 324.118 L44.663 344.278 77.932 348.242 48.093 342.533 Z" fill-opacity="1" fill="url(#linear-gradient2-17)" stroke="none" />
+		<defs>
+			<linearGradient id="linear-gradient2-18" gradientUnits="userSpaceOnUse" x1="93.359" y1="346.583" x2="94.043" y2="323.993">
+				<stop offset="0" stop-color="#464b8b" stop-opacity="1" />
+				<stop offset="0.28" stop-color="#393c76" stop-opacity="1" />
+				<stop offset="0.74" stop-color="#27275a" stop-opacity="1" />
+				<stop offset="1" stop-color="#201f4f" stop-opacity="1" />
+			</linearGradient>
+		</defs>
+		<path id="Path-26" d="M91.739 326.554 L95.551 347.491 92.766 347.491 Z" fill-opacity="1" fill="url(#linear-gradient2-18)" stroke="none" />
+		<path id="Path-27" d="M49.528 280.215 L46.829 289.367 55.619 295.075 Z" fill="#ffffff" fill-opacity="1" stroke="none" />
+		<defs>
+			<linearGradient id="linear-gradient2-19" gradientUnits="userSpaceOnUse" x1="85.78" y1="306.775" x2="71.019" y2="312.312">
+				<stop offset="0" stop-color="#201f4f" stop-opacity="1" />
+				<stop offset="0.26" stop-color="#27275a" stop-opacity="1" />
+				<stop offset="0.72" stop-color="#393c76" stop-opacity="1" />
+				<stop offset="1" stop-color="#464b8b" stop-opacity="1" />
+			</linearGradient>
+		</defs>
+		<path id="Path-28" d="M80.44 291.099 C80.44 291.099 71.881 283.738 72.592 286.029 73.698 289.499 70.663 293.436 70.301 296.122 71.045 296.346 71.888 296.662 72.79 297.024 73.692 297.386 72.599 332.111 72.599 337.846 77.866 330.07 76.2 308.645 76.2 308.645 L82.857 300.573 Z" fill-opacity="1" fill="url(#linear-gradient2-19)" stroke="none" />
+		<path id="Path-29" d="M72.592 282.836 L76.082 288.781 72.592 296.985 69.847 297.617 Z" fill="#ffffff" fill-opacity="1" stroke="none" />
+		<path id="Path-30" d="M97.493 372.517 C97.493 372.517 117.601 379.76 124.6 389.682 130.466 397.971 136.069 419.481 136.069 419.481" fill="none" stroke="#f3f6fd" stroke-width="0.691" stroke-opacity="1" stroke-linejoin="round" />
+		<defs>
+			<linearGradient id="linear-gradient2-20" gradientUnits="userSpaceOnUse" x1="-5773.721" y1="359.915" x2="-5773.721" y2="372.083">
+				<stop offset="0.11" stop-color="#343381" stop-opacity="1" />
+				<stop offset="0.56" stop-color="#3d3c99" stop-opacity="1" />
+				<stop offset="1" stop-color="#403da0" stop-opacity="1" />
+			</linearGradient>
+		</defs>
+		<path id="Path-31" d="M233.356 372.353 L2.63 372.353 2.63 372.353 2.63 366.104 C2.655 362.1 5.907 358.866 9.912 358.862 L226.074 358.862 C230.078 358.865 233.33 362.1 233.355 366.104 L233.356 372.32 233.356 372.32 Z" fill-opacity="1" fill="url(#linear-gradient2-20)" stroke="none" />
+		<defs>
+			<linearGradient id="linear-gradient2-21" gradientUnits="userSpaceOnUse" x1="266.908" y1="455.707" x2="341.394" y2="455.707">
+				<stop offset="0.01" stop-color="#bbbfd9" stop-opacity="1" />
+				<stop offset="0.69" stop-color="#cacee2" stop-opacity="1" />
+				<stop offset="1" stop-color="#d3d6e7" stop-opacity="1" />
+			</linearGradient>
+		</defs>
+		<path id="Path-32" d="M270.799 403.66 L341.394 403.66 341.394 403.66 341.394 507.754 341.394 507.754 272.261 507.754 C270.838 507.754 269.473 507.189 268.467 506.182 267.46 505.176 266.895 503.811 266.895 502.388 L266.895 407.578 C266.888 406.539 267.296 405.54 268.03 404.804 268.763 404.068 269.76 403.656 270.799 403.66 Z" fill-opacity="1" fill="url(#linear-gradient2-21)" stroke="none" />
+		<path id="Path-33" d="M341.394 403.66 L358.808 403.66 C361.55 403.66 364.179 404.749 366.118 406.688 368.056 408.626 369.146 411.255 369.146 413.997 L369.146 502.382 C369.146 503.805 368.58 505.17 367.574 506.176 366.567 507.182 365.203 507.748 363.779 507.748 L341.394 507.748 341.394 507.748 341.394 403.66 341.394 403.66 Z" fill="#bcc0da" fill-opacity="1" stroke="none" />
+		<path id="Path-34" d="M266.908 437.43 L341.394 437.43" fill="none" stroke="#ffffff" stroke-width="1.673" stroke-opacity="1" stroke-linejoin="round" />
+		<path id="Path-35" d="M266.908 473.286 L341.394 473.286" fill="none" stroke="#ffffff" stroke-width="1.673" stroke-opacity="1" stroke-linejoin="round" />
+		<path id="Path-36" d="M314.096 421.243 L314.096 421.243 C314.096 423.35 312.386 425.058 310.277 425.058 L294.324 425.058 C292.215 425.058 290.505 423.35 290.505 421.243 L290.505 421.243 C290.505 419.135 292.215 417.427 294.324 417.427 L310.277 417.427 C312.386 417.427 314.096 419.135 314.096 421.243 Z" fill="#ffffff" fill-opacity="1" stroke="none" />
+		<path id="Path-37" d="M314.096 455.704 L314.096 455.704 C314.096 457.811 312.386 459.519 310.277 459.519 L294.324 459.519 C292.215 459.519 290.505 457.811 290.505 455.704 L290.505 455.704 C290.505 453.596 292.215 451.888 294.324 451.888 L310.277 451.888 C312.386 451.888 314.096 453.596 314.096 455.704 Z" fill="#ffffff" fill-opacity="1" stroke="none" />
+		<path id="Path-38" d="M314.096 490.283 L314.096 490.283 C314.096 492.391 312.386 494.099 310.277 494.099 L294.324 494.099 C292.215 494.099 290.505 492.391 290.505 490.283 L290.505 490.283 C290.505 488.176 292.215 486.468 294.324 486.468 L310.277 486.468 C312.386 486.468 314.096 488.176 314.096 490.283 Z" fill="#ffffff" fill-opacity="1" stroke="none" />
+		<path id="Path-39" d="M280.787 367.579 L348.537 367.579 348.537 367.579 348.537 403.667 348.537 403.667 276.113 403.667 276.113 403.667 276.113 372.208 C276.107 370.97 276.599 369.783 277.479 368.912 278.358 368.042 279.55 367.562 280.787 367.579 Z" fill="#aeb1c9" fill-opacity="1" stroke="none" />
+		<path id="Path-40" d="M348.537 367.579 L350.387 367.579 C352.171 367.579 353.882 368.29 355.141 369.554 356.4 370.818 357.104 372.531 357.097 374.315 L357.097 396.984 C357.097 398.763 356.39 400.47 355.132 401.728 353.873 402.986 352.167 403.693 350.387 403.693 L348.537 403.693 348.537 403.693 348.537 367.579 348.537 367.579 Z" fill="#bcc0da" fill-opacity="1" stroke="none" />
+		<path id="Path-41" d="M282.176 367.579 L339.543 367.579 339.543 367.579 339.543 372.089 C339.543 374.022 338.776 375.876 337.409 377.243 336.042 378.61 334.188 379.378 332.255 379.378 L289.458 379.378 C287.525 379.378 285.672 378.61 284.305 377.243 282.938 375.876 282.17 374.022 282.17 372.089 L282.17 367.579 282.176 367.579 Z" fill="#dee0ed" fill-opacity="1" stroke="none" />
+		<path id="Path-42" d="M302.297 367.579 C302.297 367.579 300.678 353.246 309.691 349.295 L344.389 349.295 C344.389 349.295 335.02 356.926 335.6 367.566 Z" fill="#ffffff" fill-opacity="1" stroke="none" />
+		<path id="Path-43" d="M339.543 396.147 L339.543 396.147 C339.543 397.362 338.559 398.347 337.344 398.347 L284.375 398.347 C283.161 398.347 282.176 397.362 282.176 396.147 L282.176 396.147 C282.176 394.933 283.161 393.948 284.375 393.948 L337.344 393.948 C338.559 393.948 339.543 394.933 339.543 396.147 Z" fill="#dee0ed" fill-opacity="1" stroke="none" />
+		<path id="Path-44" d="M344.396 367.579 L343.474 364.755 C342.85 362.843 341.068 361.549 339.056 361.548 L336.311 361.548 335.606 367.573 Z" fill="#aeb1c9" fill-opacity="1" stroke="none" />
+	</g>
+</svg>

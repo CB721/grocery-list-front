@@ -12,6 +12,10 @@ import "./style.scss";
 function CreateAccount(props) {
     useEffect(() => {
         document.title = "G-List | Create Account";
+        // if a user filled out their email on the home page, pre-populate that info
+        if (props.homeNewUserEmail) {
+            setEmail(props.homeNewUserEmail);
+        }
     }, []);
     useEffect(() => {
         if (props.user.length === 1) {
