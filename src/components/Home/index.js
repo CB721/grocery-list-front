@@ -74,8 +74,6 @@ function Home(props) {
         }
     }
 
-    
-
     // the current set of svgs to be rendered
     const [currSvg, setCurrSvg] = useState();
     // the current svg to be displayed
