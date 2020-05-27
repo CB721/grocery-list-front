@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg preserveAspectRatio="none" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
+	<g id="Woman-Holding-Phone">
+		<g id="phone">
+			<g id="phone-1">
+				<path id="Rounded-Rectangle" d="M247.133 202.405 C239.918 202.405 234.069 208.253 234.069 215.468 L234.069 254.659 C234.069 261.874 239.918 267.723 247.133 267.723 L267.708 267.723 C274.923 267.723 280.771 261.874 280.771 254.659 L280.771 215.468 C280.771 208.253 274.923 202.405 267.708 202.405 Z" fill="#000000" fill-opacity="1" stroke="none" />
+				<path id="Ellipse" d="M262.482 261.191 C262.482 258.486 260.289 256.292 257.583 256.292 254.878 256.292 252.685 258.486 252.685 261.191 252.685 263.896 254.878 266.09 257.583 266.09 260.289 266.09 262.482 263.896 262.482 261.191 Z" fill="#242421" fill-opacity="1" stroke="none" />
+				<path id="Ellipse-1" d="M260.849 261.191 C260.849 259.387 259.387 257.925 257.583 257.925 255.78 257.925 254.318 259.387 254.318 261.191 254.318 262.995 255.78 264.457 257.583 264.457 259.387 264.457 260.849 262.995 260.849 261.191 Z" fill="#343531" fill-opacity="1" stroke="none" />
+				<path id="Rectangle" d="M240.927 251.393 L273.587 251.393 273.587 210.569 240.927 210.569 Z" fill="#fafcff" fill-opacity="1" stroke="none" />
+			</g>
+			<defs>
+				<image id="image" width="34px" height="8px" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAAICAYAAACccC2SAAAAAXNSR0IArs4c6QAAAUlJREFUOBHFUsFKw0AQfZvdTdPWgkkLetBSWw9aQUQEFYXeFQR/wd8RPPonXlX0B4oQwbYeohYLWomHNm3SbNwGWohFsCJkYJl9O8ObtzND9s8tHR63EKcR1JnfUwilyEyjgxCClTmOx3cPQgCr8yqsDw8bCwncNJwJKoUAjBK4gwB7SxpmU0ok58LspqMvkfDP4GQ7A98HqBRUWU7CfO1jK6/B7gqUchwH5TRUWXhkh2spnB4ZIXzrCDRtP3KGATZK/q3fXEygITuxU9DQvu+g2uzjeH0m9EUpQk9y2I6A5wdjykopiWKWh7hgMOS+/X/IMbUQdwC0XB/Vlz4+ewIaJ7iqO0ipBJc1B1z2eCDHNZJBJb6W4zJbLtKqglKWIa9PliW7Z88GpbQ9lh/P5YHc3tm6x8STGG5dTMYYq4UbFQTBn5b2P3V/AQ5pb1JBGW24AAAAAElFTkSuQmCC" />
+			</defs>
+			<use id="image-1" xlink:href="#image" x="240px" y="210px" width="34px" height="8px" />
+			<g id="List">
+				<path id="Path" d="M244.23 231.319 C242.378 231.319 240.876 232.033 240.876 232.913 L240.876 249.8 C240.876 250.68 242.378 251.393 244.23 251.393 L270.304 251.393 C272.156 251.393 273.657 250.68 273.657 249.8 L273.657 232.913 C273.657 232.033 272.156 231.319 270.304 231.319 Z" fill="#3c91e7" fill-opacity="1" stroke="none" />
+				<path id="Rectangle-1" d="M240.869 251.522 L273.657 251.522 273.657 248.565 240.869 248.565 Z" fill="#3c91e7" fill-opacity="1" stroke="none" />
+				<g id="group">
+					<path id="Ellipse-1-1" d="M270.555 234.883 C270.555 234.304 270.086 233.834 269.507 233.834 268.928 233.834 268.459 234.304 268.459 234.883 268.459 235.461 268.928 235.93 269.507 235.93 270.086 235.93 270.555 235.461 270.555 234.883 Z" fill="#fafcff" fill-opacity="1" stroke="none" />
+					<path id="Ellipse-1-1" d="M270.136 234.883 C270.136 234.535 269.854 234.254 269.507 234.254 269.16 234.254 268.878 234.535 268.878 234.883 268.878 235.23 269.16 235.511 269.507 235.511 269.854 235.511 270.136 235.23 270.136 234.883 Z" fill="#3c91e7" fill-opacity="1" stroke="none" />
+				</g>
+				<defs>
+					<text id="string3" transform="matrix(1.0 0.0 0.0 1.0 242.99831311992 233.67061920468)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="1.341" y="1.0">
+						Apples
+					</text>
+				</defs>
+				<use id="Apples" xlink:href="#string3" fill="#ffffff" fill-opacity="1" stroke="none" />
+				<defs>
+					<text id="string3-1" transform="matrix(1.0 0.0 0.0 1.0 261.56722867958 233.67061920468)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="1.341" y="1.0">
+						Normal
+					</text>
+				</defs>
+				<use id="Normal" xlink:href="#string3-1" fill="#ffffff" fill-opacity="1" stroke="none" />
+				<path id="Ellipse-2" d="M270.136 234.883 C270.136 234.535 269.854 234.254 269.507 234.254 269.16 234.254 268.878 234.535 268.878 234.883 268.878 235.23 269.16 235.511 269.507 235.511 269.854 235.511 270.136 235.23 270.136 234.883 Z" fill="#3c91e7" fill-opacity="1" stroke="none" />
+				<defs>
+					<text id="string3-2" transform="matrix(1.0 0.0 0.0 1.0 252.87299767494 233.91346004136)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="1.341" y="1.0">
+						Food-A-Plenty
+					</text>
+				</defs>
+				<use id="Food-A-Plenty" xlink:href="#string3-2" fill="#ffffff" fill-opacity="1" stroke="none" />
+				<defs>
+					<text id="string3-3" transform="matrix(1.0 0.0 0.0 1.0 243.52168823392 241.34160700794)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="1.341" y="1.0">
+						Bread
+					</text>
+				</defs>
+				<use id="Bread" xlink:href="#string3-3" fill="#ffffff" fill-opacity="1" stroke="none" />
+				<defs>
+					<text id="string3-4" transform="matrix(1.0 0.0 0.0 1.0 262.6743758931 241.34160700794)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="1.341" y="1.0">
+						Low
+					</text>
+				</defs>
+				<use id="Low" xlink:href="#string3-4" fill="#ffffff" fill-opacity="1" stroke="none" />
+				<defs>
+					<text id="string3-5" transform="matrix(1.0 0.0 0.0 1.0 255.1764632239 241.34160700794)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="1.341" y="1.0">
+						Target
+					</text>
+				</defs>
+				<use id="Target" xlink:href="#string3-5" fill="#ffffff" fill-opacity="1" stroke="none" />
+				<defs>
+					<text id="string3-6" transform="matrix(1.0 0.0 0.0 1.0 242.55893020304 247.2262013732)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="1.341" y="1.0">
+						Cheese
+					</text>
+				</defs>
+				<use id="Cheese" xlink:href="#string3-6" fill="#ffffff" fill-opacity="1" stroke="none" />
+				<defs>
+					<text id="string3-7" transform="matrix(1.0 0.0 0.0 1.0 261.56722867958 247.49827648450002)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="1.341" y="1.0">
+						Normal
+					</text>
+				</defs>
+				<use id="Normal-1" xlink:href="#string3-7" fill="#ffffff" fill-opacity="1" stroke="none" />
+				<defs>
+					<text id="string3-8" transform="matrix(1.0 0.0 0.0 1.0 255.42084997092002 247.75543564786)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="1.341" y="1.0">
+						QFC
+					</text>
+				</defs>
+				<use id="QFC" xlink:href="#string3-8" fill="#ffffff" fill-opacity="1" stroke="none" />
+				<path id="Line" d="M240.876 238.529 L273.657 238.613" fill="none" stroke="#fafcff" stroke-width="0.335" stroke-opacity="1" stroke-linejoin="round" />
+				<path id="Line-1" d="M240.876 245.404 L273.657 245.488" fill="none" stroke="#fafcff" stroke-width="0.335" stroke-opacity="1" stroke-linejoin="round" />
+				<path id="Line-5" d="M240.876 238.529 L273.657 238.613" fill="none" stroke="#fafcff" stroke-width="0.335" stroke-opacity="1" stroke-linejoin="round" />
+				<g id="group-1">
+					<path id="Line-8" d="M268.543 248.422 L269.381 249.093" fill="none" stroke="#f8faff" stroke-width="0.419" stroke-opacity="1" stroke-linejoin="round" />
+					<path id="Line-9" d="M269.242 249.026 L270.192 247.399" fill="none" stroke="#f8faff" stroke-width="0.419" stroke-opacity="1" stroke-linejoin="round" />
+				</g>
+				<g id="group-2">
+					<path id="Line-10" d="M268.459 241.38 L269.298 242.051" fill="none" stroke="#f8faff" stroke-width="0.419" stroke-opacity="1" stroke-linejoin="round" />
+					<path id="Line-11" d="M269.158 241.984 L270.108 240.357" fill="none" stroke="#f8faff" stroke-width="0.419" stroke-opacity="1" stroke-linejoin="round" />
+				</g>
+			</g>
+			<defs>
+				<image id="image-2" width="35px" height="16px" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACMAAAAQCAYAAACcN8ZaAAAAAXNSR0IArs4c6QAAAiZJREFUSA21Vc1u00AQ/tZe/1WkddvEAhKEQK0qVapQK1X0wIkLUq5IiBfgDbhVggs3TrwGF96AA+LEoVU5wCG9ENJD1SgBEurYsdfMrkOIaaW2m3Zkr2dn5/u8O7szy+r1+trzV282vx/1oCv3bpexcvemLhz7jX08ffJ4hx91+49evmu9zkqaZFmGZ0Yfq0um9mRMg0EI8YKHYQTb9cGcUoGMxsHopX+BHiXUVSL+GmQvE4BxnA9MtESueoxI5JsRkfymqYBpGhOepI6IedGa9yyTYb3mYNY1IGG/IoF2X+Caw9D6kaD9Oz0NNraFYYi9vc8IggDdbhe1WhVRFKmFxXGESqUC3/fH/rbtKP3UyQzTDJ++DcbOF1U8z8PW1v0R7M654dxzONjgJ+DMnhs06cjkNo22ZNKuo/Og7OPt9gMVQh0CiTFpWy9D1DbR8UKSDLX50kQbqoBpmp9B3ul08PVwiIyZWLthTceqgT7spfjS7Cgk9/0FLC0aEJR6cRxr0E0HmadEWqnO5ZMxKHc9N0+t6Wj10bZtK/B/1Uef8DKQhTrzvjHAjMXgzxhUFBl6VOzmSXc5Q3XuZLlvtBP0BkJl4i3fRFAq+uy0YlhUymX0ZSVfvW5BVvbdA7JTBvYJ69L/FkYrKUzm4bJ7oQUulwvwE9iNWh5+OXA8zNREpL5e/WeX/WZTtnSr5J+rb2XEzxJOF9pHur+2z3K8ynGKGV2g6Yc/7JSeKPaweZkAAAAASUVORK5CYII=" />
+			</defs>
+			<use id="image-1" xlink:href="#image-2" x="240px" y="216px" width="35px" height="16px" />
+			<path id="Rectangle-2" d="M239.584 247.665 L240.869 247.665 240.869 214.877 239.584 214.877 Z" fill="#000000" fill-opacity="1" stroke="none" />
+			<path id="Rectangle-3" d="M273.657 246.379 L274.943 246.379 274.943 214.748 273.657 214.748 Z" fill="#000000" fill-opacity="1" stroke="none" />
+			<path id="Rectangle-4" d="M241.77 225.292 L243.313 225.292 243.313 224.006 241.77 224.006 Z" fill="#fafcff" fill-opacity="1" stroke="none" />
+			<path id="Ellipse-2-1" d="M242.027 224.713 C242.027 224.394 241.854 224.135 241.641 224.135 241.428 224.135 241.255 224.394 241.255 224.713 241.255 225.033 241.428 225.292 241.641 225.292 241.854 225.292 242.027 225.033 242.027 224.713 Z" fill="#fafcff" fill-opacity="1" stroke="none" />
+			<defs>
+				<text id="string-9" transform="matrix(1.0 0.0 0.0 1.0 240.8438150354 223.68660880777998)" text-decoration="none" font-family="Helvetica, Helvetica" x="1.0" font-size="1.341" y="1.0">
+					All
+				</text>
+			</defs>
+			<use id="All" xlink:href="#string-9" fill="#3c91e7" fill-opacity="1" stroke="none" />
+		</g>
+		<defs>
+			<linearGradient id="linear-gradient" gradientUnits="userSpaceOnUse" x1="851.177" y1="3288.005" x2="882.029" y2="3288.005">
+				<stop offset="0" stop-color="#753200" stop-opacity="1" />
+				<stop offset="1" stop-color="#a04400" stop-opacity="1" />
+			</linearGradient>
+		</defs>
+		<path id="Path-1" d="M241.683 295.782 C236.799 297.677 210.321 320.378 196.791 325.875 L196.703 301.905 C206.91 300.681 229.057 286.436 232.994 283.403 238.009 279.525 234.087 278.723 236.988 273.853 239.89 268.983 243.491 256.095 246.597 252.26 249.702 248.426 251.408 248.163 252.268 250.146 253.129 252.129 247.428 262.772 250.184 264.172 252.939 265.572 259.69 259.025 260.856 257.888 262.023 256.751 265.23 243.906 271.675 244.853 272.302 244.975 272.836 245.381 273.122 245.952 273.408 246.523 273.411 247.195 273.133 247.769 271.31 251.604 268.015 257.975 268.015 257.975 268.015 257.975 269.473 257.713 269.983 260.891 270.494 264.07 268.525 262.743 269.444 267.015 270.362 271.287 269.313 271.098 265.668 275.428 262.023 279.758 248.186 293.245 241.683 295.782 Z" fill-opacity="1" fill="url(#linear-gradient)" stroke="none" />
+		<path id="Path-2" d="M75.353 401.021 L25.008 411.475 C25.008 411.475 1.782 413.254 -15.146 406.197 -22.436 422.235 -27.495 434.104 -27.451 464.766 -27.451 490.295 -5.581 566.112 -5.581 566.112 -6.31 572.804 -7.375 587.982 -4.4 611.121 -14.956 638.167 -16.691 672.532 -17.522 703.063 L8.722 713.838 C10.501 709.085 13.344 696.881 15.239 688.746 L15.604 689.751 C19.978 701.97 23.04 714.334 26.83 723.155 L50.465 716.127 C48.103 695.598 42.023 662.181 38.319 635.645 38.247 632.874 38.319 630.119 38.319 627.392 52.666 597.999 63.397 588.303 66.313 576.099 66.824 573.927 67.684 567.351 68.646 564.144 73.151 549.097 87.046 497.965 89.394 477.523 93.841 438.58 81.725 418.095 75.353 401.021 Z" fill="#1f1844" fill-opacity="1" stroke="none" />
+		<defs>
+			<linearGradient id="linear-gradient-1" gradientUnits="userSpaceOnUse" x1="3.386" y1="197.555" x2="77.744" y2="197.555">
+				<stop offset="0" stop-color="#753200" stop-opacity="1" />
+				<stop offset="1" stop-color="#a04400" stop-opacity="1" />
+			</linearGradient>
+		</defs>
+		<path id="Path-3" d="M74.333 169.43 C84.014 190.674 70.571 210.969 64.87 214.468 56.122 219.819 50.29 219.192 46.003 226.847 43.218 231.862 44.895 238.394 46.863 246.166 44.234 245.752 41.578 245.533 38.917 245.51 26.985 245.307 15.067 246.403 3.371 248.775 L7.41 225.447 C8.984 225.71 4.946 154.281 35.958 147.385 66.969 140.489 71.475 169.095 74.333 169.43 Z" fill-opacity="1" fill="url(#linear-gradient-1)" stroke="none" />
+		<defs>
+			<linearGradient id="linear-gradient-2" gradientUnits="userSpaceOnUse" x1="-41.317" y1="163.19" x2="81.331" y2="163.19">
+				<stop offset="0" stop-color="#090809" stop-opacity="1" />
+				<stop offset="0.26" stop-color="#0f0f0f" stop-opacity="1" />
+				<stop offset="0.72" stop-color="#3d2526" stop-opacity="1" />
+				<stop offset="1" stop-color="#75474b" stop-opacity="1" />
+			</linearGradient>
+		</defs>
+		<path id="Path-4" d="M68.704 171.442 C51.558 184.871 71.766 222.123 71.766 222.123 71.766 222.123 38.232 224.689 30.519 225.039 -6.806 226.934 -15.525 225.403 -31.403 219.499 -42.644 215.328 -43.256 179.01 -38.518 150.651 -33.779 122.293 -11.267 100.218 15.837 100.495 38.465 100.729 63.645 107.027 73.968 120.529 84.889 134.861 84.087 159.399 68.704 171.442 Z" fill-opacity="1" fill="url(#linear-gradient-2)" stroke="none" />
+		<path id="Path-5" d="M3.575 228.856 L45.697 228.856 C47.63 228.856 49.485 229.624 50.852 230.992 52.219 232.359 52.987 234.213 52.987 236.146 L52.987 252.301 52.987 252.301 -3.715 252.301 -3.715 252.301 -3.715 236.132 C-3.707 232.112 -0.445 228.856 3.575 228.856 Z" fill="#aa7486" fill-opacity="1" stroke="none" />
+		<defs>
+			<linearGradient id="linear-gradient-3" gradientUnits="userSpaceOnUse" x1="-69.238" y1="330.322" x2="225.441" y2="330.322">
+				<stop offset="0.07" stop-color="#704c58" stop-opacity="1" />
+				<stop offset="1" stop-color="#f9a8c2" stop-opacity="1" />
+			</linearGradient>
+		</defs>
+		<path id="Path-6" d="M225.427 316.952 C225.427 316.952 158.562 345.996 141.693 352.746 124.823 359.497 74.333 319.941 74.333 319.941 L67.961 374.15 C67.961 374.15 73.472 389.313 80.135 404.87 33.96 425.618 -21.809 406.328 -21.809 406.328 L-7.156 371.424 -15.598 320.903 -34.1 351.901 -16.764 369.251 -18.528 371.453 -34.435 391.384 -35.981 393.308 C-35.981 393.308 -68.757 371.628 -69.224 358.681 -69.69 345.733 -36.098 282.368 -29.595 268.648 -25.221 259.317 -12.915 251.516 5.602 247.565 16.245 245.291 34.193 246.107 43.51 247.565 83.912 253.733 141.838 319.693 141.838 319.693 L213.004 291.437 Z" fill-opacity="1" fill="url(#linear-gradient-3)" stroke="none" />
+		<defs>
+			<linearGradient id="linear-gradient-4" gradientUnits="userSpaceOnUse" x1="-4.444" y1="552.013" x2="24.862" y2="552.013">
+				<stop offset="0" stop-color="#67637e" stop-opacity="1" />
+				<stop offset="0.23" stop-color="#544f6f" stop-opacity="1" />
+				<stop offset="0.74" stop-color="#2e2750" stop-opacity="1" />
+				<stop offset="1" stop-color="#1f1844" stop-opacity="1" />
+			</linearGradient>
+		</defs>
+		<path id="Path-7" d="M24.862 492.934 L18.622 577.791 C18.622 577.791 4.844 587.997 -4.342 611.106 -6.048 592.429 13.81 575.093 13.81 575.093 Z" fill-opacity="1" fill="url(#linear-gradient-4)" stroke="none" />
+	</g>
+</svg>

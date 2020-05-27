@@ -7,17 +7,17 @@
     {
         "cardName": "Update Lists",
         "text": "Mark your list items as purchased and set the priority on when you need them.",
-        "color": "yellow"
+        "color": "teal"
     },
     {
         "cardName": "Filter By Store",
         "text": "Specify the store where you buy each item on your list for a more efficient shopping experience.",
-        "color": "orange"
+        "color": "yellow"
     },
     {
         "cardName": "Connections",
         "text": "Connect with friends and family members and share lists.",
-        "color": "teal"
+        "color": "orange"
     },
     {
         "cardName": "Recipes",
