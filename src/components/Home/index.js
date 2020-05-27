@@ -590,7 +590,7 @@ function Home(props) {
                     return;
             }
         }
-    }, 240);
+    }, Benefits[currBenefitIndex].delay);
     useEffect(() => {
         // set the button colors
         if (currBenefitIndex === 0) {

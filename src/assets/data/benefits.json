@@ -2,17 +2,20 @@
     {
         "cardName": "Create Lists",
         "text": "Create lists for all of your grocery needs.",
-        "color": "red"
+        "color": "red",
+        "delay": 200
     },
     {
         "cardName": "Update Lists",
         "text": "Mark your list items as purchased and set the priority on when you need them.",
-        "color": "teal"
+        "color": "teal",
+        "delay": 150
     },
     {
         "cardName": "Filter By Store",
         "text": "Specify the store where you buy each item on your list for a more efficient shopping experience.",
-        "color": "yellow"
+        "color": "yellow",
+        "delay": 120
     },
     {
         "cardName": "Connections",
