@@ -73,8 +73,14 @@ function Home(props) {
             history.push("/join");
         }
     }
+
+    
+
+    // the current set of svgs to be rendered
     const [currSvg, setCurrSvg] = useState();
+    // the current svg to be displayed
     const [currSvgIndex, setCurrSvgIndex] = useState(0);
+    // every time the benefit is changed, update the current svgs to be the first svg
     useEffect(() => {
         switch (currBenefitIndex) {
             case 0:
@@ -123,10 +129,16 @@ function Home(props) {
                 setCurrSvgIndex(0);
                 break;
             default:
+                setCurrSvgIndex(0);
                 return;
         }
     }, [currBenefitIndex]);
-
+    // each benefit has a set of svgs to animate through using the imported useInterval hook
+    // the benefits.json file has data on the background color, the text to display and how quickly to animate through the svgs
+    // based on which benefit is being displayed to the user, render the corresponding svgs
+    // based on the current svg index, display the corresponding svg
+    // because the svgs are animated in and out, the preceding and following svgs need to be included
+    // in order to "pause" on certain frames, certain svgs are repeated
     useInterval(() => {
         if (currBenefitIndex === 0) {
             if (currSvgIndex < 7) {
