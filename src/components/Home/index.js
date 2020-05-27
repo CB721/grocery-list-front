@@ -2,37 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from "react-router-dom";
 import Highlight from "../Highlight";
 import Benefits from "../../assets/data/benefits.json";
-import { ReactComponent as ListIcon } from "../../assets/images/List.svg";
-import { ReactComponent as StoreIcon } from "../../assets/images/store.svg";
-import { ReactComponent as RecipeBook } from "../../assets/images/recipebook.svg";
-import { ReactComponent as BlueCar } from "../../assets/images/bluecar.svg";
-import { ReactComponent as ChefHat } from "../../assets/images/chefhat.svg";
-import { ReactComponent as HandWithPhone } from "../../assets/images/handwithphone.svg";
-import { ReactComponent as ManIcon } from "../../assets/images/man.svg";
-import { ReactComponent as RedCar } from "../../assets/images/redcar.svg";
-import { ReactComponent as Trees } from "../../assets/images/trees.svg";
-import { ReactComponent as Woman } from "../../assets/images/woman.svg";
-import { ReactComponent as Road } from "../../assets/images/road.svg";
-import { ReactComponent as Burger } from "../../assets/images/burger.svg";
-import { ReactComponent as IceCream } from "../../assets/images/ice-cream.svg";
-import { ReactComponent as Orange } from "../../assets/images/orange.svg";
-import { ReactComponent as Potato } from "../../assets/images/potato.svg";
-import { ReactComponent as Rice } from "../../assets/images/rice.svg";
-import { ReactComponent as Taco } from "../../assets/images/taco.svg";
-import { ReactComponent as Tomato } from "../../assets/images/tomato.svg";
-import { ReactComponent as Wine } from "../../assets/images/winebottle.svg";
-import { ReactComponent as Bread } from "../../assets/images/bread.svg";
-import { ReactComponent as Cart } from "../../assets/images/cart.svg";
-import { ReactComponent as Grapes } from "../../assets/images/grapes.svg";
-import { ReactComponent as Apple } from "../../assets/images/apple.svg";
-import { ReactComponent as SendIcon } from "../../assets/images/send.svg";
-import { ReactComponent as Cereal } from "../../assets/images/cerealbox.svg";
-import { ReactComponent as Phone } from "../../assets/images/phone.svg";
 import { ReactComponent as Bag } from "../../assets/images/grocerybag.svg";
 import { ReactComponent as BagStart } from "../../assets/images/grocerybag-start.svg";
 import { ReactComponent as BagMiddle } from "../../assets/images/grocerybag-middle.svg";
 import { ReactComponent as BagEnd } from "../../assets/images/grocerybag-end.svg";
-import { ReactComponent as FloorTiles } from "../../assets/images/floortiles.svg";
 import { ReactComponent as UpdateOne } from "../../assets/images/update-1.svg";
 import { ReactComponent as UpdateTwo } from "../../assets/images/update-2.svg";
 import { ReactComponent as UpdateThree } from "../../assets/images/update-3.svg";
@@ -63,32 +36,42 @@ function Home(props) {
             history.push("/join");
         }
     }
-    // amount of svgs for each benefit in the order that the benefit appears
-    const [svgList, setSvgList] = useState([3, 10]);
     const [currSvg, setCurrSvg] = useState();
+    const [currSvgIndex, setCurrSvgIndex] = useState(0);
     useEffect(() => {
-        if (currBenefitIndex === 0) {
-            setCurrSvg(
-                <div className="benefit-area">
-                    <BagStart className="benefit-layer show" />
-                    <BagMiddle className="benefit-layer" />
-                    <BagEnd className="benefit-layer" />
-                    <Bag className="benefit-bg" />
-                </div>);
-        } else if (currBenefitIndex === 1) {
-            setCurrSvg(
-                <div className="benefit-area">
-                    <UpdateOne className="benefit-layer show" />
-                </div>
-            )
-        }
+        switch (currBenefitIndex) {
+            case 0:
+                setCurrSvg(
+                    <div className="benefit-area">
+                        <BagStart className="benefit-layer show" />
+                        <BagMiddle className="benefit-layer" />
+                    </div>);
+                setCurrSvgIndex(0);
+                break;
+            case 1:
+                setCurrSvg(
+                    <div className="benefit-area">
+                        <UpdateOne className="benefit-layer show" />
+                        <UpdateTwo className="benefit-layer " />
+                    </div>
+                )
+                setCurrSvgIndex(0);
+                break;
+            case 2:
+                setCurrSvg(
+                    <div className="benefit-area">
 
+                    </div>
+                )
+                setCurrSvgIndex(0);
+                break;
+            default:
+                return;
+        }
     }, [currBenefitIndex]);
 
-    const [currSvgIndex, setCurrSvgIndex] = useState(0);
     useInterval(() => {
         if (currBenefitIndex === 0) {
-            // console.log("current benefit index: " + currBenefitIndex);
             if (currSvgIndex < 7) {
                 if (currSvgIndex === 0) {
                     setCurrSvg(
@@ -126,14 +109,7 @@ function Home(props) {
                         <div className="benefit-area">
                             <UpdateOne className="benefit-layer show" />
                             <UpdateTwo className="benefit-layer" />
-                            <UpdateThree className="benefit-layer" />
-                            <UpdateFour className="benefit-layer" />
-                            <UpdateFive className="benefit-layer" />
-                            <UpdateSix className="benefit-layer" />
-                            <UpdateSeven className="benefit-layer" />
-                            <UpdateEight className="benefit-layer" />
                             <UpdateNine className="benefit-layer" />
-                            
                         </div>
                     );
                     setCurrSvgIndex(currSvgIndex + 1);
@@ -143,14 +119,8 @@ function Home(props) {
                         <div className="benefit-area">
                             <UpdateOne className="benefit-layer show" />
                             <UpdateTwo className="benefit-layer" />
-                            <UpdateThree className="benefit-layer" />
-                            <UpdateFour className="benefit-layer" />
-                            <UpdateFive className="benefit-layer" />
-                            <UpdateSix className="benefit-layer" />
-                            <UpdateSeven className="benefit-layer" />
-                            <UpdateEight className="benefit-layer" />
                             <UpdateNine className="benefit-layer" />
-                            
+
                         </div>
                     );
                     setCurrSvgIndex(currSvgIndex + 1);
@@ -161,13 +131,7 @@ function Home(props) {
                             <UpdateOne className="benefit-layer" />
                             <UpdateTwo className="benefit-layer show" />
                             <UpdateThree className="benefit-layer" />
-                            <UpdateFour className="benefit-layer" />
-                            <UpdateFive className="benefit-layer" />
-                            <UpdateSix className="benefit-layer" />
-                            <UpdateSeven className="benefit-layer" />
-                            <UpdateEight className="benefit-layer" />
-                            <UpdateNine className="benefit-layer" />
-                            
+
                         </div>
                     );
                     setCurrSvgIndex(currSvgIndex + 1);
@@ -178,13 +142,6 @@ function Home(props) {
                             <UpdateOne className="benefit-layer" />
                             <UpdateTwo className="benefit-layer show" />
                             <UpdateThree className="benefit-layer" />
-                            <UpdateFour className="benefit-layer" />
-                            <UpdateFive className="benefit-layer" />
-                            <UpdateSix className="benefit-layer" />
-                            <UpdateSeven className="benefit-layer" />
-                            <UpdateEight className="benefit-layer" />
-                            <UpdateNine className="benefit-layer" />
-                            
                         </div>
                     );
                     setCurrSvgIndex(currSvgIndex + 1);
@@ -192,16 +149,9 @@ function Home(props) {
                 case 4:
                     setCurrSvg(
                         <div className="benefit-area">
-                            <UpdateOne className="benefit-layer" />
                             <UpdateTwo className="benefit-layer" />
                             <UpdateThree className="benefit-layer show" />
                             <UpdateFour className="benefit-layer" />
-                            <UpdateFive className="benefit-layer" />
-                            <UpdateSix className="benefit-layer" />
-                            <UpdateSeven className="benefit-layer" />
-                            <UpdateEight className="benefit-layer" />
-                            <UpdateNine className="benefit-layer" />
-                            
                         </div>
                     );
                     setCurrSvgIndex(currSvgIndex + 1);
@@ -209,16 +159,9 @@ function Home(props) {
                 case 5:
                     setCurrSvg(
                         <div className="benefit-area">
-                            <UpdateOne className="benefit-layer" />
-                            <UpdateTwo className="benefit-layer" />
                             <UpdateThree className="benefit-layer" />
                             <UpdateFour className="benefit-layer show" />
                             <UpdateFive className="benefit-layer" />
-                            <UpdateSix className="benefit-layer" />
-                            <UpdateSeven className="benefit-layer" />
-                            <UpdateEight className="benefit-layer" />
-                            <UpdateNine className="benefit-layer" />
-                            
                         </div>
                     );
                     setCurrSvgIndex(currSvgIndex + 1);
@@ -226,16 +169,9 @@ function Home(props) {
                 case 6:
                     setCurrSvg(
                         <div className="benefit-area">
-                            <UpdateOne className="benefit-layer" />
-                            <UpdateTwo className="benefit-layer" />
                             <UpdateThree className="benefit-layer" />
                             <UpdateFour className="benefit-layer show" />
                             <UpdateFive className="benefit-layer" />
-                            <UpdateSix className="benefit-layer" />
-                            <UpdateSeven className="benefit-layer" />
-                            <UpdateEight className="benefit-layer" />
-                            <UpdateNine className="benefit-layer" />
-                            
                         </div>
                     );
                     setCurrSvgIndex(currSvgIndex + 1);
@@ -243,15 +179,9 @@ function Home(props) {
                 case 7:
                     setCurrSvg(
                         <div className="benefit-area">
-                            <UpdateOne className="benefit-layer" />
-                            <UpdateTwo className="benefit-layer" />
-                            <UpdateThree className="benefit-layer" />
+                            <UpdateFour className="benefit-layer" />
                             <UpdateFive className="benefit-layer show" />
                             <UpdateSix className="benefit-layer" />
-                            <UpdateSeven className="benefit-layer" />
-                            <UpdateEight className="benefit-layer" />
-                            <UpdateNine className="benefit-layer" />
-                            
                         </div>
                     );
                     setCurrSvgIndex(currSvgIndex + 1);
@@ -259,15 +189,9 @@ function Home(props) {
                 case 8:
                     setCurrSvg(
                         <div className="benefit-area">
-                            <UpdateOne className="benefit-layer" />
-                            <UpdateTwo className="benefit-layer" />
-                            <UpdateThree className="benefit-layer" />
+                            <UpdateFour className="benefit-layer" />
                             <UpdateFive className="benefit-layer show" />
                             <UpdateSix className="benefit-layer" />
-                            <UpdateSeven className="benefit-layer" />
-                            <UpdateEight className="benefit-layer" />
-                            <UpdateNine className="benefit-layer" />
-                            
                         </div>
                     );
                     setCurrSvgIndex(currSvgIndex + 1);
@@ -275,15 +199,9 @@ function Home(props) {
                 case 9:
                     setCurrSvg(
                         <div className="benefit-area">
-                            <UpdateOne className="benefit-layer" />
-                            <UpdateTwo className="benefit-layer" />
-                            <UpdateThree className="benefit-layer" />
                             <UpdateFive className="benefit-layer" />
                             <UpdateSix className="benefit-layer show" />
                             <UpdateSeven className="benefit-layer" />
-                            <UpdateEight className="benefit-layer" />
-                            <UpdateNine className="benefit-layer" />
-                            
                         </div>
                     );
                     setCurrSvgIndex(currSvgIndex + 1);
@@ -291,15 +209,9 @@ function Home(props) {
                 case 10:
                     setCurrSvg(
                         <div className="benefit-area">
-                            <UpdateOne className="benefit-layer" />
-                            <UpdateTwo className="benefit-layer" />
-                            <UpdateThree className="benefit-layer" />
                             <UpdateFive className="benefit-layer" />
                             <UpdateSix className="benefit-layer show" />
                             <UpdateSeven className="benefit-layer" />
-                            <UpdateEight className="benefit-layer" />
-                            <UpdateNine className="benefit-layer" />
-                            
                         </div>
                     );
                     setCurrSvgIndex(currSvgIndex + 1);
@@ -307,15 +219,9 @@ function Home(props) {
                 case 11:
                     setCurrSvg(
                         <div className="benefit-area">
-                            <UpdateOne className="benefit-layer" />
-                            <UpdateTwo className="benefit-layer" />
-                            <UpdateThree className="benefit-layer" />
-                            <UpdateFive className="benefit-layer" />
                             <UpdateSix className="benefit-layer" />
                             <UpdateSeven className="benefit-layer show" />
                             <UpdateEight className="benefit-layer" />
-                            <UpdateNine className="benefit-layer" />
-                            
                         </div>
                     );
                     setCurrSvgIndex(currSvgIndex + 1);
@@ -323,15 +229,9 @@ function Home(props) {
                 case 12:
                     setCurrSvg(
                         <div className="benefit-area">
-                            <UpdateOne className="benefit-layer" />
-                            <UpdateTwo className="benefit-layer" />
-                            <UpdateThree className="benefit-layer" />
-                            <UpdateFive className="benefit-layer" />
                             <UpdateSix className="benefit-layer" />
                             <UpdateSeven className="benefit-layer show" />
                             <UpdateEight className="benefit-layer" />
-                            <UpdateNine className="benefit-layer" />
-                            
                         </div>
                     );
                     setCurrSvgIndex(currSvgIndex + 1);
@@ -339,15 +239,9 @@ function Home(props) {
                 case 13:
                     setCurrSvg(
                         <div className="benefit-area">
-                            <UpdateOne className="benefit-layer" />
-                            <UpdateTwo className="benefit-layer" />
-                            <UpdateThree className="benefit-layer" />
-                            <UpdateFive className="benefit-layer" />
-                            <UpdateSix className="benefit-layer" />
                             <UpdateSeven className="benefit-layer" />
                             <UpdateEight className="benefit-layer show" />
                             <UpdateNine className="benefit-layer" />
-                            
                         </div>
                     );
                     setCurrSvgIndex(currSvgIndex + 1);
@@ -355,15 +249,9 @@ function Home(props) {
                 case 14:
                     setCurrSvg(
                         <div className="benefit-area">
-                            <UpdateOne className="benefit-layer" />
-                            <UpdateTwo className="benefit-layer" />
-                            <UpdateThree className="benefit-layer" />
-                            <UpdateFive className="benefit-layer" />
-                            <UpdateSix className="benefit-layer" />
                             <UpdateSeven className="benefit-layer" />
                             <UpdateEight className="benefit-layer show" />
                             <UpdateNine className="benefit-layer" />
-                            
                         </div>
                     );
                     setCurrSvgIndex(currSvgIndex + 1);
@@ -372,14 +260,8 @@ function Home(props) {
                     setCurrSvg(
                         <div className="benefit-area">
                             <UpdateOne className="benefit-layer" />
-                            <UpdateTwo className="benefit-layer" />
-                            <UpdateThree className="benefit-layer" />
-                            <UpdateFive className="benefit-layer" />
-                            <UpdateSix className="benefit-layer" />
-                            <UpdateSeven className="benefit-layer" />
                             <UpdateEight className="benefit-layer" />
                             <UpdateNine className="benefit-layer show" />
-                            
                         </div>
                     );
                     setCurrSvgIndex(currSvgIndex + 1);
@@ -388,14 +270,8 @@ function Home(props) {
                     setCurrSvg(
                         <div className="benefit-area">
                             <UpdateOne className="benefit-layer" />
-                            <UpdateTwo className="benefit-layer" />
-                            <UpdateThree className="benefit-layer" />
-                            <UpdateFive className="benefit-layer" />
-                            <UpdateSix className="benefit-layer" />
-                            <UpdateSeven className="benefit-layer" />
                             <UpdateEight className="benefit-layer" />
                             <UpdateNine className="benefit-layer show" />
-                            
                         </div>
                     );
                     setCurrSvgIndex(currSvgIndex + 1);
@@ -403,15 +279,9 @@ function Home(props) {
                 case 17:
                     setCurrSvg(
                         <div className="benefit-area">
-                            <UpdateOne className="benefit-layer show" />
-                            <UpdateTwo className="benefit-layer" />
-                            <UpdateThree className="benefit-layer" />
-                            <UpdateFive className="benefit-layer" />
-                            <UpdateSix className="benefit-layer" />
-                            <UpdateSeven className="benefit-layer" />
+                            <UpdateOne className="benefit-layer" />
                             <UpdateEight className="benefit-layer" />
-                            <UpdateNine className="benefit-layer" />
-                            
+                            <UpdateNine className="benefit-layer show" />
                         </div>
                     );
                     setCurrSvgIndex(currSvgIndex + 1);
@@ -420,14 +290,8 @@ function Home(props) {
                     setCurrSvg(
                         <div className="benefit-area">
                             <UpdateOne className="benefit-layer" />
-                            <UpdateTwo className="benefit-layer" />
-                            <UpdateThree className="benefit-layer" />
-                            <UpdateFive className="benefit-layer" />
-                            <UpdateSix className="benefit-layer" />
-                            <UpdateSeven className="benefit-layer" />
                             <UpdateEight className="benefit-layer" />
                             <UpdateNine className="benefit-layer show" />
-                            
                         </div>
                     );
                     setCurrSvgIndex(currSvgIndex + 1);
@@ -436,14 +300,8 @@ function Home(props) {
                     setCurrSvg(
                         <div className="benefit-area">
                             <UpdateOne className="benefit-layer" />
-                            <UpdateTwo className="benefit-layer" />
-                            <UpdateThree className="benefit-layer" />
-                            <UpdateFive className="benefit-layer" />
-                            <UpdateSix className="benefit-layer" />
-                            <UpdateSeven className="benefit-layer" />
                             <UpdateEight className="benefit-layer" />
                             <UpdateNine className="benefit-layer show" />
-                            
                         </div>
                     );
                     setCurrSvgIndex(currSvgIndex + 1);
@@ -452,11 +310,6 @@ function Home(props) {
                     setCurrSvg(
                         <div className="benefit-area">
                             <UpdateOne className="benefit-layer" />
-                            <UpdateTwo className="benefit-layer" />
-                            <UpdateThree className="benefit-layer" />
-                            <UpdateFive className="benefit-layer" />
-                            <UpdateSix className="benefit-layer" />
-                            <UpdateSeven className="benefit-layer" />
                             <UpdateEight className="benefit-layer" />
                             <UpdateNine className="benefit-layer show" />
                         </div>
@@ -467,6 +320,12 @@ function Home(props) {
                     setCurrSvgIndex(0);
                     return;
             }
+        } else if (currBenefitIndex === 2) {
+            setCurrSvg(
+                <div className="benefit-area">
+
+                </div>
+            )
         }
     }, 240);
     useEffect(() => {
