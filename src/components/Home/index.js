@@ -38,6 +38,20 @@ import { ReactComponent as ConnectEight } from "../../assets/images/connect-8.sv
 import { ReactComponent as ConnectNine } from "../../assets/images/connect-9.svg";
 import { ReactComponent as ConnectTen } from "../../assets/images/connect-10.svg";
 import { ReactComponent as ConnectEleven } from "../../assets/images/connect-11.svg";
+import { ReactComponent as RecipesOne } from "../../assets/images/recipes-1.svg";
+import { ReactComponent as RecipesTwo } from "../../assets/images/recipes-2.svg";
+import { ReactComponent as RecipesThree } from "../../assets/images/recipes-3.svg";
+import { ReactComponent as RecipesFour } from "../../assets/images/recipes-4.svg";
+import { ReactComponent as RecipesFive } from "../../assets/images/recipes-5.svg";
+import { ReactComponent as RecipesSix } from "../../assets/images/recipes-6.svg";
+import { ReactComponent as RecipesSeven } from "../../assets/images/recipes-7.svg";
+import { ReactComponent as RecipesEight } from "../../assets/images/recipes-8.svg";
+import { ReactComponent as RecipesNine } from "../../assets/images/recipes-9.svg";
+import { ReactComponent as RecipesTen } from "../../assets/images/recipes-10.svg";
+import { ReactComponent as RecipesEleven } from "../../assets/images/recipes-11.svg";
+import { ReactComponent as RecipesTwelve } from "../../assets/images/recipes-12.svg";
+import { ReactComponent as RecipesThirteen } from "../../assets/images/recipes-13.svg";
+import { ReactComponent as RecipesFourteen } from "../../assets/images/recipes-14.svg";
 import useInterval from "../../utilities/useInterval";
 import "./style.scss";
 
@@ -95,6 +109,15 @@ function Home(props) {
                     <div className="benefit-area">
                         <ConnectOne className="benefit-layer show" />
                         <ConnectTwo className="benefit-layer" />
+                    </div>
+                );
+                setCurrSvgIndex(0);
+                break;
+            case 4:
+                setCurrSvg(
+                    <div className="benefit-area">
+                        <RecipesOne className="benefit-layer show" />
+                        <RecipesTwo className="benefit-layer" />
                     </div>
                 );
                 setCurrSvgIndex(0);
@@ -390,7 +413,7 @@ function Home(props) {
                     return;
             }
         } else if (currBenefitIndex === 3) {
-            switch(currSvgIndex) {
+            switch (currSvgIndex) {
                 case 0:
                     setCurrSvg(
                         <div className="benefit-area">
@@ -525,6 +548,192 @@ function Home(props) {
                     setCurrSvgIndex(0);
                     return;
             }
+        } else if (currBenefitIndex === 4) {
+            switch (currSvgIndex) {
+                case 0:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <RecipesOne className="benefit-layer show" />
+                            <RecipesTwo className="benefit-layer" />
+                            <RecipesFourteen className="benefit-layer" />
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 1:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <RecipesOne className="benefit-layer" />
+                            <RecipesTwo className="benefit-layer show" />
+                            <RecipesThree className="benefit-layer" />
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 2:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <RecipesTwo className="benefit-layer" />
+                            <RecipesThree className="benefit-layer show" />
+                            <RecipesFour className="benefit-layer" />
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 3:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <RecipesThree className="benefit-layer" />
+                            <RecipesFour className="benefit-layer show" />
+                            <RecipesFive className="benefit-layer" />
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 4:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <RecipesFour className="benefit-layer" />
+                            <RecipesFive className="benefit-layer show" />
+                            <RecipesSix className="benefit-layer" />
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 5:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <RecipesFive className="benefit-layer" />
+                            <RecipesSix className="benefit-layer show" />
+                            <RecipesSeven className="benefit-layer" />
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 6:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <RecipesSix className="benefit-layer" />
+                            <RecipesSeven className="benefit-layer show" />
+                            <RecipesEight className="benefit-layer" />
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 7:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <RecipesSeven className="benefit-layer" />
+                            <RecipesEight className="benefit-layer show" />
+                            <RecipesNine className="benefit-layer" />
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 8:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <RecipesEight className="benefit-layer" />
+                            <RecipesNine className="benefit-layer show" />
+                            <RecipesTen className="benefit-layer" />
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 9:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <RecipesNine className="benefit-layer" />
+                            <RecipesTen className="benefit-layer show" />
+                            <RecipesEleven className="benefit-layer" />
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 10:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <RecipesTen className="benefit-layer" />
+                            <RecipesEleven className="benefit-layer show" />
+                            <RecipesTwelve className="benefit-layer" />
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 11:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <RecipesEleven className="benefit-layer" />
+                            <RecipesTwelve className="benefit-layer show" />
+                            <RecipesThirteen className="benefit-layer" />
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 12:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <RecipesEleven className="benefit-layer" />
+                            <RecipesTwelve className="benefit-layer show" />
+                            <RecipesThirteen className="benefit-layer" />
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 13:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <RecipesTwelve className="benefit-layer" />
+                            <RecipesThirteen className="benefit-layer show" />
+                            <RecipesFourteen className="benefit-layer" />
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 14:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <RecipesOne className="benefit-layer" />
+                            <RecipesThirteen className="benefit-layer" />
+                            <RecipesFourteen className="benefit-layer show" />
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 15:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <RecipesOne className="benefit-layer" />
+                            <RecipesThirteen className="benefit-layer" />
+                            <RecipesFourteen className="benefit-layer show" />
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 16:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <RecipesOne className="benefit-layer" />
+                            <RecipesThirteen className="benefit-layer" />
+                            <RecipesFourteen className="benefit-layer show" />
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                case 17:
+                    setCurrSvg(
+                        <div className="benefit-area">
+                            <RecipesOne className="benefit-layer" />
+                            <RecipesThirteen className="benefit-layer" />
+                            <RecipesFourteen className="benefit-layer show" />
+                        </div>
+                    );
+                    setCurrSvgIndex(currSvgIndex + 1);
+                    break;
+                default:
+                    setCurrSvgIndex(0);
+                    return;
+            }
         }
     }, Benefits[currBenefitIndex].delay);
     useEffect(() => {
@@ -545,7 +754,7 @@ function Home(props) {
         // if the user can can go backwards
         if (direction === "back" && currBenefitIndex - 1 > -1) {
             setCurrBenefitIndex(currBenefitIndex - 1);
-        } else if (direction === "next" && currBenefitIndex + 1 < 8) {
+        } else if (direction === "next" && currBenefitIndex + 1 < 5) {
             setCurrBenefitIndex(currBenefitIndex + 1);
         }
     }

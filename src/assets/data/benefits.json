@@ -8,7 +8,7 @@
     {
         "cardName": "Update Lists",
         "text": "Mark your list items as purchased and set the priority on when you need them.",
-        "color": "teal",
+        "color": "green",
         "delay": 250
     },
     {
@@ -26,6 +26,7 @@
     {
         "cardName": "Recipes",
         "text": "Got a recipe you love?  Save a G-List with all of the ingredients!",
-        "color": "purple"
+        "color": "purple",
+        "delay": 215
     }
 ]

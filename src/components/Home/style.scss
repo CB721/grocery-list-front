@@ -234,7 +234,7 @@
           }
         }
         #login-exisiting-user {
-          @include home-button(rgb(4, 104, 205), 3rem);
+          @include home-button($purple, 3rem);
         }
       }
       #privacy-section {
@@ -246,7 +246,7 @@
           font-size: 1rem;
         }
         #view-privacy {
-          @include home-button($purple, 2rem);
+          @include home-button($black, 2rem);
         }
       }
       #highlight-section {

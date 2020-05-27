@@ -2,9 +2,9 @@
 
 @mixin highlight-background($bgcolor) {
     background: $bgcolor;
-    background: -moz-linear-gradient(0deg, darken($bgcolor, 10%) 0%, $bgcolor 100%);
-    background: -webkit-linear-gradient(0deg, darken($bgcolor, 10%) 0%, $bgcolor 100%);
-    background: linear-gradient(0deg, darken($bgcolor, 10%) 0%, $bgcolor 100%);
+    background: -moz-linear-gradient(0deg, darken($bgcolor, 25%) 0%, $bgcolor 100%);
+    background: -webkit-linear-gradient(0deg, darken($bgcolor, 25%) 0%, $bgcolor 100%);
+    background: linear-gradient(0deg, darken($bgcolor, 25%) 0%, $bgcolor 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=$bgcolor,endColorstr=$bgcolor,GradientType=1);
 }
 
@@ -23,9 +23,6 @@
     }
     &.green {
         @include highlight-background($green);
-    }
-    &.teal {
-        @include highlight-background(#0cbba1);
     }
     &.purple {
         @include highlight-background($purple);
