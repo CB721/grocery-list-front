@@ -31,7 +31,7 @@
 
 .home {
   background: $main-blue;
-  min-height: 75vh;
+  min-height: 70vh;
   height: auto;
   width: 90vw;
   margin-top: 10vh;
@@ -40,7 +40,8 @@
   justify-content: center;
   flex-basis: auto;
   @media only screen and (max-width: 500px) {
-    padding: 5%;
+    width: 100vw;
+    padding: 5% 0;
     display: block;
   }
   .home-section {
