@@ -31,7 +31,8 @@
       border-radius: inherit;
       width: 33.33%;
       padding: 0 5px;
-      overflow: scroll;
+      overflow: hidden;
+      text-overflow: ellipsis;
       text-transform: capitalize;
       cursor: pointer;
       &:nth-child(2n) {

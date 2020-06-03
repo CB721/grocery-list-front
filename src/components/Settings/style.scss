@@ -318,7 +318,10 @@
               &.any-store {
                 background-color: $red;
               }
-            }
+              &.in-cart {
+                background-color: $green;
+              }
+             }
             .slider:before {
               position: absolute;
               content: "";
@@ -336,6 +339,9 @@
               }
               &.any-store {
                 background-color: $purple;
+              }
+              &.in-cart {
+                background-color: $orange;
               }
             }
             input:focus + .slider {

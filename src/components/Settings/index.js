@@ -44,6 +44,7 @@ function Settings(props) {
     const [isMobile, setIsMobile] = useState(false);
     const [darkToggle, setDarkToggle] = useState(false);
     const [anyStoreToggle, setAnyStoreToggle] = useState(true);
+    const [inCartToggle, setInCartToggle] = useState(false);
     const config = {
         onUploadProgress: progressEvent => {
             const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
@@ -464,6 +465,17 @@ function Settings(props) {
             setAnyStoreToggle(true);
         }
     }
+    function toggleHideInCartItems(event) {
+        event.preventDefault();
+        if (inCartToggle) {
+            localStorage.setItem("hide-in-cart-items", false);
+            setInCartToggle(false);
+        } else {
+            localStorage.setItem("hide-in-cart-items", true);
+            setInCartToggle(true);
+        }
+    }
+    
     return (
         <div aria-label="settings page">
             {modal ? (
@@ -895,6 +907,23 @@ function Settings(props) {
                                                     checked={anyStoreToggle}
                                                 />
                                                 <span className="slider round any-store"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div className="view-options-header">
+                                        Hide In-Cart Items
+                                    </div>
+                                    <div className="view-options-header">
+                                        <div className="toggle-dark-mode">
+                                            <label
+                                                className="switch"
+                                                onClick={(event) => toggleHideInCartItems(event)}
+                                            >
+                                                <input
+                                                    type="checkbox"
+                                                    checked={inCartToggle}
+                                                />
+                                                <span className="slider round in-cart"></span>
                                             </label>
                                         </div>
                                     </div>
