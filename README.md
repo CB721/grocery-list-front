@@ -6,6 +6,10 @@ An application for users to create custom grocery lists based on the stores wher
 * [Back End Repository](https://github.com/CB721/grocery-list-back)
 
 ## Versions
+* 1.2.5
+    * Home page redesign
+        * Created custom svgs to demonstrate the application
+        * Condensed text by 50%
 * 1.2.0
     * Dark mode option saved in database
     * Navbar options placed on footer for mobile
