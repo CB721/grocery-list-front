@@ -26,7 +26,13 @@ function ViewList(props) {
     const [searchPrevLists, setSearchPrevLists] = useState("");
 
     useEffect(() => {
-        setList(props.list);
+        let hideInCart = localStorage.getItem("hide-in-cart-items");
+        if (!hideInCart || hideInCart === "false") {
+            setList(props.list);
+        } else {
+            const filterInCartItems = props.list.filter(item => item.purchased < 1);
+            setList(filterInCartItems);
+        }
         // check if all items have been purchased
         for (let i = 0; i <= props.list.length; i++) {
             // if it has gone through the entire list, all items have been marked complete

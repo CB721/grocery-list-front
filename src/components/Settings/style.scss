@@ -272,6 +272,7 @@
           margin: 0.5rem auto;
           text-align: center;
           float: left;
+          text-overflow: ellipsis;
           button {
             color: $white;
             background: $red;

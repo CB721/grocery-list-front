@@ -159,8 +159,10 @@ function Settings(props) {
     }, [props.connections]);
     useEffect(() => {
         document.title = "G-List | Settings";
-        // check local storage for any store option
+        // check local storage for any store, dark mode and hide in cart options
         const anyStore = localStorage.getItem("any-store-option");
+        const darkMode = localStorage.getItem("dark-mode");
+        const hideInCart = localStorage.getItem("hide-in-cart-items");
         // if it doesn't exist, add it to localstorage and set to true
         if (!anyStore) {
             localStorage.setItem("any-store-option", true);
@@ -169,6 +171,16 @@ function Settings(props) {
             setAnyStoreToggle(true);
         } else if (anyStore === "false") {
             setAnyStoreToggle(false);
+        }
+        if (darkMode) {
+            setDarkToggle(true);
+        } else {
+            setDarkToggle(false);
+        }
+        if (!hideInCart || hideInCart === "false") {
+            setInCartToggle(false);
+        } else {
+            setInCartToggle(true);
         }
     }, []);
     useEffect(() => {
@@ -911,7 +923,7 @@ function Settings(props) {
                                         </div>
                                     </div>
                                     <div className="view-options-header">
-                                        Hide In-Cart Items
+                                        {inCartToggle ? "Hide In-Cart" : "Show In-Cart"}
                                     </div>
                                     <div className="view-options-header">
                                         <div className="toggle-dark-mode">
