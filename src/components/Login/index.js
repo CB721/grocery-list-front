@@ -66,6 +66,11 @@ function Login(props) {
             setEmail(value);
         } else if (name === "password") {
             setPassword(value);
+            if (isEmail(email) && isByteLength(password, { min: 8, max: 16 }) && !error.length) {
+                setDisabled(false);
+            } else {
+                setDisabled(true);
+            }
         }
     }
     function validateField(event) {
