@@ -40,6 +40,11 @@ function Footer(props) {
         }
     }, [props.notifications]);
     useEffect(() => {
+        if (isMobile) {
+            setShowPhoneOption(true);
+        }
+    }, []);
+    useEffect(() => {
         // remove logout option from footer, it is placed in settings on mobile
         const filteredOptions = props.navOptions.filter(option => option.name !== "Logout");
         // if the first option is the profile, move it to the last option so it is placed in the middle

@@ -116,6 +116,7 @@ function CreateAccount(props) {
             email,
             password
         }
+        props.setCover(true);
         setProgress(0);
         setModal(true);
         API.createUser(user, config)
@@ -129,6 +130,7 @@ function CreateAccount(props) {
                     // hit api route for login
                     props.userLogin(email, password, true, config)
                         .then(() => {
+                            props.setCover(false);
                             // wait until logging in notification is done before displaying welcome message
                             setTimeout(() => {
                                 props.notification("Welcome to G-List!");
@@ -137,6 +139,7 @@ function CreateAccount(props) {
                             history.push("/profile");
                         })
                         .catch(err => {
+                            props.setCover(false);
                             console.log(err);
                             // retroute to login page
                             history.push("/login");
