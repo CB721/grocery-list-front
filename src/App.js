@@ -11,6 +11,7 @@ import Footer from "./components/Footer";
 import Settings from "./components/Settings";
 import PassReset from "./components/PassReset";
 import Privacy from "./components/Privacy";
+import ModalCover from "./components/ModalCover";
 import { ToastContainer } from 'react-toastify';
 import "shards-ui/dist/css/shards.min.css";
 import API from "./utilities/api";
@@ -37,6 +38,7 @@ function App() {
   const [settingsTab, setSettingsTab] = useState("");
   const [isDark, setIsDark] = useState(false);
   const [homeNewUserEmail, setHomeNewUserEmail] = useState("");
+  const [cover, setCover] = useState(false);
 
   useEffect(() => {
     toggleDarkMode();
@@ -389,6 +391,9 @@ function App() {
           updateUser={updateUser}
           notification={notification}
         />
+        {cover ? (
+          <ModalCover />
+        ) : (<div />)}
         <Switch>
           <Route exact path="/" render={props => (
             (validateUser() ? (
@@ -428,6 +433,7 @@ function App() {
                     userLogin={userLogin}
                     error={error}
                     user={user}
+                    setCover={setCover}
                   />
                 ))
             )}
@@ -444,6 +450,7 @@ function App() {
                     userLogin={userLogin}
                     notification={notification}
                     homeNewUserEmail={homeNewUserEmail}
+                    setCover={setCover}
                   />
                 ))
             )}

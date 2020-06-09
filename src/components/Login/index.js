@@ -6,6 +6,7 @@ import Form from "../Form";
 import Space from "../DivSpace";
 import LoadingBar from "../LoadingBar";
 import Modal from "../Modal";
+import ModalCover from "../ModalCover";
 import "./style.scss";
 import API from '../../utilities/api';
 import Button from '../Button';
@@ -32,6 +33,7 @@ function Login(props) {
     const [modalContent, setModalContent] = useState("");
     const [forgotOption, setForgotOption] = useState("");
     const [carrier, setCarrier] = useState("");
+    
 
     const config = {
         onUploadProgress: progressEvent => {
@@ -123,13 +125,16 @@ function Login(props) {
         event.preventDefault();
         setShowProgress(true);
         setProgress(0);
+        props.setCover(true);
         props.userLogin(email, password, remember, config)
             .then(() => {
+                props.setCover(false);
                 setShowProgress(false);
                 history.push("/profile");
                 setProgress(0);
             })
             .catch(err => {
+                props.setCover(false);
                 console.log(err);
                 setShowProgress(false);
                 setProgress(0);
@@ -286,6 +291,7 @@ function Login(props) {
                     />}
                 />
             ) : (<div />)}
+            
             <Space />
             <Row>
                 <Col>
