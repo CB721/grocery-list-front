@@ -16,6 +16,8 @@ module.exports = {
                 // if it isn't more than a day, only display singular days
             } else if (hours >= 24 && hours < 48) {
                 timeStr = `1 day ago`;
+            } else if (Math.floor(hours / 24) > 29) {
+                timeStr = `${Math.round(Math.floor(hours/24) / 30)} months ago`;
             } else {
                 timeStr = `${Math.floor(hours / 24)} days ago`;
             }
