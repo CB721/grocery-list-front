@@ -329,13 +329,22 @@ function ViewList(props) {
                                     </option>
                                 ))}
                             </select>
-                            <ListHeader
+                            {isMobile ? (
+                                <ListHeader
+                                firstCol="Item Name"
+                                secondCol="Store"
+                                thirdCol="In Cart"
+                                action={setColumnFilter}
+                            />
+                            ) : (
+                                <ListHeader
                                 firstCol="Item Name"
                                 secondCol="Store"
                                 thirdCol="Priority"
                                 fourthCol="In Cart"
                                 action={setColumnFilter}
                             />
+                            )}
                             <div>
                                 {isMobile ? (
                                     <StaticList

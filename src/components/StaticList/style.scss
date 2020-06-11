@@ -43,12 +43,27 @@
       &:nth-child(3n) {
         text-align: right;
       }
+      @media only screen and (max-width: 500px) {
+        &:first-child {
+          width: 50vw;
+          text-align: center;
+        }
+        &:nth-child(2n) {
+          width: 30vw;
+        }
+        &:nth-child(3n) {
+          width: 15vw;
+          padding-right: 5vw;
+        }
+      }
       .sub-col {
         display: inline-flex;
         margin-top: 0;
-        // .to-get {
-        //     margin-top: 0.3rem;
-        // }
+        &.priority {
+          @media only screen and (max-width: 500px) {
+            display: none;
+          }
+        }
         .store-dropdown {
           // margin: 20px 12.5%;
           // width: 75%;

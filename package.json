@@ -1,9 +1,8 @@
 {
-  "name": "grocery",
+  "name": "g-list",
   "version": "1.2.5",
   "private": true,
   "dependencies": {
-    "@react-spring/addons": "^9.0.0-beta.33",
     "@svgr/webpack": "^5.1.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.0",
