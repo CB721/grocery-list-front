@@ -335,6 +335,7 @@ function ViewList(props) {
                                 secondCol="Store"
                                 thirdCol="In Cart"
                                 action={setColumnFilter}
+                                isMobile={isMobile}
                             />
                             ) : (
                                 <ListHeader
@@ -354,6 +355,7 @@ function ViewList(props) {
                                         changePriority={changePriority}
                                         updateItemPosition={props.updateItemPosition}
                                         deleteItem={props.deleteItem}
+                                        isMobile={isMobile}
                                     />
                                 ) : (
                                         <List

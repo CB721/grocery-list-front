@@ -44,16 +44,18 @@
         text-align: right;
       }
       @media only screen and (max-width: 500px) {
-        &:first-child {
-          width: 50vw;
-          text-align: center;
-        }
-        &:nth-child(2n) {
-          width: 30vw;
-        }
-        &:nth-child(3n) {
-          width: 15vw;
-          padding-right: 5vw;
+        &.view-list-mobile {
+          &:first-child {
+            width: 50vw;
+            text-align: center;
+          }
+          &:nth-child(2n) {
+            width: 30vw;
+          }
+          &:nth-child(3n) {
+            width: 15vw;
+            padding-right: 5vw;
+          }
         }
       }
       .sub-col {

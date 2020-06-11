@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { ReactComponent as Edit } from "../../assets/images/edit.svg";
 import Button from "../Button";
 import List from "../List";
+import StaticList from "../StaticList";
 import ListHeader from "../ListHeader";
 import Dropdown from "../Dropdown";
 import OfflineActions from "../../utilities/offlineActions";
-import Flip from 'react-reveal/Flip';
 import "./style.scss";
 
 function CreateList(props) {
@@ -279,19 +279,34 @@ function CreateList(props) {
             ) : (<div />)}
             {list.length > 0 && !editListItems ? (
                 <div>
-                    <ListHeader
-                        firstCol="Item Name"
-                        secondCol="Store"
-                        thirdCol="Priority"
-                        fourthCol="Remove Item"
-                    />
-                    <Flip bottom cascade>
-                        <List
+                    {window.screen.availWidth < 500 ? (
+                        <ListHeader
+                            firstCol="Item Name"
+                            secondCol="Store"
+                            thirdCol="Remove Item"
+                            isMobile={true}
+                        />
+                    ) : (
+                            <ListHeader
+                                firstCol="Item Name"
+                                secondCol="Store"
+                                thirdCol="Priority"
+                                fourthCol="Remove Item"
+                            />
+                        )}
+                    {window.screen.availWidth < 500 ? (
+                        <StaticList
+                            isMobile={true}
                             list={list}
-                            updateItemPosition={props.updateItemPosition}
                             deleteItem={props.deleteItem}
                         />
-                    </Flip>
+                    ) : (
+                            <List
+                                list={list}
+                                updateItemPosition={props.updateItemPosition}
+                                deleteItem={props.deleteItem}
+                            />
+                        )}
                 </div>
             ) : list.length ? (
                 <div>

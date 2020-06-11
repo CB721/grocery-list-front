@@ -28,20 +28,20 @@ function StaticList(props) {
                     key={index}
                 >
                     <div
-                        className="list-item-col"
+                        className={props.isMobile ? "list-item-col view-list-mobile" : "list-item-col"}
                         aria-label={item.name}
                         onClick={(event) => action(event, item)}
                     >
                         {item.name}
                     </div>
                     <div
-                        className="list-item-col"
+                        className={props.isMobile ? "list-item-col view-list-mobile" : "list-item-col"}
                         aria-label={item.store_name || item.list_name || "date"}
                         onClick={(event) => action(event, item)}
                     >
                         {item.store_name || item.list_name || convertDate(item.date_added.split("T")[0])}
                     </div>
-                    <div className="list-item-col">
+                    <div className={props.isMobile ? "list-item-col view-list-mobile" : "list-item-col"}>
                         <div className="sub-col priority">
                             {props.viewList ? (
                                 <div>
