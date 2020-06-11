@@ -10,6 +10,8 @@ An application for users to create custom grocery lists based on the stores wher
     * Home page redesign
         * Created custom svgs to demonstrate the application
         * Condensed text by 50%
+    * Option to filter current list items by their in-cart status
+    * Reduced the length of time toast notifications remain on-screen for mobile devices
 * 1.2.0
     * Dark mode option saved in database
     * Navbar options placed on footer for mobile
@@ -40,8 +42,8 @@ An application for users to create custom grocery lists based on the stores wher
 ![Recipes](https://github.com/CB721/grocery-list-front/blob/master/src/assets/images/walkthrough_gifs/recipes-mobile.gif?raw=true)
 #### Connect with other users
 ![Connect](https://github.com/CB721/grocery-list-front/blob/master/src/assets/images/walkthrough_gifs/send-receive-request-mobile.gif?raw=true)
-#### Share lists with connections
-![Share](https://github.com/CB721/grocery-list-front/blob/master/src/assets/images/walkthrough_gifs/send-receive-list-mobile.gif?raw=true)
+#### Send lists to connections
+![Send List](https://github.com/CB721/grocery-list-front/blob/master/src/assets/images/walkthrough_gifs/send-receive-list-mobile.gif?raw=true)
 
 ## User Stores
 1) "As a user, I want to create grocery lists and specify where I'll buy and how urgently I need each item."
@@ -52,9 +54,8 @@ An application for users to create custom grocery lists based on the stores wher
 * Implement swipe feature for mobile
     * Swipe right on a item to mark it complete, swipe left to delete it
     * Swipe across tabs for viewing stores, viewing lists and creating lists
-* Add parallax effect to home page
-* Purchase domain with email address for communicating with users
 * Add scan barcode option for a user to add to their list
+* Allow users to share a list, update the purchased status and mark as completed in real time
 
 ### Technologies Used
 #### Front End
