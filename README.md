@@ -50,6 +50,9 @@ An application for users to create custom grocery lists based on the stores wher
 2) "As a user, I want to filter by store when I go shopping"
 3) "As a user, I want to connect with friends and family members to send and receive grocery lists"
 
+## Table Relationships
+![entity relationship diagram](assets/wireframes/ERD.png)
+
 ### Future Improvements
 * Implement swipe feature for mobile
     * Swipe right on a item to mark it complete, swipe left to delete it
