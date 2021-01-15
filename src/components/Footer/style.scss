@@ -4,10 +4,7 @@
     position: relative;
     height: 10vh;
     min-height: 3.125rem;
-    background: $white;
-    background: -moz-linear-gradient(0deg, $white 0%, $main-blue 100%);
-    background: -webkit-linear-gradient(0deg, $white 0%, $main-blue 100%);
-    background: linear-gradient(0deg, $white 0%, $main-blue 100%);
+    background: $main-blue;
     margin-bottom: 0;
     text-align: center;
     line-height: 10vh;

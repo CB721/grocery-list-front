@@ -108,7 +108,9 @@ function App() {
             })
             .catch(err => {
               console.log(err);
-              setError(err.response.data);
+              if (err.response && err.response.data) {
+                setError(err.response.data);
+              }
               reject(err);
             });
         });
@@ -157,7 +159,7 @@ function App() {
             resolve(res.data);
           })
           .catch(err => {
-            console.log(err.response.data);
+            console.log(err.response);
             reject();
           });
       }
